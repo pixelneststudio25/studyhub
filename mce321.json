@@ -1,0 +1,1860 @@
+{
+ "course": {
+  "code": "MCE 321",
+  "title": "Design of Mechatronics and Robotics Systems I",
+  "units": 2,
+  "lecturer": "Engr. Anunuso, Justice C.",
+  "school": "FUT Minna"
+ },
+ "modules": [
+  {
+   "id": "m1",
+   "title": "Design of Mechatronic Systems",
+   "source": "Lecture 1 (MCE 321 deck, slides 1-60)",
+   "lessons": [
+    {
+     "id": "1.1",
+     "title": "What is mechatronics?",
+     "slides": "3-4, 12",
+     "one_line": "Mechatronics means designing mechanical, electronic and computer parts together, at the same time, so the product works as one smart system.",
+     "analogy": "Think of a football team. Old-style design is like training the defenders, midfielders and attackers in separate camps, then meeting on match day. Mechatronic design trains them together from day one, so they pass better.",
+     "exam": [
+      "Mechatronics is a methodology (a set of practices, procedures and rules) for the optimal design of electromechanical products.",
+      "It is multidisciplinary: electrical, mechanical, computer science and information technology.",
+      "It uses a concurrent (parallel) approach, not a sequential one, which gives more synergy.",
+      "It integrates electronics and computing with the mechanical system throughout the design process, giving more flexible, higher-performance products."
+     ],
+     "terms": [
+      "mechatronics",
+      "methodology",
+      "concurrent-design",
+      "synergy",
+      "multidisciplinary"
+     ],
+     "recall": [
+      "Name two engineering fields you think a washing machine needs.",
+      "Why might building the motor first and the software later cause problems?"
+     ],
+     "quiz": [
+      {
+       "q": "Which approach does mechatronic design use?",
+       "options": [
+        "Sequential",
+        "Concurrent",
+        "Random",
+        "Mechanical-first"
+       ],
+       "answer": 1,
+       "explain": "Disciplines are designed at the same time, not one after another. That is what produces synergy."
+      },
+      {
+       "q": "Which is NOT one of the four fundamental disciplines named in the lecture?",
+       "options": [
+        "Electrical",
+        "Mechanical",
+        "Civil",
+        "Information technology"
+       ],
+       "answer": 2,
+       "explain": "The four are electrical, mechanical, computer science and information technology."
+      },
+      {
+       "q": "A 'methodology' is best described as:",
+       "options": [
+        "A single machine",
+        "A collection of practices, procedures and rules",
+        "A type of sensor",
+        "A budget"
+       ],
+       "answer": 1,
+       "explain": "That is the definition given on slide 3."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Define mechatronics.",
+       "back": "A methodology for the optimal design of electromechanical products, combining mechanical, electrical, computer science and IT."
+      },
+      {
+       "front": "Concurrent vs sequential design?",
+       "back": "Concurrent: all disciplines designed together. Sequential: one after another. Mechatronics uses concurrent."
+      },
+      {
+       "front": "What is synergy?",
+       "back": "The combined result being better than the parts working separately."
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending-approval",
+       "search_fallback": "https://www.youtube.com/results?search_query=what+is+mechatronics+explained+simply"
+      }
+     ]
+    },
+    {
+     "id": "1.2",
+     "title": "The mechatronic design toolkit",
+     "slides": "8-9",
+     "one_line": "Engineers use software tools to model, simulate, test and even auto-generate code before building anything real.",
+     "analogy": "It is like a flight simulator for engineers. You crash the virtual plane many times, cheaply, before touching a real one.",
+     "exam": [
+      "Modelling: block diagrams or a visual interface to build easy-to-understand behavioural models of physical or abstract phenomena.",
+      "Simulation: numerical methods to solve models with differential, discrete, hybrid, partial and implicit nonlinear equations; needs a clock for real-time operation.",
+      "Project management: a database of project information and sub-models for reuse.",
+      "Design: numerical methods for constrained optimisation of performance functions; Monte Carlo capability is desirable.",
+      "Analysis: frequency-domain, time-domain and complex-domain design methods.",
+      "Real-time interface: a plug-in card replaces part of the model with real hardware (sensors and actuators). This is hardware-in-the-loop simulation or rapid prototyping.",
+      "Code generator: produces efficient high-level source code (usually C) from the block diagram, for the embedded processor.",
+      "Embedded processor interface: the processor that lives in the final product, and its communication with the prototyping environment."
+     ],
+     "terms": [
+      "modelling",
+      "simulation",
+      "hil",
+      "rapid-prototyping",
+      "code-generator",
+      "embedded-processor",
+      "monte-carlo"
+     ],
+     "recall": [
+      "Why test a design on a computer before building it?"
+     ],
+     "quiz": [
+      {
+       "q": "Replacing part of a simulated model with real sensors and actuators is called:",
+       "options": [
+        "Code generation",
+        "Hardware-in-the-loop simulation",
+        "Project management",
+        "Optimisation"
+       ],
+       "answer": 1,
+       "explain": "Hardware-in-the-loop, also called rapid prototyping, must run in real time."
+      },
+      {
+       "q": "Which language does the code generator usually produce?",
+       "options": [
+        "Python",
+        "Java",
+        "C",
+        "HTML"
+       ],
+       "answer": 2,
+       "explain": "The control code is usually C, compiled for the embedded processor."
+      },
+      {
+       "q": "A block-diagram tool for building behavioural models is part of:",
+       "options": [
+        "Modelling",
+        "Analysis",
+        "Disposability",
+        "Servicing"
+       ],
+       "answer": 0,
+       "explain": "Modelling uses block diagrams or visual interfaces."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Hardware-in-the-loop?",
+       "back": "Part of the model is replaced by real hardware via sensors and actuators, run in real time."
+      },
+      {
+       "front": "What does the code generator do?",
+       "back": "Turns the block diagram into efficient high-level code, usually C, for the embedded processor."
+      },
+      {
+       "front": "Embedded processor?",
+       "back": "The computer chip that sits inside the final product."
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending-approval",
+       "search_fallback": "https://www.youtube.com/results?search_query=hardware+in+the+loop+simulation+explained"
+      }
+     ]
+    },
+    {
+     "id": "1.3",
+     "title": "Life-cycle design",
+     "slides": "10",
+     "one_line": "Good mechatronic design cares about the product's whole life: getting it delivered, keeping it working, fixing it, upgrading it and disposing of it safely.",
+     "analogy": "Buying a phone: you care how fast it arrives, whether it breaks, whether the screen can be repaired, whether it takes future updates, and where it goes when you are done.",
+     "exam": [
+      "Life cycle design = producing high-quality products and maintaining them as well.",
+      "Delivery: time, cost and medium.",
+      "Reliability: failure rate, materials and tolerances.",
+      "Maintainability: modular design.",
+      "Serviceability: on-board diagnostics, prognostics and modular design.",
+      "Upgradeability: future compatibility with current designs.",
+      "Disposability: recycling and disposal of hazardous materials."
+     ],
+     "terms": [
+      "life-cycle",
+      "reliability",
+      "maintainability",
+      "serviceability",
+      "modular-design"
+     ],
+     "recall": [
+      "List things that make a phone easy or hard to repair."
+     ],
+     "quiz": [
+      {
+       "q": "'On-board diagnostics and prognostics' belong to which life-cycle factor?",
+       "options": [
+        "Delivery",
+        "Serviceability",
+        "Disposability",
+        "Upgradeability"
+       ],
+       "answer": 1,
+       "explain": "Serviceability covers diagnostics, prognostics and modular design."
+      },
+      {
+       "q": "Failure rate, materials and tolerances describe:",
+       "options": [
+        "Reliability",
+        "Maintainability",
+        "Delivery",
+        "Disposability"
+       ],
+       "answer": 0,
+       "explain": "Those are the reliability factors."
+      },
+      {
+       "q": "How many life-cycle factors does the lecture list?",
+       "options": [
+        "4",
+        "5",
+        "6",
+        "7"
+       ],
+       "answer": 2,
+       "explain": "Delivery, reliability, maintainability, serviceability, upgradeability, disposability = 6."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Six life-cycle factors?",
+       "back": "Delivery, Reliability, Maintainability, Serviceability, Upgradeability, Disposability (D-R-M-S-U-D)."
+      },
+      {
+       "front": "Maintainability is linked to?",
+       "back": "Modular design."
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending-approval",
+       "search_fallback": "https://www.youtube.com/results?search_query=product+life+cycle+design+engineering+reliability+maintainability"
+      }
+     ]
+    },
+    {
+     "id": "1.4",
+     "title": "The 7 stages of designing a mechatronic system",
+     "slides": "13-20",
+     "one_line": "Design is a chain: understand the need, study the problem, write the specification, generate ideas, pick the best, detail it, then draw it for manufacture.",
+     "analogy": "Building a house: what the family needs, what is really wrong with the old one, a written brief, several sketches, choosing one, engineering details, then construction drawings.",
+     "exam": [
+      "1 The Need: starts from the customer's need, found by market research.",
+      "2 Analysis of the problem: the critical stage. Find the true nature of the problem or the design wastes time.",
+      "3 Specification: mass, dimensions, accuracy, I/O, interfaces, power, environment, standards, space, payload, speed, acceleration, resolution, control functions, life.",
+      "4 Conceptualisation: generate possible solutions for each function; aim for at least six per function.",
+      "5 Optimisation: pick the best solution from the group.",
+      "6 Detail design: prototype, mechanical layout, check components fit and can be accessed for maintenance.",
+      "7 Production of working drawings: drawings, circuit diagrams and manufacturing tolerances."
+     ],
+     "terms": [
+      "specification",
+      "conceptualisation",
+      "optimisation",
+      "detail-design",
+      "tolerance",
+      "prototype"
+     ],
+     "recall": [
+      "Why is writing a specification before designing a good idea?"
+     ],
+     "quiz": [
+      {
+       "q": "Which stage is called the critical stage?",
+       "options": [
+        "The Need",
+        "Analysis of the problem",
+        "Detail design",
+        "Working drawings"
+       ],
+       "answer": 1,
+       "explain": "Wrongly defining the problem wastes time and may not meet the need."
+      },
+      {
+       "q": "Choosing the best solution among several is:",
+       "options": [
+        "Conceptualisation",
+        "Specification",
+        "Optimisation",
+        "Prototyping"
+       ],
+       "answer": 2,
+       "explain": "Optimisation = selecting the best solution from a group."
+      },
+      {
+       "q": "Manufacturing tolerances are included in:",
+       "options": [
+        "The Need",
+        "Working drawings",
+        "Market research",
+        "Conceptualisation"
+       ],
+       "answer": 1,
+       "explain": "Working drawings include the tolerance for each component."
+      },
+      {
+       "q": "Roughly how many solutions should you try to think of per function?",
+       "options": [
+        "1",
+        "2",
+        "At least 6",
+        "Exactly 20"
+       ],
+       "answer": 2,
+       "explain": "Slide 17 says at least six."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Order of the 7 stages?",
+       "back": "Need, Analysis, Specification, Conceptualisation, Optimisation, Detail design, Working drawings."
+      },
+      {
+       "front": "What goes into a specification?",
+       "back": "Mass, dimensions, accuracy, I/O, interfaces, power, environment, standards, space, payload, speed, life etc."
+      },
+      {
+       "front": "Detail design checks?",
+       "back": "That all components physically fit and can be reached for replacement or maintenance."
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending-approval",
+       "search_fallback": "https://www.youtube.com/results?search_query=engineering+design+process+steps+explained"
+      }
+     ]
+    },
+    {
+     "id": "1.5",
+     "title": "Traditional vs mechatronics approach",
+     "slides": "22-25",
+     "one_line": "Traditional machines are big, mechanical and fixed; mechatronic machines are compact, sensor-driven and programmable.",
+     "analogy": "An old manual typewriter versus a laptop: one is heavy and fixed, the other is light and does far more, but costs more.",
+     "exam": [
+      "Traditional: bulk, manual control, complex mechanism, non-adjustable cycles, constant-speed drives, mechanical synchronisation, accuracy set by mechanism tolerance, more components, rigid heavy structure, less accuracy, less flexibility, lower cost.",
+      "Mechatronics: compact, microprocessor/controller control, simplified mechanism, programmed movements, variable-speed drives, electronic synchronisation, accuracy by feedback, fewer components, light structure, more accurate, more flexible, higher cost.",
+      "Traditional systems are finalised by iterating design equations and numerical analysis; mechatronic systems by modelling, simulation and prototyping.",
+      "Washing machine example: manual and cautious before; smart, sensor-based and remote now."
+     ],
+     "terms": [
+      "feedback",
+      "synchronisation",
+      "variable-speed-drive",
+      "sensor"
+     ],
+     "recall": [
+      "What extra thing does a modern washing machine have that an old one lacks?"
+     ],
+     "quiz": [
+      {
+       "q": "In mechatronics, accuracy is achieved mainly by:",
+       "options": [
+        "Tight mechanism tolerance",
+        "Feedback",
+        "Heavy structures",
+        "Manual control"
+       ],
+       "answer": 1,
+       "explain": "Traditional relies on mechanism tolerance; mechatronics on feedback."
+      },
+      {
+       "q": "Which is a drawback of the mechatronics approach?",
+       "options": [
+        "Bulky",
+        "Less flexible",
+        "Higher cost",
+        "Constant speed only"
+       ],
+       "answer": 2,
+       "explain": "Cost is the one row where mechatronics is worse."
+      },
+      {
+       "q": "Synchronisation in mechatronics is:",
+       "options": [
+        "Mechanical",
+        "Electronic",
+        "Manual",
+        "None"
+       ],
+       "answer": 1,
+       "explain": "Traditional = mechanical; mechatronic = electronic."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Traditional vs mechatronic speed drive?",
+       "back": "Constant-speed vs variable-speed."
+      },
+      {
+       "front": "Only row where traditional wins?",
+       "back": "Cost: traditional is cheaper."
+      },
+      {
+       "front": "Control in mechatronics?",
+       "back": "By microprocessor or controller."
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending-approval",
+       "search_fallback": "https://www.youtube.com/results?search_query=traditional+vs+mechatronic+systems+difference"
+      }
+     ]
+    },
+    {
+     "id": "1.6",
+     "title": "Case study: Pick and place robot",
+     "slides": "28-38",
+     "one_line": "A robot that picks an object up and puts it somewhere else, using pneumatic cylinders, limit switches and a microcontroller.",
+     "analogy": "A claw-machine arm at an arcade: rotate, reach, drop down, close the grip, lift, move, release.",
+     "exam": [
+      "Configurations: cylindrical, spherical, articulated or SCARA.",
+      "Parts: manipulator/arm (called 'rover' in the slides), end effector, actuators (servo, stepper, pneumatic or hydraulic), sensors (touch, IR), controller.",
+      "Movements: base rotates CW and CCW; arm extends and retracts; arm moves up and down; gripper opens and closes.",
+      "Driven by pneumatic cylinders operated by solenoid valves, with limit switches to signal completed motions.",
+      "Microcontroller (M68HC11 family) senses 8 limit switches on Port C (PC0-PC7), a start/stop line on Port D, and drives 8 movements on Port B (PB0-PB7).",
+      "Each output drives a TRIAC opto-isolator (LED + TRIAC) that switches the solenoid valve supply.",
+      "Advantages: fast, flexible, accurate, safer, never tired. Uses: defence, industry, medicine."
+     ],
+     "terms": [
+      "end-effector",
+      "actuator",
+      "solenoid-valve",
+      "limit-switch",
+      "microcontroller",
+      "opto-isolator",
+      "triac",
+      "pneumatic"
+     ],
+     "recall": [
+      "Which body part does an end effector copy?"
+     ],
+     "quiz": [
+      {
+       "q": "What tells the controller a movement is finished?",
+       "options": [
+        "Limit switches",
+        "The gripper",
+        "Battery",
+        "Timer only"
+       ],
+       "answer": 0,
+       "explain": "Limit switches indicate motion completion."
+      },
+      {
+       "q": "Which port senses the limit switches?",
+       "options": [
+        "Port B",
+        "Port C",
+        "Port A",
+        "Port E"
+       ],
+       "answer": 1,
+       "explain": "PC0-PC7 read eight limit switches."
+      },
+      {
+       "q": "What isolates the microcontroller from the solenoid supply?",
+       "options": [
+        "A TRIAC opto-isolator",
+        "A fuse",
+        "A resistor only",
+        "A gear"
+       ],
+       "answer": 0,
+       "explain": "An LED + TRIAC pair gives electrical isolation."
+      },
+      {
+       "q": "The gripper is the:",
+       "options": [
+        "Sensor",
+        "Controller",
+        "End effector",
+        "Actuator supply"
+       ],
+       "answer": 2,
+       "explain": "The end effector is attached to the last joint and grips objects."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Pick and place robot parts?",
+       "back": "Manipulator, end effector, actuators, sensors, controller."
+      },
+      {
+       "front": "What does Port B do?",
+       "back": "Sends 8 output signals for the 8 movements."
+      },
+      {
+       "front": "Why use opto-isolation?",
+       "back": "To protect the microcontroller from the higher-power solenoid circuit."
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending-approval",
+       "search_fallback": "https://www.youtube.com/results?search_query=pick+and+place+robot+pneumatic+microcontroller"
+      }
+     ]
+    },
+    {
+     "id": "1.7",
+     "title": "Case study: Engine management system (EMS)",
+     "slides": "40-55",
+     "one_line": "The engine's brain: sensors read what the engine is doing, a microcontroller decides, and drivers adjust fuel and spark.",
+     "analogy": "Like a driver who feels speed, heat and airflow and adjusts pedal and gears instantly, but done thousands of times a second.",
+     "exam": [
+      "EMS = sensors, relays, actuators and an Engine Control Unit (ECU). Used with MPFI, GDI (petrol) and CRDi (diesel).",
+      "Controls ignition and fuelling; goal is optimum engine settings, more efficient and less polluting.",
+      "Power and speed are controlled by varying ignition timing and air-fuel mixture.",
+      "Timing wheel gives pulses showing crankshaft position; the microprocessor times high-voltage pulses accordingly.",
+      "Fuel amount comes from a mass air flow sensor input; injector valve time is varied.",
+      "Sensors: engine speed (inductive coil + toothed wheel), temperature (thermistor or thermocouple), hot-wire anemometer (mass airflow), oxygen sensor (zirconia tube, works above ~300 degrees C).",
+      "Chain: sensors, signal conditioning, ADC, microcontroller compares with stored set points, drivers, actuators.",
+      "Transient protection circuit guards against supply surges; a voltage regulator supplies the controller.",
+      "Advantages: good acceleration, idle speed control, cruise control, self-diagnosis, lower fuel use, safety."
+     ],
+     "terms": [
+      "ecu",
+      "adc",
+      "dac",
+      "set-point",
+      "signal-conditioning",
+      "thermistor",
+      "hot-wire-anemometer",
+      "oxygen-sensor",
+      "ignition-timing"
+     ],
+     "recall": [
+      "What two things does an engine need mixed and lit to run?"
+     ],
+     "quiz": [
+      {
+       "q": "Which sensor uses a heated wire cooled by air?",
+       "options": [
+        "Oxygen sensor",
+        "Hot-wire anemometer",
+        "Speed sensor",
+        "Thermistor"
+       ],
+       "answer": 1,
+       "explain": "The cooling depends on mass flow rate of air."
+      },
+      {
+       "q": "Analog sensor signals are converted for the microcontroller by:",
+       "options": [
+        "DAC",
+        "ADC",
+        "Relay",
+        "Regulator"
+       ],
+       "answer": 1,
+       "explain": "ADC = analog to digital."
+      },
+      {
+       "q": "The oxygen sensor's electrolyte is made of:",
+       "options": [
+        "Copper",
+        "Zirconium oxide",
+        "Silicon",
+        "Steel"
+       ],
+       "answer": 1,
+       "explain": "A closed-end zirconia tube with porous platinum electrodes."
+      },
+      {
+       "q": "What does the timing wheel produce?",
+       "options": [
+        "Fuel",
+        "Pulses showing crankshaft position",
+        "Heat",
+        "Air"
+       ],
+       "answer": 1,
+       "explain": "Those pulses let the microprocessor time the spark."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "EMS in one line?",
+       "back": "Sensors + ECU + actuators controlling fuel and ignition for optimum performance."
+      },
+      {
+       "front": "Signal chain?",
+       "back": "Sensor, conditioning, ADC, microcontroller, driver, actuator."
+      },
+      {
+       "front": "Two variables that set engine power?",
+       "back": "Ignition timing and air-fuel mixture."
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending-approval",
+       "search_fallback": "https://www.youtube.com/results?search_query=engine+control+unit+ECU+sensors+explained"
+      }
+     ]
+    },
+    {
+     "id": "1.8",
+     "title": "Case study: Automatic car park barrier",
+     "slides": "57-60",
+     "one_line": "Coin in, entrance barrier up; car at the exit, exit barrier up. Solenoid valves and a PLC do the switching.",
+     "analogy": "An automatic gate that opens only when it hears the right 'password' (a coin or a car).",
+     "exam": [
+      "Entry barrier opens when the correct coin is inserted; exit barrier opens when a car is detected at the exit.",
+      "Current through solenoid A extends the piston, rotating the barrier up. When current stops, the valve spring returns it. Current through solenoid B moves the piston down.",
+      "Limit switches detect barrier fully up and fully down.",
+      "PLC has 6 inputs (X400-X405): coin switch, entrance up, entrance down, car at exit, exit up, exit down; 4 outputs (Y430-Y433): solenoids A and B for entrance and exit barriers.",
+      "Inputs give 0 V when a switch is operated and +24 V otherwise."
+     ],
+     "terms": [
+      "plc",
+      "solenoid",
+      "limit-switch",
+      "piston-cylinder"
+     ],
+     "recall": [
+      "Why would a barrier need to know it has reached the top?"
+     ],
+     "quiz": [
+      {
+       "q": "How many PLC inputs does the system use?",
+       "options": [
+        "4",
+        "6",
+        "8",
+        "10"
+       ],
+       "answer": 1,
+       "explain": "X400-X405."
+      },
+      {
+       "q": "Solenoid B on the entrance valve does what?",
+       "options": [
+        "Raises the barrier",
+        "Lowers the barrier",
+        "Reads coins",
+        "Opens exit"
+       ],
+       "answer": 1,
+       "explain": "A raises, B lowers."
+      },
+      {
+       "q": "Which triggers the exit barrier?",
+       "options": [
+        "Coin",
+        "Car detected at exit",
+        "Timer",
+        "Entrance up switch"
+       ],
+       "answer": 1,
+       "explain": "The car-at-exit switch (X403)."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "PLC outputs Y430-Y433?",
+       "back": "Drive solenoids A and B for both barriers."
+      },
+      {
+       "front": "Role of limit switches here?",
+       "back": "Detect barrier fully up or down."
+      },
+      {
+       "front": "Input voltage logic?",
+       "back": "0 V when switch operated, +24 V otherwise."
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending-approval",
+       "search_fallback": "https://www.youtube.com/results?search_query=PLC+car+park+barrier+ladder+logic+example"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "m2",
+   "title": "Automation and Robotics",
+   "source": "Lecture 2 (Lecture_2.pptx, slides 1-45)",
+   "lessons": [
+    {
+     "id": "2.1",
+     "title": "What is automation and why do it?",
+     "slides": "2-3, 9",
+     "one_line": "Automation means letting machines run a process with as little human effort as possible.",
+     "analogy": "A traffic light that changes by itself instead of a police officer waving cars through.",
+     "exam": [
+      "Automation: a process to create, control and monitor technology applications; operating equipment (machinery, ships' stabilisation, aircraft, boilers) with minimum human effort.",
+      "Reasons: raise labour productivity, cut labour cost, ease labour shortages, remove routine manual and clerical tasks, improve worker safety, improve product quality, cut manufacturing lead time, do processes impossible manually, avoid the high cost of not automating.",
+      "Major industrial areas: transporting, working (processing) and packaging."
+     ],
+     "terms": [
+      "automation",
+      "productivity",
+      "lead-time"
+     ],
+     "recall": [
+      "Name a job in Nigeria that a machine could do more safely than a person."
+     ],
+     "quiz": [
+      {
+       "q": "Which is a reason for automation?",
+       "options": [
+        "Reduce product quality",
+        "Improve worker safety",
+        "Increase lead time",
+        "Raise labour cost"
+       ],
+       "answer": 1,
+       "explain": "Safety, quality, productivity and lower lead time are all reasons."
+      },
+      {
+       "q": "Automation aims for:",
+       "options": [
+        "Maximum human effort",
+        "Minimum human effort",
+        "No sensors",
+        "No electricity"
+       ],
+       "answer": 1,
+       "explain": "That is the core definition."
+      },
+      {
+       "q": "Which is NOT one of the three major automation areas listed?",
+       "options": [
+        "Transporting",
+        "Working",
+        "Packaging",
+        "Advertising"
+       ],
+       "answer": 3,
+       "explain": "The lecture lists transporting, working and packaging."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Define automation.",
+       "back": "Running equipment or processes with minimum human effort."
+      },
+      {
+       "front": "Manufacturing lead time?",
+       "back": "Time from starting a product's production to finishing it. Automation reduces it."
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending-approval",
+       "search_fallback": "https://www.youtube.com/results?search_query=what+is+industrial+automation+introduction"
+      }
+     ]
+    },
+    {
+     "id": "2.2",
+     "title": "Fixed, programmable and flexible automation",
+     "slides": "4-8",
+     "one_line": "Fixed is built for one job at high volume; programmable handles batches; flexible switches products without stopping.",
+     "analogy": "Fixed: a bottling line that only fills one bottle. Programmable: a bakery oven you reset between bread types. Flexible: a kitchen that cooks different orders at the same time.",
+     "exam": [
+      "Fixed (hard) automation: hardware-based, cannot be changed; high demand, long product life; max efficiency, lowest unit cost; large initial investment, inflexible.",
+      "Programmable automation: hardware + software; batch production; flexible to product changes; low unit cost for large batches; long set-up time for new products; higher unit cost than fixed.",
+      "Flexible automation (FMS / CIM): programmable but changeover without stopping; several products at once; low volume, varying demand, short life cycles; customised products; large investment, high unit cost.",
+      "Example of flexible: automobile assembly line."
+     ],
+     "terms": [
+      "fixed-automation",
+      "programmable-automation",
+      "flexible-automation",
+      "fms",
+      "cim",
+      "batch-production"
+     ],
+     "recall": [
+      "Which is cheapest per item if you make millions of one thing?"
+     ],
+     "quiz": [
+      {
+       "q": "Best choice for very high volume and a long product life?",
+       "options": [
+        "Flexible",
+        "Programmable",
+        "Fixed",
+        "Manual"
+       ],
+       "answer": 2,
+       "explain": "Fixed gives maximum efficiency and lowest unit cost at high volume."
+      },
+      {
+       "q": "FMS stands for:",
+       "options": [
+        "Fixed Machine System",
+        "Flexible Manufacturing System",
+        "Fast Motion System",
+        "Full Mechanical Setup"
+       ],
+       "answer": 1,
+       "explain": "It is another name for flexible automation."
+      },
+      {
+       "q": "Long set-up time for a new product is a weakness of:",
+       "options": [
+        "Fixed",
+        "Programmable",
+        "Flexible",
+        "None"
+       ],
+       "answer": 1,
+       "explain": "Programmable needs reprogramming and set-up between batches."
+      },
+      {
+       "q": "Which suits short product life cycles and customised items?",
+       "options": [
+        "Fixed",
+        "Programmable",
+        "Flexible",
+        "Hard"
+       ],
+       "answer": 2,
+       "explain": "Flexible copes with design variation."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Fixed automation pros and cons?",
+       "back": "Max efficiency, low unit cost. Large investment, inflexible."
+      },
+      {
+       "front": "Programmable suits?",
+       "back": "Batch production, products with different options."
+      },
+      {
+       "front": "Flexible suits?",
+       "back": "Low rates, varying demand, short life cycles, customised products."
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending-approval",
+       "search_fallback": "https://www.youtube.com/results?search_query=fixed+programmable+flexible+automation+types"
+      }
+     ]
+    },
+    {
+     "id": "2.3",
+     "title": "What is a robot? What is robotics?",
+     "slides": "10-14",
+     "one_line": "A robot is a reprogrammable machine with links, joints and motors that moves things through programmed motion. Robotics is the field of designing and using them.",
+     "analogy": "Your arm: bones are links, elbows are joints, muscles are actuators, brain is the controller.",
+     "exam": [
+      "'Robot' coined by Karel Capek in the 1920 play R.U.R. (Rossum's Universal Robots); Czech for worker/servant.",
+      "Manipulator = series of links connected by joints, each with an actuator; one end on a stable base, the other holds a tool.",
+      "RIA definition: re-programmable, multifunctional manipulator moving material, parts, tools or devices through variable programmed motion for a variety of tasks.",
+      "Japanese definition: all-purpose machine with a memory device that can replace human labour for automatic performance of tasks.",
+      "Schilling: software-controlled mechanical device using sensors to guide end effectors through programmed motions in a workspace to manipulate objects.",
+      "Robotics: art, knowledge base and know-how of designing, applying and using robots; interdisciplinary."
+     ],
+     "terms": [
+      "robot",
+      "robotics",
+      "manipulator",
+      "link",
+      "joint",
+      "ria"
+     ],
+     "recall": [
+      "What does 'reprogrammable' add compared to a toy that does one motion?"
+     ],
+     "quiz": [
+      {
+       "q": "Who coined the word 'robot'?",
+       "options": [
+        "Isaac Asimov",
+        "Karel Capek",
+        "Joseph Engelberger",
+        "Nikola Tesla"
+       ],
+       "answer": 1,
+       "explain": "In the 1920 play R.U.R."
+      },
+      {
+       "q": "Links are connected by:",
+       "options": [
+        "Joints",
+        "Sensors",
+        "Wires only",
+        "Bolts only"
+       ],
+       "answer": 0,
+       "explain": "Each joint usually has an actuator."
+      },
+      {
+       "q": "'Reprogrammable' in the RIA definition means:",
+       "options": [
+        "Fixed motion",
+        "Motion can be changed by reprogramming",
+        "Needs no controller",
+        "Only for welding"
+       ],
+       "answer": 1,
+       "explain": "That separates robots from fixed automation."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Origin of 'robot'?",
+       "back": "Czech for worker/servant; Karel Capek, R.U.R., 1920."
+      },
+      {
+       "front": "Manipulator?",
+       "back": "A chain of links and joints, with actuators, between a base and a tool."
+      },
+      {
+       "front": "Robotics?",
+       "back": "Designing, applying and using robots; interdisciplinary."
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending-approval",
+       "search_fallback": "https://www.youtube.com/results?search_query=what+is+a+robot+definition+robotics+introduction"
+      }
+     ]
+    },
+    {
+     "id": "2.4",
+     "title": "Main components of an industrial robot",
+     "slides": "15-20",
+     "one_line": "Arm, end effector, drive, controller, and sensors: the body, hand, muscles, brain and senses.",
+     "analogy": "Body = arm, hand = end effector, muscles = drive, brain = controller, senses = sensors.",
+     "exam": [
+      "Components: manipulator/arm, end effectors, drive mechanism, controller, custom features (sensors, transducers).",
+      "Five joint types: Linear (L) and Orthogonal (O) give translational motion; Rotational (R), Twisting (T) and Revolving (V) give rotary motion.",
+      "Drives: hydraulic (strong, fast, large, floor space), electric servo/stepper (accurate, repeatable, low cost, easy maintenance), pneumatic (small units, high cycle rate, easy maintenance).",
+      "End effectors attach to the wrist: grippers (mechanical, suction/vacuum, magnetic), hooks, scoops; tools (spot and arc welding, spray gun, drilling spindle, grinders, wire brushes, heating torches).",
+      "Sensors: tactile (touch, force), proximity/range (optical, acoustic, electromagnetic), miscellaneous (temperature, pressure, flow, voice), machine vision."
+     ],
+     "terms": [
+      "end-effector",
+      "actuator",
+      "drive-system",
+      "tactile-sensor",
+      "proximity-sensor",
+      "machine-vision",
+      "servo-motor",
+      "stepper-motor"
+     ],
+     "recall": [
+      "Which is stronger for lifting a car: an air cylinder or an oil-based hydraulic ram?"
+     ],
+     "quiz": [
+      {
+       "q": "Which joint type is 'twisting'?",
+       "options": [
+        "L",
+        "O",
+        "T",
+        "V"
+       ],
+       "answer": 2,
+       "explain": "T = twisting (rotary). V = revolving."
+      },
+      {
+       "q": "Best drive for very heavy payloads?",
+       "options": [
+        "Pneumatic",
+        "Hydraulic",
+        "Electric stepper",
+        "Manual"
+       ],
+       "answer": 1,
+       "explain": "Hydraulic offers high strength and speed but takes floor space."
+      },
+      {
+       "q": "A suction cup is a type of:",
+       "options": [
+        "Sensor",
+        "Gripper",
+        "Controller",
+        "Drive"
+       ],
+       "answer": 1,
+       "explain": "Vacuum cups are grippers."
+      },
+      {
+       "q": "Touch and force sensors are:",
+       "options": [
+        "Tactile",
+        "Proximity",
+        "Vision",
+        "Acoustic"
+       ],
+       "answer": 0,
+       "explain": "Tactile sensors sense contact."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Five joint letters?",
+       "back": "L, O = translational; R, T, V = rotary."
+      },
+      {
+       "front": "Hydraulic vs electric?",
+       "back": "Hydraulic: power, size. Electric: accuracy, low cost, clean."
+      },
+      {
+       "front": "Tactile sensor?",
+       "back": "Touch or force sensor."
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending-approval",
+       "search_fallback": "https://www.youtube.com/results?search_query=industrial+robot+components+end+effector+joints+sensors"
+      }
+     ]
+    },
+    {
+     "id": "2.5",
+     "title": "Classifying robots (overview and control of movement)",
+     "slides": "21-26",
+     "one_line": "Robots are grouped by body, how they move, geometry, power source, authority definitions, use, technology level, design, job and degrees of freedom.",
+     "analogy": "Like classifying vehicles: by size, engine, purpose, owner.",
+     "exam": [
+      "Ten schemes: anatomy, control of movement, kinematics/geometry, energy source, authority body, industrial/non-industrial, technology level, design, application/job, degrees of freedom.",
+      "Anatomy: arm, two-arm, arm and leg, arm/leg/face; fingers (2, 3, 5).",
+      "Limited sequence: mechanical stops and limit switches, repeatability about +/-0.5 mm, cheap (25-50% less), used in casting and pressing; hard to change stop points.",
+      "Point to point: axes stop at any programmed discrete point; used in spot welding, pick-and-place, loading and unloading.",
+      "Continuous path: moves smoothly in any direction in 3-D, position and tool controlled continuously; paint spraying, welding."
+     ],
+     "terms": [
+      "limited-sequence",
+      "point-to-point",
+      "continuous-path",
+      "dof",
+      "repeatability"
+     ],
+     "recall": [
+      "When painting a car, would you want the robot to stop at points or move smoothly?"
+     ],
+     "quiz": [
+      {
+       "q": "Which robot uses mechanical stops and limit switches?",
+       "options": [
+        "Continuous path",
+        "Limited sequence",
+        "Point to point",
+        "Intelligent"
+       ],
+       "answer": 1,
+       "explain": "It is the simplest and cheapest type."
+      },
+      {
+       "q": "Paint spraying needs:",
+       "options": [
+        "Limited sequence",
+        "Point to point",
+        "Continuous path",
+        "Manual"
+       ],
+       "answer": 2,
+       "explain": "The path itself matters, so control must be continuous."
+      },
+      {
+       "q": "Spot welding is typically:",
+       "options": [
+        "Point to point",
+        "Continuous path",
+        "Limited sequence only",
+        "Non-industrial"
+       ],
+       "answer": 0,
+       "explain": "The tool visits discrete points."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Three control-of-movement types?",
+       "back": "Limited sequence, point to point, continuous path."
+      },
+      {
+       "front": "Limited-sequence repeatability?",
+       "back": "About +/-0.5 mm (per the lecture)."
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending-approval",
+       "search_fallback": "https://www.youtube.com/results?search_query=robot+control+types+point+to+point+continuous+path"
+      }
+     ]
+    },
+    {
+     "id": "2.6",
+     "title": "Robot configurations (coordinate systems)",
+     "slides": "27-34",
+     "one_line": "The mix of joint types decides the shape of the space a robot can reach: Cartesian, cylindrical, spherical, articulated and SCARA.",
+     "analogy": "A gantry crane (Cartesian), a lathe-like pivot (cylindrical), a turret (spherical), a human arm (articulated), a desk-lamp swing arm (SCARA).",
+     "exam": [
+      "Workspace: the space the robot can move in.",
+      "Notation A (P/R): Cartesian PPP, Cylindrical RPP, Spherical RRP, SCARA RRP, Articulated RRR.",
+      "Notation B (L/O/R/T/V): Cartesian LOO, Cylindrical TLO, Spherical TRL, Articulated TRR, SCARA VRO.",
+      "Cartesian: three sliding joints, also called rectilinear or x-y-z robot.",
+      "Cylindrical: vertical column with an arm that moves up/down and in/out.",
+      "Spherical: sliding arm that rotates about vertical and horizontal axes.",
+      "Articulated: jointed arm, like a human arm.",
+      "SCARA: Selective Compliance Assembly (or Articulated) Robot Arm; vertical axes for shoulder and elbow, compliant horizontally, rigid vertically; suits vertical insertion.",
+      "Wrist: orients the end effector using roll, pitch and yaw (2 or 3 DOF); the body and arm set the global position."
+     ],
+     "terms": [
+      "cartesian-robot",
+      "cylindrical-robot",
+      "spherical-robot",
+      "articulated-robot",
+      "scara",
+      "workspace",
+      "wrist",
+      "roll-pitch-yaw"
+     ],
+     "recall": [
+      "Which everyday machine has three straight-line axes?"
+     ],
+     "quiz": [
+      {
+       "q": "PPP notation belongs to:",
+       "options": [
+        "Cylindrical",
+        "Cartesian",
+        "Articulated",
+        "Spherical"
+       ],
+       "answer": 1,
+       "explain": "Three prismatic (sliding) joints."
+      },
+      {
+       "q": "Which robot is most like a human arm?",
+       "options": [
+        "Cartesian",
+        "Cylindrical",
+        "Articulated",
+        "SCARA"
+       ],
+       "answer": 2,
+       "explain": "Articulated uses rotary joints like shoulder, elbow, wrist."
+      },
+      {
+       "q": "SCARA is compliant in the ___ direction.",
+       "options": [
+        "Vertical",
+        "Horizontal",
+        "Diagonal",
+        "Every"
+       ],
+       "answer": 1,
+       "explain": "Compliant horizontally, rigid vertically, ideal for vertical insertion."
+      },
+      {
+       "q": "Wrist motions are:",
+       "options": [
+        "Roll, pitch, yaw",
+        "Lift, lower, hold",
+        "Push, pull, twist only",
+        "X, Y, Z"
+       ],
+       "answer": 0,
+       "explain": "Those orient the end effector."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Cartesian synonyms?",
+       "back": "Rectilinear, x-y-z, gantry."
+      },
+      {
+       "front": "SCARA in one line?",
+       "back": "Two vertical rotary axes for x-y plane compliance, rigid in z; great for assembly."
+      },
+      {
+       "front": "What does the wrist do?",
+       "back": "Orients the end effector; the arm positions it."
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending-approval",
+       "search_fallback": "https://www.youtube.com/results?search_query=robot+configurations+cartesian+cylindrical+spherical+scara+articulated"
+      }
+     ]
+    },
+    {
+     "id": "2.7",
+     "title": "Classification by energy source",
+     "slides": "35-37",
+     "one_line": "What powers the joints: electricity, oil pressure, air pressure or mechanics.",
+     "analogy": "Battery drill, hydraulic jack, tyre-pump air tool.",
+     "exam": [
+      "Four categories: electrical, hydraulic, pneumatic, mechanical.",
+      "Electrical: DC stepper, DC servo or AC servo motors; very popular, low price, clean, silent, easy to control or brake.",
+      "Hydraulic: more powerful and faster response than electric; huge payloads; less clean, which matters in assembly.",
+      "Pneumatic: cheaper and simpler, harder to control, less dynamic; both electric and hydraulic robots commonly use pneumatic end tools."
+     ],
+     "terms": [
+      "pneumatic",
+      "hydraulic",
+      "servo-motor",
+      "stepper-motor"
+     ],
+     "recall": [
+      "Why would oil leaks matter in a food factory?"
+     ],
+     "quiz": [
+      {
+       "q": "Which is cleanest and quietest?",
+       "options": [
+        "Hydraulic",
+        "Electrical",
+        "Pneumatic",
+        "Mechanical"
+       ],
+       "answer": 1,
+       "explain": "Electric robots are clean, silent, popular."
+      },
+      {
+       "q": "Huge payload capacity suggests:",
+       "options": [
+        "Hydraulic",
+        "Electrical stepper",
+        "Manual",
+        "Pneumatic"
+       ],
+       "answer": 0,
+       "explain": "Hydraulic offers greater power."
+      },
+      {
+       "q": "Weakness of pneumatic robots?",
+       "options": [
+        "Expensive",
+        "Hard to control",
+        "Too clean",
+        "Too quiet"
+       ],
+       "answer": 1,
+       "explain": "Air compressibility makes precise control difficult."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Four energy sources?",
+       "back": "Electrical, hydraulic, pneumatic, mechanical."
+      },
+      {
+       "front": "Pneumatic pros/cons?",
+       "back": "Cheap, simple; hard to control, less dynamic."
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending-approval",
+       "search_fallback": "https://www.youtube.com/results?search_query=hydraulic+pneumatic+electric+actuators+comparison+robots"
+      }
+     ]
+    },
+    {
+     "id": "2.8",
+     "title": "Classification by authority body (JIRA, RIA, AFR)",
+     "slides": "38-41",
+     "one_line": "Different organisations rank robots by how smart and programmable they are.",
+     "analogy": "Like exam grading scales: different schools use different scales for the same students.",
+     "exam": [
+      "JIRA (Japan) has 6 classes: 1 manual handling device, 2 fixed sequence, 3 variable sequence, 4 playback, 5 numerical control, 6 intelligent.",
+      "RIA (USA) considers only JIRA classes 3-6 as robots (variable sequence, playback, numerical control, intelligent).",
+      "AFR (France) has 4 types: A manual to telerobotics, B automatic handling with predetermined cycles, C programmable servo with continuous or point-to-point paths, D like C plus environment sensing.",
+      "Playback: a human teaches by demonstration. Numerical control: operator supplies the sequence. Intelligent: understands the environment and adapts."
+     ],
+     "terms": [
+      "jira",
+      "ria",
+      "afr",
+      "playback-robot",
+      "intelligent-robot"
+     ],
+     "recall": [
+      "Which is smarter: a robot taught by demonstration or one that adapts by itself?"
+     ],
+     "quiz": [
+      {
+       "q": "How many JIRA classes exist?",
+       "options": [
+        "4",
+        "5",
+        "6",
+        "10"
+       ],
+       "answer": 2,
+       "explain": "Six, from manual handling to intelligent."
+      },
+      {
+       "q": "Which classes does RIA count as robots?",
+       "options": [
+        "1-2",
+        "3-6",
+        "1-6",
+        "4-6 only"
+       ],
+       "answer": 1,
+       "explain": "RIA considers JIRA classes 3 to 6."
+      },
+      {
+       "q": "Playback robot means:",
+       "options": [
+        "Human demonstrates motion",
+        "No teaching needed",
+        "Fixed hardware",
+        "Vision only"
+       ],
+       "answer": 0,
+       "explain": "The human performs the task manually to teach the trajectory."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "JIRA class 6?",
+       "back": "Intelligent robot."
+      },
+      {
+       "front": "AFR types?",
+       "back": "A manual, B automatic cycles, C programmable servo, D C plus sensing."
+      },
+      {
+       "front": "Playback robot?",
+       "back": "Learns a path by a human demonstrating it."
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending-approval",
+       "search_fallback": "https://www.youtube.com/results?search_query=robot+classification+JIRA+RIA+AFR+classes"
+      }
+     ]
+    },
+    {
+     "id": "2.9",
+     "title": "Industrial vs non-industrial robots",
+     "slides": "42-44",
+     "one_line": "Industrial robots work in factories on hot, heavy, hazardous jobs; non-industrial robots serve homes, schools, medicine, the military and hobbies.",
+     "analogy": "A factory welding arm vs a home vacuum robot.",
+     "exam": [
+      "Non-industrial: home, school, field, personal, education, army, medical, hobby, showcase. Examples: micro flying copter, ASIMO.",
+      "Industrial: manufacturing, welding, cutting, forming, assembling, heavy work, painting.",
+      "Early industrial uses: materials handling, spot welding, spray painting; jobs that were hot, heavy and hazardous (die casting, forging).",
+      "Industrial robots' key subsystems: kinematics, control system and drivers."
+     ],
+     "terms": [
+      "industrial-robot"
+     ],
+     "recall": [
+      "Why were robots first sent to hot, heavy and hazardous jobs?"
+     ],
+     "quiz": [
+      {
+       "q": "Which was an early industrial robot job?",
+       "options": [
+        "Teaching",
+        "Spot welding",
+        "Cooking",
+        "Toy play"
+       ],
+       "answer": 1,
+       "explain": "Materials handling, spot welding, spray painting."
+      },
+      {
+       "q": "ASIMO is a:",
+       "options": [
+        "Industrial robot",
+        "Non-industrial robot",
+        "Fixed machine",
+        "Sensor"
+       ],
+       "answer": 1,
+       "explain": "It is a humanoid, non-industrial example."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Early industrial robot tasks?",
+       "back": "Materials handling, spot welding, spray painting."
+      },
+      {
+       "front": "Key subsystems?",
+       "back": "Kinematics, control system, drivers."
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending-approval",
+       "search_fallback": "https://www.youtube.com/results?search_query=industrial+vs+service+robots+examples"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "glossary": {
+  "mechatronics": {
+   "term": "Mechatronics",
+   "plain": "Designing machines so mechanical parts, electronics and software are planned together.",
+   "exam": "A methodology for optimal design of electromechanical products, integrating mechanical, electrical, computer science and IT."
+  },
+  "methodology": {
+   "term": "Methodology",
+   "plain": "A set of agreed ways of doing something.",
+   "exam": "A collection of practices, procedures and rules used in a discipline."
+  },
+  "concurrent-design": {
+   "term": "Concurrent design",
+   "plain": "Everyone works on their part at the same time and shares information as they go.",
+   "exam": "Designing all disciplines in parallel rather than sequentially."
+  },
+  "synergy": {
+   "term": "Synergy",
+   "plain": "When teamwork gives a better result than the parts alone.",
+   "exam": "Combined effect greater than the sum of separate contributions."
+  },
+  "multidisciplinary": {
+   "term": "Multidisciplinary",
+   "plain": "Uses knowledge from several fields.",
+   "exam": "Embodies electrical, mechanical, computer science and IT."
+  },
+  "modelling": {
+   "term": "Modelling",
+   "plain": "Drawing a simplified version of a system on a computer.",
+   "exam": "Block-diagram or visual creation of behavioural models of physical or abstract phenomena."
+  },
+  "simulation": {
+   "term": "Simulation",
+   "plain": "Running the model to see how it behaves.",
+   "exam": "Numerical solution of models with differential, discrete, hybrid, partial and nonlinear equations."
+  },
+  "hil": {
+   "term": "Hardware-in-the-loop",
+   "plain": "Testing with a mix of real parts and virtual ones.",
+   "exam": "Replacing part of the model with real hardware via sensors and actuators in real time."
+  },
+  "rapid-prototyping": {
+   "term": "Rapid prototyping",
+   "plain": "Quickly building a working test version.",
+   "exam": "Another name for hardware-in-the-loop use of real-time interfaces."
+  },
+  "code-generator": {
+   "term": "Code generator",
+   "plain": "Software that writes program code from your diagram.",
+   "exam": "Produces efficient high-level source (usually C) from the block diagram."
+  },
+  "embedded-processor": {
+   "term": "Embedded processor",
+   "plain": "A small computer hidden inside a product.",
+   "exam": "Processor that resides in the final product and communicates with the prototyping environment."
+  },
+  "monte-carlo": {
+   "term": "Monte Carlo",
+   "plain": "Testing many random variations to see what could happen.",
+   "exam": "Statistical simulation capability for design under variation."
+  },
+  "life-cycle": {
+   "term": "Life cycle",
+   "plain": "Everything from making a product to throwing it away.",
+   "exam": "Delivery, reliability, maintainability, serviceability, upgradeability, disposability."
+  },
+  "reliability": {
+   "term": "Reliability",
+   "plain": "How rarely it breaks.",
+   "exam": "Failure rate, materials and tolerances."
+  },
+  "maintainability": {
+   "term": "Maintainability",
+   "plain": "How easy it is to keep working.",
+   "exam": "Achieved through modular design."
+  },
+  "serviceability": {
+   "term": "Serviceability",
+   "plain": "How easy it is to find and fix a fault.",
+   "exam": "On-board diagnostics, prognostics and modular design."
+  },
+  "modular-design": {
+   "term": "Modular design",
+   "plain": "Built from swappable blocks.",
+   "exam": "Design in independent modules for easy replacement and maintenance."
+  },
+  "specification": {
+   "term": "Specification",
+   "plain": "A written list of what the product must do.",
+   "exam": "Statements about mass, dimensions, accuracy, I/O, power, environment, standards, etc."
+  },
+  "conceptualisation": {
+   "term": "Conceptualisation",
+   "plain": "Coming up with many possible ideas.",
+   "exam": "Generating possible solutions for each function (at least six)."
+  },
+  "optimisation": {
+   "term": "Optimisation",
+   "plain": "Picking the best of your ideas.",
+   "exam": "Selecting the best solution among a group after evaluation."
+  },
+  "detail-design": {
+   "term": "Detail design",
+   "plain": "Working out exact sizes, layout and parts.",
+   "exam": "Development of the chosen solution, prototype, layout and accessibility check."
+  },
+  "tolerance": {
+   "term": "Tolerance",
+   "plain": "How much a size is allowed to vary.",
+   "exam": "Permitted manufacturing deviation stated in working drawings."
+  },
+  "prototype": {
+   "term": "Prototype",
+   "plain": "A first working test model.",
+   "exam": "Preliminary model used to verify the design."
+  },
+  "feedback": {
+   "term": "Feedback",
+   "plain": "The machine checks its own result and corrects itself.",
+   "exam": "Measured output returned to the controller so accuracy is achieved by correction."
+  },
+  "synchronisation": {
+   "term": "Synchronisation",
+   "plain": "Making several motions happen in step.",
+   "exam": "Traditional: mechanical. Mechatronic: electronic."
+  },
+  "variable-speed-drive": {
+   "term": "Variable-speed drive",
+   "plain": "A motor whose speed can be changed on demand.",
+   "exam": "A mechatronic feature versus traditional constant-speed drives."
+  },
+  "sensor": {
+   "term": "Sensor",
+   "plain": "A device that measures something and turns it into a signal.",
+   "exam": "Input element sensing internal or external states."
+  },
+  "end-effector": {
+   "term": "End effector",
+   "plain": "The robot's hand or tool.",
+   "exam": "Device attached to the robot's wrist to do a specific task."
+  },
+  "actuator": {
+   "term": "Actuator",
+   "plain": "The part that makes something move.",
+   "exam": "Motor, cylinder or similar driver of a joint."
+  },
+  "solenoid-valve": {
+   "term": "Solenoid valve",
+   "plain": "An electrically operated tap for air or oil.",
+   "exam": "Valve switched by a solenoid to direct fluid to a cylinder."
+  },
+  "limit-switch": {
+   "term": "Limit switch",
+   "plain": "A switch that clicks when a part reaches a set position.",
+   "exam": "Indicates completion of a motion."
+  },
+  "microcontroller": {
+   "term": "Microcontroller",
+   "plain": "A tiny computer on a chip with inputs and outputs.",
+   "exam": "Controller that reads inputs and drives outputs by program."
+  },
+  "opto-isolator": {
+   "term": "Opto-isolator",
+   "plain": "Uses light to pass a signal so circuits stay electrically separate.",
+   "exam": "LED plus light-sensitive switch giving electrical isolation."
+  },
+  "triac": {
+   "term": "TRIAC",
+   "plain": "An electronic switch for AC power.",
+   "exam": "Bidirectional thyristor used to switch AC loads."
+  },
+  "pneumatic": {
+   "term": "Pneumatic",
+   "plain": "Powered by compressed air.",
+   "exam": "Actuators driven by air pressure."
+  },
+  "hydraulic": {
+   "term": "Hydraulic",
+   "plain": "Powered by pressurised oil.",
+   "exam": "High force and speed; large; less clean."
+  },
+  "ecu": {
+   "term": "ECU",
+   "plain": "The engine's computer.",
+   "exam": "Engine Control Unit governing fuelling and ignition."
+  },
+  "adc": {
+   "term": "ADC",
+   "plain": "Turns a smooth signal into numbers.",
+   "exam": "Analog-to-digital converter."
+  },
+  "dac": {
+   "term": "DAC",
+   "plain": "Turns numbers into a smooth signal.",
+   "exam": "Digital-to-analog converter."
+  },
+  "set-point": {
+   "term": "Set point",
+   "plain": "The target value the controller aims for.",
+   "exam": "Stored reference value compared to measured input."
+  },
+  "signal-conditioning": {
+   "term": "Signal conditioning",
+   "plain": "Cleaning and scaling a signal so the controller can use it.",
+   "exam": "Amplifying, filtering and level-shifting a sensor signal."
+  },
+  "thermistor": {
+   "term": "Thermistor",
+   "plain": "A resistor whose resistance changes with temperature.",
+   "exam": "Temperature-sensitive resistor used as a temperature sensor."
+  },
+  "hot-wire-anemometer": {
+   "term": "Hot-wire anemometer",
+   "plain": "A heated wire that cools as air flows past it.",
+   "exam": "Mass airflow sensor; cooling depends on mass flow rate."
+  },
+  "oxygen-sensor": {
+   "term": "Oxygen sensor",
+   "plain": "Measures how much oxygen is left in exhaust.",
+   "exam": "Zirconia tube with platinum electrodes; generates voltage above ~300 C."
+  },
+  "ignition-timing": {
+   "term": "Ignition timing",
+   "plain": "When the spark fires.",
+   "exam": "Timing of high-voltage pulses relative to crankshaft position."
+  },
+  "plc": {
+   "term": "PLC",
+   "plain": "A rugged industrial computer for machines.",
+   "exam": "Programmable Logic Controller with input and output modules."
+  },
+  "solenoid": {
+   "term": "Solenoid",
+   "plain": "A coil that becomes a magnet when current flows.",
+   "exam": "Electromagnet used to move a plunger or valve."
+  },
+  "piston-cylinder": {
+   "term": "Piston and cylinder",
+   "plain": "A rod pushed in and out by pressure.",
+   "exam": "Linear actuator driven by fluid pressure."
+  },
+  "automation": {
+   "term": "Automation",
+   "plain": "Machines doing the job with little human help.",
+   "exam": "Process to create, control and monitor technology with minimum human effort."
+  },
+  "productivity": {
+   "term": "Productivity",
+   "plain": "Output per worker or per hour.",
+   "exam": "Labour productivity is one motivation for automation."
+  },
+  "lead-time": {
+   "term": "Lead time",
+   "plain": "Time from starting to finishing a product.",
+   "exam": "Manufacturing lead time, reduced by automation."
+  },
+  "fixed-automation": {
+   "term": "Fixed automation",
+   "plain": "A machine built for one job.",
+   "exam": "Hardware-based, inflexible, highest efficiency at high volume."
+  },
+  "programmable-automation": {
+   "term": "Programmable automation",
+   "plain": "Same machine, new program for a new batch.",
+   "exam": "Hardware plus software; batch production; set-up time between batches."
+  },
+  "flexible-automation": {
+   "term": "Flexible automation",
+   "plain": "Change products with almost no stopping.",
+   "exam": "Also FMS/CIM; several products at once."
+  },
+  "fms": {
+   "term": "FMS",
+   "plain": "A factory system that can switch between products smoothly.",
+   "exam": "Flexible Manufacturing System."
+  },
+  "cim": {
+   "term": "CIM",
+   "plain": "Computers linking design, planning and production.",
+   "exam": "Computer Integrated Manufacturing."
+  },
+  "batch-production": {
+   "term": "Batch production",
+   "plain": "Making a group of the same product, then switching.",
+   "exam": "Production in batches, suits programmable automation."
+  },
+  "robot": {
+   "term": "Robot",
+   "plain": "A reprogrammable machine that moves things automatically.",
+   "exam": "Reprogrammable multifunctional manipulator (RIA)."
+  },
+  "robotics": {
+   "term": "Robotics",
+   "plain": "The study and use of robots.",
+   "exam": "Interdisciplinary art and know-how of designing, applying and using robots."
+  },
+  "manipulator": {
+   "term": "Manipulator",
+   "plain": "The arm part of a robot.",
+   "exam": "Series of links connected by joints with actuators."
+  },
+  "link": {
+   "term": "Link",
+   "plain": "A rigid section between joints.",
+   "exam": "Rigid body of the manipulator."
+  },
+  "joint": {
+   "term": "Joint",
+   "plain": "Where two links meet and move.",
+   "exam": "Prismatic (sliding) or revolute (rotary) connection."
+  },
+  "ria": {
+   "term": "RIA",
+   "plain": "American robot industry group.",
+   "exam": "Robotics Industry (or Institute of) America; note the slides use both names."
+  },
+  "drive-system": {
+   "term": "Drive system",
+   "plain": "What powers the joints.",
+   "exam": "Hydraulic, electric or pneumatic."
+  },
+  "tactile-sensor": {
+   "term": "Tactile sensor",
+   "plain": "A touch sensor.",
+   "exam": "Touch and force sensors."
+  },
+  "proximity-sensor": {
+   "term": "Proximity sensor",
+   "plain": "Detects something nearby without touching.",
+   "exam": "Optical, acoustic or electromagnetic."
+  },
+  "machine-vision": {
+   "term": "Machine vision",
+   "plain": "Cameras plus software that see.",
+   "exam": "Vision systems for inspection and guidance."
+  },
+  "servo-motor": {
+   "term": "Servo motor",
+   "plain": "A motor with feedback for exact position.",
+   "exam": "Motor with position feedback, accurate and repeatable."
+  },
+  "stepper-motor": {
+   "term": "Stepper motor",
+   "plain": "A motor that turns in small fixed steps.",
+   "exam": "Moves in discrete steps, accurate positioning."
+  },
+  "limited-sequence": {
+   "term": "Limited-sequence robot",
+   "plain": "Moves between fixed stops.",
+   "exam": "Mechanical stops and limit switches, repeatability about 0.5 mm."
+  },
+  "point-to-point": {
+   "term": "Point-to-point robot",
+   "plain": "Goes from dot to dot.",
+   "exam": "Stops at programmed discrete points; spot welding, pick-and-place."
+  },
+  "continuous-path": {
+   "term": "Continuous-path robot",
+   "plain": "Moves smoothly along a whole path.",
+   "exam": "Controls position and tool continuously in 3-D; paint spraying."
+  },
+  "dof": {
+   "term": "Degrees of freedom",
+   "plain": "Number of independent ways it can move.",
+   "exam": "DOF of joints and wrist (2 or 3 for a wrist)."
+  },
+  "repeatability": {
+   "term": "Repeatability",
+   "plain": "How closely it returns to the same spot.",
+   "exam": "Tolerance of returning to a taught position."
+  },
+  "cartesian-robot": {
+   "term": "Cartesian robot",
+   "plain": "Moves in straight x, y, z lines.",
+   "exam": "Three sliding joints; rectilinear; PPP or LOO."
+  },
+  "cylindrical-robot": {
+   "term": "Cylindrical robot",
+   "plain": "Rotates, moves up/down and in/out.",
+   "exam": "Vertical column with arm; RPP or TLO."
+  },
+  "spherical-robot": {
+   "term": "Spherical robot",
+   "plain": "Pivots and extends like a turret.",
+   "exam": "Sliding arm on rotating body; RRP or TRL."
+  },
+  "articulated-robot": {
+   "term": "Articulated robot",
+   "plain": "Jointed like a human arm.",
+   "exam": "Rotary joints; RRR or TRR."
+  },
+  "scara": {
+   "term": "SCARA",
+   "plain": "A robot arm stiff up-down but flexible sideways.",
+   "exam": "Selective Compliance Assembly/Articulated Robot Arm."
+  },
+  "workspace": {
+   "term": "Workspace",
+   "plain": "The space the robot can reach.",
+   "exam": "Space the manipulator can move within."
+  },
+  "wrist": {
+   "term": "Wrist",
+   "plain": "The joint group that turns the hand.",
+   "exam": "Orients the end effector with roll, pitch and yaw."
+  },
+  "roll-pitch-yaw": {
+   "term": "Roll, pitch, yaw",
+   "plain": "Twist, nod and swing.",
+   "exam": "Wrist rotations about three axes."
+  },
+  "jira": {
+   "term": "JIRA",
+   "plain": "Japan's robot industry group.",
+   "exam": "Japan Industrial Robot Association, 6 classes."
+  },
+  "afr": {
+   "term": "AFR",
+   "plain": "France's robot association.",
+   "exam": "Association Francaise de Robotique, types A-D."
+  },
+  "playback-robot": {
+   "term": "Playback robot",
+   "plain": "Repeats a motion a human showed it.",
+   "exam": "JIRA/RIA class 4."
+  },
+  "intelligent-robot": {
+   "term": "Intelligent robot",
+   "plain": "Senses its surroundings and adapts.",
+   "exam": "JIRA/RIA class 6."
+  },
+  "industrial-robot": {
+   "term": "Industrial robot",
+   "plain": "A factory robot.",
+   "exam": "Robot used in manufacturing, welding, cutting, assembling, painting."
+  }
+ }
+}

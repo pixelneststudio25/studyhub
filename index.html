@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>StudyHub · MCE 321</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <button id="burger" aria-label="Menu" aria-expanded="false">☰</button>
+  <a class="brand" href="#/">StudyHub <span>MCE 321</span></a>
+  <button id="srch" aria-label="Search (Ctrl+K)">Search</button>
+  <button id="theme" aria-label="Toggle theme">◐</button>
+</header>
+<aside id="side" aria-label="Main navigation"></aside>
+<div id="scrim"></div>
+<main id="app" tabindex="-1"></main>
+<nav class="bottom" id="bottom" aria-label="Quick navigation"></nav>
+<div id="overlay" hidden>
+  <div class="panel"><input id="q" placeholder="Search lessons and terms…" autocomplete="off"><div id="res"></div></div>
+</div>
+<script type="module" src="app.js"></script>
+</body>
+</html>

@@ -2,6 +2,7 @@ import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from './config.js';
 
 const $ = s => document.querySelector(s), app = $('#app');
+const ICON = n => `<svg class="ic" aria-hidden="true"><use href="#i-${n}"/></svg>`;
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const day = (o = 0) => new Date(Date.now() + o * 864e5).toISOString().slice(0, 10);
 let D, L = [], S, user = null, timer;
@@ -31,8 +32,8 @@ $('#theme').onclick = () => {
   const n = dark ? 'light' : 'dark'; document.documentElement.dataset.theme = n; localStorage.setItem('th', n);
 };
 // nav
-const NAV = [['#/', '⌂', 'Home'], ['#/lessons', '☰', 'Lessons'], ['#/cards', '▣', 'Cards'], ['#/glossary', 'Aa', 'Terms'], ['#/account', '☺', 'Account']];
-const navHTML = h => NAV.map(([href, ic, t]) => `<a href="${href}" class="${h === href ? 'on' : ''}"><i style="font-style:normal">${ic}</i>${t}</a>`).join('');
+const NAV = [['#/', 'home', 'Home'], ['#/lessons', 'list', 'Lessons'], ['#/cards', 'layers', 'Cards'], ['#/glossary', 'book', 'Terms'], ['#/account', 'user', 'Account']];
+const navHTML = h => NAV.map(([href, ic, t]) => `<a href="${href}" class="nl ${h === href ? 'on' : ''}" ${h === href ? 'aria-current="page"' : ''}>${ICON(ic)}<span>${t}</span></a>`).join('');
 const setMenu = o => { document.body.classList.toggle('menu', o); $('#burger').setAttribute('aria-expanded', o); };
 $('#burger').onclick = () => setMenu(!document.body.classList.contains('menu'));
 $('#scrim').onclick = () => setMenu(false);
@@ -52,7 +53,8 @@ function find() {
 }
 
 // views
-const ring = (p, n = 96) => { const c = 2 * Math.PI * 40; return `<svg class="ring" viewBox="0 0 100 100" width="${n}" height="${n}"><circle class="bg" cx="50" cy="50" r="40"/><circle class="fg" cx="50" cy="50" r="40" stroke-dasharray="${c}" stroke-dashoffset="${c * (1 - p)}"/></svg>`; };
+const ring = (p, n = 96) => { const c = 2 * Math.PI * 40; return `<svg class="ring" viewBox="0 0 100 100" width="${n}" height="${n}" role="img" aria-label="${Math.round(p * 100)} percent complete"><circle class="bg" cx="50" cy="50" r="40"/><circle class="fg" cx="50" cy="50" r="40" stroke-dasharray="${c}" stroke-dashoffset="${c}" data-o="${c * (1 - p)}"/></svg>`; };
+const fillRings = () => requestAnimationFrame(() => requestAnimationFrame(() => document.querySelectorAll('.ring .fg').forEach(e => e.style.strokeDashoffset = e.dataset.o)));
 const lesson = id => L.find(l => l.id === id);
 const dueCards = scope => L.filter(l => !scope || l.id === scope).flatMap(l => l.flashcards.map((c, i) => ({ ...c, key: l.id + '#' + i, lid: l.id })))
   .filter(c => (S.cards[c.key]?.due || '') <= day());
@@ -65,12 +67,12 @@ function home() {
   <div class="card stat"><b>${streak()}</b>day streak</div>
   <div class="card stat"><b>${weekDays()}/7</b>study days this week</div>
   <a class="card stat" href="#/cards"><b>${dueCards().length}</b>flashcards due</a></div>
-  ${next ? `<h2>Up next</h2><a class="card" href="#/lesson/${next.id}"><b>${next.id} · ${esc(next.title)}</b><br><span class="mut">${esc(next.one_line)}</span></a>` : '<h2>All lessons complete 🎉</h2>'}
+  ${next ? `<h2>Up next</h2><a class="card" href="#/lesson/${next.id}"><b>${next.id} · ${esc(next.title)}</b><br><span class="mut">${esc(next.one_line)}</span></a>` : '<h2>All lessons complete</h2>'}
   ${weak.length ? `<h2>Weakest topics</h2>${weak.map(([id]) => `<a class="card" href="#/quiz/${id}">${id} · ${esc(lesson(id).title)}<br><span class="mut">Retake the quiz</span></a>`).join('')}` : ''}`;
 }
 function lessons() {
   app.innerHTML = '<h1>Lessons</h1>' + D.modules.map(m => `<h2>${esc(m.title)}</h2>` + m.lessons.map(l =>
-    `<a class="card" href="#/lesson/${l.id}">${S.done[l.id] ? '✓ ' : ''}${l.id} · ${esc(l.title)}${S.quiz[l.id] ? `<br><span class="mut">Quiz: ${S.quiz[l.id].score}/${S.quiz[l.id].total}</span>` : ''}</a>`).join('')).join('');
+    `<a class="card" href="#/lesson/${l.id}">${S.done[l.id] ? ICON('check') + ' ' : ''}${l.id} · ${esc(l.title)}${S.quiz[l.id] ? `<br><span class="mut">Quiz: ${S.quiz[l.id].score}/${S.quiz[l.id].total}</span>` : ''}</a>`).join('')).join('');
 }
 function lessonView(id) {
   const l = lesson(id); if (!l) return home();
@@ -83,7 +85,7 @@ function lessonView(id) {
   <h2>Key terms</h2><div id="tm">${l.terms.map(t => `<button class="chip" data-t="${t}">${esc(D.glossary[t].term)}</button>`).join('')}</div><div id="def"></div>
   <h2>Watch</h2>${v.id ? `<iframe class="vid" loading="lazy" allowfullscreen src="https://www.youtube-nocookie.com/embed/${v.id}?start=${v.start || 0}${v.end ? '&end=' + v.end : ''}"></iframe>` : `<div class="card">No approved video yet. <a target="_blank" rel="noopener" href="${v.search_fallback}">Search YouTube</a></div>`}
   <h2>Practise</h2><a class="btn pri" href="#/quiz/${l.id}">Quiz (${l.quiz.length})</a><a class="btn" href="#/cards/${l.id}">Flashcards (${l.flashcards.length})</a>
-  <button class="btn ${S.done[l.id] ? '' : 'pri'}" id="dn">${S.done[l.id] ? '✓ Completed (undo)' : 'Mark complete'}</button>`;
+  <button class="btn ${S.done[l.id] ? '' : 'pri'}" id="dn">${S.done[l.id] ? ICON('check') + 'Completed. Undo' : 'Mark complete'}</button>`;
   $('#tm').onclick = e => { const t = e.target.dataset.t; if (t) { const g = D.glossary[t]; $('#def').innerHTML = `<div class="card"><b>${esc(g.term)}</b><p>${esc(g.plain)}</p><p class="mut"><b>Exam:</b> ${esc(g.exam)}</p></div>`; } };
   $('#dn').onclick = e => { S.done[l.id] = !S.done[l.id]; save(); if (S.done[l.id]) e.target.classList.add('pop'); lessonView(id); };
 }
@@ -132,7 +134,7 @@ function glossary(hash) {
 function account() {
   app.innerHTML = `<h1>Account</h1>` + (!sb ? '<p>Add your Supabase keys in config.js to enable sync.</p>' : user ? `<p>Signed in as <b>${esc(user.email)}</b>. Progress syncs across devices.</p><button class="btn" id="so">Sign out</button>`
     : `<p>Sign in to sync progress across devices.</p><input class="f" id="em" type="email" placeholder="you@email.com"><button class="btn pri" id="ml">Email me a magic link</button><p id="ms" class="mut"></p>`)
-    + `<h2>Backup</h2><button class="btn" id="ex">Export progress</button>`;
+    + `<h2>Backup</h2><button class="btn" id="ex">${ICON('download')}Export progress</button>`;
   $('#ex')?.addEventListener('click', () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(S)], { type: 'application/json' })); a.download = 'studyhub-progress.json'; a.click(); });
   $('#so')?.addEventListener('click', async () => { await sb.auth.signOut(); });
   $('#ml')?.addEventListener('click', async () => { const { error } = await sb.auth.signInWithOtp({ email: $('#em').value, options: { emailRedirectTo: location.origin + location.pathname } }); $('#ms').textContent = error ? error.message : 'Check your email.'; });
@@ -142,8 +144,8 @@ function route() {
   if (!D) return;
   const h = location.hash || '#/', [, r, a] = h.split('/');
   const base = '#/' + (r || '');
-  $('#side').innerHTML = navHTML(base); $('#bottom').innerHTML = navHTML(base); setMenu(false);
-  ({ '': home, lessons, lesson: () => lessonView(a), quiz: () => quiz(a), cards: () => cards(a), glossary: () => glossary(a), account }[r || ''] || home)();
+  $('#side').innerHTML = `<a class="sbrand" href="#/">StudyHub<span>${esc(D.course.code)}</span></a>` + navHTML(base); $('#bottom').innerHTML = navHTML(base); setMenu(false);
+  ({ '': () => { home(); fillRings(); }, lessons, lesson: () => lessonView(a), quiz: () => quiz(a), cards: () => cards(a), glossary: () => glossary(a), account }[r || ''] || home)();
   scrollTo(0, 0); app.focus({ preventScroll: true });
 }
 addEventListener('hashchange', route);

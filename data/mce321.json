@@ -90,7 +90,97 @@
        "search_fallback": "https://www.youtube.com/results?search_query=what+is+mechatronics+explained+simply"
       }
      ],
-     "figure": "parallel"
+     "figure": "parallel",
+     "theory": [
+      {
+       "q": "Define mechatronics.",
+       "type": "Define",
+       "marks": 2,
+       "points": [
+        "A methodology for the optimal design of electromechanical products",
+        "Integrates mechanical, electrical, computer science and information technology"
+       ],
+       "need": 2
+      },
+      {
+       "q": "What is meant by a methodology?",
+       "type": "Define",
+       "marks": 2,
+       "points": [
+        "A collection of practices, procedures and rules",
+        "Used by those who work in a particular branch of knowledge or discipline"
+       ],
+       "need": 2
+      },
+      {
+       "q": "List the four fundamental disciplines in a mechatronic system.",
+       "type": "List",
+       "marks": 2,
+       "points": [
+        "Electrical",
+        "Mechanical",
+        "Computer science",
+        "Information technology"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Explain the concurrent approach to mechatronic design.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "All disciplines are designed at the same time, in parallel",
+        "It is not sequential, so one discipline does not wait for another",
+        "It gives more synergy and so a better product"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Differentiate between sequential and concurrent design.",
+       "type": "Compare",
+       "marks": 4,
+       "points": [
+        "Sequential: one discipline after another",
+        "Concurrent: all disciplines in parallel",
+        "Concurrent design gives more synergy",
+        "Mechatronics uses the concurrent approach"
+       ],
+       "need": 4
+      },
+      {
+       "q": "State three benefits of the mechatronic approach to design.",
+       "type": "List",
+       "marks": 3,
+       "points": [
+        "Integrates electronics and computing with the mechanical system throughout design",
+        "More flexible products",
+        "Higher performance and a wider range of features"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Explain why mechatronics is called multidisciplinary.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "It draws on several fields of engineering and science",
+        "Electrical, mechanical, computer science and IT",
+        "They are combined in one product, not designed separately"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Using a washing machine, show how a product has moved from traditional to mechatronic.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Older machines were manual and had to be used with care",
+        "Modern ones are smart and can be remotely operated",
+        "They use sensors, for example to detect motion"
+       ],
+       "need": 3
+      }
+     ]
     },
     {
      "id": "1.2",
@@ -175,7 +265,100 @@
        "search_fallback": "https://www.youtube.com/results?search_query=hardware+in+the+loop+simulation+explained"
       }
      ],
-     "figure": "process"
+     "figure": "process",
+     "theory": [
+      {
+       "q": "List the eight tools in the mechatronic design toolkit.",
+       "type": "List",
+       "marks": 4,
+       "points": [
+        "Modelling",
+        "Simulation",
+        "Project management",
+        "Design",
+        "Analysis",
+        "Real-time interface",
+        "Code generator",
+        "Embedded processor interface"
+       ],
+       "need": 8
+      },
+      {
+       "q": "Explain modelling in mechatronic design.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Block diagrams or a visual interface are used",
+        "Builds easy-to-understand behavioural models",
+        "Of physical or abstract phenomena, hiding complexity in sub-models"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Explain simulation in mechatronic design.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Numerical methods solve the models",
+        "Handles differential, discrete, hybrid, partial and implicit nonlinear equations",
+        "Needs a clock for real-time operation and must run faster than real time"
+       ],
+       "need": 3
+      },
+      {
+       "q": "What is hardware-in-the-loop simulation?",
+       "type": "Define",
+       "marks": 3,
+       "points": [
+        "A plug-in card replaces part of the model with real hardware",
+        "It interfaces to actuators and sensors",
+        "Also called rapid prototyping, and must run in real time"
+       ],
+       "need": 3
+      },
+      {
+       "q": "State the purpose of a code generator.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Produces efficient high-level source code from the block diagram",
+        "The language is usually C",
+        "The code is compiled and used on the embedded processor"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Describe the embedded processor interface.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "The embedded processor resides in the final product",
+        "The interface provides communication with the prototyping environment"
+       ],
+       "need": 2
+      },
+      {
+       "q": "State the role of the design tool and of Monte Carlo capability.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "Numerical methods for constrained optimisation of performance functions based on model parameters and signals",
+        "Monte Carlo capability is desirable"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Why should a design be modelled and simulated before it is built?",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Mechatronic designs are finalised using modelling and simulation",
+        "Then prototyped and properly tested before deploying",
+        "Many trials can be run cheaply on a computer"
+       ],
+       "need": 3
+      }
+     ]
     },
     {
      "id": "1.3",
@@ -251,6 +434,94 @@
       {
        "status": "pending-approval",
        "search_fallback": "https://www.youtube.com/results?search_query=product+life+cycle+design+engineering+reliability+maintainability"
+      }
+     ],
+     "theory": [
+      {
+       "q": "What is life cycle design?",
+       "type": "Define",
+       "marks": 2,
+       "points": [
+        "Producing high-quality products",
+        "And maintaining them as well"
+       ],
+       "need": 2
+      },
+      {
+       "q": "List the six life cycle factors.",
+       "type": "List",
+       "marks": 3,
+       "points": [
+        "Delivery",
+        "Reliability",
+        "Maintainability",
+        "Serviceability",
+        "Upgradeability",
+        "Disposability"
+       ],
+       "need": 6
+      },
+      {
+       "q": "Explain reliability as a life cycle factor.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "Concerned with failure rate",
+        "Depends on materials and tolerances"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Explain maintainability.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "Achieved through modular design",
+        "So parts can be replaced and the product kept working"
+       ],
+       "need": 2
+      },
+      {
+       "q": "What does serviceability involve?",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "On-board diagnostics",
+        "Prognostics",
+        "Modular design"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Explain upgradeability.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "Future compatibility with current designs",
+        "So a product can be improved without replacing everything"
+       ],
+       "need": 2
+      },
+      {
+       "q": "What does disposability cover?",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "Recycling",
+        "Disposal of hazardous materials"
+       ],
+       "need": 2
+      },
+      {
+       "q": "What does delivery cover as a life cycle factor?",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "Time",
+        "Cost",
+        "Medium of delivery"
+       ],
+       "need": 3
       }
      ]
     },
@@ -346,7 +617,105 @@
        "search_fallback": "https://www.youtube.com/results?search_query=engineering+design+process+steps+explained"
       }
      ],
-     "figure": "stages"
+     "figure": "stages",
+     "theory": [
+      {
+       "q": "List the seven stages of designing a mechatronic system in order.",
+       "type": "List",
+       "marks": 4,
+       "points": [
+        "The need",
+        "Analysis of the problem",
+        "Specification",
+        "Conceptualisation",
+        "Optimisation",
+        "Detail design",
+        "Production of working drawings"
+       ],
+       "need": 7
+      },
+      {
+       "q": "Explain why analysis of the problem is the critical stage.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "It finds the true nature of the problem",
+        "A wrongly defined problem wastes time",
+        "The design may then fail to meet the need"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Explain the first stage, the need.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Design starts from the need of a customer",
+        "Found by adequate market research",
+        "Failures are more common at this stage"
+       ],
+       "need": 3
+      },
+      {
+       "q": "List six items that may appear in a specification.",
+       "type": "List",
+       "marks": 3,
+       "points": [
+        "Mass",
+        "Dimensions",
+        "Accuracy",
+        "Input and output requirements",
+        "Power requirements",
+        "Operating environment",
+        "Standards and codes of practice",
+        "Payload, speed, life (any six)"
+       ],
+       "need": 6
+      },
+      {
+       "q": "Explain conceptualisation.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Possible solutions are generated for each function",
+        "Think of at least six for each function",
+        "Use similar solved problems or new techniques"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Define optimisation in design.",
+       "type": "Define",
+       "marks": 2,
+       "points": [
+        "A technique in which the best solution is selected from a group",
+        "The solutions are evaluated and the most suitable is chosen"
+       ],
+       "need": 2
+      },
+      {
+       "q": "What is done during detail design?",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "The chosen solution is developed in detail, for example a prototype",
+        "The mechanical layout is made so components physically fit",
+        "Components must be accessible for replacement and maintenance"
+       ],
+       "need": 3
+      },
+      {
+       "q": "What do the working drawings contain?",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "The selected design translated into working drawings and circuit diagrams",
+        "Manufacturing tolerances for each component",
+        "So the item can be made"
+       ],
+       "need": 3
+      }
+     ]
     },
     {
      "id": "1.5",
@@ -422,6 +791,95 @@
       {
        "status": "pending-approval",
        "search_fallback": "https://www.youtube.com/results?search_query=traditional+vs+mechatronic+systems+difference"
+      }
+     ],
+     "theory": [
+      {
+       "q": "State five differences between the traditional and mechatronic approaches.",
+       "type": "Compare",
+       "marks": 5,
+       "points": [
+        "Bulk system versus compact system",
+        "Manual control versus microprocessor control",
+        "Complex mechanism versus simplified mechanism",
+        "Non-adjustable movement cycles versus programmed movements",
+        "Constant-speed versus variable-speed drives"
+       ],
+       "need": 5
+      },
+      {
+       "q": "How is accuracy achieved in each approach?",
+       "type": "Compare",
+       "marks": 3,
+       "points": [
+        "Traditional: determined by the tolerance of the mechanism",
+        "Mechatronic: achieved by feedback",
+        "So mechatronic systems are more accurate"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Compare how each approach achieves synchronisation.",
+       "type": "Compare",
+       "marks": 2,
+       "points": [
+        "Traditional: mechanical synchronisation",
+        "Mechatronic: electronic synchronisation"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Compare structure and number of components in the two approaches.",
+       "type": "Compare",
+       "marks": 3,
+       "points": [
+        "Traditional has more components",
+        "Traditional uses rigid, heavy structures",
+        "Mechatronic has fewer components and a light structure"
+       ],
+       "need": 3
+      },
+      {
+       "q": "State one disadvantage of the mechatronic approach.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "It costs more",
+        "Traditional systems cost less"
+       ],
+       "need": 2
+      },
+      {
+       "q": "How is a design finalised in each approach?",
+       "type": "Compare",
+       "marks": 3,
+       "points": [
+        "Traditional: iterations of design equations and numerical analysis",
+        "Mechatronic: modelling and simulation, then prototyping",
+        "Properly tested before deploying"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Use the washing machine to illustrate the mechatronic approach.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Old machines were manual and used with precautions",
+        "New ones are smart and remotely operated",
+        "They use sensors and a controller, with simple mechanisms and fewer moving parts"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Why are mechatronic systems more flexible?",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "Movements are programmed and can be changed",
+        "Variable-speed drives and microprocessor control"
+       ],
+       "need": 2
       }
      ]
     },
@@ -519,7 +977,100 @@
        "search_fallback": "https://www.youtube.com/results?search_query=pick+and+place+robot+pneumatic+microcontroller"
       }
      ],
-     "figure": "pick"
+     "figure": "pick",
+     "theory": [
+      {
+       "q": "What is a pick and place robot?",
+       "type": "Define",
+       "marks": 2,
+       "points": [
+        "A robot used to pick up an object",
+        "And place it in the desired location"
+       ],
+       "need": 2
+      },
+      {
+       "q": "List the main parts of a pick and place robot and state the function of each.",
+       "type": "List",
+       "marks": 5,
+       "points": [
+        "Manipulator or arm: the main body of rigid links and joints",
+        "End effector: grips or handles objects, like a hand",
+        "Actuators: the drivers, for example servo, stepper, pneumatic or hydraulic",
+        "Sensors: sense internal and external state, for example touch or IR",
+        "Controller: controls the actuators from sensor feedback"
+       ],
+       "need": 5
+      },
+      {
+       "q": "List the four movements of the robot.",
+       "type": "List",
+       "marks": 4,
+       "points": [
+        "Clockwise and anticlockwise rotation of the base",
+        "Horizontal movement of the arm: extend or retract",
+        "Up and down movement of the arm",
+        "Open or close movement of the gripper"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Explain how the movements are produced.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "By pneumatic cylinders",
+        "Operated by solenoid-controlled valves",
+        "Limit switches indicate when a motion is completed"
+       ],
+       "need": 3
+      },
+      {
+       "q": "State the function of Port B, Port C and Port D of the microcontroller.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Port C (PC0 to PC7) senses eight limit switches",
+        "Port B (PB0 to PB7) controls the eight movements",
+        "A Port D line starts or stops the robot"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Explain the role of the TRIAC opto-isolator.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "It consists of an LED and a TRIAC",
+        "It isolates the microcontroller from the solenoid supply",
+        "It regulates the supply to the solenoid valve that operates the piston"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Give four advantages of pick and place robots.",
+       "type": "List",
+       "marks": 4,
+       "points": [
+        "Faster than humans",
+        "Flexible, with an appropriate design",
+        "Accurate",
+        "Safer working environment and never tired"
+       ],
+       "need": 4
+      },
+      {
+       "q": "State three application areas of pick and place robots.",
+       "type": "List",
+       "marks": 3,
+       "points": [
+        "Defence: for example surveillance or diffusing bombs",
+        "Industry: moving parts to a machine or conveyor",
+        "Medicine: surgical operations"
+       ],
+       "need": 3
+      }
+     ]
     },
     {
      "id": "1.7",
@@ -618,7 +1169,100 @@
        "search_fallback": "https://www.youtube.com/results?search_query=engine+control+unit+ECU+sensors+explained"
       }
      ],
-     "figure": "ems"
+     "figure": "ems",
+     "theory": [
+      {
+       "q": "What does EMS stand for, and what is it?",
+       "type": "Define",
+       "marks": 2,
+       "points": [
+        "Engine Management System",
+        "Electronic and electrical components such as sensors, relays, actuators and an Engine Control Unit"
+       ],
+       "need": 2
+      },
+      {
+       "q": "List the main components of an EMS.",
+       "type": "List",
+       "marks": 3,
+       "points": [
+        "Sensors",
+        "Relays",
+        "Actuators",
+        "Engine Control Unit"
+       ],
+       "need": 4
+      },
+      {
+       "q": "State the main objective of an engine management system.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "To operate the engine at its optimum settings",
+        "Making the combustion process more efficient and less polluting"
+       ],
+       "need": 2
+      },
+      {
+       "q": "How are engine power and speed controlled?",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "By varying the ignition timing",
+        "And the air-fuel mixture",
+        "This is done by a microprocessor in modern cars"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Explain how ignition timing is controlled.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "The crankshaft drives a distributor and a timing wheel",
+        "The timing wheel generates pulses showing crankshaft position",
+        "The microprocessor adjusts when high-voltage pulses are sent",
+        "So sparks occur at the right moment"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Explain how the amount of fuel injected is determined.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "From the mass air flow sensor input, or computed from other measurements",
+        "The microprocessor outputs a signal to the fuel injector valve",
+        "The injector valve open time is varied"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Describe any three sensors used in an EMS.",
+       "type": "Explain",
+       "marks": 6,
+       "points": [
+        "Engine speed: inductive coil and toothed wheel",
+        "Temperature: thermistor",
+        "Mass air flow: hot-wire anemometer, cooled by air flow",
+        "Oxygen: zirconia tube with platinum electrodes, works above about 300 degrees C",
+        "Throttle position sensor (any three, with how each works)"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Describe the signal chain from sensors to actuators.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Sensors supply input signals",
+        "Signal conditioning prepares the signals and an ADC digitises them",
+        "The microcontroller compares with stored set points",
+        "Drivers act on the output signals to operate the actuators"
+       ],
+       "need": 4
+      }
+     ]
     },
     {
      "id": "1.8",
@@ -695,6 +1339,94 @@
       {
        "status": "pending-approval",
        "search_fallback": "https://www.youtube.com/results?search_query=PLC+car+park+barrier+ladder+logic+example"
+      }
+     ],
+     "theory": [
+      {
+       "q": "Describe how the entrance barrier of the car park works.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "The correct coin inserted operates the coin switch",
+        "Current flows through solenoid A, extending the piston",
+        "The barrier rotates up"
+       ],
+       "need": 3
+      },
+      {
+       "q": "What causes the exit barrier to open?",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "A car is detected at the exit",
+        "The exit barrier is then raised"
+       ],
+       "need": 2
+      },
+      {
+       "q": "State the role of the limit switches in the system.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "They detect the barrier fully up",
+        "They detect the barrier fully down"
+       ],
+       "need": 2
+      },
+      {
+       "q": "State the inputs and outputs of the PLC used.",
+       "type": "List",
+       "marks": 4,
+       "points": [
+        "Six inputs, X400 to X405",
+        "Coin switch, entrance up, entrance down",
+        "Car at exit, exit up, exit down",
+        "Four outputs, Y430 to Y433: solenoids A and B for entrance and exit"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Explain the roles of solenoid A and solenoid B on the valve.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Current through A extends the piston and raises the barrier",
+        "Current through B moves the piston down and lowers the barrier",
+        "When current stops the valve spring returns the valve"
+       ],
+       "need": 3
+      },
+      {
+       "q": "State the input voltage convention used.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "0 V when a switch is operated",
+        "+24 V otherwise"
+       ],
+       "need": 2
+      },
+      {
+       "q": "What does the PLC do in this system?",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "Reads the switch inputs",
+        "Drives the solenoid outputs in the programmed sequence"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Describe the sequence from coin insertion to the barrier closing.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Coin switch operated",
+        "Solenoid A energised and barrier rises",
+        "Entrance up limit switch confirms",
+        "Solenoid B lowers the barrier, entrance down limit switch confirms"
+       ],
+       "need": 4
       }
      ]
     }
@@ -773,6 +1505,99 @@
       {
        "status": "pending-approval",
        "search_fallback": "https://www.youtube.com/results?search_query=what+is+industrial+automation+introduction"
+      }
+     ],
+     "theory": [
+      {
+       "q": "Define automation.",
+       "type": "Define",
+       "marks": 2,
+       "points": [
+        "A process to create, control and monitor technology applications",
+        "Operating equipment with minimum human effort"
+       ],
+       "need": 2
+      },
+      {
+       "q": "State five reasons for automation.",
+       "type": "List",
+       "marks": 5,
+       "points": [
+        "Increase labour productivity",
+        "Reduce labour cost",
+        "Ease labour shortages",
+        "Remove routine manual and clerical tasks",
+        "Improve worker safety",
+        "Improve product quality",
+        "Reduce manufacturing lead time (any five)"
+       ],
+       "need": 5
+      },
+      {
+       "q": "List the three major industrial areas of automation.",
+       "type": "List",
+       "marks": 3,
+       "points": [
+        "Transporting",
+        "Working (processing)",
+        "Packaging"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Explain how automation improves safety and quality.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Machines take over routine and hazardous manual tasks",
+        "Worker safety improves",
+        "Product quality improves through consistent operation"
+       ],
+       "need": 3
+      },
+      {
+       "q": "What is manufacturing lead time?",
+       "type": "Define",
+       "marks": 2,
+       "points": [
+        "The time from starting a product's production to finishing it",
+        "Automation reduces it"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Give examples of equipment that can be automated.",
+       "type": "List",
+       "marks": 3,
+       "points": [
+        "Machinery",
+        "Ship stabilisation",
+        "Aircraft",
+        "Boilers (any three)"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Explain the reason 'avoid the high cost of not automating'.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "Staying manual can cost more in labour, time and quality",
+        "So automation can be the cheaper long-term choice"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Explain two ways automation helps with labour.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Eases labour shortages",
+        "Reduces labour cost",
+        "Raises labour productivity",
+        "Removes routine tasks (any two, explained)"
+       ],
+       "need": 2
       }
      ]
     },
@@ -865,7 +1690,97 @@
        "search_fallback": "https://www.youtube.com/results?search_query=fixed+programmable+flexible+automation+types"
       }
      ],
-     "figure": "autotypes"
+     "figure": "autotypes",
+     "theory": [
+      {
+       "q": "Define fixed (hard) automation.",
+       "type": "Define",
+       "marks": 2,
+       "points": [
+        "Automation based on hardware",
+        "Cannot be changed once built"
+       ],
+       "need": 2
+      },
+      {
+       "q": "State two advantages and two disadvantages of fixed automation.",
+       "type": "Compare",
+       "marks": 4,
+       "points": [
+        "Advantage: maximum efficiency",
+        "Advantage: lowest unit cost at high volume",
+        "Disadvantage: large initial investment",
+        "Disadvantage: inflexible"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Describe programmable automation and where it is used.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Uses hardware and software",
+        "Suited to batch production",
+        "Can be reprogrammed for product changes"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Explain flexible automation and give an example.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Also called FMS or CIM",
+        "Changeover between products without stopping",
+        "An automobile assembly line is an example"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Compare fixed and flexible automation.",
+       "type": "Compare",
+       "marks": 5,
+       "points": [
+        "Fixed: high volume, one product; flexible: low volume, varied products",
+        "Fixed: lowest unit cost; flexible: high unit cost",
+        "Fixed: inflexible; flexible: handles design variation",
+        "Fixed: large investment; flexible: also large investment",
+        "Flexible changes over without stopping"
+       ],
+       "need": 5
+      },
+      {
+       "q": "State two disadvantages of programmable automation.",
+       "type": "List",
+       "marks": 2,
+       "points": [
+        "Long set-up time for a new product",
+        "Higher unit cost than fixed automation"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Which type suits short product life cycles and customised products, and why?",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Flexible automation",
+        "It handles low volume and varying demand",
+        "Changeover is possible without stopping"
+       ],
+       "need": 3
+      },
+      {
+       "q": "What do FMS and CIM stand for?",
+       "type": "Define",
+       "marks": 2,
+       "points": [
+        "FMS: Flexible Manufacturing System",
+        "CIM: Computer Integrated Manufacturing"
+       ],
+       "need": 2
+      }
+     ]
     },
     {
      "id": "2.3",
@@ -945,6 +1860,92 @@
       {
        "status": "pending-approval",
        "search_fallback": "https://www.youtube.com/results?search_query=what+is+a+robot+definition+robotics+introduction"
+      }
+     ],
+     "theory": [
+      {
+       "q": "State the origin of the word 'robot'.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Coined by Karel Capek",
+        "In the 1920 play R.U.R. (Rossum's Universal Robots)",
+        "Czech for worker or servant"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Define a manipulator.",
+       "type": "Define",
+       "marks": 2,
+       "points": [
+        "A series of links connected by joints, each with an actuator",
+        "One end on a stable base, the other holding a tool"
+       ],
+       "need": 2
+      },
+      {
+       "q": "State the RIA definition of a robot.",
+       "type": "Define",
+       "marks": 3,
+       "points": [
+        "A re-programmable, multifunctional manipulator",
+        "Moves material, parts, tools or devices",
+        "Through variable programmed motion for a variety of tasks"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Define robotics.",
+       "type": "Define",
+       "marks": 2,
+       "points": [
+        "The art, knowledge base and know-how of designing, applying and using robots",
+        "It is interdisciplinary"
+       ],
+       "need": 2
+      },
+      {
+       "q": "State the Japanese definition of a robot.",
+       "type": "Define",
+       "marks": 2,
+       "points": [
+        "An all-purpose machine with a memory device",
+        "That can replace human labour in the automatic performance of tasks"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Explain Schilling's definition of a robot.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "A software-controlled mechanical device",
+        "Uses sensors to guide end effectors through programmed motions in a workspace",
+        "To manipulate objects"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Why is robotics described as interdisciplinary?",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "It combines mechanical, electrical, computing and control knowledge",
+        "All are needed to design and use a robot"
+       ],
+       "need": 2
+      },
+      {
+       "q": "What makes a robot different from fixed automation?",
+       "type": "Compare",
+       "marks": 3,
+       "points": [
+        "A robot is re-programmable",
+        "And multifunctional",
+        "Fixed automation does one job set by its hardware"
+       ],
+       "need": 3
       }
      ]
     },
@@ -1040,7 +2041,103 @@
        "search_fallback": "https://www.youtube.com/results?search_query=industrial+robot+components+end+effector+joints+sensors"
       }
      ],
-     "figure": "joints"
+     "figure": "joints",
+     "theory": [
+      {
+       "q": "List the main components of an industrial robot.",
+       "type": "List",
+       "marks": 5,
+       "points": [
+        "Manipulator or arm",
+        "End effectors",
+        "Drive mechanism",
+        "Controller",
+        "Custom features such as sensors and transducers"
+       ],
+       "need": 5
+      },
+      {
+       "q": "Name the five robot joint types and say which move by sliding and which rotate.",
+       "type": "List",
+       "marks": 5,
+       "points": [
+        "L, linear: sliding",
+        "O, orthogonal: sliding",
+        "R, rotational: rotary",
+        "T, twisting: rotary",
+        "V, revolving: rotary"
+       ],
+       "need": 5
+      },
+      {
+       "q": "Compare hydraulic, electric and pneumatic drives.",
+       "type": "Compare",
+       "marks": 6,
+       "points": [
+        "Hydraulic: strong and fast, large, needs floor space",
+        "Electric: accurate and repeatable, low cost, easy maintenance",
+        "Pneumatic: small units, high cycle rate, easy maintenance"
+       ],
+       "need": 3
+      },
+      {
+       "q": "What is an end effector? Give examples.",
+       "type": "Define",
+       "marks": 3,
+       "points": [
+        "Attached to the wrist at the end of the arm",
+        "Does the task: grippers or tools",
+        "Examples: mechanical gripper, vacuum cup, welding torch"
+       ],
+       "need": 3
+      },
+      {
+       "q": "List three types of gripper.",
+       "type": "List",
+       "marks": 3,
+       "points": [
+        "Mechanical gripper",
+        "Suction or vacuum gripper",
+        "Magnetic gripper (hooks and scoops also used)"
+       ],
+       "need": 3
+      },
+      {
+       "q": "List four tools used as end effectors.",
+       "type": "List",
+       "marks": 4,
+       "points": [
+        "Spot welding and arc welding torches",
+        "Spray gun",
+        "Drilling spindle",
+        "Grinders, wire brushes, heating torches (any four)"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Classify robot sensors, with examples.",
+       "type": "List",
+       "marks": 4,
+       "points": [
+        "Tactile: touch and force",
+        "Proximity or range: optical, acoustic, electromagnetic",
+        "Miscellaneous: temperature, pressure, flow, voice",
+        "Machine vision"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Which joints give translational motion and which give rotary motion?",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "L and O are translational",
+        "R, T and V are rotary",
+        "Translational joints slide, rotary joints turn"
+       ],
+       "need": 3
+      }
+     ]
     },
     {
      "id": "2.5",
@@ -1114,6 +2211,107 @@
       {
        "status": "pending-approval",
        "search_fallback": "https://www.youtube.com/results?search_query=robot+control+types+point+to+point+continuous+path"
+      }
+     ],
+     "theory": [
+      {
+       "q": "List the ten ways of classifying robots.",
+       "type": "List",
+       "marks": 5,
+       "points": [
+        "Anatomy",
+        "Control of movement",
+        "Kinematics or geometry",
+        "Energy source",
+        "Authority body",
+        "Industrial or non-industrial",
+        "Technology level",
+        "Design",
+        "Application or job",
+        "Number of degrees of freedom"
+       ],
+       "need": 10
+      },
+      {
+       "q": "Describe the limited sequence robot with its advantages and disadvantages.",
+       "type": "Explain",
+       "marks": 5,
+       "points": [
+        "Movement is limited to linear direction, using mechanical stops and limit switches",
+        "Repeatability about 0.5 mm",
+        "Advantage: cheap, and used in casting and pressing",
+        "Disadvantage: control and movement are limited",
+        "Difficult to change stop points, longer set-up time"
+       ],
+       "need": 5
+      },
+      {
+       "q": "Explain the point-to-point robot and give applications.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Axes can stop at any programmed discrete point in the workspace",
+        "No control of the path between points",
+        "Spot welding, pick and place, loading and unloading"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Explain the continuous path robot and give applications.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Moves in any direction continuously in 3-D space",
+        "Position and tool are controlled continuously",
+        "Paint spraying and welding"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Compare point-to-point and continuous path robots.",
+       "type": "Compare",
+       "marks": 4,
+       "points": [
+        "Point to point stops at programmed points; continuous path follows a whole path",
+        "Path between points not controlled versus path controlled",
+        "Point to point: spot welding, pick and place",
+        "Continuous path: paint spraying, welding"
+       ],
+       "need": 4
+      },
+      {
+       "q": "List the classes of robot by anatomy.",
+       "type": "List",
+       "marks": 2,
+       "points": [
+        "Arm",
+        "Two arm",
+        "Arm and leg",
+        "Arm, leg and face",
+        "Fingers: two, three or five (any four)"
+       ],
+       "need": 4
+      },
+      {
+       "q": "What is repeatability, and what value is given for limited sequence robots?",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "How closely a robot returns to the same position",
+        "About plus or minus 0.5 mm"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Which control type suits spot welding and which suits paint spraying, and why?",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Spot welding: point to point, because only discrete points matter",
+        "Paint spraying: continuous path, because the path itself matters",
+        "Continuous path controls position and tool continuously"
+       ],
+       "need": 3
       }
      ]
     },
@@ -1213,7 +2411,98 @@
        "search_fallback": "https://www.youtube.com/results?search_query=robot+configurations+cartesian+cylindrical+spherical+scara+articulated"
       }
      ],
-     "figure": "configs"
+     "figure": "configs",
+     "theory": [
+      {
+       "q": "Define workspace.",
+       "type": "Define",
+       "marks": 2,
+       "points": [
+        "The space the robot can reach or move within",
+        "Set by joint types and link lengths"
+       ],
+       "need": 2
+      },
+      {
+       "q": "List five robot configurations.",
+       "type": "List",
+       "marks": 3,
+       "points": [
+        "Cartesian",
+        "Cylindrical",
+        "Spherical",
+        "Articulated",
+        "SCARA"
+       ],
+       "need": 5
+      },
+      {
+       "q": "Describe the Cartesian robot.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Three sliding joints, two of them orthogonal",
+        "Notation PPP, or LOO",
+        "Also called rectilinear or x-y-z robot"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Describe the cylindrical robot.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "A vertical column with an arm",
+        "The arm moves up and down and in and out",
+        "Notation RPP, or TLO"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Describe the spherical robot.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "A sliding arm that rotates about a vertical axis and a horizontal axis",
+        "Notation RRP, or TRL"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Describe the articulated robot.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Jointed arm like a human arm",
+        "Rotary joints",
+        "Notation RRR, or TRR"
+       ],
+       "need": 3
+      },
+      {
+       "q": "What is a SCARA robot and why is it suited to assembly?",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Selective Compliance Assembly Robot Arm (Articulated also used)",
+        "Vertical axes for shoulder and elbow",
+        "Compliant horizontally, rigid vertically",
+        "Suits vertical insertion tasks"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Describe the robot wrist and its motions.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Attached to the end of the arm; the end effector is attached to the wrist",
+        "Orients the end effector: roll, pitch and yaw",
+        "Two or three degrees of freedom"
+       ],
+       "need": 3
+      }
+     ]
     },
     {
      "id": "2.7",
@@ -1285,6 +2574,99 @@
       {
        "status": "pending-approval",
        "search_fallback": "https://www.youtube.com/results?search_query=hydraulic+pneumatic+electric+actuators+comparison+robots"
+      }
+     ],
+     "theory": [
+      {
+       "q": "List the four categories of robot by energy source.",
+       "type": "List",
+       "marks": 2,
+       "points": [
+        "Electrical",
+        "Hydraulic",
+        "Pneumatic",
+        "Mechanical"
+       ],
+       "need": 4
+      },
+      {
+       "q": "State the features of electrical robots.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Use DC stepper, DC servo or AC servo motors",
+        "Very popular and low price",
+        "Clean and silent",
+        "Easy to assemble, control and brake"
+       ],
+       "need": 4
+      },
+      {
+       "q": "State the features of hydraulic robots.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Use hydraulic energy to move the actuator",
+        "More powerful and faster response than electric",
+        "Can move huge payloads",
+        "Less clean"
+       ],
+       "need": 4
+      },
+      {
+       "q": "State the features of pneumatic robots.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Cheaper and simpler",
+        "Limited for robot networks",
+        "Hard to control",
+        "Less dynamic than other types"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Compare electrical and hydraulic robots.",
+       "type": "Compare",
+       "marks": 4,
+       "points": [
+        "Electrical: clean, silent, low price",
+        "Hydraulic: more powerful, faster response",
+        "Hydraulic: huge payloads",
+        "Hydraulic: less clean, which matters in assembly"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Why do electric and hydraulic robots still use pneumatic end tools?",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "Both usually use the end tool from pneumatic power",
+        "Pneumatic tools are cheap and simple"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Name the motors used in electrical robots.",
+       "type": "List",
+       "marks": 3,
+       "points": [
+        "DC stepper motor",
+        "DC servo motor",
+        "AC servo motor"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Why is cleanliness a disadvantage for hydraulic robots in assembly?",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "Hydraulic robots are less clean",
+        "Cleanliness is an important feature in assembling applications"
+       ],
+       "need": 2
       }
      ]
     },
@@ -1365,7 +2747,99 @@
        "search_fallback": "https://www.youtube.com/results?search_query=robot+classification+JIRA+RIA+AFR+classes"
       }
      ],
-     "figure": "ladder"
+     "figure": "ladder",
+     "theory": [
+      {
+       "q": "State the six JIRA classes.",
+       "type": "List",
+       "marks": 6,
+       "points": [
+        "1 Manual handling device",
+        "2 Fixed sequence robot",
+        "3 Variable sequence robot",
+        "4 Playback robot",
+        "5 Numerical control robot",
+        "6 Intelligent robot"
+       ],
+       "need": 6
+      },
+      {
+       "q": "Which JIRA classes does RIA count as robots?",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Classes 3 to 6",
+        "Variable sequence, playback, numerical control, intelligent",
+        "RIA divides robots into four classes"
+       ],
+       "need": 3
+      },
+      {
+       "q": "State the four AFR types.",
+       "type": "List",
+       "marks": 4,
+       "points": [
+        "A: manual handling to telerobotics",
+        "B: automatic handling with predetermined cycles",
+        "C: programmable servo, continuous or point-to-point paths",
+        "D: like C, with the ability to sense the environment"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Describe a playback robot.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "A human performs the task manually to teach the trajectory",
+        "The robot repeats it"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Compare the numerical control robot with the playback robot.",
+       "type": "Compare",
+       "marks": 3,
+       "points": [
+        "Playback: a human teaches by demonstrating the motion",
+        "Numerical control: the operator supplies the sequence of tasks",
+        "Numerical control does not need to be taught by demonstration"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Describe an intelligent robot.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Understands its environment",
+        "Can successfully complete a task despite changes in surrounding conditions",
+        "The highest class (JIRA class 6)"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Describe a variable sequence robot.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "Similar to programmable automation",
+        "The sequence can be changed"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Compare JIRA class 2 and class 3.",
+       "type": "Compare",
+       "marks": 3,
+       "points": [
+        "Class 2, fixed sequence: similar to fixed automation",
+        "Class 3, variable sequence: similar to programmable automation",
+        "RIA counts class 3 but not class 2 as a robot"
+       ],
+       "need": 3
+      }
+     ]
     },
     {
      "id": "2.9",
@@ -1423,6 +2897,103 @@
       {
        "status": "pending-approval",
        "search_fallback": "https://www.youtube.com/results?search_query=industrial+vs+service+robots+examples"
+      }
+     ],
+     "theory": [
+      {
+       "q": "Distinguish industrial robots from non-industrial robots.",
+       "type": "Compare",
+       "marks": 4,
+       "points": [
+        "Industrial: manufacturing, welding, cutting, forming, assembling, painting",
+        "Non-industrial: home, school, medical, army, hobby",
+        "Industrial robots handle heavy, hot or hazardous factory work",
+        "Non-industrial robots serve people outside the production line"
+       ],
+       "need": 4
+      },
+      {
+       "q": "List five areas where non-industrial robots are used.",
+       "type": "List",
+       "marks": 3,
+       "points": [
+        "Home",
+        "School",
+        "Medical",
+        "Army",
+        "Hobby",
+        "Education",
+        "Showcase (any five)"
+       ],
+       "need": 5
+      },
+      {
+       "q": "Give two examples of non-industrial robots.",
+       "type": "List",
+       "marks": 2,
+       "points": [
+        "Micro flying copter",
+        "ASIMO"
+       ],
+       "need": 2
+      },
+      {
+       "q": "List five industrial robot applications.",
+       "type": "List",
+       "marks": 3,
+       "points": [
+        "Manufacturing",
+        "Welding",
+        "Cutting",
+        "Forming",
+        "Assembling",
+        "Heavy work",
+        "Painting (any five)"
+       ],
+       "need": 5
+      },
+      {
+       "q": "State the early industrial uses of robots.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Materials handling",
+        "Spot welding",
+        "Spray painting"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Why were robots first used on hot, heavy and hazardous jobs?",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "Such jobs are dangerous and tiring for people",
+        "Examples: die casting and forging"
+       ],
+       "need": 2
+      },
+      {
+       "q": "List the key subsystems of an industrial robot.",
+       "type": "List",
+       "marks": 3,
+       "points": [
+        "Kinematics",
+        "Control system",
+        "Drivers"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Classify a home vacuum robot and an automobile welding robot.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Vacuum robot: non-industrial",
+        "Welding robot: industrial",
+        "Reason: place of use and task"
+       ],
+       "need": 3
       }
      ]
     }

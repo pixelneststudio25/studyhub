@@ -15,7 +15,27 @@ function save() {
   localStorage.setItem('sh', JSON.stringify(S));
   clearTimeout(timer); timer = setTimeout(push, 1200);
 }
-async function push() { if (sb && user) await sb.from('user_state').upsert({ user_id: user.id, data: S, updated_at: new Date().toISOString() }); }
+let syncT;
+function setSync(st) {
+  const el = $('#sync'); clearTimeout(syncT); el.className = 'sync ' + st;
+  el.innerHTML = st === 'saving' ? '<i class="spin" aria-hidden="true"></i><span>Saving</span>' : st === 'saved' ? `${ICON('check')}<span>Saved</span>` : st === 'error' ? '<span>Not synced</span>' : '';
+  if (st === 'saved') syncT = setTimeout(() => setSync(''), 2200);
+}
+async function push() {
+  if (!(sb && user)) return; setSync('saving');
+  const { error } = await sb.from('user_state').upsert({ user_id: user.id, data: S, updated_at: new Date().toISOString() });
+  setSync(error ? 'error' : 'saved');
+}
+async function withLoad(btn, label, fn) {
+  const h = btn.innerHTML; btn.disabled = true; btn.classList.add('loading'); btn.innerHTML = `<i class="spin" aria-hidden="true"></i><span>${label}</span>`;
+  try { return await fn(); } finally { btn.disabled = false; btn.classList.remove('loading'); btn.innerHTML = h; }
+}
+const lb = $('#lbar'); let lbT;
+function bar(on) {
+  clearTimeout(lbT);
+  if (on) { lb.style.transition = 'none'; lb.style.width = '0'; lb.style.opacity = '1'; requestAnimationFrame(() => requestAnimationFrame(() => { lb.style.transition = ''; lb.style.width = '72%'; })); }
+  else { lb.style.width = '100%'; lbT = setTimeout(() => { lb.style.opacity = '0'; }, 240); }
+}
 async function pull() {
   const { data } = await sb.from('user_state').select('data').eq('user_id', user.id).maybeSingle();
   if (data && (data.data.t || 0) > (S.t || 0)) { S = { ...blank(), ...data.data }; localStorage.setItem('sh', JSON.stringify(S)); } else push();
@@ -131,8 +151,8 @@ function lessonView(id, start) {
     { t: 'Picture it', h: () => `<p class="label">Picture it</p><p class="big">${esc(l.analogy)}</p>` },
     ...chunks.map((c, k) => ({ t: chunks.length > 1 ? `The core, part ${k + 1}` : 'The core', h: () => `<p class="label">The core${chunks.length > 1 ? `, ${k + 1} of ${chunks.length}` : ''}</p><ul class="core">${c.map(e => `<li>${esc(e)}</li>`).join('')}</ul>` })),
     { t: 'Terms', h: () => `<p class="label">Key terms</p><p class="mut">Tap a term.</p><div>${l.terms.map(t => `<button class="chip" data-t="${t}">${esc(D.glossary[t].term)}</button>`).join('')}</div><div id="def"></div>` },
-    { t: 'Watch', h: () => `<p class="label">Watch</p>${v.id ? `<iframe class="vid" loading="lazy" allowfullscreen title="Lesson video" src="https://www.youtube-nocookie.com/embed/${v.id}?start=${v.start || 0}${v.end ? '&end=' + v.end : ''}"></iframe>` : `<div class="card">No approved video yet. <a target="_blank" rel="noopener" href="${v.search_fallback}">Search YouTube</a></div>`}` },
-    { t: 'Check', h: () => `<p class="label">Check</p><h2 style="margin-top:0">Test yourself</h2><p>${l.quiz.length} questions. Rate your confidence before each answer.</p>${S.quiz[id] ? `<p class="mut">Last score: ${S.quiz[id].score} of ${S.quiz[id].total}</p>` : ''}<a class="btn pri" href="#/quiz/${id}">Start quiz</a>` },
+    { t: 'Watch', h: () => `<p class="label">Watch</p>${v.id ? `<div class="vwrap"><div class="sk"></div><iframe class="vid" onload="this.parentNode.classList.add('ready')" loading="lazy" allowfullscreen title="Lesson video" src="https://www.youtube-nocookie.com/embed/${v.id}?start=${v.start || 0}${v.end ? '&end=' + v.end : ''}"></iframe></div>` : `<div class="card">No approved video yet. <a target="_blank" rel="noopener" href="${v.search_fallback}">Search YouTube</a></div>`}` },
+    { t: 'Check', h: () => `<p class="label">Check</p><h2 style="margin-top:0">Test yourself</h2><p>${l.quiz.length} questions. Rate your confidence before each answer.</p>${S.quiz[id] ? `<p class="mut">Last score: ${S.quiz[id].score} of ${S.quiz[id].total}</p>` : ''}<button class="btn pri" id="qs">${S.quiz[id] ? 'Retake quiz' : 'Start quiz'}</button>` },
     { t: 'Close', h: () => `<p class="label">Lesson ${esc(l.id)}</p><h2 style="margin-top:0">${esc(l.title)}</h2><p class="tip">${esc(l.one_line)}</p>${S.quiz[id] ? `<p class="mut">Quiz: ${S.quiz[id].score} of ${S.quiz[id].total}</p>` : '<p class="mut">You have not taken the quiz yet.</p>'}<button class="btn ${S.done[id] ? '' : 'pri'}" id="dn">${S.done[id] ? ICON('check') + 'Completed. Undo' : 'Mark complete'}</button><a class="btn" href="#/cards/${id}">Flashcards</a>${next ? `<a class="btn" href="#/lesson/${next.id}/0">Next: ${esc(next.title)}</a>` : ''}` }
   ];
   let i = Math.min(Math.max(start != null && start !== '' ? +start || 0 : S.pos?.[id] || 0, 0), secs.length - 1), busy = false, tx = 0, ty = 0;
@@ -150,7 +170,7 @@ function lessonView(id, start) {
     if ((S.pos ||= {})[id] !== i) { S.pos[id] = i; save(); }
     history.replaceState(null, '', `#/lesson/${id}/${i}`);
   };
-  const show = cls => { stg.innerHTML = `<section class="scr ${cls}" aria-live="polite">${secs[i].h()}</section>`; upd(); scrollTo(0, 0); };
+  const show = cls => { qh = null; stg.innerHTML = `<section class="scr ${cls}" aria-live="polite">${secs[i].h()}</section>`; upd(); scrollTo(0, 0); };
   const go = n => {
     if (busy || n < 0 || n >= secs.length || n === i) return;
     const d = n > i ? 1 : -1, old = stg.firstElementChild; i = n; busy = true;
@@ -164,6 +184,7 @@ function lessonView(id, start) {
   stg.onclick = e => {
     const t = e.target.closest('[data-t]');
     if (t) { const g = D.glossary[t.dataset.t]; stg.querySelector('#def').innerHTML = `<div class="defn"><b>${esc(g.term)}</b><p>${esc(g.plain)}</p><p class="mut"><span class="label">Exam</span> ${esc(g.exam)}</p></div>`; }
+    if (e.target.closest('#qs')) quiz(id, stg.firstElementChild, () => go(i + 1));
     if (e.target.closest('#dn')) { S.done[id] = !S.done[id]; save(); show('in-n'); if (S.done[id]) stg.firstElementChild.classList.add('pop'); }
   };
   stg.addEventListener('touchstart', e => { tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, { passive: true });
@@ -171,37 +192,65 @@ function lessonView(id, start) {
   lc = { next: () => go(i + 1), prev: () => go(i - 1), close: closeS };
   show('in-n');
 }
-addEventListener('keydown', e => {
-  if (!lc || !ov.hidden || /INPUT|TEXTAREA/.test(document.activeElement.tagName)) return;
+addEventListener('keydown', e => { if (qh && ov.hidden && !e.ctrlKey && !e.metaKey && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) { if (e.key === ' ') e.preventDefault(); qh(e.key); return; }
+  if (!lc || qh || !ov.hidden || /INPUT|TEXTAREA/.test(document.activeElement.tagName)) return;
   if (e.key === 'ArrowRight') lc.next(); else if (e.key === 'ArrowLeft') lc.prev(); else if (e.key === 'Escape') lc.close();
 });
-function quiz(id) {
-  const l = lesson(id); let i = 0, score = 0, conf = 'sure';
+let qh = null;
+function quiz(id, host = app, onDone) {
+  const l = lesson(id), AZ = ['A', 'B', 'C', 'D'], missed = []; let i = 0, score = 0, conf = 'sure';
+  const finish = () => {
+    qh = null; const tot = l.quiz.length;
+    S.quiz[id] = { score, total: tot, ts: Date.now() }; if (score === tot) S.weak[id] = 0; save();
+    const msg = score === tot ? 'Clean sheet. Move on.' : score * 2 >= tot ? `${tot - score} missed. Read the answers below, then retry.` : 'This topic is not secure yet. Go back through the core, then retry.';
+    host.innerHTML = `<div class="qz"><p class="label">Result</p><h2 class="qscore pop"><span>${score}</span> of ${tot}</h2><p class="coachish">${msg}</p>
+      ${missed.length ? `<h3>Review these</h3>${missed.map(m => `<div class="card"><p class="label">${esc(m.q)}</p><p><b>${esc(m.a)}</b></p><p class="mut">${esc(m.e)}</p></div>`).join('')}` : ''}
+      <div>${onDone ? '<button class="btn pri" id="qd">Continue</button><button class="btn" id="qr">Retry</button>' : `<a class="btn pri" href="#/lesson/${id}/99">Back to lesson</a><a class="btn" href="#/quiz/${id}">Retry</a>`}</div></div>`;
+    if (onDone) { host.querySelector('#qd').onclick = onDone; host.querySelector('#qr').onclick = () => quiz(id, host, onDone); }
+    scrollTo(0, 0);
+  };
   const show = () => {
-    if (i >= l.quiz.length) { S.quiz[id] = { score, total: l.quiz.length, ts: Date.now() }; if (score === l.quiz.length) S.weak[id] = 0; save();
-      app.innerHTML = `<h1 class="pop">${score}/${l.quiz.length}</h1><p>${score === l.quiz.length ? 'Perfect. Move on.' : 'Review the missed points, then retry.'}</p><a class="btn pri" href="#/lesson/${id}/99">Back to lesson</a><a class="btn" href="#/quiz/${id}">Retry</a>`; return; }
-    const q = l.quiz[i];
-    app.innerHTML = `<p class="mut">${esc(l.title)} · ${i + 1}/${l.quiz.length}</p><h2 style="margin-top:0">${esc(q.q)}</h2>
-    <div class="conf" role="group" aria-label="Confidence">${['sure', 'guess', 'no idea'].map(c => `<button class="btn ${c === conf ? 'on' : ''}" data-c="${c}">${c}</button>`).join('')}</div>
-    ${q.options.map((o, k) => `<button class="opt" data-k="${k}">${esc(o)}</button>`).join('')}<div id="fb"></div>`;
-    app.querySelector('.conf').onclick = e => { if (e.target.dataset.c) { conf = e.target.dataset.c; app.querySelectorAll('.conf button').forEach(b => b.classList.toggle('on', b.dataset.c === conf)); } };
-    app.querySelectorAll('.opt').forEach(b => b.onclick = () => {
-      const k = +b.dataset.k, ok = k === q.answer; if (ok) score++; else S.weak[id] = (S.weak[id] || 0) + (conf === 'sure' ? 2 : 1);
-      app.querySelectorAll('.opt').forEach((x, j) => { x.disabled = true; if (j === q.answer) x.classList.add('right'); else if (j === k) x.classList.add('wrong'); });
-      $('#fb').innerHTML = `<div class="tip">${ok ? 'Correct.' : 'Not quite.'} ${esc(q.explain)}${!ok && conf === 'sure' ? ' <b>You were sure. Watch this one.</b>' : ''}</div><button class="btn pri" id="nx">${i + 1 < l.quiz.length ? 'Next' : 'Finish'}</button>`;
-      save(); $('#nx').onclick = () => { i++; show(); };
-    });
+    qh = null; if (i >= l.quiz.length) return finish();
+    const q = l.quiz[i], last = i + 1 === l.quiz.length; let answered = false;
+    host.innerHTML = `<div class="qz in-n"><div class="qseg" aria-hidden="true">${l.quiz.map((_, k) => `<i class="${k < i ? 'done' : k === i ? 'cur' : ''}"></i>`).join('')}</div>
+      <p class="label">Question ${i + 1} of ${l.quiz.length}</p><h2 class="qq">${esc(q.q)}</h2>
+      <div class="conf" role="group" aria-label="How sure are you?"><span class="label">How sure are you?</span>${['sure', 'guess', 'no idea'].map(c => `<button class="seg ${c === conf ? 'on' : ''}" data-c="${c}">${c}</button>`).join('')}</div>
+      <div class="opts">${q.options.map((o, k) => `<button class="opt" data-k="${k}"><b>${AZ[k]}</b><span>${esc(o)}</span></button>`).join('')}</div><div id="fb"></div></div>`;
+    host.querySelector('.conf').onclick = e => { const c = e.target.dataset.c; if (c && !answered) { conf = c; host.querySelectorAll('.seg').forEach(b => b.classList.toggle('on', b.dataset.c === c)); } };
+    const next = () => { i++; show(); };
+    const pick = k => {
+      if (answered || k < 0 || k >= q.options.length) return; answered = true;
+      const ok = k === q.answer; if (ok) score++; else { S.weak[id] = (S.weak[id] || 0) + (conf === 'sure' ? 2 : 1); missed.push({ q: q.q, a: q.options[q.answer], e: q.explain }); }
+      host.querySelectorAll('.opt').forEach((x, j) => { x.disabled = true; if (j === q.answer) x.classList.add('right'); else if (j === k) x.classList.add('wrong'); });
+      host.querySelector('#fb').innerHTML = `<div class="fbk ${ok ? 'good' : 'bad'}"><p class="label">${ok ? 'Correct' : 'Not quite'}</p><p class="why">${esc(q.explain)}</p>${!ok && conf === 'sure' ? '<p class="warn">You were sure and wrong. Come back to this one.</p>' : ''}</div><button class="btn pri" id="nx">${last ? 'See result' : 'Next'}</button>`;
+      host.querySelector('#nx').onclick = next; host.querySelector('#nx').focus({ preventScroll: true }); save();
+    };
+    host.querySelectorAll('.opt').forEach(b => b.onclick = () => pick(+b.dataset.k));
+    qh = key => { const k = key.toLowerCase(); if (!answered) pick('abcd'.indexOf(k) >= 0 ? 'abcd'.indexOf(k) : '1234'.indexOf(k)); else if (k === 'enter') next(); };
   };
   show();
 }
 function cards(scope) {
-  const q = dueCards(scope); let i = 0;
+  const q = dueCards(scope), tally = { 1: 0, 3: 0, 4: 0, 5: 0 }; let i = 0;
+  const days = (c, g) => { if (g < 3) return 1; const st = S.cards[c.key] || { ef: 2.5, int: 0, reps: 0 }; return st.reps === 0 ? 1 : st.reps === 1 ? 6 : Math.round(st.int * st.ef); };
+  const fmt = n => n === 1 ? '1 day' : n + ' days';
   const show = () => {
-    if (i >= q.length) { app.innerHTML = `<h1>${q.length ? 'Done for today' : 'Nothing due'}</h1><p class="mut">Cards return on a spaced schedule.</p><a class="btn pri" href="#/">Home</a>`; return; }
+    qh = null;
+    if (i >= q.length) {
+      const again = tally[1];
+      app.innerHTML = `<p class="label">Session complete</p><h1>${q.length ? `${q.length} card${q.length > 1 ? 's' : ''} reviewed` : 'Nothing due'}</h1><p class="coachish">${!q.length ? 'Finish a lesson to unlock its cards, or come back tomorrow.' : again ? `${again} came back as Again. They return tomorrow. Do not skip them.` : 'Clean session. Come back tomorrow.'}</p><a class="btn pri" href="#/">Home</a><a class="btn" href="#/lessons">Lessons</a>`;
+      return;
+    }
     const c = q[i];
-    app.innerHTML = `<p class="mut">${i + 1}/${q.length} · ${c.lid}</p><button class="card face" id="fc" style="width:100%">${esc(c.front)}</button><div id="gr"></div>`;
-    $('#fc').onclick = () => { $('#fc').textContent = c.back; $('#gr').innerHTML = [['Again', 1], ['Hard', 3], ['Good', 4], ['Easy', 5]].map(([n, g]) => `<button class="btn" data-g="${g}">${n}</button>`).join(''); };
-    $('#gr').onclick = e => { const g = +e.target.dataset.g; if (!g) return; sm2(c.key, g); i++; show(); };
+    app.innerHTML = `<div class="bar2"><i style="width:${i / q.length * 100}%"></i></div><div class="in-n"><p class="label">Card ${i + 1} of ${q.length} · Lesson ${esc(c.lid)}</p>
+      <button class="flip" id="fc" aria-label="Reveal answer"><span class="fi"><span class="ff"><small class="label">Question</small><span>${esc(c.front)}</span></span><span class="fb"><small class="label">Answer</small><span>${esc(c.back)}</span></span></span></button>
+      <p class="mut hint" id="ht">Tap the card or press Space to reveal.</p>
+      <div class="grades" id="gr" hidden>${[['Again', 1], ['Hard', 3], ['Good', 4], ['Easy', 5]].map(([n, g], k) => `<button class="btn" data-g="${g}"><b>${n}</b><small>${fmt(days(c, g))}</small></button>`).join('')}</div></div>`;
+    let flipped = false;
+    const flip = () => { if (flipped) return; flipped = true; $('#fc').classList.add('flipped'); $('#gr').hidden = false; $('#ht').hidden = true; };
+    const grade = g => { if (!flipped || !tally[g] && tally[g] !== 0) return; sm2(c.key, g); tally[g]++; i++; show(); };
+    $('#fc').onclick = flip; $('#gr').onclick = e => { const b = e.target.closest('[data-g]'); if (b) grade(+b.dataset.g); };
+    qh = k => { if (k === ' ' || k === 'Enter') flip(); else if ('1234'.includes(k) && k) grade([1, 3, 4, 5]['1234'.indexOf(k)]); };
   };
   show();
 }
@@ -222,20 +271,25 @@ function account() {
     : `<p>Sign in to sync progress across devices.</p><input class="f" id="em" type="email" placeholder="you@email.com"><button class="btn pri" id="ml">Email me a magic link</button><p id="ms" class="mut"></p>`)
     + `<h2>Backup</h2><button class="btn" id="ex">${ICON('download')}Export progress</button>`;
   $('#ex')?.addEventListener('click', () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(S)], { type: 'application/json' })); a.download = 'studyhub-progress.json'; a.click(); });
-  $('#so')?.addEventListener('click', async () => { await sb.auth.signOut(); });
-  $('#ml')?.addEventListener('click', async () => { const { error } = await sb.auth.signInWithOtp({ email: $('#em').value, options: { emailRedirectTo: location.origin + location.pathname } }); $('#ms').textContent = error ? error.message : 'Check your email.'; });
+  $('#so')?.addEventListener('click', e => withLoad(e.currentTarget, 'Signing out', () => sb.auth.signOut()));
+  $('#ml')?.addEventListener('click', e => withLoad(e.currentTarget, 'Sending', async () => { const { error } = await sb.auth.signInWithOtp({ email: $('#em').value, options: { emailRedirectTo: location.origin + location.pathname } }); $('#ms').textContent = error ? error.message : 'Check your email.'; }));
 }
 
 function route() {
   if (!D) return;
   const h = location.hash || '#/', [, r, a, b] = h.split('/');
-  lc = null; document.body.classList.toggle('lesson', r === 'lesson');
+  app.removeAttribute('aria-busy'); lc = null; qh = null; document.body.classList.toggle('lesson', r === 'lesson'); bar(true);
   const base = '#/' + (r || '');
   $('#side').innerHTML = `<a class="sbrand" href="#/">StudyHub<span>${esc(D.course.code)}</span></a>` + navHTML(base); $('#bottom').innerHTML = navHTML(base); setMenu(false);
   ({ '': home, lessons, lesson: () => lessonView(a, b), quiz: () => quiz(a), cards: () => cards(a), glossary: () => glossary(a), account }[r || ''] || home)();
-  scrollTo(0, 0); app.focus({ preventScroll: true });
+  scrollTo(0, 0); app.focus({ preventScroll: true }); setTimeout(() => bar(false), 200);
 }
 addEventListener('hashchange', route);
 if (sb) sb.auth.onAuthStateChange((_, s) => { user = s?.user || null; if (user) pull(); else route(); });
 
-Promise.all([fetch('data/mce321.json').then(r => r.json()), fetch('data/coach.json').then(r => r.json()).catch(() => ({}))]).then(([d, c]) => { D = d; C = c; L = d.modules.flatMap(m => m.lessons); route(); });
+function loadData() {
+  return Promise.all([fetch('data/mce321.json').then(r => { if (!r.ok) throw 0; return r.json(); }), fetch('data/coach.json').then(r => r.json()).catch(() => ({}))]).then(
+    ([d, c]) => { D = d; C = c; L = d.modules.flatMap(m => m.lessons); route(); },
+    () => { app.innerHTML = '<div class="card"><h2 style="margin-top:0">Could not load your course</h2><p class="mut">Check your connection, then try again.</p><button class="btn pri" id="rt">Try again</button></div>'; $('#rt').onclick = e => withLoad(e.currentTarget, 'Loading', loadData); });
+}
+loadData();

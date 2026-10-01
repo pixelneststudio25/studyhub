@@ -16,6 +16,7 @@
 <script>try{var t=localStorage.getItem('th');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 </head>
 <body>
+<div id="lbar" aria-hidden="true"></div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
     <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
@@ -35,12 +36,16 @@
 <header class="top">
   <button id="burger" class="ib" aria-label="Open menu" aria-expanded="false"><svg class="ic"><use href="#i-menu"/></svg></button>
   <a class="brand" href="#/">StudyHub</a>
+  <span id="sync" class="sync" role="status" aria-live="polite"></span>
   <button id="srch" class="ib wide" aria-label="Search"><svg class="ic"><use href="#i-search"/></svg><span>Search</span><kbd>Ctrl K</kbd></button>
   <button id="theme" class="ib" aria-label="Switch light and dark theme"><svg class="ic"><use href="#i-contrast"/></svg></button>
 </header>
 <aside id="side" aria-label="Main navigation"></aside>
 <div id="scrim"></div>
-<main id="app" tabindex="-1"></main>
+<main id="app" tabindex="-1" aria-busy="true"><div class="skw" role="status" aria-label="Loading">
+  <div class="sk" style="height:12px;width:96px"></div><div class="sk" style="height:34px;width:82%;margin:16px 0 10px"></div><div class="sk" style="height:34px;width:52%"></div>
+  <div class="sk" style="height:176px;margin:30px 0"></div>
+  <div class="grid"><div class="sk" style="height:118px"></div><div class="sk" style="height:118px"></div><div class="sk" style="height:118px"></div><div class="sk" style="height:118px"></div></div></div></main>
 <nav class="bottom" id="bottom" aria-label="Quick navigation"></nav>
 <div id="overlay" hidden>
   <div class="panel" role="dialog" aria-label="Search"><input id="q" placeholder="Search lessons and terms" autocomplete="off"><div id="res"></div></div>

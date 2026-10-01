@@ -59,16 +59,59 @@ const lesson = id => L.find(l => l.id === id);
 const dueCards = scope => L.filter(l => !scope || l.id === scope).flatMap(l => l.flashcards.map((c, i) => ({ ...c, key: l.id + '#' + i, lid: l.id })))
   .filter(c => (S.cards[c.key]?.due || '') <= day());
 
+const TARGET = 5;
+let C = {};
+const dow = () => (new Date().getDay() + 6) % 7 + 1;
+const dnum = () => Math.floor(Date.now() / 864e5);
+const gapDays = () => { if (S.days[day()]) return 0; for (let o = 1; o <= 90; o++) if (S.days[day(-o)]) return o; return -1; };
+const fill = (t, d) => t.replace(/\{(\w+)\}/g, (_, k) => d[k] ?? '');
+const weakest = () => Object.entries(S.weak).filter(([, n]) => n > 0).sort((a, b) => b[1] - a[1])[0];
+const dueNow = () => L.flatMap(l => l.flashcards.map((c, i) => ({ k: l.id + '#' + i, l }))).filter(c => (S.cards[c.k] || S.done[c.l.id]) && (S.cards[c.k]?.due || '') <= day()).length;
+
+function coach() {
+  const done = L.filter(l => S.done[l.id]).length, st = streak(), gap = gapDays(), wd = weekDays(), wk = weakest();
+  const lq = Object.entries(S.quiz).sort((a, b) => b[1].ts - a[1].ts)[0];
+  const need = TARGET - wd, daysLeft = 8 - dow();
+  const fresh = lq && Date.now() - lq[1].ts < 36e5 * 36 && lq[1].score === lq[1].total;
+  const data = { n: done, left: L.length - done, total: L.length, streak: st, days: wd, target: TARGET, remaining: Math.max(0, need), gap, topic: wk ? lesson(wk[0]).title : fresh ? lesson(lq[0]).title : '' };
+  let key = 'progress', arr;
+  if (gap < 0) key = 'start';
+  else if (gap >= 3) key = 'return';
+  else if (gap === 2) key = 'skipped';
+  else if (S.days[day()] && C.streak?.[st]) { key = 'streak'; arr = C.streak[st]; }
+  else if (need > 0 && need >= daysLeft && dow() >= 3) key = 'behind';
+  else if (fresh) { key = 'perfect'; data.topic = lesson(lq[0]).title; }
+  else if (wk) key = 'weak';
+  else if (done === L.length) key = 'caughtup';
+  arr = arr || C[key];
+  return arr?.length ? fill(arr[(dnum() + key.length) % arr.length], data) : 'Open the assignment below and start.';
+}
+function assignment() {
+  const due = dueNow(), wk = weakest(), next = L.find(l => !S.done[l.id]);
+  if (due > 0) return { label: 'Flashcards due', title: `${due} card${due > 1 ? 's' : ''} to review`, text: `About ${Math.max(1, Math.round(due * 0.5))} minutes. Clear these before anything new.`, href: '#/cards', cta: 'Review cards' };
+  if (wk) return { label: 'Weak topic', title: lesson(wk[0]).title, text: 'You missed questions here. Retake the quiz until it is clean.', href: `#/quiz/${wk[0]}`, cta: 'Retake quiz' };
+  if (next) { const on = (S.pos?.[next.id] || 0) > 0; return { label: on ? 'Continue' : 'Next lesson', title: `${next.id} · ${next.title}`, text: next.one_line, href: `#/lesson/${next.id}`, cta: on ? 'Resume lesson' : 'Start lesson' }; }
+  return { label: 'Course complete', title: 'Every lesson is done', text: 'Revisit your weakest topics and keep your cards clear.', href: '#/lessons', cta: 'Open lessons' };
+}
+function countUp() {
+  const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  document.querySelectorAll('[data-n]').forEach(el => {
+    const n = +el.dataset.n; if (reduce || !n) { el.textContent = n; return; }
+    const t0 = performance.now();
+    const f = t => { const p = Math.min(1, (t - t0) / 600); el.textContent = Math.round(n * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(f); };
+    requestAnimationFrame(f);
+  });
+}
 function home() {
-  const done = L.filter(l => S.done[l.id]).length, next = L.find(l => !S.done[l.id]);
-  const weak = Object.entries(S.weak).filter(([, n]) => n > 0).sort((a, b) => b[1] - a[1]).slice(0, 3);
-  app.innerHTML = `<h1>${esc(D.course.code)}</h1><p class="mut">${esc(D.course.title)}</p>
-  <div class="grid"><div class="card" style="display:flex;gap:14px;align-items:center">${ring(done / L.length)}<div class="stat"><b>${done}/${L.length}</b>lessons done</div></div>
-  <div class="card stat"><b>${streak()}</b>day streak</div>
-  <div class="card stat"><b>${weekDays()}/7</b>study days this week</div>
-  <a class="card stat" href="#/cards"><b>${dueCards().length}</b>flashcards due</a></div>
-  ${next ? `<h2>Up next</h2><a class="card" href="#/lesson/${next.id}"><b>${next.id} · ${esc(next.title)}</b><br><span class="mut">${esc(next.one_line)}</span></a>` : '<h2>All lessons complete</h2>'}
-  ${weak.length ? `<h2>Weakest topics</h2>${weak.map(([id]) => `<a class="card" href="#/quiz/${id}">${id} · ${esc(lesson(id).title)}<br><span class="mut">Retake the quiz</span></a>`).join('')}` : ''}`;
+  const done = L.filter(l => S.done[l.id]).length, a = assignment(), st = streak();
+  app.innerHTML = `<section class="coach"><p class="label">Your coach</p><p class="coach-line">${esc(coach())}</p></section>
+  <a class="assign" href="${a.href}"><span class="label">Today's assignment · ${esc(a.label)}</span><h2>${esc(a.title)}</h2><p>${esc(a.text)}</p><span class="btn pri">${esc(a.cta)}${ICON('arrow')}</span></a>
+  <h2 class="sec-h">Progress</h2><p class="mut">${esc(D.course.code)} · ${esc(D.course.title)}</p>
+  <div class="grid"><div class="card ringcard">${ring(done / L.length)}<div class="stat"><b data-n="${done}">0</b>of ${L.length} lessons</div></div>
+  <div class="card stat"><span class="fl ${st ? 'on' : ''}">${ICON('flame')}</span><b data-n="${st}">0</b>day streak</div>
+  <div class="card stat"><b data-n="${weekDays()}">0</b>of ${TARGET} study days this week</div>
+  <a class="card stat" href="#/cards"><b data-n="${dueNow()}">0</b>cards due</a></div>`;
+  fillRings(); countUp();
 }
 function lessons() {
   app.innerHTML = '<h1>Lessons</h1>' + D.modules.map(m => `<h2>${esc(m.title)}</h2>` + m.lessons.map(l =>
@@ -135,7 +178,7 @@ addEventListener('keydown', e => {
 function quiz(id) {
   const l = lesson(id); let i = 0, score = 0, conf = 'sure';
   const show = () => {
-    if (i >= l.quiz.length) { S.quiz[id] = { score, total: l.quiz.length, ts: Date.now() }; save();
+    if (i >= l.quiz.length) { S.quiz[id] = { score, total: l.quiz.length, ts: Date.now() }; if (score === l.quiz.length) S.weak[id] = 0; save();
       app.innerHTML = `<h1 class="pop">${score}/${l.quiz.length}</h1><p>${score === l.quiz.length ? 'Perfect. Move on.' : 'Review the missed points, then retry.'}</p><a class="btn pri" href="#/lesson/${id}/99">Back to lesson</a><a class="btn" href="#/quiz/${id}">Retry</a>`; return; }
     const q = l.quiz[i];
     app.innerHTML = `<p class="mut">${esc(l.title)} · ${i + 1}/${l.quiz.length}</p><h2 style="margin-top:0">${esc(q.q)}</h2>
@@ -189,10 +232,10 @@ function route() {
   lc = null; document.body.classList.toggle('lesson', r === 'lesson');
   const base = '#/' + (r || '');
   $('#side').innerHTML = `<a class="sbrand" href="#/">StudyHub<span>${esc(D.course.code)}</span></a>` + navHTML(base); $('#bottom').innerHTML = navHTML(base); setMenu(false);
-  ({ '': () => { home(); fillRings(); }, lessons, lesson: () => lessonView(a, b), quiz: () => quiz(a), cards: () => cards(a), glossary: () => glossary(a), account }[r || ''] || home)();
+  ({ '': home, lessons, lesson: () => lessonView(a, b), quiz: () => quiz(a), cards: () => cards(a), glossary: () => glossary(a), account }[r || ''] || home)();
   scrollTo(0, 0); app.focus({ preventScroll: true });
 }
 addEventListener('hashchange', route);
 if (sb) sb.auth.onAuthStateChange((_, s) => { user = s?.user || null; if (user) pull(); else route(); });
 
-fetch('data/mce321.json').then(r => r.json()).then(d => { D = d; L = d.modules.flatMap(m => m.lessons); route(); });
+Promise.all([fetch('data/mce321.json').then(r => r.json()), fetch('data/coach.json').then(r => r.json()).catch(() => ({}))]).then(([d, c]) => { D = d; C = c; L = d.modules.flatMap(m => m.lessons); route(); });

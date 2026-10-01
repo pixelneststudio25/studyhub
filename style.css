@@ -111,3 +111,15 @@ body.lesson main{max-width:none;padding:0}body.lesson main>*{animation:none}
 @media(min-width:900px){.secs{top:57px;left:auto;right:0;bottom:0;width:300px;max-height:none;border-radius:0;border-width:0 0 0 1px;transform:translateX(105%)}.ctl{padding-left:32px;padding-right:32px}.stage{padding-top:64px}}
 @media(max-width:420px){.big{font-size:23px}.core li{font-size:17px}}
 @media(max-width:370px){.ctl .btn{width:auto;flex:1;padding:0 8px}.ctl .sec span{display:none}}
+
+/* Phase C: home, coach, assignment */
+.coach{padding:4px 0 28px}
+.coach-line{font:400 32px/1.3 var(--serif);max-width:24em;margin:8px 0 0;letter-spacing:-.005em}
+.assign{display:block;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--r);padding:24px 26px;transition:border-color var(--t1) var(--ease),transform var(--t1) var(--ease)}
+.assign:hover{border-color:var(--accent);transform:translateY(-1px)}
+.assign h2{margin:.35em 0 .25em;font-size:30px}.assign p{color:var(--muted)}
+.assign .btn{margin:8px 0 0;pointer-events:none}
+.sec-h{margin:2em 0 .1em}
+.ringcard{display:flex;align-items:center;gap:16px}
+.fl{display:block;color:var(--muted);margin-bottom:6px}.fl.on{color:var(--accent)}
+@media(max-width:420px){.coach-line{font-size:25px}.assign{padding:20px}.assign h2{font-size:25px}}

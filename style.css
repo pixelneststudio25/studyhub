@@ -188,3 +188,16 @@ body.lesson .toast{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
 .fig figcaption{margin-top:12px;font-size:14px;color:var(--muted);max-width:62ch}.fig figcaption span{display:block;font-size:12.5px;margin-top:2px}
 .tabs{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px}.tab.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
 @media(prefers-reduced-motion:reduce){.draw{stroke-dashoffset:0}.pop-in{opacity:1}}
+
+/* Theory and exam */
+textarea.f{display:block;width:100%;padding:12px 14px;margin:6px 0 12px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);color:var(--ink);font:inherit;line-height:1.6;resize:vertical}
+textarea.f:focus{border-color:var(--accent);outline:none}textarea.f[readonly]{opacity:.75}
+.ck{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-top:1px solid var(--line);cursor:pointer;line-height:1.5}
+.ck input{flex:none;width:18px;height:18px;margin-top:4px;accent-color:var(--accent)}
+.exh{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.tmr{font:500 30px var(--serif);font-variant-numeric:tabular-nums}.tmr.low{color:var(--bad)}
+.pal{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px}
+.pb{width:36px;height:36px;border:1px solid var(--line);border-radius:8px;background:none;font-size:13px;transition:border-color var(--t1) var(--ease)}
+.pb:hover{border-color:var(--ink)}.pb.ans{border-color:var(--accent);color:var(--accent)}.pb.cur{background:var(--accent-soft);font-weight:600}
+.opt.sel{border-color:var(--accent);background:var(--accent-soft)}.opt.sel b{border-color:var(--accent);color:var(--accent)}
+.ans-read{white-space:pre-wrap}.rr{display:flex;justify-content:space-between;gap:12px;align-items:center}

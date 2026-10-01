@@ -128,7 +128,7 @@ function home() {
   const done = L.filter(l => S.done[l.id]).length, a = assignment(), st = streak();
   app.innerHTML = `<section class="coach"><p class="label">Your coach</p><p class="coach-line">${esc(coach())}</p></section>
   <a class="assign" href="${a.href}"><span class="label">Today's assignment · ${esc(a.label)}</span><h2>${esc(a.title)}</h2><p>${esc(a.text)}</p><span class="btn pri">${esc(a.cta)}${ICON('arrow')}</span></a>
-  <h2 class="sec-h">Progress</h2><p class="mut">${esc(D.course.code)} · ${esc(D.course.title)}</p>
+  <p style="margin:14px 0 0"><a class="btn" href="#/exam">Take a mock exam</a></p><h2 class="sec-h">Progress</h2><p class="mut">${esc(D.course.code)} · ${esc(D.course.title)}</p>
   <div class="grid"><div class="card ringcard">${ring(done / L.length)}<div class="stat"><b data-n="${done}">0</b>of ${L.length} lessons</div></div>
   <div class="card stat"><span class="fl ${st ? 'on' : ''}">${ICON('flame')}</span><b data-n="${st}">0</b>day streak</div>
   <div class="card stat"><b data-n="${weekDays()}">0</b>of ${TARGET} study days this week</div>
@@ -136,7 +136,7 @@ function home() {
   fillRings(); countUp();
 }
 function lessons() {
-  app.innerHTML = '<h1>Lessons</h1>' + D.modules.map(m => `<h2>${esc(m.title)}</h2>` + m.lessons.map(l =>
+  app.innerHTML = '<h1>Lessons</h1><a class="card" href="#/exam"><b>Mock exam</b><br><span class="mut">Timed paper: 20 multiple-choice and 5 theory questions.</span></a>' + D.modules.map(m => `<h2>${esc(m.title)}</h2>` + m.lessons.map(l =>
     `<a class="card" href="#/lesson/${l.id}">${S.done[l.id] ? ICON('check') + ' ' : ''}${l.id} · ${esc(l.title)}${S.quiz[l.id] ? `<br><span class="mut">Quiz: ${S.quiz[l.id].score}/${S.quiz[l.id].total}</span>` : ''}</a>`).join('')).join('');
 }
 let lc = null;
@@ -155,7 +155,7 @@ function lessonView(id, start) {
     ...chunks.map((c, k) => ({ t: chunks.length > 1 ? `The core, part ${k + 1}` : 'The core', h: () => `<p class="label">The core${chunks.length > 1 ? `, ${k + 1} of ${chunks.length}` : ''}</p><ul class="core">${c.map(e => `<li>${esc(e)}</li>`).join('')}</ul>` })),
     { t: 'Terms', h: () => `<p class="label">Key terms</p><p class="mut">Tap a term.</p><div>${l.terms.map(t => `<button class="chip" data-t="${t}">${esc(D.glossary[t].term)}</button>`).join('')}</div><div id="def"></div>` },
     { t: 'Watch', h: () => `<p class="label">Watch</p>${!navigator.onLine ? '<div class="card">Videos need a connection. Reconnect to watch.</div>' : v.id ? `<div class="vwrap"><div class="sk"></div><iframe class="vid" onload="this.parentNode.classList.add('ready')" loading="lazy" allowfullscreen title="Lesson video" src="https://www.youtube-nocookie.com/embed/${v.id}?start=${v.start || 0}${v.end ? '&end=' + v.end : ''}"></iframe></div>` : `<div class="card">No approved video yet. <a target="_blank" rel="noopener" href="${v.search_fallback}">Search YouTube</a></div>`}` },
-    { t: 'Check', h: () => `<p class="label">Check</p><h2 style="margin-top:0">Test yourself</h2><p>${l.quiz.length} questions. Rate your confidence before each answer.</p>${S.quiz[id] ? `<p class="mut">Last score: ${S.quiz[id].score} of ${S.quiz[id].total}</p>` : ''}<button class="btn pri" id="qs">${S.quiz[id] ? 'Retake quiz' : 'Start quiz'}</button>` },
+    { t: 'Check', h: () => `<p class="label">Check</p><h2 style="margin-top:0">Test yourself</h2><p>${l.quiz.length} questions. Rate your confidence before each answer.</p>${S.quiz[id] ? `<p class="mut">Last score: ${S.quiz[id].score} of ${S.quiz[id].total}</p>` : ''}<button class="btn pri" id="qs">${S.quiz[id] ? 'Retake quiz' : 'Start quiz'}</button><a class="btn" href="#/theory/${id}">Theory practice (${l.theory.length})</a>` },
     { t: 'Close', h: () => `<p class="label">Lesson ${esc(l.id)}</p><h2 style="margin-top:0">${esc(l.title)}</h2><p class="tip">${esc(l.one_line)}</p>${S.quiz[id] ? `<p class="mut">Quiz: ${S.quiz[id].score} of ${S.quiz[id].total}</p>` : '<p class="mut">You have not taken the quiz yet.</p>'}<button class="btn ${S.done[id] ? '' : 'pri'}" id="dn">${S.done[id] ? ICON('check') + 'Completed. Undo' : 'Mark complete'}</button><a class="btn" href="#/cards/${id}">Flashcards</a>${next ? `<a class="btn" href="#/lesson/${next.id}/0">Next: ${esc(next.title)}</a>` : ''}` }
   ];
   let i = Math.min(Math.max(start != null && start !== '' ? +start || 0 : S.pos?.[id] || 0, 0), secs.length - 1), busy = false, tx = 0, ty = 0;
@@ -257,6 +257,94 @@ function cards(scope) {
   };
   show();
 }
+const markOf = (q, cov) => Math.round(Math.min(cov, q.need) / q.need * q.marks * 2) / 2;
+const checklist = q => `<p class="label">${q.need < q.points.length ? `Key points. Any ${q.need} earn full marks.` : 'Key points.'} Tick what your answer covered.</p>${q.points.map(p => `<label class="ck"><input type="checkbox"><span>${esc(p)}</span></label>`).join('')}`;
+function theory(id) {
+  const l = lesson(id), Q = l.theory; let i = 0, total = 0, max = 0; S.theory ||= {}; S.theory[id] ||= {};
+  const show = () => {
+    if (i >= Q.length) {
+      const pc = max ? total / max : 0;
+      app.innerHTML = `<p class="label">Theory result</p><h2 class="qscore pop"><span>${total}</span> of ${max}</h2><p class="coachish">${pc >= .8 ? 'Strong. Your answers match the marking points.' : pc >= .5 ? 'Half the points are missing. Re-read the exam bullets, then try again.' : 'You are not ready on this topic. Go back through the core, then retry.'}</p><a class="btn pri" href="#/lesson/${id}/99">Back to lesson</a><a class="btn" href="#/theory/${id}">Retry</a>`;
+      return;
+    }
+    const q = Q[i];
+    app.innerHTML = `<div class="qz in-n"><div class="qseg" aria-hidden="true">${Q.map((_, k) => `<i class="${k < i ? 'done' : k === i ? 'cur' : ''}"></i>`).join('')}</div>
+      <p class="label">${esc(q.type)} · ${q.marks} marks · ${i + 1} of ${Q.length}</p><h2 class="qq">${esc(q.q)}</h2>
+      <textarea class="f ans" id="ans" rows="6" placeholder="Write your answer as you would in the exam, then reveal the key points."></textarea>
+      <button class="btn pri" id="rv">Reveal key points</button><div id="mk"></div></div>`;
+    $('#rv').onclick = e => {
+      $('#ans').readOnly = true; e.currentTarget.hidden = true;
+      $('#mk').innerHTML = `<div class="fbk good">${checklist(q)}</div><button class="btn pri" id="sc">Score this answer</button>`;
+      $('#sc').onclick = ev => {
+        const got = markOf(q, app.querySelectorAll('.ck input:checked').length), pc = got / q.marks;
+        total += got; max += q.marks; S.theory[id][i] = { got, of: q.marks, ts: Date.now() };
+        if (pc < 0.6) S.weak[id] = (S.weak[id] || 0) + (pc < 0.3 ? 2 : 1); save();
+        ev.currentTarget.hidden = true; app.querySelectorAll('.ck input').forEach(c => c.disabled = true);
+        $('#mk').insertAdjacentHTML('beforeend', `<p class="coachish" style="font-size:20px">${got} of ${q.marks} marks.${pc < 0.6 ? ' Not secure. This topic is on your weak list.' : ''}</p><button class="btn pri" id="nx">${i + 1 < Q.length ? 'Next question' : 'See result'}</button>`);
+        $('#nx').onclick = () => { i++; show(); }; $('#nx').focus({ preventScroll: true });
+      };
+    };
+  };
+  show();
+}
+let exTimer;
+const shuf = a => { a = [...a]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+function exam() {
+  const mods = [['all', 'Whole course', L], ['m1', 'Lecture 1', D.modules[0].lessons], ['m2', 'Lecture 2', D.modules[1].lessons]];
+  let scope = 'all', mins = 60;
+  const past = (S.exams || []).slice(-3).reverse().map(e => `<p class="mut">${new Date(e.ts).toLocaleDateString()} · ${e.got} of ${e.max} (${Math.round(e.got / e.max * 100)}%)</p>`).join('');
+  app.innerHTML = `<p class="label">Mock exam</p><h1>Sit a timed paper</h1><p class="mut">20 multiple-choice questions, then 5 theory questions. Multiple choice is marked automatically and you mark the theory against the key points. Leaving this page abandons the paper.</p>
+    <p class="label">Scope</p><div class="conf" id="sc">${mods.map(([k, n]) => `<button class="seg ${k === scope ? 'on' : ''}" data-v="${k}">${n}</button>`).join('')}</div>
+    <p class="label">Time</p><div class="conf" id="tm">${[45, 60, 90].map(m => `<button class="seg ${m === mins ? 'on' : ''}" data-v="${m}">${m} minutes</button>`).join('')}</div>
+    ${past ? `<p class="label" style="margin-top:20px">Previous papers</p>${past}` : ''}<p><button class="btn pri" id="go">Start the paper</button></p>`;
+  const pick = (id, set) => $(id).onclick = e => { const v = e.target.dataset.v; if (v) { set(v); $(id).querySelectorAll('.seg').forEach(b => b.classList.toggle('on', b.dataset.v === v)); } };
+  pick('#sc', v => scope = v); pick('#tm', v => mins = +v);
+  $('#go').onclick = () => {
+    const pool = mods.find(m => m[0] === scope)[2];
+    const items = [...shuf(pool.flatMap(l => l.quiz.map(q => ({ k: 'mcq', l, q, pick: null })))).slice(0, 20),
+      ...shuf(pool).slice(0, 5).map(l => ({ k: 'th', l, q: l.theory[Math.floor(Math.random() * l.theory.length)], text: '' }))];
+    const end = Date.now() + mins * 60000; let n = 0;
+    const tick = () => { const left = Math.max(0, end - Date.now()), el = $('#tl'); if (el) { el.textContent = `${String(Math.floor(left / 60000)).padStart(2, '0')}:${String(Math.floor(left / 1000) % 60).padStart(2, '0')}`; el.classList.toggle('low', left < 300000); } if (!left) toMark(true); };
+    const dot = k => { const x = items[k]; return (x.k === 'mcq' ? x.pick !== null : x.text.trim()) ? 'ans' : ''; };
+    const run = () => {
+      const it = items[n];
+      app.innerHTML = `<div class="exh"><span class="label">${it.k === 'mcq' ? 'Section A · Multiple choice' : 'Section B · Theory'}</span><span class="tmr" id="tl" role="timer">--:--</span></div>
+        <div class="pal" aria-label="Question palette">${items.map((_, k) => `<button class="pb ${k === n ? 'cur' : ''} ${dot(k)}" data-n="${k}">${k + 1}</button>`).join('')}</div>
+        <div class="qz"><p class="label">Question ${n + 1} of ${items.length}${it.k === 'th' ? ` · ${it.q.marks} marks` : ''}</p><h2 class="qq">${esc(it.q.q)}</h2>
+        ${it.k === 'mcq' ? `<div class="opts">${it.q.options.map((o, k) => `<button class="opt ${it.pick === k ? 'sel' : ''}" data-k="${k}"><b>${'ABCD'[k]}</b><span>${esc(o)}</span></button>`).join('')}</div>` : `<textarea class="f ans" id="ans" rows="9" placeholder="Write your answer.">${esc(it.text)}</textarea>`}
+        <div><button class="btn" id="pv" ${n === 0 ? 'disabled' : ''}>Previous</button>${n + 1 < items.length ? '<button class="btn pri" id="nx">Next</button>' : '<button class="btn pri" id="fin">Finish and mark</button>'}</div></div>`;
+      tick();
+      const mark = () => app.querySelector(`.pb[data-n="${n}"]`).classList.toggle('ans', !!dot(n));
+      app.querySelector('.pal').onclick = e => { const k = e.target.dataset.n; if (k != null) { n = +k; run(); } };
+      if (it.k === 'mcq') app.querySelector('.opts').onclick = e => { const b = e.target.closest('.opt'); if (b) { it.pick = +b.dataset.k; app.querySelectorAll('.opt').forEach(o => o.classList.toggle('sel', o === b)); mark(); } };
+      else $('#ans').oninput = e => { it.text = e.target.value; mark(); };
+      $('#pv').onclick = () => { n--; run(); };
+      if ($('#nx')) $('#nx').onclick = () => { n++; run(); }; else $('#fin').onclick = () => toMark(false);
+      scrollTo(0, 0);
+    };
+    const toMark = up => {
+      clearInterval(exTimer); const ths = items.filter(x => x.k === 'th');
+      app.innerHTML = `<p class="label">${up ? 'Time is up' : 'Marking'}</p><h1>Mark your theory answers</h1><p class="mut">Compare each answer with the key points and tick what you covered. Multiple choice is marked for you.</p>
+        ${ths.map((x, k) => `<div class="card" data-t="${k}"><p class="label">Lesson ${esc(x.l.id)} · ${x.q.marks} marks</p><h3>${esc(x.q.q)}</h3><p class="mut ans-read">${x.text.trim() ? esc(x.text) : 'No answer written.'}</p>${checklist(x.q)}</div>`).join('')}
+        <button class="btn pri" id="rs">Get my result</button>`;
+      scrollTo(0, 0); $('#rs').onclick = () => result(ths);
+    };
+    const result = ths => {
+      const by = {}, miss = []; let got = 0, max = 0;
+      const add = (id, g, m) => { (by[id] ||= [0, 0]); by[id][0] += g; by[id][1] += m; got += g; max += m; };
+      items.filter(x => x.k === 'mcq').forEach(x => { const ok = x.pick === x.q.answer; add(x.l.id, +ok, 1); if (!ok) { miss.push(x); S.weak[x.l.id] = (S.weak[x.l.id] || 0) + 1; } });
+      ths.forEach((x, k) => { const g = markOf(x.q, app.querySelectorAll(`.card[data-t="${k}"] .ck input:checked`).length); add(x.l.id, g, x.q.marks); if (g / x.q.marks < 0.6) S.weak[x.l.id] = (S.weak[x.l.id] || 0) + 1; });
+      S.exams = [...(S.exams || []), { ts: Date.now(), scope, got, max }].slice(-10); save();
+      const pc = Math.round(got / max * 100);
+      app.innerHTML = `<p class="label">Result</p><h1 class="qscore pop"><span>${got}</span> of ${max}</h1><p class="coachish">${pc >= 70 ? 'Solid. Fix the weak lessons below before the real paper.' : pc >= 50 ? 'Not there yet. Work the weakest lessons first.' : 'This is a warning, not a verdict. Go back through the lessons and sit it again.'}</p>
+        <h2>By lesson, weakest first</h2>${Object.entries(by).sort((a, b) => a[1][0] / a[1][1] - b[1][0] / b[1][1]).map(([id, [g, m]]) => `<a class="card rr" href="#/lesson/${id}"><span>${esc(id)} · ${esc(lesson(id).title)}</span><b>${g} of ${m}</b></a>`).join('')}
+        ${miss.length ? `<h2>Multiple choice you missed</h2>${miss.slice(0, 10).map(x => `<div class="card"><p class="label">${esc(x.l.id)}</p><p><b>${esc(x.q.q)}</b></p><p>${esc(x.q.options[x.q.answer])}</p><p class="mut">${esc(x.q.explain)}</p></div>`).join('')}` : ''}
+        <a class="btn pri" href="#/">Home</a><a class="btn" href="#/exam">Sit another paper</a>`;
+      scrollTo(0, 0);
+    };
+    exTimer = setInterval(tick, 1000); run();
+  };
+}
 function sm2(key, q) {
   const c = S.cards[key] || { ef: 2.5, int: 0, reps: 0 };
   if (q < 3) { c.reps = 0; c.int = 1; } else { c.int = c.reps === 0 ? 1 : c.reps === 1 ? 6 : Math.round(c.int * c.ef); c.reps++; }
@@ -282,10 +370,10 @@ function account() {
 function route() {
   if (!D) return;
   const h = location.hash || '#/', [, r, a, b] = h.split('/');
-  app.removeAttribute('aria-busy'); lc = null; qh = null; document.body.classList.toggle('lesson', r === 'lesson'); bar(true);
+  app.removeAttribute('aria-busy'); clearInterval(exTimer); lc = null; qh = null; document.body.classList.toggle('lesson', r === 'lesson'); bar(true);
   const base = '#/' + (r || '');
   $('#side').innerHTML = `<a class="sbrand" href="#/">StudyHub<span>${esc(D.course.code)}</span></a>` + navHTML(base); $('#bottom').innerHTML = navHTML(base); setMenu(false);
-  ({ '': home, lessons, lesson: () => lessonView(a, b), quiz: () => quiz(a), cards: () => cards(a), glossary: () => glossary(a), account }[r || ''] || home)();
+  ({ '': home, lessons, lesson: () => lessonView(a, b), theory: () => theory(a), exam, quiz: () => quiz(a), cards: () => cards(a), glossary: () => glossary(a), account }[r || ''] || home)();
   scrollTo(0, 0); app.focus({ preventScroll: true }); setTimeout(() => bar(false), 200);
 }
 addEventListener('hashchange', route);

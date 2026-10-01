@@ -1,12 +1,13 @@
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from './config.js';
+let createClient = null;
+try { ({ createClient } = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm')); } catch { /* offline on first visit: app still works, sync is off */ }
 
 const $ = s => document.querySelector(s), app = $('#app');
 const ICON = n => `<svg class="ic" aria-hidden="true"><use href="#i-${n}"/></svg>`;
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const day = (o = 0) => new Date(Date.now() + o * 864e5).toISOString().slice(0, 10);
 let D, L = [], S, user = null, timer;
-const sb = SUPABASE_URL.startsWith('http') ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+const sb = createClient && SUPABASE_URL.startsWith('http') ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
 const blank = () => ({ done: {}, quiz: {}, weak: {}, cards: {}, days: {}, t: 0 });
 S = { ...blank(), ...JSON.parse(localStorage.getItem('sh') || '{}') };
@@ -18,11 +19,11 @@ function save() {
 let syncT;
 function setSync(st) {
   const el = $('#sync'); clearTimeout(syncT); el.className = 'sync ' + st;
-  el.innerHTML = st === 'saving' ? '<i class="spin" aria-hidden="true"></i><span>Saving</span>' : st === 'saved' ? `${ICON('check')}<span>Saved</span>` : st === 'error' ? '<span>Not synced</span>' : '';
+  el.innerHTML = st === 'saving' ? '<i class="spin" aria-hidden="true"></i><span>Saving</span>' : st === 'saved' ? `${ICON('check')}<span>Saved</span>` : st === 'error' ? '<span>Not synced</span>' : st === 'offline' ? `${ICON('offline')}<span>Offline. Saved on this device</span>` : '';
   if (st === 'saved') syncT = setTimeout(() => setSync(''), 2200);
 }
 async function push() {
-  if (!(sb && user)) return; setSync('saving');
+  if (!(sb && user)) return; if (!navigator.onLine) { setSync('offline'); return; } setSync('saving');
   const { error } = await sb.from('user_state').upsert({ user_id: user.id, data: S, updated_at: new Date().toISOString() });
   setSync(error ? 'error' : 'saved');
 }
@@ -151,7 +152,7 @@ function lessonView(id, start) {
     { t: 'Picture it', h: () => `<p class="label">Picture it</p><p class="big">${esc(l.analogy)}</p>` },
     ...chunks.map((c, k) => ({ t: chunks.length > 1 ? `The core, part ${k + 1}` : 'The core', h: () => `<p class="label">The core${chunks.length > 1 ? `, ${k + 1} of ${chunks.length}` : ''}</p><ul class="core">${c.map(e => `<li>${esc(e)}</li>`).join('')}</ul>` })),
     { t: 'Terms', h: () => `<p class="label">Key terms</p><p class="mut">Tap a term.</p><div>${l.terms.map(t => `<button class="chip" data-t="${t}">${esc(D.glossary[t].term)}</button>`).join('')}</div><div id="def"></div>` },
-    { t: 'Watch', h: () => `<p class="label">Watch</p>${v.id ? `<div class="vwrap"><div class="sk"></div><iframe class="vid" onload="this.parentNode.classList.add('ready')" loading="lazy" allowfullscreen title="Lesson video" src="https://www.youtube-nocookie.com/embed/${v.id}?start=${v.start || 0}${v.end ? '&end=' + v.end : ''}"></iframe></div>` : `<div class="card">No approved video yet. <a target="_blank" rel="noopener" href="${v.search_fallback}">Search YouTube</a></div>`}` },
+    { t: 'Watch', h: () => `<p class="label">Watch</p>${!navigator.onLine ? '<div class="card">Videos need a connection. Reconnect to watch.</div>' : v.id ? `<div class="vwrap"><div class="sk"></div><iframe class="vid" onload="this.parentNode.classList.add('ready')" loading="lazy" allowfullscreen title="Lesson video" src="https://www.youtube-nocookie.com/embed/${v.id}?start=${v.start || 0}${v.end ? '&end=' + v.end : ''}"></iframe></div>` : `<div class="card">No approved video yet. <a target="_blank" rel="noopener" href="${v.search_fallback}">Search YouTube</a></div>`}` },
     { t: 'Check', h: () => `<p class="label">Check</p><h2 style="margin-top:0">Test yourself</h2><p>${l.quiz.length} questions. Rate your confidence before each answer.</p>${S.quiz[id] ? `<p class="mut">Last score: ${S.quiz[id].score} of ${S.quiz[id].total}</p>` : ''}<button class="btn pri" id="qs">${S.quiz[id] ? 'Retake quiz' : 'Start quiz'}</button>` },
     { t: 'Close', h: () => `<p class="label">Lesson ${esc(l.id)}</p><h2 style="margin-top:0">${esc(l.title)}</h2><p class="tip">${esc(l.one_line)}</p>${S.quiz[id] ? `<p class="mut">Quiz: ${S.quiz[id].score} of ${S.quiz[id].total}</p>` : '<p class="mut">You have not taken the quiz yet.</p>'}<button class="btn ${S.done[id] ? '' : 'pri'}" id="dn">${S.done[id] ? ICON('check') + 'Completed. Undo' : 'Mark complete'}</button><a class="btn" href="#/cards/${id}">Flashcards</a>${next ? `<a class="btn" href="#/lesson/${next.id}/0">Next: ${esc(next.title)}</a>` : ''}` }
   ];
@@ -269,7 +270,8 @@ function glossary(hash) {
 function account() {
   app.innerHTML = `<h1>Account</h1>` + (!sb ? '<p>Add your Supabase keys in config.js to enable sync.</p>' : user ? `<p>Signed in as <b>${esc(user.email)}</b>. Progress syncs across devices.</p><button class="btn" id="so">Sign out</button>`
     : `<p>Sign in to sync progress across devices.</p><input class="f" id="em" type="email" placeholder="you@email.com"><button class="btn pri" id="ml">Email me a magic link</button><p id="ms" class="mut"></p>`)
-    + `<h2>Backup</h2><button class="btn" id="ex">${ICON('download')}Export progress</button>`;
+    + `<h2>Offline and install</h2><p class="mut">${navigator.serviceWorker?.controller ? 'Lessons, quizzes and cards work without a connection.' : 'Offline mode switches on after your first full load.'}</p>${dip ? '<button class="btn pri" id="ia">Install app</button>' : '<p class="mut">iPhone: tap Share, then Add to Home Screen. Android Chrome: open the browser menu and choose Install app.</p>'}<h2>Backup</h2><button class="btn" id="ex">${ICON('download')}Export progress</button>`;
+  $('#ia')?.addEventListener('click', async () => { dip.prompt(); await dip.userChoice; dip = null; account(); });
   $('#ex')?.addEventListener('click', () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(S)], { type: 'application/json' })); a.download = 'studyhub-progress.json'; a.click(); });
   $('#so')?.addEventListener('click', e => withLoad(e.currentTarget, 'Signing out', () => sb.auth.signOut()));
   $('#ml')?.addEventListener('click', e => withLoad(e.currentTarget, 'Sending', async () => { const { error } = await sb.auth.signInWithOtp({ email: $('#em').value, options: { emailRedirectTo: location.origin + location.pathname } }); $('#ms').textContent = error ? error.message : 'Check your email.'; }));
@@ -293,3 +295,25 @@ function loadData() {
     () => { app.innerHTML = '<div class="card"><h2 style="margin-top:0">Could not load your course</h2><p class="mut">Check your connection, then try again.</p><button class="btn pri" id="rt">Try again</button></div>'; $('#rt').onclick = e => withLoad(e.currentTarget, 'Loading', loadData); });
 }
 loadData();
+
+// PWA: install prompt, connectivity, updates
+let dip = null;
+addEventListener('beforeinstallprompt', e => { e.preventDefault(); dip = e; });
+addEventListener('offline', () => setSync('offline'));
+addEventListener('online', () => { setSync(''); push(); });
+if (!navigator.onLine) setSync('offline');
+function toast(msg, label, fn) {
+  const t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status');
+  t.innerHTML = `<span>${esc(msg)}</span><button class="btn pri">${esc(label)}</button>`;
+  t.querySelector('button').onclick = e => { e.currentTarget.classList.add('loading'); e.currentTarget.innerHTML = '<i class="spin" aria-hidden="true"></i><span>Updating</span>'; fn(); };
+  document.body.append(t);
+}
+if ('serviceWorker' in navigator) {
+  let had = !!navigator.serviceWorker.controller;
+  navigator.serviceWorker.addEventListener('controllerchange', () => { if (!had) { had = true; return; } location.reload(); });
+  addEventListener('load', () => navigator.serviceWorker.register('/sw.js').then(reg => {
+    const ready = w => { if (navigator.serviceWorker.controller) toast('A new version is ready.', 'Refresh', () => w.postMessage('SKIP_WAITING')); };
+    if (reg.waiting) ready(reg.waiting);
+    reg.addEventListener('updatefound', () => { const w = reg.installing; w.addEventListener('statechange', () => { if (w.state === 'installed') ready(w); }); });
+  }).catch(() => {}));
+}

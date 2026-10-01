@@ -1,0 +1,39 @@
+{
+  "start": [
+    "{total} lessons stand between you and exam day. Start with the first one, today.",
+    "Day one. Open lesson 1.1 and finish it before you do anything else."
+  ],
+  "skipped": [
+    "You skipped yesterday. Fix it today. Open the assignment below now.",
+    "Yesterday is gone. Today is not. Do the assignment below before anything else."
+  ],
+  "return": [
+    "It has been {gap} days. Nobody is checking except your exam. Twenty minutes, now.",
+    "{gap} days away. The material did not move, and neither did the exam date. Start with the assignment below."
+  ],
+  "streak": {
+    "3": ["Three days straight. Do not break it tonight."],
+    "7": ["Seven days straight. This is a habit now. Protect it."],
+    "14": ["Fourteen days straight. Most people quit by now. You did not."],
+    "30": ["Thirty days straight. Keep the standard exactly where it is."]
+  },
+  "behind": [
+    "You have studied {days} of {target} days this week. You need {remaining} more before Sunday, so there are no days to spare.",
+    "{days} of {target} study days so far. Missing one more puts the week out of reach."
+  ],
+  "perfect": [
+    "Clean sheet on {topic}. Move on.",
+    "Full marks on {topic}. Do not re-read it. Go forward."
+  ],
+  "weak": [
+    "You missed questions on {topic}. Reopen it today, not later.",
+    "{topic} is your weakest point. Fix it before it costs you marks."
+  ],
+  "progress": [
+    "{n} of {total} lessons done. {left} to go. Keep this pace.",
+    "{left} lessons left. Finish one today."
+  ],
+  "caughtup": [
+    "All {total} lessons are done. Now make the weak ones solid and keep your cards clear."
+  ]
+}

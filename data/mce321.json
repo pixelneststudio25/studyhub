@@ -89,7 +89,8 @@
        "status": "pending-approval",
        "search_fallback": "https://www.youtube.com/results?search_query=what+is+mechatronics+explained+simply"
       }
-     ]
+     ],
+     "figure": "parallel"
     },
     {
      "id": "1.2",
@@ -173,7 +174,8 @@
        "status": "pending-approval",
        "search_fallback": "https://www.youtube.com/results?search_query=hardware+in+the+loop+simulation+explained"
       }
-     ]
+     ],
+     "figure": "process"
     },
     {
      "id": "1.3",
@@ -343,7 +345,8 @@
        "status": "pending-approval",
        "search_fallback": "https://www.youtube.com/results?search_query=engineering+design+process+steps+explained"
       }
-     ]
+     ],
+     "figure": "stages"
     },
     {
      "id": "1.5",
@@ -515,7 +518,8 @@
        "status": "pending-approval",
        "search_fallback": "https://www.youtube.com/results?search_query=pick+and+place+robot+pneumatic+microcontroller"
       }
-     ]
+     ],
+     "figure": "pick"
     },
     {
      "id": "1.7",
@@ -613,7 +617,8 @@
        "status": "pending-approval",
        "search_fallback": "https://www.youtube.com/results?search_query=engine+control+unit+ECU+sensors+explained"
       }
-     ]
+     ],
+     "figure": "ems"
     },
     {
      "id": "1.8",
@@ -859,7 +864,8 @@
        "status": "pending-approval",
        "search_fallback": "https://www.youtube.com/results?search_query=fixed+programmable+flexible+automation+types"
       }
-     ]
+     ],
+     "figure": "autotypes"
     },
     {
      "id": "2.3",
@@ -1033,7 +1039,8 @@
        "status": "pending-approval",
        "search_fallback": "https://www.youtube.com/results?search_query=industrial+robot+components+end+effector+joints+sensors"
       }
-     ]
+     ],
+     "figure": "joints"
     },
     {
      "id": "2.5",
@@ -1205,7 +1212,8 @@
        "status": "pending-approval",
        "search_fallback": "https://www.youtube.com/results?search_query=robot+configurations+cartesian+cylindrical+spherical+scara+articulated"
       }
-     ]
+     ],
+     "figure": "configs"
     },
     {
      "id": "2.7",
@@ -1356,7 +1364,8 @@
        "status": "pending-approval",
        "search_fallback": "https://www.youtube.com/results?search_query=robot+classification+JIRA+RIA+AFR+classes"
       }
-     ]
+     ],
+     "figure": "ladder"
     },
     {
      "id": "2.9",

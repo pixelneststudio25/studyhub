@@ -74,26 +74,69 @@ function lessons() {
   app.innerHTML = '<h1>Lessons</h1>' + D.modules.map(m => `<h2>${esc(m.title)}</h2>` + m.lessons.map(l =>
     `<a class="card" href="#/lesson/${l.id}">${S.done[l.id] ? ICON('check') + ' ' : ''}${l.id} · ${esc(l.title)}${S.quiz[l.id] ? `<br><span class="mut">Quiz: ${S.quiz[l.id].score}/${S.quiz[l.id].total}</span>` : ''}</a>`).join('')).join('');
 }
-function lessonView(id) {
+let lc = null;
+function lessonView(id, start) {
   const l = lesson(id); if (!l) return home();
-  const v = l.videos[0];
-  app.innerHTML = `<p class="mut">${esc(l.id)} · Slides ${esc(l.slides)}</p><h1>${esc(l.title)}</h1>
-  <div class="tip"><b>In one line:</b> ${esc(l.one_line)}</div>
-  <h2>Picture it</h2><p>${esc(l.analogy)}</p>
-  <h2>Before you read</h2>${l.recall.map(r => `<p class="tip">${esc(r)}</p>`).join('')}
-  <h2>Exam version</h2><ul>${l.exam.map(e => `<li>${esc(e)}</li>`).join('')}</ul>
-  <h2>Key terms</h2><div id="tm">${l.terms.map(t => `<button class="chip" data-t="${t}">${esc(D.glossary[t].term)}</button>`).join('')}</div><div id="def"></div>
-  <h2>Watch</h2>${v.id ? `<iframe class="vid" loading="lazy" allowfullscreen src="https://www.youtube-nocookie.com/embed/${v.id}?start=${v.start || 0}${v.end ? '&end=' + v.end : ''}"></iframe>` : `<div class="card">No approved video yet. <a target="_blank" rel="noopener" href="${v.search_fallback}">Search YouTube</a></div>`}
-  <h2>Practise</h2><a class="btn pri" href="#/quiz/${l.id}">Quiz (${l.quiz.length})</a><a class="btn" href="#/cards/${l.id}">Flashcards (${l.flashcards.length})</a>
-  <button class="btn ${S.done[l.id] ? '' : 'pri'}" id="dn">${S.done[l.id] ? ICON('check') + 'Completed. Undo' : 'Mark complete'}</button>`;
-  $('#tm').onclick = e => { const t = e.target.dataset.t; if (t) { const g = D.glossary[t]; $('#def').innerHTML = `<div class="card"><b>${esc(g.term)}</b><p>${esc(g.plain)}</p><p class="mut"><b>Exam:</b> ${esc(g.exam)}</p></div>`; } };
-  $('#dn').onclick = e => { S.done[l.id] = !S.done[l.id]; save(); if (S.done[l.id]) e.target.classList.add('pop'); lessonView(id); };
+  const v = l.videos[0], chunks = [];
+  for (let k = 0; k < l.exam.length; k += 3) chunks.push(l.exam.slice(k, k + 3));
+  const li = L.findIndex(x => x.id === id), next = L[li + 1];
+  const words = (l.exam.join(' ') + l.analogy + l.one_line).split(/\s+/).length;
+  const mins = Math.max(4, Math.round(words / 150 + l.quiz.length * 0.7 + (v.id ? 5 : 0)));
+  const secs = [
+    { t: 'Orient', h: () => `<p class="label">Lesson ${esc(l.id)} · Slides ${esc(l.slides)}</p><h1>${esc(l.title)}</h1><p class="tip">${esc(l.one_line)}</p><p class="mut">${secs.length} screens, about ${mins} minutes.</p>` },
+    { t: 'Recall', h: () => `<p class="label">Before you read</p>${l.recall.map(r => `<p class="big">${esc(r)}</p>`).join('')}<p class="mut">Answer in your head first. Then continue.</p>` },
+    { t: 'Picture it', h: () => `<p class="label">Picture it</p><p class="big">${esc(l.analogy)}</p>` },
+    ...chunks.map((c, k) => ({ t: chunks.length > 1 ? `The core, part ${k + 1}` : 'The core', h: () => `<p class="label">The core${chunks.length > 1 ? `, ${k + 1} of ${chunks.length}` : ''}</p><ul class="core">${c.map(e => `<li>${esc(e)}</li>`).join('')}</ul>` })),
+    { t: 'Terms', h: () => `<p class="label">Key terms</p><p class="mut">Tap a term.</p><div>${l.terms.map(t => `<button class="chip" data-t="${t}">${esc(D.glossary[t].term)}</button>`).join('')}</div><div id="def"></div>` },
+    { t: 'Watch', h: () => `<p class="label">Watch</p>${v.id ? `<iframe class="vid" loading="lazy" allowfullscreen title="Lesson video" src="https://www.youtube-nocookie.com/embed/${v.id}?start=${v.start || 0}${v.end ? '&end=' + v.end : ''}"></iframe>` : `<div class="card">No approved video yet. <a target="_blank" rel="noopener" href="${v.search_fallback}">Search YouTube</a></div>`}` },
+    { t: 'Check', h: () => `<p class="label">Check</p><h2 style="margin-top:0">Test yourself</h2><p>${l.quiz.length} questions. Rate your confidence before each answer.</p>${S.quiz[id] ? `<p class="mut">Last score: ${S.quiz[id].score} of ${S.quiz[id].total}</p>` : ''}<a class="btn pri" href="#/quiz/${id}">Start quiz</a>` },
+    { t: 'Close', h: () => `<p class="label">Lesson ${esc(l.id)}</p><h2 style="margin-top:0">${esc(l.title)}</h2><p class="tip">${esc(l.one_line)}</p>${S.quiz[id] ? `<p class="mut">Quiz: ${S.quiz[id].score} of ${S.quiz[id].total}</p>` : '<p class="mut">You have not taken the quiz yet.</p>'}<button class="btn ${S.done[id] ? '' : 'pri'}" id="dn">${S.done[id] ? ICON('check') + 'Completed. Undo' : 'Mark complete'}</button><a class="btn" href="#/cards/${id}">Flashcards</a>${next ? `<a class="btn" href="#/lesson/${next.id}/0">Next: ${esc(next.title)}</a>` : ''}` }
+  ];
+  let i = Math.min(Math.max(start != null && start !== '' ? +start || 0 : S.pos?.[id] || 0, 0), secs.length - 1), busy = false, tx = 0, ty = 0;
+  const rev = ICON('arrow').replace('class="ic"', 'class="ic rev"');
+  app.innerHTML = `<div class="lv"><div class="bar" role="progressbar" aria-label="Lesson progress" aria-valuemin="1" aria-valuemax="${secs.length}"><i></i></div>
+    <div class="stage" id="stg"></div>
+    <div class="ctl"><button class="btn" id="bk">${rev}<span>Back</span></button><button class="btn sec" id="sl" aria-expanded="false">${ICON('list')}<span>Sections</span></button><button class="btn pri" id="nx"><span>Next</span>${ICON('arrow')}</button></div>
+    <aside class="secs" id="sp" aria-label="Lesson sections"><p class="label">Sections</p>${secs.map((x, k) => `<button data-i="${k}"><b>${k + 1}</b>${esc(x.t)}</button>`).join('')}</aside></div>`;
+  const stg = $('#stg'), sp = $('#sp');
+  const upd = () => {
+    app.querySelector('.bar i').style.width = ((i + 1) / secs.length * 100) + '%';
+    app.querySelector('.bar').setAttribute('aria-valuenow', i + 1);
+    $('#bk').disabled = i === 0; $('#nx').disabled = i === secs.length - 1;
+    sp.querySelectorAll('button').forEach((b, k) => { b.classList.toggle('on', k === i); b.classList.toggle('seen', k < i); });
+    if ((S.pos ||= {})[id] !== i) { S.pos[id] = i; save(); }
+    history.replaceState(null, '', `#/lesson/${id}/${i}`);
+  };
+  const show = cls => { stg.innerHTML = `<section class="scr ${cls}" aria-live="polite">${secs[i].h()}</section>`; upd(); scrollTo(0, 0); };
+  const go = n => {
+    if (busy || n < 0 || n >= secs.length || n === i) return;
+    const d = n > i ? 1 : -1, old = stg.firstElementChild; i = n; busy = true;
+    const swap = () => { show(d > 0 ? 'in-n' : 'in-p'); busy = false; };
+    if (old && !matchMedia('(prefers-reduced-motion:reduce)').matches) { old.classList.add(d > 0 ? 'out-n' : 'out-p'); setTimeout(swap, 160); } else swap();
+  };
+  const closeS = () => { sp.classList.remove('open'); $('#sl').setAttribute('aria-expanded', 'false'); };
+  $('#bk').onclick = () => go(i - 1); $('#nx').onclick = () => go(i + 1);
+  $('#sl').onclick = () => { const o = sp.classList.toggle('open'); $('#sl').setAttribute('aria-expanded', o); };
+  sp.onclick = e => { const b = e.target.closest('[data-i]'); if (b) { closeS(); go(+b.dataset.i); } };
+  stg.onclick = e => {
+    const t = e.target.closest('[data-t]');
+    if (t) { const g = D.glossary[t.dataset.t]; stg.querySelector('#def').innerHTML = `<div class="defn"><b>${esc(g.term)}</b><p>${esc(g.plain)}</p><p class="mut"><span class="label">Exam</span> ${esc(g.exam)}</p></div>`; }
+    if (e.target.closest('#dn')) { S.done[id] = !S.done[id]; save(); show('in-n'); if (S.done[id]) stg.firstElementChild.classList.add('pop'); }
+  };
+  stg.addEventListener('touchstart', e => { tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, { passive: true });
+  stg.addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty; if (Math.abs(dx) > 60 && Math.abs(dx) > 1.5 * Math.abs(dy)) go(i + (dx < 0 ? 1 : -1)); }, { passive: true });
+  lc = { next: () => go(i + 1), prev: () => go(i - 1), close: closeS };
+  show('in-n');
 }
+addEventListener('keydown', e => {
+  if (!lc || !ov.hidden || /INPUT|TEXTAREA/.test(document.activeElement.tagName)) return;
+  if (e.key === 'ArrowRight') lc.next(); else if (e.key === 'ArrowLeft') lc.prev(); else if (e.key === 'Escape') lc.close();
+});
 function quiz(id) {
   const l = lesson(id); let i = 0, score = 0, conf = 'sure';
   const show = () => {
     if (i >= l.quiz.length) { S.quiz[id] = { score, total: l.quiz.length, ts: Date.now() }; save();
-      app.innerHTML = `<h1 class="pop">${score}/${l.quiz.length}</h1><p>${score === l.quiz.length ? 'Perfect. Move on.' : 'Review the missed points, then retry.'}</p><a class="btn pri" href="#/lesson/${id}">Back to lesson</a><a class="btn" href="#/quiz/${id}">Retry</a>`; return; }
+      app.innerHTML = `<h1 class="pop">${score}/${l.quiz.length}</h1><p>${score === l.quiz.length ? 'Perfect. Move on.' : 'Review the missed points, then retry.'}</p><a class="btn pri" href="#/lesson/${id}/99">Back to lesson</a><a class="btn" href="#/quiz/${id}">Retry</a>`; return; }
     const q = l.quiz[i];
     app.innerHTML = `<p class="mut">${esc(l.title)} · ${i + 1}/${l.quiz.length}</p><h2 style="margin-top:0">${esc(q.q)}</h2>
     <div class="conf" role="group" aria-label="Confidence">${['sure', 'guess', 'no idea'].map(c => `<button class="btn ${c === conf ? 'on' : ''}" data-c="${c}">${c}</button>`).join('')}</div>
@@ -142,10 +185,11 @@ function account() {
 
 function route() {
   if (!D) return;
-  const h = location.hash || '#/', [, r, a] = h.split('/');
+  const h = location.hash || '#/', [, r, a, b] = h.split('/');
+  lc = null; document.body.classList.toggle('lesson', r === 'lesson');
   const base = '#/' + (r || '');
   $('#side').innerHTML = `<a class="sbrand" href="#/">StudyHub<span>${esc(D.course.code)}</span></a>` + navHTML(base); $('#bottom').innerHTML = navHTML(base); setMenu(false);
-  ({ '': () => { home(); fillRings(); }, lessons, lesson: () => lessonView(a), quiz: () => quiz(a), cards: () => cards(a), glossary: () => glossary(a), account }[r || ''] || home)();
+  ({ '': () => { home(); fillRings(); }, lessons, lesson: () => lessonView(a, b), quiz: () => quiz(a), cards: () => cards(a), glossary: () => glossary(a), account }[r || ''] || home)();
   scrollTo(0, 0); app.focus({ preventScroll: true });
 }
 addEventListener('hashchange', route);

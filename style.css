@@ -81,3 +81,33 @@ input.f:focus,#q:focus{border-color:var(--accent);outline:none}
 @media(max-width:420px){:root{--pad:16px}body{font-size:16px;line-height:1.65}h1{font-size:34px;line-height:1.15}h2{font-size:24px;line-height:1.25}.tip{font-size:18px}main{padding-top:28px}.card{padding:16px}.stat b{font-size:34px}}
 @media(max-width:370px){:root{--pad:12px}.bottom a span{display:none}.bottom a{padding:10px 4px}.btn{display:flex;width:100%;margin-right:0}.grid{grid-template-columns:1fr}.face{font-size:21px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* Phase B: chapter-style lessons */
+.rev{transform:rotate(180deg)}
+body.lesson .bottom{display:none}
+body.lesson main{max-width:none;padding:0}body.lesson main>*{animation:none}
+.lv{display:flex;flex-direction:column;min-height:calc(100dvh - 57px)}
+.bar{position:sticky;top:56px;z-index:15;height:3px;background:var(--line)}
+.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width var(--t3) var(--ease)}
+.stage{flex:1;display:grid;align-content:center;width:100%;max-width:720px;margin:0 auto;padding:40px var(--pad)}
+.scr{min-width:0}
+.in-n{animation:inN var(--t2) var(--ease) both}.in-p{animation:inP var(--t2) var(--ease) both}
+.out-n{animation:outN 160ms ease both}.out-p{animation:outP 160ms ease both}
+@keyframes inN{from{opacity:0;transform:translateX(24px)}}@keyframes inP{from{opacity:0;transform:translateX(-24px)}}
+@keyframes outN{to{opacity:0;transform:translateX(-24px)}}@keyframes outP{to{opacity:0;transform:translateX(24px)}}
+.ctl{position:sticky;bottom:0;z-index:15;display:flex;gap:8px;justify-content:space-between;padding:12px var(--pad) calc(12px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line)}
+.ctl .btn{margin:0}
+.big{font:400 28px/1.4 var(--serif);max-width:26em}
+.core{list-style:none;padding:0}.core li{padding:16px 0;border-bottom:1px solid var(--line);font-size:19px;line-height:1.6;margin:0}.core li:last-child{border:0}
+.defn{margin-top:20px;padding:20px 22px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);animation:rise var(--t2) var(--ease) both}
+.defn b{font:italic 400 24px var(--serif)}.defn p{margin:.4em 0 0}
+.secs{position:fixed;z-index:40;background:var(--surface);border:1px solid var(--line);padding:16px;overflow:auto;transition:transform var(--t2) var(--ease);left:0;right:0;bottom:0;max-height:72dvh;border-radius:16px 16px 0 0;transform:translateY(105%);visibility:hidden}
+.secs.open{transform:none;visibility:visible}
+.secs button{display:flex;align-items:center;gap:14px;width:100%;min-height:44px;padding:8px 10px;background:none;border:0;border-radius:8px;text-align:left;color:var(--muted)}
+.secs button b{display:grid;place-items:center;width:26px;height:26px;border:1px solid var(--line);border-radius:50%;font:500 12px var(--sans)}
+.secs button:hover{background:var(--accent-soft);color:var(--ink)}
+.secs button.seen b{border-color:var(--accent);color:var(--accent)}
+.secs button.on{color:var(--accent);background:var(--accent-soft);font-weight:600}.secs button.on b{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+@media(min-width:900px){.secs{top:57px;left:auto;right:0;bottom:0;width:300px;max-height:none;border-radius:0;border-width:0 0 0 1px;transform:translateX(105%)}.ctl{padding-left:32px;padding-right:32px}.stage{padding-top:64px}}
+@media(max-width:420px){.big{font-size:23px}.core li{font-size:17px}}
+@media(max-width:370px){.ctl .btn{width:auto;flex:1;padding:0 8px}.ctl .sec span{display:none}}

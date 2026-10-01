@@ -1,4 +1,5 @@
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from './config.js';
+import { FIG } from './figures.js';
 let createClient = null;
 try { ({ createClient } = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm')); } catch { /* offline on first visit: app still works, sync is off */ }
 
@@ -150,6 +151,7 @@ function lessonView(id, start) {
     { t: 'Orient', h: () => `<p class="label">Lesson ${esc(l.id)} · Slides ${esc(l.slides)}</p><h1>${esc(l.title)}</h1><p class="tip">${esc(l.one_line)}</p><p class="mut">${secs.length} screens, about ${mins} minutes.</p>` },
     { t: 'Recall', h: () => `<p class="label">Before you read</p>${l.recall.map(r => `<p class="big">${esc(r)}</p>`).join('')}<p class="mut">Answer in your head first. Then continue.</p>` },
     { t: 'Picture it', h: () => `<p class="label">Picture it</p><p class="big">${esc(l.analogy)}</p>` },
+    ...(l.figure && FIG[l.figure] ? [{ t: 'Diagram', h: () => FIG[l.figure].html(), after: r => FIG[l.figure].init(r) }] : []),
     ...chunks.map((c, k) => ({ t: chunks.length > 1 ? `The core, part ${k + 1}` : 'The core', h: () => `<p class="label">The core${chunks.length > 1 ? `, ${k + 1} of ${chunks.length}` : ''}</p><ul class="core">${c.map(e => `<li>${esc(e)}</li>`).join('')}</ul>` })),
     { t: 'Terms', h: () => `<p class="label">Key terms</p><p class="mut">Tap a term.</p><div>${l.terms.map(t => `<button class="chip" data-t="${t}">${esc(D.glossary[t].term)}</button>`).join('')}</div><div id="def"></div>` },
     { t: 'Watch', h: () => `<p class="label">Watch</p>${!navigator.onLine ? '<div class="card">Videos need a connection. Reconnect to watch.</div>' : v.id ? `<div class="vwrap"><div class="sk"></div><iframe class="vid" onload="this.parentNode.classList.add('ready')" loading="lazy" allowfullscreen title="Lesson video" src="https://www.youtube-nocookie.com/embed/${v.id}?start=${v.start || 0}${v.end ? '&end=' + v.end : ''}"></iframe></div>` : `<div class="card">No approved video yet. <a target="_blank" rel="noopener" href="${v.search_fallback}">Search YouTube</a></div>`}` },
@@ -171,7 +173,7 @@ function lessonView(id, start) {
     if ((S.pos ||= {})[id] !== i) { S.pos[id] = i; save(); }
     history.replaceState(null, '', `#/lesson/${id}/${i}`);
   };
-  const show = cls => { qh = null; stg.innerHTML = `<section class="scr ${cls}" aria-live="polite">${secs[i].h()}</section>`; upd(); scrollTo(0, 0); };
+  const show = cls => { qh = null; stg.innerHTML = `<section class="scr ${cls}">${secs[i].h()}</section>`; upd(); scrollTo(0, 0); secs[i].after?.(stg.firstElementChild); };
   const go = n => {
     if (busy || n < 0 || n >= secs.length || n === i) return;
     const d = n > i ? 1 : -1, old = stg.firstElementChild; i = n; busy = true;

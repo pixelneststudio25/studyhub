@@ -1,6 +1,6 @@
 /* StudyHub service worker. Bump VERSION on every deploy that changes app files. */
-const VERSION = 'studyhub-2026-10-01-1';
-const PRECACHE = ['/', '/index.html', '/style.css', '/app.js', '/config.js', '/data/mce321.json', '/data/coach.json',
+const VERSION = 'studyhub-2026-10-01-2';
+const PRECACHE = ['/', '/index.html', '/style.css', '/app.js', '/figures.js', '/config.js', '/data/mce321.json', '/data/coach.json',
   '/favicon.svg', '/favicon.ico', '/apple-touch-icon.png', '/icon-192.png', '/icon-512.png', '/manifest.webmanifest'];
 const CDN = ['cdn.jsdelivr.net', 'fonts.googleapis.com', 'fonts.gstatic.com'];
 

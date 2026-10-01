@@ -24,7 +24,7 @@ export const FIG = {
       ${N(308, 190, 84, 44, 'Integrated|product', 900)}
       ${[177, 225, 273].map((y, k) => A(`M92 212L150 ${y}`, 700 + k * 80)).join('')}
       ${[177, 225, 273].map((y, k) => A(`M250 ${y}L308 ${200 + k * 12}`, 950 + k * 80)).join('')}
-      ${A('M200 194V208', 1100, { dash: 1, both: 1 })}${A('M200 242V256', 1100, { dash: 1, both: 1 })}
+      ${A('M200 194V208', 1100, { dash: 1, noend: 1 })}${A('M200 242V256', 1100, { dash: 1, noend: 1 })}
       ${T(200, 312, 'Teams share one model and talk throughout. Clashes appear early.', 'sm mu')}`, 'Sequential versus concurrent design')
   }),
   process: make({
@@ -84,13 +84,13 @@ export const FIG = {
       return SVG(400, 390, N(130, 8, 140, 46, 'Microcontroller|ports B, C, D', 0, { k: 'mcu', acc: 1 }) + N(8, 8, 100, 46, 'Start / stop|switch (Port D)', 100, { k: 'ss', sm: 1 }) + A('M108 31H130', 200) +
         N(130, 84, 140, 46, 'TRIAC|opto-isolators', 300, { k: 'opto' }) + N(130, 160, 140, 46, 'Solenoid|valves', 420, { k: 'valve' }) + N(130, 236, 140, 46, 'Pneumatic|cylinders', 540, { k: 'cyl' }) + N(130, 312, 140, 52, 'Robot movement|rotate, reach, lift, grip', 660, { k: 'move', sm: 1 }) +
         [[54, 84], [130, 160], [206, 236], [282, 312]].map(([a, b], i) => A(`M200 ${a}V${b}`, 300 + i * 120)).join('') + `<text x="208" y="73" class="l sm mu">Port B</text>` +
-        N(296, 312, 96, 52, 'Limit|switches', 780, { k: 'lim' }) + A('M270 338H296', 800) + A('M344 312V31H270', 900, { dash: 1 }) + T(352, 170, 'Port C|PC0 to PC7', 'sm mu'), 'Pick and place robot control chain');
+        N(296, 312, 96, 52, 'Limit|switches', 780, { k: 'lim' }) + A('M270 338H296', 800) + A('M344 312V31H270', 900, { dash: 1 }) + T(372, 170, 'Port C|PC0-PC7', 'sm mu'), 'Pick and place robot control chain');
     }
   }),
   autotypes: make({
     source: 'Lecture 2, slides 4 to 8 (new chart)', caption: 'More variety usually means lower volume and higher cost per item.',
-    svg: () => SVG(400, 330, `${A('M50 280V28', 0)}${A('M50 280H384', 200)}<text transform="translate(16 160) rotate(-90)" class="sm mu">Production volume</text><text x="217" y="312" class="sm mu">Product variety</text><text x="58" y="42" class="l sm mu">high</text><text x="378" y="298" class="e sm mu">high</text>
-      ${N(66, 40, 150, 72, 'Fixed|high volume, one product|lowest cost per item', 400, { acc: 1 })}${N(130, 122, 150, 72, 'Programmable|batches, reprogram|between products', 600)}${N(226, 204, 150, 72, 'Flexible|varied products, low volume|changeover without stopping', 800)}`, 'Fixed, programmable and flexible automation by volume and variety')
+    svg: () => SVG(400, 330, `${A('M50 280V28', 0)}${A('M50 280H384', 200)}<text transform="translate(16 160) rotate(-90)" class="sm mu">Production volume</text><text x="217" y="312" class="sm mu">Product variety</text><text x="58" y="34" class="l sm mu">high</text><text x="378" y="298" class="e sm mu">high</text>
+      ${N(84, 40, 140, 72, 'Fixed|high volume|one product', 400, { acc: 1 })}${N(134, 122, 140, 72, 'Programmable|batches|reprogram between', 600)}${N(236, 204, 140, 72, 'Flexible|low volume|many products', 800)}`, 'Fixed, programmable and flexible automation by volume and variety')
   }),
   joints: make({
     source: 'Lecture 2, joint types; definitions from standard robotics texts', caption: 'The five robot joint types. L and O slide; R, T and V rotate.', hint: 'Tap a joint to see how it moves.',
@@ -121,11 +121,11 @@ export const FIG = {
       cart: { n: 'Cartesian', a: 'PPP', b: 'LOO', m: 'x, y, z', ws: 'rectangular box', t: 'Three sliding joints, two of them orthogonal. Also called rectilinear or x-y-z robot.',
         g: '<path class="ws" d="M90 100H240V200H90ZM140 60H290V160H140ZM90 100L140 60M240 100L290 60M240 200L290 160M90 200L140 160"/>' + A('M90 200H270', 0) + A('M90 200V70', 80) + A('M90 200L150 160', 160) + lab(276, 204, 'x') + lab(84, 62, 'z') + lab(156, 158, 'y') + '<circle cx="190" cy="140" r="8" class="accf"/>' },
       cyl: { n: 'Cylindrical', a: 'RPP', b: 'TLO', m: 'angle, radius, height', ws: 'a cylindrical shell', t: 'A vertical column with an arm that moves up and down and in and out. The whole assembly rotates on the base.',
-        g: '<path class="ws" d="M70 205A130 22 0 0 0 330 205M70 205A130 22 0 0 1 330 205M70 70A130 22 0 0 0 330 70M70 70A130 22 0 0 1 330 70M70 70V205M330 70V205"/>' + base + '<rect x="192" y="70" width="16" height="140" class="solid"/><rect x="208" y="100" width="112" height="12" class="solid"/><rect x="320" y="94" width="10" height="24" class="accf"/>' + A('M170 190V84', 0, { both: 1 }) + A('M215 90H322', 80, { both: 1 }) + lab(158, 142, 'L') + lab(264, 82, 'O') + lab(120, 228, 'T') },
+        g: '<path class="ws" d="M70 205A130 22 0 0 0 330 205M70 205A130 22 0 0 1 330 205M70 70A130 22 0 0 0 330 70M70 70A130 22 0 0 1 330 70M70 70V205M330 70V205"/>' + base + '<rect x="192" y="70" width="16" height="140" class="solid"/><rect x="208" y="100" width="112" height="12" class="solid"/><rect x="320" y="94" width="10" height="24" class="accf"/>' + A('M170 190V84', 0, { both: 1 }) + A('M215 90H322', 80, { both: 1 }) + lab(158, 142, 'L') + lab(264, 82, 'O') + lab(262, 222, 'T') },
       sph: { n: 'Spherical', a: 'RRP', b: 'TRL', m: 'angle, angle, extension', ws: 'part of a sphere', t: 'A sliding arm that rotates about a vertical axis and a horizontal axis.',
-        g: '<path class="ws" d="M70 170A130 130 0 0 1 330 170"/>' + base + '<rect x="192" y="170" width="16" height="40" class="solid"/>' + limb([200, 170], [290, 100]) + '<line x1="290" y1="100" x2="322" y2="76" stroke="var(--accent)" stroke-width="6" stroke-linecap="round"/>' + jt(200, 170) + lab(160, 228, 'T') + lab(176, 160, 'R') + lab(312, 108, 'L') },
+        g: '<path class="ws" d="M70 170A130 130 0 0 1 330 170"/>' + base + '<rect x="192" y="170" width="16" height="40" class="solid"/>' + limb([200, 170], [290, 100]) + '<line x1="290" y1="100" x2="322" y2="76" stroke="var(--accent)" stroke-width="6" stroke-linecap="round"/>' + jt(200, 170) + lab(262, 222, 'T') + lab(176, 160, 'R') + lab(312, 108, 'L') },
       art: { n: 'Articulated', a: 'RRR', b: 'TRR', m: 'three angles', ws: 'a large sphere-like volume', t: 'Jointed like a human arm, with rotary joints at the shoulder, elbow and wrist.',
-        g: '<path class="ws" d="M40 190A165 165 0 0 1 360 190"/>' + base + '<rect x="192" y="170" width="16" height="40" class="solid"/>' + limb([200, 175], [250, 100]) + limb([250, 100], [335, 128]) + jt(200, 175) + jt(250, 100) + lab(160, 228, 'T') + lab(172, 170, 'R') + lab(236, 90, 'R') },
+        g: '<path class="ws" d="M40 190A165 165 0 0 1 360 190"/>' + base + '<rect x="192" y="170" width="16" height="40" class="solid"/>' + limb([200, 175], [250, 100]) + limb([250, 100], [335, 128]) + jt(200, 175) + jt(250, 100) + lab(262, 222, 'T') + lab(172, 170, 'R') + lab(236, 90, 'R') },
       scara: { n: 'SCARA', a: 'RRP', b: 'VRO', m: 'angle, angle, height', ws: 'a flat disc', t: 'Selective Compliance Assembly Robot Arm. Two vertical rotary axes, compliant horizontally and rigid vertically, ideal for vertical insertion.',
         g: '<ellipse class="ws" cx="260" cy="190" rx="120" ry="26"/>' + base + '<rect x="190" y="110" width="20" height="100" class="solid"/>' + limb([200, 118], [268, 118]) + limb([268, 118], [335, 118]) + jt(200, 118) + jt(268, 118) + '<line x1="335" y1="118" x2="335" y2="180" stroke="var(--accent)" stroke-width="6" stroke-linecap="round"/>' + lab(160, 110, 'V') + lab(262, 100, 'R') + lab(348, 156, 'O') }
     };

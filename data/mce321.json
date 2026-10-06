@@ -86,8 +86,7 @@
      ],
      "videos": [
       {
-       "status": "pending-approval",
-       "search_fallback": "https://www.youtube.com/results?search_query=what+is+mechatronics+explained+simply"
+       "id": "tgjgN-Up4DY"
       }
      ],
      "figure": "parallel",
@@ -261,8 +260,7 @@
      ],
      "videos": [
       {
-       "status": "pending-approval",
-       "search_fallback": "https://www.youtube.com/results?search_query=hardware+in+the+loop+simulation+explained"
+       "id": "bgyN7FMZvro"
       }
      ],
      "figure": "process",
@@ -354,7 +352,7 @@
        "points": [
         "Mechatronic designs are finalised using modelling and simulation",
         "Then prototyped and properly tested before deploying",
-        "Many trials can be run cheaply on a computer"
+        "Hardware-in-the-loop lets real sensors and actuators replace part of the model"
        ],
        "need": 3
       }
@@ -432,8 +430,7 @@
      ],
      "videos": [
       {
-       "status": "pending-approval",
-       "search_fallback": "https://www.youtube.com/results?search_query=product+life+cycle+design+engineering+reliability+maintainability"
+       "id": "7rqb9XlYT94"
       }
      ],
      "theory": [
@@ -613,8 +610,7 @@
      ],
      "videos": [
       {
-       "status": "pending-approval",
-       "search_fallback": "https://www.youtube.com/results?search_query=engineering+design+process+steps+explained"
+       "id": "EgVOl3OqAL4"
       }
      ],
      "figure": "stages",
@@ -789,8 +785,7 @@
      ],
      "videos": [
       {
-       "status": "pending-approval",
-       "search_fallback": "https://www.youtube.com/results?search_query=traditional+vs+mechatronic+systems+difference"
+       "id": "TSLBm170t7A"
       }
      ],
      "theory": [
@@ -973,8 +968,7 @@
      ],
      "videos": [
       {
-       "status": "pending-approval",
-       "search_fallback": "https://www.youtube.com/results?search_query=pick+and+place+robot+pneumatic+microcontroller"
+       "id": "uOtdWHMKhnw"
       }
      ],
      "figure": "pick",
@@ -1165,8 +1159,7 @@
      ],
      "videos": [
       {
-       "status": "pending-approval",
-       "search_fallback": "https://www.youtube.com/results?search_query=engine+control+unit+ECU+sensors+explained"
+       "id": "dK4mb1yS0dY"
       }
      ],
      "figure": "ems",
@@ -1337,8 +1330,7 @@
      ],
      "videos": [
       {
-       "status": "pending-approval",
-       "search_fallback": "https://www.youtube.com/results?search_query=PLC+car+park+barrier+ladder+logic+example"
+       "id": "OjhHTo-l6R4"
       }
      ],
      "theory": [
@@ -1503,8 +1495,10 @@
      ],
      "videos": [
       {
-       "status": "pending-approval",
-       "search_fallback": "https://www.youtube.com/results?search_query=what+is+industrial+automation+introduction"
+       "id": "I4UiDq9-8os"
+      },
+      {
+       "id": "p8wImA7nh6U"
       }
      ],
      "theory": [
@@ -1582,8 +1576,8 @@
        "type": "Explain",
        "marks": 2,
        "points": [
-        "Staying manual can cost more in labour, time and quality",
-        "So automation can be the cheaper long-term choice"
+        "It is listed as a reason for automation",
+        "Staying manual can mean higher labour cost and lower productivity and quality (explain in your own words)"
        ],
        "need": 2
       },
@@ -1686,8 +1680,7 @@
      ],
      "videos": [
       {
-       "status": "pending-approval",
-       "search_fallback": "https://www.youtube.com/results?search_query=fixed+programmable+flexible+automation+types"
+       "id": "WAXnftiVGko"
       }
      ],
      "figure": "autotypes",
@@ -1858,8 +1851,7 @@
      ],
      "videos": [
       {
-       "status": "pending-approval",
-       "search_fallback": "https://www.youtube.com/results?search_query=what+is+a+robot+definition+robotics+introduction"
+       "id": "BbiYEVfrYFI"
       }
      ],
      "theory": [
@@ -2037,8 +2029,7 @@
      ],
      "videos": [
       {
-       "status": "pending-approval",
-       "search_fallback": "https://www.youtube.com/results?search_query=industrial+robot+components+end+effector+joints+sensors"
+       "id": "dlCrWIlAaVU"
       }
      ],
      "figure": "joints",
@@ -2209,8 +2200,13 @@
      ],
      "videos": [
       {
-       "status": "pending-approval",
-       "search_fallback": "https://www.youtube.com/results?search_query=robot+control+types+point+to+point+continuous+path"
+       "id": "CKFlfOblxcQ"
+      },
+      {
+       "id": "NwjjighbL54"
+      },
+      {
+       "id": "4jPtPgyKC04"
       }
      ],
      "theory": [
@@ -2407,8 +2403,13 @@
      ],
      "videos": [
       {
-       "status": "pending-approval",
-       "search_fallback": "https://www.youtube.com/results?search_query=robot+configurations+cartesian+cylindrical+spherical+scara+articulated"
+       "playlist": "PLCroaJeHBTHZQPsFtBDI_r-yxA6xpFkQp"
+      },
+      {
+       "id": "R0eJXe6R8vY"
+      },
+      {
+       "id": "XjtkhnubBMI"
       }
      ],
      "figure": "configs",
@@ -2572,8 +2573,10 @@
      ],
      "videos": [
       {
-       "status": "pending-approval",
-       "search_fallback": "https://www.youtube.com/results?search_query=hydraulic+pneumatic+electric+actuators+comparison+robots"
+       "id": "Guj5W2_XkaM"
+      },
+      {
+       "id": "yc8BS9f8Zm0"
       }
      ],
      "theory": [
@@ -2895,8 +2898,7 @@
      ],
      "videos": [
       {
-       "status": "pending-approval",
-       "search_fallback": "https://www.youtube.com/results?search_query=industrial+vs+service+robots+examples"
+       "id": "cfkGcJQT4nM"
       }
      ],
      "theory": [

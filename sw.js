@@ -1,10 +1,13 @@
 /* StudyHub service worker. Bump VERSION on every deploy that changes app files. */
-const VERSION = 'studyhub-2026-10-01-3';
-const PRECACHE = ['/', '/index.html', '/style.css', '/app.js', '/figures.js', '/config.js', '/data/mce321.json', '/data/coach.json',
+const VERSION = 'studyhub-2026-10-01-5';
+const PRECACHE = ['/', '/index.html', '/style.css', '/app.js', '/figures.js', '/config.js', '/data/courses.json', '/data/mce321.json', '/data/coach.json',
   '/favicon.svg', '/favicon.ico', '/apple-touch-icon.png', '/icon-192.png', '/icon-512.png', '/manifest.webmanifest'];
 const CDN = ['cdn.jsdelivr.net', 'fonts.googleapis.com', 'fonts.gstatic.com'];
 
-self.addEventListener('install', e => e.waitUntil(caches.open(VERSION).then(c => c.addAll(PRECACHE))));
+self.addEventListener('install', e => e.waitUntil(caches.open(VERSION).then(async c => {
+  await c.addAll(PRECACHE);
+  try { const cs = await (await fetch('/data/courses.json')).json(); await c.addAll(cs.courses.filter(x => x.file).map(x => '/' + x.file)); } catch { /* course files cache at runtime */ }
+})));
 self.addEventListener('activate', e => e.waitUntil(
   caches.keys().then(ks => Promise.all(ks.filter(k => k.startsWith('studyhub-') && k !== VERSION).map(k => caches.delete(k)))).then(() => self.clients.claim())));
 self.addEventListener('message', e => { if (e.data === 'SKIP_WAITING') self.skipWaiting(); });

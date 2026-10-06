@@ -7,14 +7,30 @@ const $ = s => document.querySelector(s), app = $('#app');
 const ICON = n => `<svg class="ic" aria-hidden="true"><use href="#i-${n}"/></svg>`;
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const day = (o = 0) => new Date(Date.now() + o * 864e5).toISOString().slice(0, 10);
-let D, L = [], S, user = null, timer;
+let D, L = [], S, G, user = null, timer, COURSES = [], DATA = {}, cur = null;
 const sb = createClient && SUPABASE_URL.startsWith('http') ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
-const blank = () => ({ done: {}, quiz: {}, weak: {}, cards: {}, days: {}, t: 0 });
-S = { ...blank(), ...JSON.parse(localStorage.getItem('sh') || '{}') };
+// State: G holds global data (study days, focus, per-course progress); S is the active course's progress.
+const cblank = () => ({ done: {}, quiz: {}, weak: {}, cards: {}, theory: {}, exams: [], pos: {} });
+const norm = r => {
+  if (r && r.c) return { days: {}, t: 0, ...r };
+  const { days = {}, t = 0, ...rest } = r || {};   // migrate the old single-course shape
+  return { days, t, cur: 'mce321', focus: 'mce321', c: Object.keys(rest).length ? { mce321: { ...cblank(), ...rest } } : {} };
+};
+G = norm(JSON.parse(localStorage.getItem('sh') || '{}'));
+function useCourse(id) {
+  cur = id; D = DATA[id]; L = D.modules.flatMap(m => m.lessons);
+  const st = G.c[id] || (G.c[id] = {}); for (const [k, v] of Object.entries(cblank())) if (!(k in st)) st[k] = v; S = st;
+}
+const setCourse = id => { useCourse(id); G.cur = id; };
+function withCourse(id, fn) { const p = cur; useCourse(id); try { return fn(); } finally { if (p) useCourse(p); } }
+const wkKey = () => day(-((new Date().getDay() + 6) % 7));
+const ready = () => COURSES.filter(c => DATA[c.id]);
+const focusId = () => { const r = ready(); if (r.length === 1) return r[0].id; return G.focusWk === wkKey() && DATA[G.focus] ? G.focus : null; };
+function saveQuiet() { G.t = Date.now(); localStorage.setItem('sh', JSON.stringify(G)); clearTimeout(timer); timer = setTimeout(push, 1200); }   // persists without counting a study day
 function save() {
-  S.t = Date.now(); S.days[day()] = 1;
-  localStorage.setItem('sh', JSON.stringify(S));
+  G.t = Date.now(); G.days[day()] = 1;
+  localStorage.setItem('sh', JSON.stringify(G));
   clearTimeout(timer); timer = setTimeout(push, 1200);
 }
 let syncT;
@@ -25,7 +41,7 @@ function setSync(st) {
 }
 async function push() {
   if (!(sb && user)) return; if (!navigator.onLine) { setSync('offline'); return; } setSync('saving');
-  const { error } = await sb.from('user_state').upsert({ user_id: user.id, data: S, updated_at: new Date().toISOString() });
+  const { error } = await sb.from('user_state').upsert({ user_id: user.id, data: G, updated_at: new Date().toISOString() });
   setSync(error ? 'error' : 'saved');
 }
 async function withLoad(btn, label, fn) {
@@ -40,11 +56,11 @@ function bar(on) {
 }
 async function pull() {
   const { data } = await sb.from('user_state').select('data').eq('user_id', user.id).maybeSingle();
-  if (data && (data.data.t || 0) > (S.t || 0)) { S = { ...blank(), ...data.data }; localStorage.setItem('sh', JSON.stringify(S)); } else push();
+  if (data && (data.data.t || 0) > (G.t || 0)) { G = norm(data.data); localStorage.setItem('sh', JSON.stringify(G)); if (cur) useCourse(DATA[G.cur] ? G.cur : cur); } else push();
   route();
 }
-const streak = () => { let n = 0, o = S.days[day()] ? 0 : -1; while (S.days[day(o)]) { n++; o--; } return n; };
-const weekDays = () => [...Array(7)].filter((_, i) => S.days[day(-i)]).length;
+const streak = () => { let n = 0, o = G.days[day()] ? 0 : -1; while (G.days[day(o)]) { n++; o--; } return n; };
+const weekDays = () => [...Array(7)].filter((_, i) => G.days[day(-i)]).length;
 
 // theme
 const theme = localStorage.getItem('th');
@@ -85,7 +101,7 @@ const TARGET = 5;
 let C = {};
 const dow = () => (new Date().getDay() + 6) % 7 + 1;
 const dnum = () => Math.floor(Date.now() / 864e5);
-const gapDays = () => { if (S.days[day()]) return 0; for (let o = 1; o <= 90; o++) if (S.days[day(-o)]) return o; return -1; };
+const gapDays = () => { if (G.days[day()]) return 0; for (let o = 1; o <= 90; o++) if (G.days[day(-o)]) return o; return -1; };
 const fill = (t, d) => t.replace(/\{(\w+)\}/g, (_, k) => d[k] ?? '');
 const weakest = () => Object.entries(S.weak).filter(([, n]) => n > 0).sort((a, b) => b[1] - a[1])[0];
 const dueNow = () => L.flatMap(l => l.flashcards.map((c, i) => ({ k: l.id + '#' + i, l }))).filter(c => (S.cards[c.k] || S.done[c.l.id]) && (S.cards[c.k]?.due || '') <= day()).length;
@@ -100,7 +116,7 @@ function coach() {
   if (gap < 0) key = 'start';
   else if (gap >= 3) key = 'return';
   else if (gap === 2) key = 'skipped';
-  else if (S.days[day()] && C.streak?.[st]) { key = 'streak'; arr = C.streak[st]; }
+  else if (G.days[day()] && C.streak?.[st]) { key = 'streak'; arr = C.streak[st]; }
   else if (need > 0 && need >= daysLeft && dow() >= 3) key = 'behind';
   else if (fresh) { key = 'perfect'; data.topic = lesson(lq[0]).title; }
   else if (wk) key = 'weak';
@@ -124,29 +140,40 @@ function countUp() {
     requestAnimationFrame(f);
   });
 }
+const dueAll = () => ready().reduce((n, c) => n + withCourse(c.id, dueNow), 0);
 function home() {
-  const done = L.filter(l => S.done[l.id]).length, a = assignment(), st = streak();
-  app.innerHTML = `<section class="coach"><p class="label">Your coach</p><p class="coach-line">${esc(coach())}</p></section>
-  <a class="assign" href="${a.href}"><span class="label">Today's assignment · ${esc(a.label)}</span><h2>${esc(a.title)}</h2><p>${esc(a.text)}</p><span class="btn pri">${esc(a.cta)}${ICON('arrow')}</span></a>
-  <p style="margin:14px 0 0"><a class="btn" href="#/exam">Take a mock exam</a></p><h2 class="sec-h">Progress</h2><p class="mut">${esc(D.course.code)} · ${esc(D.course.title)}</p>
-  <div class="grid"><div class="card ringcard">${ring(done / L.length)}<div class="stat"><b data-n="${done}">0</b>of ${L.length} lessons</div></div>
-  <div class="card stat"><span class="fl ${st ? 'on' : ''}">${ICON('flame')}</span><b data-n="${st}">0</b>day streak</div>
-  <div class="card stat"><b data-n="${weekDays()}">0</b>of ${TARGET} study days this week</div>
-  <a class="card stat" href="#/cards"><b data-n="${dueNow()}">0</b>cards due</a></div>`;
+  const f = focusId(), st = streak(), rd = ready();
+  let top;
+  if (!f) top = `<section class="coach"><p class="label">New week</p><p class="coach-line">Choose this week's focus course. Today's assignment will come from it.</p><div class="conf" id="fc">${rd.map(c => `<button class="seg" data-c="${c.id}">${esc(c.code)}</button>`).join('')}</div></section>`;
+  else {
+    const fc = COURSES.find(c => c.id === f), a = withCourse(f, assignment), msg = withCourse(f, coach);
+    top = `<section class="coach"><p class="label">Your coach</p><p class="coach-line">${esc(msg)}</p></section>
+    <a class="assign" href="${a.href}?c=${f}"><span class="label">Today's assignment · ${esc(fc.code)} · ${esc(a.label)}</span><h2>${esc(a.title)}</h2><p>${esc(a.text)}</p><span class="btn pri">${esc(a.cta)}${ICON('arrow')}</span></a>
+    <p style="margin:14px 0 0"><a class="btn" href="#/exam?c=${f}">Take a mock exam</a>${rd.length > 1 ? '<button class="btn" id="cf">Change focus course</button>' : ''}</p>`;
+  }
+  app.innerHTML = top + `<h2 class="sec-h">Courses</h2><div class="grid courses">${COURSES.map(c => DATA[c.id] ? withCourse(c.id, () => {
+      const done = L.filter(l => S.done[l.id]).length;
+      return `<a class="card cc" href="#/lessons?c=${c.id}">${ring(done / L.length, 56)}<div><b>${esc(c.code)}</b><span class="mut">${esc(c.title)}</span><span class="mut">${done} of ${L.length} lessons</span></div></a>`; })
+    : `<div class="card cc soon"><div><b>${esc(c.code)}</b><span class="mut">${esc(c.title)}</span><span class="mut">${c.units} units · coming soon</span></div></div>`).join('')}</div>
+  <h2 class="sec-h">This week</h2><div class="grid"><div class="card stat"><span class="fl ${st ? 'on' : ''}">${ICON('flame')}</span><b data-n="${st}">0</b>day streak</div>
+  <div class="card stat"><b data-n="${weekDays()}">0</b>of ${TARGET} study days</div>
+  <a class="card stat" href="#/cards${f ? '?c=' + f : ''}"><b data-n="${dueAll()}">0</b>cards due</a></div>`;
+  $('#fc')?.addEventListener('click', e => { const c = e.target.dataset.c; if (c) { G.focus = c; G.focusWk = wkKey(); saveQuiet(); home(); } });
+  $('#cf')?.addEventListener('click', () => { G.focusWk = null; saveQuiet(); home(); });
   fillRings(); countUp();
 }
 function lessons() {
-  app.innerHTML = '<h1>Lessons</h1><a class="card" href="#/exam"><b>Mock exam</b><br><span class="mut">Timed paper: 20 multiple-choice and 5 theory questions.</span></a>' + D.modules.map(m => `<h2>${esc(m.title)}</h2>` + m.lessons.map(l =>
+  app.innerHTML = `<p class="label">${esc(D.course.code)} · ${esc(D.course.title)}</p><h1>Lessons</h1>` + '<a class="card" href="#/exam"><b>Mock exam</b><br><span class="mut">Timed paper: 20 multiple-choice and 5 theory questions.</span></a>' + D.modules.map(m => `<h2>${esc(m.title)}</h2>` + m.lessons.map(l =>
     `<a class="card" href="#/lesson/${l.id}">${S.done[l.id] ? ICON('check') + ' ' : ''}${l.id} · ${esc(l.title)}${S.quiz[l.id] ? `<br><span class="mut">Quiz: ${S.quiz[l.id].score}/${S.quiz[l.id].total}</span>` : ''}</a>`).join('')).join('');
 }
 let lc = null;
 function lessonView(id, start) {
   const l = lesson(id); if (!l) return home();
-  const v = l.videos[0], chunks = [];
+  const vids = l.videos.filter(x => x.id || x.playlist), chunks = [];
   for (let k = 0; k < l.exam.length; k += 3) chunks.push(l.exam.slice(k, k + 3));
   const li = L.findIndex(x => x.id === id), next = L[li + 1];
   const words = (l.exam.join(' ') + l.analogy + l.one_line).split(/\s+/).length;
-  const mins = Math.max(4, Math.round(words / 150 + l.quiz.length * 0.7 + (v.id ? 5 : 0)));
+  const mins = Math.max(4, Math.round(words / 150 + l.quiz.length * 0.7 + vids.length * 5));
   const secs = [
     { t: 'Orient', h: () => `<p class="label">Lesson ${esc(l.id)} · Slides ${esc(l.slides)}</p><h1>${esc(l.title)}</h1><p class="tip">${esc(l.one_line)}</p><p class="mut">${secs.length} screens, about ${mins} minutes.</p>` },
     { t: 'Recall', h: () => `<p class="label">Before you read</p>${l.recall.map(r => `<p class="big">${esc(r)}</p>`).join('')}<p class="mut">Answer in your head first. Then continue.</p>` },
@@ -154,7 +181,7 @@ function lessonView(id, start) {
     ...(l.figure && FIG[l.figure] ? [{ t: 'Diagram', h: () => FIG[l.figure].html(), after: r => FIG[l.figure].init(r) }] : []),
     ...chunks.map((c, k) => ({ t: chunks.length > 1 ? `The core, part ${k + 1}` : 'The core', h: () => `<p class="label">The core${chunks.length > 1 ? `, ${k + 1} of ${chunks.length}` : ''}</p><ul class="core">${c.map(e => `<li>${esc(e)}</li>`).join('')}</ul>` })),
     { t: 'Terms', h: () => `<p class="label">Key terms</p><p class="mut">Tap a term.</p><div>${l.terms.map(t => `<button class="chip" data-t="${t}">${esc(D.glossary[t].term)}</button>`).join('')}</div><div id="def"></div>` },
-    { t: 'Watch', h: () => `<p class="label">Watch</p>${!navigator.onLine ? '<div class="card">Videos need a connection. Reconnect to watch.</div>' : v.id ? `<div class="vwrap"><div class="sk"></div><iframe class="vid" onload="this.parentNode.classList.add('ready')" loading="lazy" allowfullscreen title="Lesson video" src="https://www.youtube-nocookie.com/embed/${v.id}?start=${v.start || 0}${v.end ? '&end=' + v.end : ''}"></iframe></div>` : `<div class="card">No approved video yet. <a target="_blank" rel="noopener" href="${v.search_fallback}">Search YouTube</a></div>`}` },
+    { t: 'Watch', h: () => `<p class="label">Watch</p>${!navigator.onLine ? '<div class="card">Videos need a connection. Reconnect to watch.</div>' : vids.length ? vids.map((v, k) => `${vids.length > 1 ? `<p class="mut vlab">Video ${k + 1} of ${vids.length}</p>` : ''}<div class="vwrap"><div class="sk"></div><iframe class="vid" onload="this.parentNode.classList.add('ready')" loading="lazy" allowfullscreen title="Lesson video ${k + 1}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/${v.playlist ? 'videoseries?list=' + v.playlist + '&rel=0' : v.id + '?rel=0' + (v.start ? '&start=' + v.start : '') + (v.end ? '&end=' + v.end : '')}"></iframe></div>`).join('') : `<div class="card">No video for this lesson yet. <a target="_blank" rel="noopener" href="${l.videos[0]?.search_fallback || '#'}">Search YouTube</a></div>`}` },
     { t: 'Check', h: () => `<p class="label">Check</p><h2 style="margin-top:0">Test yourself</h2><p>${l.quiz.length} questions. Rate your confidence before each answer.</p>${S.quiz[id] ? `<p class="mut">Last score: ${S.quiz[id].score} of ${S.quiz[id].total}</p>` : ''}<button class="btn pri" id="qs">${S.quiz[id] ? 'Retake quiz' : 'Start quiz'}</button><a class="btn" href="#/theory/${id}">Theory practice (${l.theory.length})</a>` },
     { t: 'Close', h: () => `<p class="label">Lesson ${esc(l.id)}</p><h2 style="margin-top:0">${esc(l.title)}</h2><p class="tip">${esc(l.one_line)}</p>${S.quiz[id] ? `<p class="mut">Quiz: ${S.quiz[id].score} of ${S.quiz[id].total}</p>` : '<p class="mut">You have not taken the quiz yet.</p>'}<button class="btn ${S.done[id] ? '' : 'pri'}" id="dn">${S.done[id] ? ICON('check') + 'Completed. Undo' : 'Mark complete'}</button><a class="btn" href="#/cards/${id}">Flashcards</a>${next ? `<a class="btn" href="#/lesson/${next.id}/0">Next: ${esc(next.title)}</a>` : ''}` }
   ];
@@ -290,7 +317,7 @@ function theory(id) {
 let exTimer;
 const shuf = a => { a = [...a]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 function exam() {
-  const mods = [['all', 'Whole course', L], ['m1', 'Lecture 1', D.modules[0].lessons], ['m2', 'Lecture 2', D.modules[1].lessons]];
+  const mods = [['all', 'Whole course', L], ...D.modules.map((m, i) => ['m' + i, m.title, m.lessons])];
   let scope = 'all', mins = 60;
   const past = (S.exams || []).slice(-3).reverse().map(e => `<p class="mut">${new Date(e.ts).toLocaleDateString()} · ${e.got} of ${e.max} (${Math.round(e.got / e.max * 100)}%)</p>`).join('');
   app.innerHTML = `<p class="label">Mock exam</p><h1>Sit a timed paper</h1><p class="mut">20 multiple-choice questions, then 5 theory questions. Multiple choice is marked automatically and you mark the theory against the key points. Leaving this page abandons the paper.</p>
@@ -302,7 +329,7 @@ function exam() {
   $('#go').onclick = () => {
     const pool = mods.find(m => m[0] === scope)[2];
     const items = [...shuf(pool.flatMap(l => l.quiz.map(q => ({ k: 'mcq', l, q, pick: null })))).slice(0, 20),
-      ...shuf(pool).slice(0, 5).map(l => ({ k: 'th', l, q: l.theory[Math.floor(Math.random() * l.theory.length)], text: '' }))];
+      ...shuf(pool.filter(l => l.theory?.length)).slice(0, 5).map(l => ({ k: 'th', l, q: l.theory[Math.floor(Math.random() * l.theory.length)], text: '' }))];
     const end = Date.now() + mins * 60000; let n = 0;
     const tick = () => { const left = Math.max(0, end - Date.now()), el = $('#tl'); if (el) { el.textContent = `${String(Math.floor(left / 60000)).padStart(2, '0')}:${String(Math.floor(left / 1000) % 60).padStart(2, '0')}`; el.classList.toggle('low', left < 300000); } if (!left) toMark(true); };
     const dot = k => { const x = items[k]; return (x.k === 'mcq' ? x.pick !== null : x.text.trim()) ? 'ans' : ''; };
@@ -362,17 +389,26 @@ function account() {
     : `<p>Sign in to sync progress across devices.</p><input class="f" id="em" type="email" placeholder="you@email.com"><button class="btn pri" id="ml">Email me a magic link</button><p id="ms" class="mut"></p>`)
     + `<h2>Offline and install</h2><p class="mut">${navigator.serviceWorker?.controller ? 'Lessons, quizzes and cards work without a connection.' : 'Offline mode switches on after your first full load.'}</p>${dip ? '<button class="btn pri" id="ia">Install app</button>' : '<p class="mut">iPhone: tap Share, then Add to Home Screen. Android Chrome: open the browser menu and choose Install app.</p>'}<h2>Backup</h2><button class="btn" id="ex">${ICON('download')}Export progress</button>`;
   $('#ia')?.addEventListener('click', async () => { dip.prompt(); await dip.userChoice; dip = null; account(); });
-  $('#ex')?.addEventListener('click', () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(S)], { type: 'application/json' })); a.download = 'studyhub-progress.json'; a.click(); });
+  $('#ex')?.addEventListener('click', () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(G)], { type: 'application/json' })); a.download = 'studyhub-progress.json'; a.click(); });
   $('#so')?.addEventListener('click', e => withLoad(e.currentTarget, 'Signing out', () => sb.auth.signOut()));
   $('#ml')?.addEventListener('click', e => withLoad(e.currentTarget, 'Sending', async () => { const { error } = await sb.auth.signInWithOtp({ email: $('#em').value, options: { emailRedirectTo: location.origin + location.pathname } }); $('#ms').textContent = error ? error.message : 'Check your email.'; }));
 }
 
+const picker = () => `<div class="cpick"><button class="cbtn" id="cpb" aria-expanded="false" aria-controls="cpl"><span><small class="label">Course</small><b>${esc(D.course.code)}</b></span>${ICON('list')}</button>
+  <div class="clist" id="cpl" hidden>${COURSES.map(c => DATA[c.id] ? `<button data-c="${c.id}" class="${c.id === cur ? 'on' : ''}"><b>${esc(c.code)}</b><span>${esc(c.title)}</span></button>` : `<button disabled><b>${esc(c.code)}</b><span>${esc(c.title)} · coming soon</span></button>`).join('')}</div></div>`;
+function wirePicker() {
+  const b = $('#cpb'), l = $('#cpl');
+  b.onclick = () => { l.hidden = !l.hidden; b.setAttribute('aria-expanded', !l.hidden); };
+  l.onclick = e => { const x = e.target.closest('[data-c]'); if (!x) return; setCourse(x.dataset.c); saveQuiet(); const same = location.hash.split('?')[0] === '#/lessons'; location.hash = '#/lessons'; if (same) route(); };
+}
 function route() {
-  if (!D) return;
-  const h = location.hash || '#/', [, r, a, b] = h.split('/');
+  if (!cur) return;
+  const [h, qs] = (location.hash || '#/').split('?'), cm = /c=([\w-]+)/.exec(qs || '');
+  if (cm && DATA[cm[1]] && cm[1] !== cur) { setCourse(cm[1]); saveQuiet(); }
+  const [, r, a, b] = h.split('/');
   app.removeAttribute('aria-busy'); clearInterval(exTimer); lc = null; qh = null; document.body.classList.toggle('lesson', r === 'lesson'); bar(true);
   const base = '#/' + (r || '');
-  $('#side').innerHTML = `<a class="sbrand" href="#/">StudyHub<span>${esc(D.course.code)}</span></a>` + navHTML(base); $('#bottom').innerHTML = navHTML(base); setMenu(false);
+  $('#side').innerHTML = `<a class="sbrand" href="#/">StudyHub</a>` + picker() + navHTML(base); wirePicker(); $('#bottom').innerHTML = navHTML(base); setMenu(false);
   ({ '': home, lessons, lesson: () => lessonView(a, b), theory: () => theory(a), exam, quiz: () => quiz(a), cards: () => cards(a), glossary: () => glossary(a), account }[r || ''] || home)();
   scrollTo(0, 0); app.focus({ preventScroll: true }); setTimeout(() => bar(false), 200);
 }
@@ -380,9 +416,12 @@ addEventListener('hashchange', route);
 if (sb) sb.auth.onAuthStateChange((_, s) => { user = s?.user || null; if (user) pull(); else route(); });
 
 function loadData() {
-  return Promise.all([fetch('data/mce321.json').then(r => { if (!r.ok) throw 0; return r.json(); }), fetch('data/coach.json').then(r => r.json()).catch(() => ({}))]).then(
-    ([d, c]) => { D = d; C = c; L = d.modules.flatMap(m => m.lessons); route(); },
-    () => { app.innerHTML = '<div class="card"><h2 style="margin-top:0">Could not load your course</h2><p class="mut">Check your connection, then try again.</p><button class="btn pri" id="rt">Try again</button></div>'; $('#rt').onclick = e => withLoad(e.currentTarget, 'Loading', loadData); });
+  return Promise.all([fetch('data/courses.json').then(r => { if (!r.ok) throw 0; return r.json(); }), fetch('data/coach.json').then(r => r.json()).catch(() => ({}))]).then(async ([cj, c]) => {
+    C = c; COURSES = cj.courses;
+    await Promise.all(COURSES.filter(x => x.file).map(x => fetch(x.file).then(r => { if (!r.ok) throw 0; return r.json(); }).then(d => { DATA[x.id] = d; }).catch(() => {})));
+    const first = COURSES.find(x => DATA[x.id]); if (!first) throw 0;
+    setCourse(DATA[G.cur] ? G.cur : first.id); route();
+  }).catch(() => { app.innerHTML = '<div class="card"><h2 style="margin-top:0">Could not load your courses</h2><p class="mut">Check your connection, then try again.</p><button class="btn pri" id="rt">Try again</button></div>'; $('#rt').onclick = e => withLoad(e.currentTarget, 'Loading', loadData); });
 }
 loadData();
 

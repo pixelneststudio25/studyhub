@@ -1,13 +1,55 @@
 {
   "semester": "300 Level, First Semester",
   "courses": [
-    { "id": "get301", "code": "GET 301", "title": "Engineering Mathematics III", "units": 3 },
-    { "id": "get305", "code": "GET 305", "title": "Engineering Statistics and Data Analytics", "units": 3 },
-    { "id": "get307", "code": "GET 307", "title": "Introduction to Artificial Intelligence, Machine Learning and Convergent Technologies", "units": 3 },
-    { "id": "mce321", "code": "MCE 321", "title": "Design of Mechatronics and Robotics Systems I", "units": 2, "file": "data/mce321.json" },
-    { "id": "get311", "code": "FUTM-GET 311", "title": "Engineering Economics", "units": 3 },
-    { "id": "mce311", "code": "FUTM-MCE 311", "title": "Principles of Machines and Drive Systems", "units": 2 },
-    { "id": "mce312", "code": "FUTM-MCE 312", "title": "Signals and Systems", "units": 2 },
-    { "id": "mce313", "code": "FUTM-MCE 313", "title": "Analogue Electronic Circuit", "units": 2 }
+    {
+      "id": "get301",
+      "code": "GET 301",
+      "title": "Engineering Mathematics III",
+      "units": 3,
+      "file": "data/get301.json"
+    },
+    {
+      "id": "get305",
+      "code": "GET 305",
+      "title": "Engineering Statistics and Data Analytics",
+      "units": 3
+    },
+    {
+      "id": "get307",
+      "code": "GET 307",
+      "title": "Introduction to Artificial Intelligence, Machine Learning and Convergent Technologies",
+      "units": 3
+    },
+    {
+      "id": "mce321",
+      "code": "MCE 321",
+      "title": "Design of Mechatronics and Robotics Systems I",
+      "units": 2,
+      "file": "data/mce321.json"
+    },
+    {
+      "id": "get311",
+      "code": "FUTM-GET 311",
+      "title": "Engineering Economics",
+      "units": 3
+    },
+    {
+      "id": "mce311",
+      "code": "FUTM-MCE 311",
+      "title": "Principles of Machines and Drive Systems",
+      "units": 2
+    },
+    {
+      "id": "mce312",
+      "code": "FUTM-MCE 312",
+      "title": "Signals and Systems",
+      "units": 2
+    },
+    {
+      "id": "mce313",
+      "code": "FUTM-MCE 313",
+      "title": "Analogue Electronic Circuit",
+      "units": 2
+    }
   ]
 }

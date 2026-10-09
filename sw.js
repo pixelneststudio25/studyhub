@@ -1,11 +1,13 @@
 /* StudyHub service worker. Bump VERSION on every deploy that changes app files. */
-const VERSION = 'studyhub-2026-10-01-5';
+const VERSION = 'studyhub-2026-10-01-6';
 const PRECACHE = ['/', '/index.html', '/style.css', '/app.js', '/figures.js', '/config.js', '/data/courses.json', '/data/mce321.json', '/data/coach.json',
   '/favicon.svg', '/favicon.ico', '/apple-touch-icon.png', '/icon-192.png', '/icon-512.png', '/manifest.webmanifest'];
 const CDN = ['cdn.jsdelivr.net', 'fonts.googleapis.com', 'fonts.gstatic.com'];
 
 self.addEventListener('install', e => e.waitUntil(caches.open(VERSION).then(async c => {
   await c.addAll(PRECACHE);
+  const K = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/';
+  await Promise.all(['katex.mjs', 'katex.min.css', ...['Main-Regular', 'Main-Bold', 'Math-Italic', 'Size1-Regular', 'Size2-Regular', 'AMS-Regular'].map(f => `fonts/KaTeX_${f}.woff2`)].map(f => c.add(K + f).catch(() => {})));
   try { const cs = await (await fetch('/data/courses.json')).json(); await c.addAll(cs.courses.filter(x => x.file).map(x => '/' + x.file)); } catch { /* course files cache at runtime */ }
 })));
 self.addEventListener('activate', e => e.waitUntil(

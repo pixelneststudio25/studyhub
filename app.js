@@ -5,13 +5,23 @@ try { ({ createClient } = await import('https://cdn.jsdelivr.net/npm/@supabase/s
 
 const $ = s => document.querySelector(s), app = $('#app');
 const ICON = n => `<svg class="ic" aria-hidden="true"><use href="#i-${n}"/></svg>`;
-const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const rawEsc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+let KT = null;
+async function loadKatex() {
+  if (KT) return;
+  try {
+    const l = document.createElement('link'); l.rel = 'stylesheet'; l.href = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css'; document.head.append(l);
+    KT = (await import('https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.mjs')).default;
+  } catch { /* offline on first visit: formulas show as plain LaTeX */ }
+}
+const tex = p => { const d = p.startsWith('$$'), src = p.slice(d ? 2 : 1, d ? -2 : -1); try { return KT.renderToString(src, { displayMode: d, throwOnError: false, strict: false }); } catch { return rawEsc(p); } };
+const esc = s => { s = String(s); if (!KT || !s.includes('$')) return rawEsc(s); return s.split(/(\$\$[^$]+\$\$|\$[^$]+\$)/g).map((p, i) => i % 2 ? tex(p) : rawEsc(p)).join(''); };
 const day = (o = 0) => new Date(Date.now() + o * 864e5).toISOString().slice(0, 10);
 let D, L = [], S, G, user = null, timer, COURSES = [], DATA = {}, cur = null;
 const sb = createClient && SUPABASE_URL.startsWith('http') ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
 // State: G holds global data (study days, focus, per-course progress); S is the active course's progress.
-const cblank = () => ({ done: {}, quiz: {}, weak: {}, cards: {}, theory: {}, exams: [], pos: {} });
+const cblank = () => ({ done: {}, quiz: {}, weak: {}, cards: {}, theory: {}, exams: [], pos: {}, practice: {} });
 const norm = r => {
   if (r && r.c) return { days: {}, t: 0, ...r };
   const { days = {}, t = 0, ...rest } = r || {};   // migrate the old single-course shape
@@ -153,7 +163,7 @@ function home() {
   }
   app.innerHTML = top + `<h2 class="sec-h">Courses</h2><div class="grid courses">${COURSES.map(c => DATA[c.id] ? withCourse(c.id, () => {
       const done = L.filter(l => S.done[l.id]).length;
-      return `<a class="card cc" href="#/lessons?c=${c.id}">${ring(done / L.length, 56)}<div><b>${esc(c.code)}</b><span class="mut">${esc(c.title)}</span><span class="mut">${done} of ${L.length} lessons</span></div></a>`; })
+      return `<a class="card cc" href="#/lessons?c=${c.id}">${ring(done / (D.course.planned || L.length), 56)}<div><b>${esc(c.code)}</b><span class="mut">${esc(c.title)}</span><span class="mut">${done} of ${D.course.planned || L.length} lessons</span></div></a>`; })
     : `<div class="card cc soon"><div><b>${esc(c.code)}</b><span class="mut">${esc(c.title)}</span><span class="mut">${c.units} units · coming soon</span></div></div>`).join('')}</div>
   <h2 class="sec-h">This week</h2><div class="grid"><div class="card stat"><span class="fl ${st ? 'on' : ''}">${ICON('flame')}</span><b data-n="${st}">0</b>day streak</div>
   <div class="card stat"><b data-n="${weekDays()}">0</b>of ${TARGET} study days</div>
@@ -163,7 +173,7 @@ function home() {
   fillRings(); countUp();
 }
 function lessons() {
-  app.innerHTML = `<p class="label">${esc(D.course.code)} · ${esc(D.course.title)}</p><h1>Lessons</h1>` + '<a class="card" href="#/exam"><b>Mock exam</b><br><span class="mut">Timed paper: 20 multiple-choice and 5 theory questions.</span></a>' + D.modules.map(m => `<h2>${esc(m.title)}</h2>` + m.lessons.map(l =>
+  app.innerHTML = `<p class="label">${esc(D.course.code)} · ${esc(D.course.title)}</p><h1>Lessons</h1>` + '<a class="card" href="#/exam"><b>Mock exam</b><br><span class="mut">Timed paper: 20 multiple-choice and 5 theory questions.</span></a>' + (D.past?.length ? '<a class="card" href="#/past"><b>Past test questions</b><br><span class="mut">' + D.past.length + ' questions with solutions.</span></a>' : '') + D.modules.map(m => `<h2>${esc(m.title)}</h2>` + m.lessons.map(l =>
     `<a class="card" href="#/lesson/${l.id}">${S.done[l.id] ? ICON('check') + ' ' : ''}${l.id} · ${esc(l.title)}${S.quiz[l.id] ? `<br><span class="mut">Quiz: ${S.quiz[l.id].score}/${S.quiz[l.id].total}</span>` : ''}</a>`).join('')).join('');
 }
 let lc = null;
@@ -180,9 +190,10 @@ function lessonView(id, start) {
     { t: 'Picture it', h: () => `<p class="label">Picture it</p><p class="big">${esc(l.analogy)}</p>` },
     ...(l.figure && FIG[l.figure] ? [{ t: 'Diagram', h: () => FIG[l.figure].html(), after: r => FIG[l.figure].init(r) }] : []),
     ...chunks.map((c, k) => ({ t: chunks.length > 1 ? `The core, part ${k + 1}` : 'The core', h: () => `<p class="label">The core${chunks.length > 1 ? `, ${k + 1} of ${chunks.length}` : ''}</p><ul class="core">${c.map(e => `<li>${esc(e)}</li>`).join('')}</ul>` })),
+    ...(l.examples || []).map((ex, k) => ({ t: 'Example ' + (k + 1), h: () => `<p class="label">Worked example ${k + 1} of ${l.examples.length}</p><h2 class="qq" style="margin-top:0">${esc(ex.title)}</h2><p>${esc(ex.problem)}</p><ol class="steps">${ex.steps.map(x => stepHTML(x).replace('<li class="step">', '<li class="step" hidden>')).join('')}</ol><p><button class="btn pri" id="sn">Show step 1</button><button class="btn" id="sa">Show all</button></p><div id="sfin" hidden><div class="fbk good"><p class="label">Answer</p><p>${esc(ex.answer)}</p></div></div>`, after: wireSteps })),
     { t: 'Terms', h: () => `<p class="label">Key terms</p><p class="mut">Tap a term.</p><div>${l.terms.map(t => `<button class="chip" data-t="${t}">${esc(D.glossary[t].term)}</button>`).join('')}</div><div id="def"></div>` },
     { t: 'Watch', h: () => `<p class="label">Watch</p>${!navigator.onLine ? '<div class="card">Videos need a connection. Reconnect to watch.</div>' : vids.length ? vids.map((v, k) => `${vids.length > 1 ? `<p class="mut vlab">Video ${k + 1} of ${vids.length}</p>` : ''}<div class="vwrap"><div class="sk"></div><iframe class="vid" onload="this.parentNode.classList.add('ready')" loading="lazy" allowfullscreen title="Lesson video ${k + 1}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/${v.playlist ? 'videoseries?list=' + v.playlist + '&rel=0' : v.id + '?rel=0' + (v.start ? '&start=' + v.start : '') + (v.end ? '&end=' + v.end : '')}"></iframe></div>`).join('') : `<div class="card">No video for this lesson yet. <a target="_blank" rel="noopener" href="${l.videos[0]?.search_fallback || '#'}">Search YouTube</a></div>`}` },
-    { t: 'Check', h: () => `<p class="label">Check</p><h2 style="margin-top:0">Test yourself</h2><p>${l.quiz.length} questions. Rate your confidence before each answer.</p>${S.quiz[id] ? `<p class="mut">Last score: ${S.quiz[id].score} of ${S.quiz[id].total}</p>` : ''}<button class="btn pri" id="qs">${S.quiz[id] ? 'Retake quiz' : 'Start quiz'}</button><a class="btn" href="#/theory/${id}">Theory practice (${l.theory.length})</a>` },
+    { t: 'Check', h: () => `<p class="label">Check</p><h2 style="margin-top:0">Test yourself</h2><p>${l.quiz.length} questions. Rate your confidence before each answer.</p>${S.quiz[id] ? `<p class="mut">Last score: ${S.quiz[id].score} of ${S.quiz[id].total}</p>` : ''}<button class="btn pri" id="qs">${S.quiz[id] ? 'Retake quiz' : 'Start quiz'}</button><a class="btn" href="#/theory/${id}">Theory practice (${l.theory.length})</a>${l.practice?.length ? `<a class="btn" href="#/practice/${id}">Practice problems (${l.practice.length})</a>` : ''}` },
     { t: 'Close', h: () => `<p class="label">Lesson ${esc(l.id)}</p><h2 style="margin-top:0">${esc(l.title)}</h2><p class="tip">${esc(l.one_line)}</p>${S.quiz[id] ? `<p class="mut">Quiz: ${S.quiz[id].score} of ${S.quiz[id].total}</p>` : '<p class="mut">You have not taken the quiz yet.</p>'}<button class="btn ${S.done[id] ? '' : 'pri'}" id="dn">${S.done[id] ? ICON('check') + 'Completed. Undo' : 'Mark complete'}</button><a class="btn" href="#/cards/${id}">Flashcards</a>${next ? `<a class="btn" href="#/lesson/${next.id}/0">Next: ${esc(next.title)}</a>` : ''}` }
   ];
   let i = Math.min(Math.max(start != null && start !== '' ? +start || 0 : S.pos?.[id] || 0, 0), secs.length - 1), busy = false, tx = 0, ty = 0;
@@ -281,6 +292,103 @@ function cards(scope) {
     const grade = g => { if (!flipped || !tally[g] && tally[g] !== 0) return; sm2(c.key, g); tally[g]++; i++; show(); };
     $('#fc').onclick = flip; $('#gr').onclick = e => { const b = e.target.closest('[data-g]'); if (b) grade(+b.dataset.g); };
     qh = k => { if (k === ' ' || k === 'Enter') flip(); else if ('1234'.includes(k) && k) grade([1, 3, 4, 5]['1234'.indexOf(k)]); };
+  };
+  show();
+}
+// ---------- Answer checking (numbers, vectors, matrices) ----------
+function num(str) {
+  const t = String(str).toLowerCase().replace(/\s+/g, '').replace(/−|–/g, '-').replace(/×/g, '*').replace(/÷/g, '/').replace(/√/g, 'sqrt').replace(/π/g, 'pi'); let i = 0;
+  const atom = () => {
+    if (t[i] === '(') { i++; const v = expr(); if (t[i++] !== ')') throw 0; return v; }
+    const m = /^(\d+\.?\d*|\.\d+)/.exec(t.slice(i)); if (m) { i += m[0].length; return parseFloat(m[0]); }
+    const f = /^(sqrt|abs|ln)\(/.exec(t.slice(i)); if (f) { i += f[0].length; const v = expr(); if (t[i++] !== ')') throw 0; return f[1] === 'sqrt' ? Math.sqrt(v) : f[1] === 'abs' ? Math.abs(v) : Math.log(v); }
+    if (t.startsWith('pi', i)) { i += 2; return Math.PI; }
+    if (t[i] === 'e') { i++; return Math.E; }
+    throw 0;
+  };
+  const pow = () => { const b = atom(); if (t[i] === '^') { i++; return Math.pow(b, unary()); } return b; };
+  const unary = () => { if (t[i] === '-') { i++; return -unary(); } if (t[i] === '+') { i++; return unary(); } return pow(); };
+  const term = () => { let v = unary(); for (;;) { const c = t[i]; if (c === '*' || c === '/') { i++; const r = unary(); v = c === '*' ? v * r : v / r; } else if (c && /[a-z(0-9.]/.test(c)) v *= unary(); else return v; } };
+  const expr = () => { let v = term(); while (t[i] === '+' || t[i] === '-') { const o = t[i++], r = term(); v = o === '+' ? v + r : v - r; } return v; };
+  try { const v = expr(); return i === t.length && isFinite(v) ? v : NaN; } catch { return NaN; }
+}
+function vec(str) {
+  let s = String(str).trim().replace(/−|–/g, '-').replace(/π|pi/gi, '(3.141592653589793)').replace(/a_?([xyz])/gi, (m, c) => ({ x: 'i', y: 'j', z: 'k' })[c.toLowerCase()]);
+  if (/[ijk]/i.test(s)) {
+    const out = [0, 0, 0], terms = []; let depth = 0, cur = '';
+    for (const c of s) { if (c === '(') depth++; if (c === ')') depth--; if ((c === '+' || c === '-') && depth === 0 && cur.trim() && !/[*\/^(+\-]$/.test(cur.trim())) { terms.push(cur); cur = ''; } cur += c; }
+    terms.push(cur);
+    for (let t of terms) {
+      t = t.replace(/\s+/g, ''); const m = /([ijk])$/i.exec(t); if (!m) return null;
+      const co = t.slice(0, -1), v = co === '' || co === '+' ? 1 : co === '-' ? -1 : num(co); if (isNaN(v)) return null;
+      out['ijk'.indexOf(m[1].toLowerCase())] += v;
+    }
+    return out;
+  }
+  s = s.replace(/^[(<\[]|[)>\]]$/g, ''); const parts = []; let d = 0, cur = '';
+  for (const c of s) { if (c === '(') d++; if (c === ')') d--; if (c === ',' && d === 0) { parts.push(cur); cur = ''; } else cur += c; }
+  parts.push(cur); const v = parts.map(num); return v.some(isNaN) ? null : v;
+}
+function mat(str) {
+  const rows = String(str).trim().replace(/−|–/g, '-').split(/;|\n/).map(r => r.trim().replace(/\s*([\/*^])\s*/g, '$1')).filter(Boolean).map(r => r.replace(/^[\[(]|[\])]$/g, '').split(/[,\s]+/).filter(Boolean).map(num));
+  return !rows.length || rows.some(r => !r.length || r.some(isNaN) || r.length !== rows[0].length) ? null : rows;
+}
+const FMT = { number: 'A number or fraction, for example -4, 3/4 or 2sqrt(3).', vector: 'Components, for example 3i - 2j + 5k, or 3, -2, 5.', direction: 'Any multiple of the vector works, for example 1, 0, -1.', matrix: 'Rows separated by a semicolon, for example 1 2; 3 4.', set: 'Separate the values with commas, for example -1, 1, 2.', text: 'Type your answer.' };
+function checkAns(p, raw) {
+  raw = String(raw).trim(); if (!raw) return { err: 'Type an answer first.' };
+  const bad = { err: 'I could not read that. ' + FMT[p.type] }, near = (a, b) => Math.abs(a - b) <= Math.max(p.tol ?? 0.0051, 0.005 * Math.abs(b));
+  if (p.type === 'number') { const v = num(raw); return isNaN(v) ? bad : { ok: near(v, p.answer) }; }
+  if (p.type === 'vector' || p.type === 'direction') {
+    const v = vec(raw), a = p.answer; if (!v) return bad; if (v.length !== a.length) return { err: `Give ${a.length} components.` };
+    if (p.type === 'vector') return { ok: v.every((x, k) => near(x, a[k])) };
+    const dot = v.reduce((t, x, k) => t + x * a[k], 0), nv = Math.hypot(...v), na = Math.hypot(...a); return { ok: nv > 1e-9 && Math.abs(Math.abs(dot) - nv * na) < 1e-3 * nv * na };
+  }
+  if (p.type === 'matrix') {
+    const M = mat(raw), A = p.answer; if (!M) return bad;
+    if (M.length !== A.length || M.some((r, i) => r.length !== A[i].length)) return { err: `The answer has ${A.length} row${A.length > 1 ? 's' : ''} and ${A[0].length} column${A[0].length > 1 ? 's' : ''}. Check the order.` };
+    return { ok: M.every((r, i) => r.every((x, j) => near(x, A[i][j]))) };
+  }
+  if (p.type === 'set') {
+    const v = raw.split(/[,;\s]+|and/).filter(Boolean).map(num); if (v.some(isNaN)) return bad;
+    const a = [...p.answer].sort((x, y) => x - y), b = v.sort((x, y) => x - y); if (a.length !== b.length) return { err: `Give ${a.length} values (repeat a repeated value).` };
+    return { ok: a.every((x, k) => near(b[k], x)) };
+  }
+  const n = x => String(x).toLowerCase().replace(/\s+/g, '').replace(/[×*]|by/g, 'x');
+  return { ok: [p.answer, ...(p.alt || [])].some(a => n(a) === n(raw)) };
+}
+const stepHTML = s => { s = typeof s === 'string' ? { do: s } : s; return `<li class="step"><b>${esc(s.do)}</b>${s.why ? `<span class="mut">${esc(s.why)}</span>` : ''}${s.m ? `<div class="smath">${esc('$$' + s.m + '$$')}</div>` : ''}</li>`; };
+function wireSteps(root) {
+  const items = [...root.querySelectorAll('.step')], n = items.length, btn = root.querySelector('#sn'), fin = root.querySelector('#sfin'); let k = 0;
+  const label = () => { btn.textContent = k < n ? `Show step ${k + 1} of ${n}` : 'All steps shown'; btn.disabled = k >= n; };
+  const next = () => { if (k < n) { items[k].hidden = false; items[k].classList.add('in-n'); k++; } if (k >= n) fin.hidden = false; label(); };
+  btn.onclick = next; root.querySelector('#sa').onclick = () => { while (k < n) next(); }; label();
+}
+function practiceRun(title, probs, key, wid) {
+  if (!probs.length) { app.innerHTML = `<h1>${esc(title)}</h1><p class="mut">No problems here yet.</p><a class="btn" href="#/lessons">Lessons</a>`; return; }
+  S.practice ||= {}; const rec = S.practice[key] ||= {}; let i = 0, first = 0;
+  const back = wid ? `#/lesson/${wid}/99` : '#/lessons';
+  const show = () => {
+    if (i >= probs.length) {
+      app.innerHTML = `<p class="label">${esc(title)}</p><h2 class="qscore pop"><span>${first}</span> of ${probs.length}</h2><p class="coachish">${first === probs.length ? 'Clean sheet, first attempt on every problem.' : first * 2 >= probs.length ? 'Decent. Redo the ones you needed help with.' : 'Not secure yet. Study the worked examples, then retry.'}</p><a class="btn pri" href="${back}">Back</a><a class="btn" href="#/${wid ? 'practice/' + wid : 'past'}">Retry</a>`; return;
+    }
+    const p = probs[i]; let tries = 0, fin = false;
+    app.innerHTML = `<div class="qz in-n"><div class="qseg" aria-hidden="true">${probs.map((_, k) => `<i class="${k < i ? 'done' : k === i ? 'cur' : ''}"></i>`).join('')}</div>
+      <p class="label">${esc(title)} · ${i + 1} of ${probs.length}</p><h2 class="qq">${esc(p.q)}</h2>
+      ${p.type === 'matrix' ? '<textarea class="f" id="pa" rows="3" autocomplete="off" autocapitalize="off" spellcheck="false"></textarea>' : '<input class="f" id="pa" autocomplete="off" autocapitalize="off" spellcheck="false">'}
+      <p class="mut" style="font-size:14px">${esc(FMT[p.type])}</p>
+      <div><button class="btn pri" id="ck">Check</button>${p.hint ? '<button class="btn" id="hn">Hint</button>' : ''}<button class="btn" id="sl">Show solution</button></div><div id="fb"></div></div>`;
+    const fb = $('#fb'), nextBtn = () => { fb.insertAdjacentHTML('beforeend', `<button class="btn pri" id="nx">${i + 1 < probs.length ? 'Next problem' : 'See result'}</button>`); $('#nx').onclick = () => { i++; show(); }; };
+    const sol = () => { if (fin) return; fin = true; $('#ck').disabled = true; fb.insertAdjacentHTML('beforeend', `<div class="fbk good"><p class="label">Solution</p><ol class="steps">${(p.solution || []).map(stepHTML).join('')}</ol>${p.answerText ? `<p><b>Answer:</b> ${esc(p.answerText)}</p>` : ''}</div>`); nextBtn(); };
+    $('#pa').addEventListener('keydown', e => { if (e.key === 'Enter' && p.type !== 'matrix') $('#ck').click(); });
+    if (p.hint) $('#hn').onclick = () => fb.insertAdjacentHTML('afterbegin', `<div class="tip">${esc(p.hint)}</div>`);
+    $('#sl').onclick = () => { if (!rec[i]) rec[i] = { ok: false, tries }; save(); sol(); };
+    $('#ck').onclick = () => {
+      if (fin) return; const r = checkAns(p, $('#pa').value);
+      if (r.err) { fb.querySelector('.err')?.remove(); fb.insertAdjacentHTML('afterbegin', `<p class="err mut">${esc(r.err)}</p>`); return; }
+      tries++; fb.querySelector('.err')?.remove();
+      if (r.ok) { fin = true; $('#ck').disabled = true; $('#pa').readOnly = true; if (tries === 1) first++; rec[i] = { ok: true, tries }; save(); fb.insertAdjacentHTML('beforeend', `<div class="fbk good"><p class="label">Correct</p>${tries > 1 ? `<p>Got it on attempt ${tries}.</p>` : ''}</div>`); nextBtn(); }
+      else { if (tries === 1 && wid) { S.weak[wid] = (S.weak[wid] || 0) + 1; save(); } fb.insertAdjacentHTML('afterbegin', `<p class="err mut"><b>Not quite.</b> Check signs and each entry, then try again.${tries >= 2 && p.hint ? ' Use the hint.' : ''}</p>`); }
+    };
   };
   show();
 }
@@ -409,7 +517,7 @@ function route() {
   app.removeAttribute('aria-busy'); clearInterval(exTimer); lc = null; qh = null; document.body.classList.toggle('lesson', r === 'lesson'); bar(true);
   const base = '#/' + (r || '');
   $('#side').innerHTML = `<a class="sbrand" href="#/">StudyHub</a>` + picker() + navHTML(base); wirePicker(); $('#bottom').innerHTML = navHTML(base); setMenu(false);
-  ({ '': home, lessons, lesson: () => lessonView(a, b), theory: () => theory(a), exam, quiz: () => quiz(a), cards: () => cards(a), glossary: () => glossary(a), account }[r || ''] || home)();
+  ({ '': home, lessons, lesson: () => lessonView(a, b), theory: () => theory(a), practice: () => practiceRun('Practice problems', lesson(a)?.practice || [], a, a), past: () => practiceRun('Past test questions', D.past || [], 'past', null), exam, quiz: () => quiz(a), cards: () => cards(a), glossary: () => glossary(a), account }[r || ''] || home)();
   scrollTo(0, 0); app.focus({ preventScroll: true }); setTimeout(() => bar(false), 200);
 }
 addEventListener('hashchange', route);
@@ -420,6 +528,7 @@ function loadData() {
     C = c; COURSES = cj.courses;
     await Promise.all(COURSES.filter(x => x.file).map(x => fetch(x.file).then(r => { if (!r.ok) throw 0; return r.json(); }).then(d => { DATA[x.id] = d; }).catch(() => {})));
     const first = COURSES.find(x => DATA[x.id]); if (!first) throw 0;
+    if (Object.values(DATA).some(d => d.course.math)) await loadKatex();
     setCourse(DATA[G.cur] ? G.cur : first.id); route();
   }).catch(() => { app.innerHTML = '<div class="card"><h2 style="margin-top:0">Could not load your courses</h2><p class="mut">Check your connection, then try again.</p><button class="btn pri" id="rt">Try again</button></div>'; $('#rt').onclick = e => withLoad(e.currentTarget, 'Loading', loadData); });
 }

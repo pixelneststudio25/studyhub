@@ -216,3 +216,12 @@ textarea.f:focus{border-color:var(--accent);outline:none}textarea.f[readonly]{op
 .courses{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
 .cc{display:flex;align-items:center;gap:14px}.cc .ring{width:56px;height:56px;flex:none}.cc div span{display:block;font-size:13.5px;line-height:1.4}.cc b{font:500 18px var(--serif)}
 .cc.soon{opacity:.6}
+
+/* Mathematics */
+.katex{font-size:1.06em}.katex-display{margin:.5em 0;overflow-x:auto;overflow-y:hidden;padding:2px 0}
+.steps{list-style:none;padding:0;margin:14px 0;counter-reset:st}
+.step{counter-increment:st;position:relative;padding:12px 0 12px 44px;border-top:1px solid var(--line)}
+.step::before{content:counter(st);position:absolute;left:0;top:14px;display:grid;place-items:center;width:28px;height:28px;border:1px solid var(--accent);border-radius:50%;color:var(--accent);font:500 13px var(--sans)}
+.step[hidden]{display:none}.step b{display:block;font-weight:600}.step .mut{display:block;font-size:15px;margin-top:2px}
+.smath{margin-top:6px;overflow-x:auto}
+.err{margin:10px 0 0}

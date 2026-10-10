@@ -10,12 +10,12 @@
   {
    "id": "m1",
    "title": "Matrices and linear systems",
-   "source": "Lecturer's notes and past test",
+   "source": "Lecturer's notes, the past test and standard methods (anything not in your notes is labelled)",
    "lessons": [
     {
      "id": "1.1",
      "title": "Matrices: types, operations, product and transpose",
-     "slides": "Lecturer's notes p.1; past test Q5, Q10, Q12",
+     "slides": "Lecturer's notes p.1 (transpose and the product example); the other parts are not in your notes",
      "one_line": "A matrix is a grid of numbers that you can add, scale, multiply and flip, and the order in which you multiply matters.",
      "analogy": "A matrix is a spreadsheet: rows run across, columns run down. Multiplying two spreadsheets means pairing each row of the first with each column of the second and adding up the products, the way you total a price list against a quantity list.",
      "recall": [
@@ -23,13 +23,13 @@
       "Is 3 times 4 the same as 4 times 3? Do you think the same is true when you multiply two grids of numbers?"
      ],
      "exam": [
-      "A matrix is a rectangular array of numbers (called entries) arranged in rows and columns. A matrix with $m$ rows and $n$ columns has order $m\\times n$. The entry $a_{ij}$ is in row $i$, column $j$.",
-      "Special matrices: a square matrix has $m=n$; a row matrix has one row; a column matrix has one column; a zero matrix has every entry $0$.",
-      "The identity matrix $I$ is square with $1$ on the main diagonal and $0$ everywhere else, so $AI=IA=A$.",
-      "Two matrices are equal only if they have the same order and equal corresponding entries. Addition and subtraction work entry by entry and need the same order. The scalar multiple $kA$ multiplies every entry by $k$.",
-      "The product $AB$ exists only if the number of columns of $A$ equals the number of rows of $B$. If $A$ is $m\\times n$ and $B$ is $n\\times p$, then $AB$ is $m\\times p$, and $(AB)_{ij}=\\sum_k a_{ik}b_{kj}$: row $i$ of $A$ times column $j$ of $B$.",
-      "Matrix multiplication is generally not commutative: $AB\\neq BA$, even when both products exist. It is associative, $(AB)C=A(BC)$, and distributive, $A(B+C)=AB+AC$.",
-      "The transpose $A^{T}$ is formed by interchanging rows and columns: the first row becomes the first column, and so on. If $A$ is $m\\times n$, then $A^{T}$ is $n\\times m$. Rules: $(A^{T})^{T}=A$, $(A+B)^{T}=A^{T}+B^{T}$, $(AB)^{T}=B^{T}A^{T}$.",
+      "A matrix is a rectangular array of numbers (called entries) arranged in rows and columns. A matrix with $m$ rows and $n$ columns has order $m\\times n$. The entry $a_{ij}$ is in row $i$, column $j$. Not in your notes.",
+      "Special matrices: a square matrix has $m=n$; a row matrix has one row; a column matrix has one column; a zero matrix has every entry $0$. Not in your notes.",
+      "The identity matrix $I$ is square with $1$ on the main diagonal and $0$ everywhere else, so $AI=IA=A$. Not in your notes.",
+      "Two matrices are equal only if they have the same order and equal corresponding entries. Addition and subtraction work entry by entry and need the same order. The scalar multiple $kA$ multiplies every entry by $k$. Not in your notes.",
+      "The product $AB$ exists only if the number of columns of $A$ equals the number of rows of $B$. If $A$ is $m\\times n$ and $B$ is $n\\times p$, then $AB$ is $m\\times p$, and $(AB)_{ij}=\\sum_k a_{ik}b_{kj}$: row $i$ of $A$ times column $j$ of $B$. Not in your notes.",
+      "Matrix multiplication is generally not commutative: $AB\\neq BA$, even when both products exist. It is associative, $(AB)C=A(BC)$, and distributive, $A(B+C)=AB+AC$. Not in your notes.",
+      "The transpose $A^{T}$ is formed by interchanging rows and columns: the first row becomes the first column, and so on. If $A$ is $m\\times n$, then $A^{T}$ is $n\\times m$. Rules: $(A^{T})^{T}=A$, $(A+B)^{T}=A^{T}+B^{T}$, $(AB)^{T}=B^{T}A^{T}$. The definition of the transpose and the product example are in your notes (p.1); the three rules are not.",
       "A matrix with non-negative entries whose rows each sum to $1$ is called a stochastic matrix. It appears in the past test (Q12); the name is standard but is not in your notes."
      ],
      "terms": [
@@ -428,6 +428,2406 @@
        "search_fallback": "https://www.youtube.com/results?search_query=matrix+multiplication+and+transpose+explained"
       }
      ]
+    },
+    {
+     "id": "1.2",
+     "title": "Determinants: second and third order",
+     "slides": "Lecturer's notes pp.2 and 4; properties and Sarrus' rule are not in your notes",
+     "one_line": "A determinant turns a square grid of numbers into one number, and that number tells you whether the grid can be undone.",
+     "analogy": "Picture a 2 by 2 matrix as a rule that stretches and turns a sheet of paper. The determinant is the factor by which the area changes. If it is zero, the sheet is squashed flat and cannot be restored, which is why a zero determinant means no inverse.",
+     "recall": [
+      "Work out 4 times 5, then 3 times 2, then subtract the second answer from the first. What do you get?",
+      "Cross out one row and one column of a 3 by 3 grid. What size is the grid that is left?"
+     ],
+     "exam": [
+      "A determinant is written with bars, not brackets, and exists only for a square matrix. Second order: $D=\\det A=\\begin{vmatrix}a_{11}&a_{12}\\\\a_{21}&a_{22}\\end{vmatrix}=a_{11}a_{22}-a_{12}a_{21}$.",
+      "Third order (your notes, p.4): expand down the first column, $D=a_{11}M_{11}-a_{21}M_{21}+a_{31}M_{31}$, with signs $+,-,+$. Written out in full: $D=a_{11}a_{22}a_{33}-a_{11}a_{23}a_{32}-a_{21}a_{12}a_{33}+a_{21}a_{13}a_{32}+a_{31}a_{12}a_{23}-a_{31}a_{13}a_{22}$.",
+      "The minor $M_{ij}$ of an entry is the second-order determinant left when that entry's row and column are deleted. For $a_{11}$, delete row 1 and column 1, and so on.",
+      "Expanding along any row or column gives the same value, using the sign pattern $\\begin{vmatrix}+&-&+\\\\-&+&-\\\\+&-&+\\end{vmatrix}$ (sign of $a_{ij}$ is $(-1)^{i+j}$). Not in your notes.",
+      "Sarrus' rule (third order only): copy columns 1 and 2 to the right of the determinant. Add the three products down the diagonals and subtract the three products up the diagonals. Not in your notes.",
+      "Properties: interchanging two rows changes the sign; two equal rows, or a row of zeros, give $D=0$; adding a multiple of one row to another leaves $D$ unchanged; $\\det A^{T}=\\det A$. Not in your notes.",
+      "If $D=0$ the matrix is singular (it has no inverse) and Cramer's rule cannot be used. If $D\\neq0$ it is non-singular. Your notes (p.5) introduce these two names with the inverse."
+     ],
+     "terms": [
+      "determinant",
+      "minor",
+      "cofactor",
+      "singular-matrix",
+      "nonsingular-matrix"
+     ],
+     "examples": [
+      {
+       "title": "Second order (the system from your notes)",
+       "problem": "Evaluate $D=\\begin{vmatrix}4&3\\\\2&5\\end{vmatrix}$.",
+       "steps": [
+        {
+         "do": "Multiply the main diagonal.",
+         "m": "4\\times5=20"
+        },
+        {
+         "do": "Multiply the other diagonal.",
+         "m": "3\\times2=6"
+        },
+        {
+         "do": "Subtract the second from the first.",
+         "m": "D=20-6=14"
+        }
+       ],
+       "answer": "$D=14$. This is the denominator in the Cramer's rule example on p.3 of your notes."
+      },
+      {
+       "title": "Third order by the first column",
+       "problem": "Evaluate $D=\\begin{vmatrix}2&3&-2\\\\1&4&-2\\\\2&10&-5\\end{vmatrix}$.",
+       "steps": [
+        {
+         "do": "Take the entries of the first column with signs plus, minus, plus.",
+         "why": "The entries are 2, 1 and 2. Each is multiplied by its minor.",
+         "m": "D=2\\begin{vmatrix}4&-2\\\\10&-5\\end{vmatrix}-1\\begin{vmatrix}3&-2\\\\10&-5\\end{vmatrix}+2\\begin{vmatrix}3&-2\\\\4&-2\\end{vmatrix}"
+        },
+        {
+         "do": "Work out the three minors.",
+         "m": "4(-5)-(-2)(10)=0,\\qquad 3(-5)-(-2)(10)=5,\\qquad 3(-2)-(-2)(4)=2"
+        },
+        {
+         "do": "Assemble.",
+         "m": "D=2(0)-1(5)+2(2)=-5+4=-1"
+        },
+        {
+         "do": "Check with Sarrus' rule (not in your notes).",
+         "why": "Down-diagonals: -40, -12, -20 (total -72). Up-diagonals: -16, -40, -15 (total -71). The difference is -72 - (-71) = -1.",
+         "m": "D=-1"
+        }
+       ],
+       "answer": "$D=-1$. This is the matrix of the second eigenvalue example on p.8 of your notes."
+      }
+     ],
+     "practice": [
+      {
+       "q": "Evaluate $\\begin{vmatrix}3&5\\\\2&7\\end{vmatrix}$.",
+       "type": "number",
+       "answer": 11,
+       "hint": "Multiply the main diagonal, then subtract the product of the other diagonal.",
+       "solution": [
+        "Expand the determinant as in the worked examples.",
+        "The value is 11."
+       ],
+       "answerText": "11"
+      },
+      {
+       "q": "Evaluate $\\begin{vmatrix}1&2&3\\\\0&1&4\\\\5&6&0\\end{vmatrix}$.",
+       "type": "number",
+       "answer": 1,
+       "hint": "Expand down the first column: 1, 0, 5 with signs +, -, +.",
+       "solution": [
+        "Expand the determinant as in the worked examples.",
+        "The value is 1."
+       ],
+       "answerText": "1"
+      },
+      {
+       "q": "Evaluate $\\begin{vmatrix}2&0&1\\\\-1&4&-1\\\\-1&2&0\\end{vmatrix}$.",
+       "type": "number",
+       "answer": 6,
+       "hint": "Expand down the first column: 2, -1, -1 with signs +, -, +.",
+       "solution": [
+        "Expand the determinant as in the worked examples.",
+        "The value is 6."
+       ],
+       "answerText": "6"
+      },
+      {
+       "q": "Evaluate $\\begin{vmatrix}1&2&0\\\\0&3&4\\\\5&0&6\\end{vmatrix}$.",
+       "type": "number",
+       "answer": 58,
+       "hint": "The middle entry of the first column is 0, so that term vanishes.",
+       "solution": [
+        "Expand the determinant as in the worked examples.",
+        "The value is 58."
+       ],
+       "answerText": "58"
+      },
+      {
+       "q": "For what value of $k$ is $\\begin{vmatrix}k&2\\\\3&6\\end{vmatrix}=0$?",
+       "type": "number",
+       "answer": 1,
+       "hint": "Write 6k - 6 = 0.",
+       "solution": [
+        {
+         "do": "Expand.",
+         "m": "6k-2(3)=6k-6"
+        },
+        {
+         "do": "Set it to zero.",
+         "m": "6k-6=0\\Rightarrow k=1"
+        }
+       ],
+       "answerText": "1"
+      },
+      {
+       "q": "A 3 by 3 determinant equals 5. What is its value after two rows are interchanged?",
+       "type": "number",
+       "answer": -5,
+       "hint": "Interchanging two rows changes the sign.",
+       "solution": [
+        "Swapping two rows reverses the sign of a determinant (not in your notes).",
+        "So the new value is -5."
+       ],
+       "answerText": "-5"
+      }
+     ],
+     "quiz": [
+      {
+       "q": "What is the value of the determinant with first row 3, 5 and second row 2, 7?",
+       "options": [
+        "11",
+        "31",
+        "-11",
+        "1"
+       ],
+       "answer": 0,
+       "explain": "3(7) - 5(2) = 21 - 10 = 11."
+      },
+      {
+       "q": "When a third-order determinant is expanded down its first column, the signs are",
+       "options": [
+        "+ + +",
+        "+ - +",
+        "- + -",
+        "+ - -"
+       ],
+       "answer": 1,
+       "explain": "The signs alternate, starting with plus."
+      },
+      {
+       "q": "If the determinant of a square matrix is zero, the matrix is called",
+       "options": [
+        "singular",
+        "non-singular",
+        "an identity matrix",
+        "a transpose"
+       ],
+       "answer": 0,
+       "explain": "A zero determinant means no inverse exists. That is what singular means."
+      },
+      {
+       "q": "What happens to a determinant when two rows are interchanged?",
+       "options": [
+        "Nothing",
+        "The sign changes",
+        "It doubles",
+        "It becomes zero"
+       ],
+       "answer": 1,
+       "explain": "Interchanging two rows reverses the sign (not in your notes)."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Second-order determinant",
+       "back": "$a_{11}a_{22}-a_{12}a_{21}$: main diagonal minus the other diagonal."
+      },
+      {
+       "front": "Signs in a first-column expansion",
+       "back": "Plus, minus, plus."
+      },
+      {
+       "front": "What is a minor?",
+       "back": "The determinant left after deleting the row and column of an entry."
+      },
+      {
+       "front": "What does D = 0 tell you?",
+       "back": "The matrix is singular: no inverse, and Cramer's rule fails."
+      },
+      {
+       "front": "Effect of swapping two rows",
+       "back": "The sign of the determinant changes (not in your notes)."
+      }
+     ],
+     "theory": [
+      {
+       "q": "Define a second-order determinant and evaluate one of your choice.",
+       "type": "Define",
+       "marks": 3,
+       "points": [
+        "$D=a_{11}a_{22}-a_{12}a_{21}$",
+        "Written with bars, not brackets",
+        "A worked value, for example the determinant with rows 4, 3 and 2, 5 equals 14"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Describe how a third-order determinant is expanded down its first column.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "$D=a_{11}M_{11}-a_{21}M_{21}+a_{31}M_{31}$",
+        "The signs are plus, minus, plus",
+        "Each $M$ is the second-order determinant left after deleting that entry's row and column"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Define the minor of an entry in a determinant.",
+       "type": "Define",
+       "marks": 2,
+       "points": [
+        "The second-order determinant obtained by deleting the row and column of that entry",
+        "For the first entry delete row 1 and column 1"
+       ],
+       "need": 2
+      },
+      {
+       "q": "State what a zero determinant means for a square matrix.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "The matrix is singular",
+        "It has no inverse",
+        "Cramer's rule cannot be used because it divides by D"
+       ],
+       "need": 3
+      },
+      {
+       "q": "State three properties of determinants.",
+       "type": "List",
+       "marks": 3,
+       "points": [
+        "Interchanging two rows changes the sign",
+        "Two equal rows or a row of zeros give zero",
+        "Adding a multiple of one row to another leaves the value unchanged",
+        "The determinant of the transpose equals the determinant"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Evaluate the third-order determinant with rows $(2,3,-2)$, $(1,4,-2)$, $(2,10,-5)$.",
+       "type": "Explain",
+       "marks": 5,
+       "points": [
+        "Expand down the first column with signs plus, minus, plus",
+        "The three minors are 0, 5 and 2",
+        "$D=2(0)-1(5)+2(2)$",
+        "$D=-1$"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Explain how Sarrus' rule evaluates a third-order determinant.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Copy columns 1 and 2 to the right",
+        "Add the three down-diagonal products",
+        "Subtract the three up-diagonal products",
+        "It works for third order only"
+       ],
+       "need": 4
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=determinants+2x2+and+3x3+explained"
+      }
+     ]
+    },
+    {
+     "id": "1.3",
+     "title": "Cramer's rule",
+     "slides": "Lecturer's notes pp.2 to 5 (the p.3 example is corrected here)",
+     "one_line": "Cramer's rule solves a square linear system by dividing one determinant by another, one unknown at a time.",
+     "analogy": "Each unknown is a share of a whole. The bottom determinant D measures the whole system. Each top determinant measures the system with one column swapped for the answers, and the ratio is that unknown's share.",
+     "recall": [
+      "Evaluate the determinant with rows 4, 3 and 2, 5.",
+      "What does it mean for a determinant to be zero?"
+     ],
+     "exam": [
+      "For $a_{11}x_1+a_{12}x_2=b_1$ and $a_{21}x_1+a_{22}x_2=b_2$: $x_1=\\dfrac{\\begin{vmatrix}b_1&a_{12}\\\\b_2&a_{22}\\end{vmatrix}}{D}$ and $x_2=\\dfrac{\\begin{vmatrix}a_{11}&b_1\\\\a_{21}&b_2\\end{vmatrix}}{D}$, provided $D\\neq0$.",
+      "Your notes prove this by eliminating $x_2$ (multiply the first equation by $a_{22}$, the second by $-a_{12}$, then add) to get $(a_{11}a_{22}-a_{12}a_{21})x_1=b_1a_{22}-a_{12}b_2$. Eliminating $x_1$ the same way gives the formula for $x_2$.",
+      "For three equations in three unknowns: $x_1=\\dfrac{D_1}{D},\\ x_2=\\dfrac{D_2}{D},\\ x_3=\\dfrac{D_3}{D}$ with $D\\neq0$. $D_1,D_2,D_3$ come from $D$ by replacing column 1, 2, 3 respectively with the constants $b_1,b_2,b_3$.",
+      "Correction to your notes: in the example $4x_1+3x_2=12$, $2x_1+5x_2=-8$, the value is $x_2=\\dfrac{-56}{14}=-4$, not $4$ (the page writes $4$). Check: $2(6)+5(-4)=-8$.",
+      "Your notes state that $D=0$ appears for inconsistent non-homogeneous systems and for homogeneous systems with non-trivial solutions. A consistent non-homogeneous system can also have $D=0$ (infinitely many solutions), which the past test (Q8) points to; see lesson 1.6.",
+      "Cramer's rule is practical for two or three unknowns. For larger systems use elimination (lesson 1.4). Not in your notes."
+     ],
+     "terms": [
+      "cramers-rule",
+      "linear-system",
+      "determinant",
+      "nonsingular-matrix"
+     ],
+     "examples": [
+      {
+       "title": "Two equations (your notes, corrected)",
+       "problem": "Solve $4x_1+3x_2=12$ and $2x_1+5x_2=-8$.",
+       "steps": [
+        {
+         "do": "Find D from the coefficients.",
+         "m": "D=\\begin{vmatrix}4&3\\\\2&5\\end{vmatrix}=20-6=14"
+        },
+        {
+         "do": "Find D1: replace column 1 by the constants.",
+         "m": "D_1=\\begin{vmatrix}12&3\\\\-8&5\\end{vmatrix}=60+24=84"
+        },
+        {
+         "do": "Find D2: replace column 2 by the constants.",
+         "m": "D_2=\\begin{vmatrix}4&12\\\\2&-8\\end{vmatrix}=-32-24=-56"
+        },
+        {
+         "do": "Divide.",
+         "why": "Your note writes x2 = 4. The sign is negative.",
+         "m": "x_1=\\frac{84}{14}=6,\\qquad x_2=\\frac{-56}{14}=-4"
+        },
+        {
+         "do": "Check in both equations.",
+         "m": "4(6)+3(-4)=12,\\qquad 2(6)+5(-4)=-8"
+        }
+       ],
+       "answer": "$x_1=6$ and $x_2=-4$."
+      },
+      {
+       "title": "Three equations",
+       "problem": "Solve $x+y+z=6$, $2x-y+z=3$, $x+2y-z=2$.",
+       "steps": [
+        {
+         "do": "Find D.",
+         "why": "First column: 1(1-2) - 2(-1-2) + 1(1+1) = -1 + 6 + 2 = 7.",
+         "m": "D=\\begin{vmatrix}1&1&1\\\\2&-1&1\\\\1&2&-1\\end{vmatrix}=7"
+        },
+        {
+         "do": "Replace column 1 by 6, 3, 2.",
+         "m": "D_1=\\begin{vmatrix}6&1&1\\\\3&-1&1\\\\2&2&-1\\end{vmatrix}=7"
+        },
+        {
+         "do": "Replace column 2.",
+         "m": "D_2=\\begin{vmatrix}1&6&1\\\\2&3&1\\\\1&2&-1\\end{vmatrix}=14"
+        },
+        {
+         "do": "Replace column 3.",
+         "m": "D_3=\\begin{vmatrix}1&1&6\\\\2&-1&3\\\\1&2&2\\end{vmatrix}=21"
+        },
+        {
+         "do": "Divide by D.",
+         "m": "x=\\frac{7}{7}=1,\\quad y=\\frac{14}{7}=2,\\quad z=\\frac{21}{7}=3"
+        }
+       ],
+       "answer": "$x=1$, $y=2$, $z=3$. These three equations are used again in lesson 1.4."
+      }
+     ],
+     "practice": [
+      {
+       "q": "Use Cramer's rule to solve $2x+y=7$ and $x-y=-1$. Give $(x,y)$.",
+       "type": "vector",
+       "answer": [
+        2,
+        3
+       ],
+       "hint": "D = 2(-1) - 1(1) = -3.",
+       "solution": [
+        {
+         "do": "Find D.",
+         "m": "D=-2-1=-3"
+        },
+        {
+         "do": "Find D1 and D2.",
+         "m": "D_1=\\begin{vmatrix}7&1\\\\-1&-1\\end{vmatrix}=-6,\\quad D_2=\\begin{vmatrix}2&7\\\\1&-1\\end{vmatrix}=-9"
+        },
+        {
+         "do": "Divide.",
+         "m": "x=\\frac{-6}{-3}=2,\\quad y=\\frac{-9}{-3}=3"
+        }
+       ],
+       "answerText": "x = 2, y = 3"
+      },
+      {
+       "q": "Using the system from your notes, $4x_1+3x_2=12$ and $2x_1+5x_2=-8$, find $x_2$.",
+       "type": "number",
+       "answer": -4,
+       "hint": "D = 14. D2 is the determinant with rows 4, 12 and 2, -8.",
+       "solution": [
+        {
+         "do": "D2 replaces column 2 with the constants.",
+         "m": "D_2=\\begin{vmatrix}4&12\\\\2&-8\\end{vmatrix}=-32-24=-56"
+        },
+        {
+         "do": "Divide by D.",
+         "m": "x_2=\\frac{-56}{14}=-4"
+        }
+       ],
+       "answerText": "-4 (your note p.3 writes 4, which is a slip)"
+      },
+      {
+       "q": "For $6x+3y=9$ and $2x+y=3$, find $D$, the determinant of the coefficients.",
+       "type": "number",
+       "answer": 0,
+       "hint": "D = 6(1) - 3(2).",
+       "solution": [
+        {
+         "do": "Expand.",
+         "m": "D=6(1)-3(2)=0"
+        },
+        "With D = 0, Cramer's rule cannot be used."
+       ],
+       "answerText": "0"
+      },
+      {
+       "q": "For $x+y+z=6$, $2x-y+z=3$, $x+2y-z=2$, use Cramer's rule to find $x_2$.",
+       "type": "number",
+       "answer": 2,
+       "hint": "D = 7 and D2 replaces column 2 by 6, 3, 2.",
+       "solution": [
+        {
+         "do": "D2.",
+         "m": "D_2=\\begin{vmatrix}1&6&1\\\\2&3&1\\\\1&2&-1\\end{vmatrix}=14"
+        },
+        {
+         "do": "Divide.",
+         "m": "x_2=\\frac{14}{7}=2"
+        }
+       ],
+       "answerText": "2"
+      },
+      {
+       "q": "Solve $2x+y-z=-1$, $x-y+2z=6$, $3x+y+z=4$ by Cramer's rule. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        1,
+        -1,
+        2
+       ],
+       "hint": "D = -5. Find D1, D2, D3 in turn.",
+       "solution": [
+        "Compute D, then D1, D2 and D3 by replacing each column with the constants.",
+        {
+         "do": "Results.",
+         "m": "D=-5,\\ D_1=-5,\\ D_2=5,\\ D_3=-10"
+        }
+       ],
+       "answerText": "x = 1, y = -1, z = 2"
+      }
+     ],
+     "quiz": [
+      {
+       "q": "Cramer's rule can be used only when",
+       "options": [
+        "D = 0",
+        "D is not zero",
+        "the constants are zero",
+        "there are three unknowns"
+       ],
+       "answer": 1,
+       "explain": "The rule divides by D, so D must be non-zero."
+      },
+      {
+       "q": "In a three-equation system, D2 is formed by",
+       "options": [
+        "replacing column 2 of D by the constants",
+        "replacing row 2 by the constants",
+        "deleting column 2",
+        "swapping rows 1 and 2"
+       ],
+       "answer": 0,
+       "explain": "Each Dk replaces column k by the right-hand side."
+      },
+      {
+       "q": "For 4x1 + 3x2 = 12 and 2x1 + 5x2 = -8, the value of x2 is",
+       "options": [
+        "4",
+        "-4",
+        "6",
+        "-6"
+       ],
+       "answer": 1,
+       "explain": "D2 = -56 and D = 14, so x2 = -4. Your note's value of 4 is a slip."
+      },
+      {
+       "q": "For which system can Cramer's rule not be used?",
+       "options": [
+        "2x + y = 7 and x - y = -1",
+        "6x + 3y = 9 and 2x + y = 3",
+        "x + y = 4 and x - y = 2",
+        "3x + y = 5 and x + 2y = 5"
+       ],
+       "answer": 1,
+       "explain": "For the second system D = 6(1) - 3(2) = 0."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Cramer's rule, two unknowns",
+       "back": "$x_1=D_1/D$ and $x_2=D_2/D$, with $D\\neq0$."
+      },
+      {
+       "front": "How is D2 formed?",
+       "back": "Replace column 2 of D by the constants on the right-hand side."
+      },
+      {
+       "front": "Correct value of x2 in the notes example",
+       "back": "-4, not 4."
+      },
+      {
+       "front": "When does Cramer's rule fail?",
+       "back": "When D = 0."
+      },
+      {
+       "front": "Cramer's rule for large systems",
+       "back": "Not practical. Use elimination (not in your notes)."
+      }
+     ],
+     "theory": [
+      {
+       "q": "State Cramer's rule for two equations in two unknowns.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "$x_1=D_1/D$ and $x_2=D_2/D$",
+        "$D$ is the determinant of the coefficients",
+        "It applies only when $D\\neq0$"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Describe how the determinants $D_1,D_2,D_3$ are formed in a three-equation system.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Start from D, the determinant of the coefficients",
+        "Replace column 1 by the constants to get D1",
+        "Replace column 2 for D2 and column 3 for D3"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Outline how Cramer's rule for two unknowns is proved.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Multiply the first equation by $a_{22}$ and the second by $-a_{12}$, then add",
+        "This eliminates $x_2$ and gives $(a_{11}a_{22}-a_{12}a_{21})x_1=b_1a_{22}-a_{12}b_2$",
+        "Eliminate $x_1$ in the same way",
+        "Divide by $D\\neq0$ and write the right-hand sides as determinants"
+       ],
+       "need": 4
+      },
+      {
+       "q": "What does D = 0 imply about Cramer's rule?",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "The rule cannot be applied because it divides by D",
+        "The system has no unique solution"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Solve $4x_1+3x_2=12$, $2x_1+5x_2=-8$ by Cramer's rule.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "D = 20 - 6 = 14",
+        "D1 = 60 + 24 = 84, so x1 = 6",
+        "D2 = -32 - 24 = -56, so x2 = -4",
+        "Check in both equations"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Solve $x+y+z=6$, $2x-y+z=3$, $x+2y-z=2$ by Cramer's rule.",
+       "type": "Explain",
+       "marks": 5,
+       "points": [
+        "D = 7",
+        "D1 = 7, D2 = 14, D3 = 21",
+        "x = 1, y = 2, z = 3"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Why is Cramer's rule not used for large systems?",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "Many determinants must be evaluated",
+        "Elimination is much faster"
+       ],
+       "need": 2
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=cramers+rule+3x3+explained"
+      }
+     ]
+    },
+    {
+     "id": "1.4",
+     "title": "Gaussian elimination",
+     "slides": "Not in your notes (your notes say study on your own); the course outline lists row transformation and Gaussian elimination",
+     "one_line": "Gaussian elimination solves a system by tidying the equations into a staircase, then reading the answers from the bottom up.",
+     "analogy": "Think of a set of clues where the first clue mentions three people, the second two, the third one. Solve the one-person clue first, then use it to unlock the next, and so on up the staircase.",
+     "recall": [
+      "Write 2x + 3y = 7 as one row of numbers followed by a bar.",
+      "If row 2 is 2 times row 1, what do you get when you subtract 2 times row 1 from row 2?"
+     ],
+     "exam": [
+      "The augmented matrix of a system is the coefficient matrix with the constants added as an extra column, usually after a bar: $[A\\,|\\,b]$. Not in your notes.",
+      "Three elementary row operations do not change the solutions: interchange two rows; multiply a row by a non-zero number; add a multiple of one row to another. Not in your notes.",
+      "Gaussian elimination uses these operations to make every entry below each leading entry (pivot) zero. The result is row-echelon form, a staircase with zeros below the pivots. Not in your notes.",
+      "Then back-substitution: solve the last equation first, put that value into the one above, and continue upwards. Not in your notes.",
+      "A row $0\\ 0\\ \\cdots\\ 0\\,|\\,c$ with $c\\neq0$ means $0=c$, so there is no solution. A row of all zeros means one equation was redundant, so there are infinitely many solutions (if the rest is consistent). Not in your notes.",
+      "Choose the order of operations to avoid fractions where you can, for example by swapping rows so a pivot is 1. Not in your notes."
+     ],
+     "terms": [
+      "augmented-matrix",
+      "row-operation",
+      "pivot",
+      "row-echelon-form",
+      "back-substitution",
+      "gaussian-elimination"
+     ],
+     "examples": [
+      {
+       "title": "Three equations, three unknowns",
+       "problem": "Solve $x+y+z=6$, $2x-y+z=3$, $x+2y-z=2$ (the same system as in lesson 1.3).",
+       "steps": [
+        {
+         "do": "Write the augmented matrix: coefficients, a bar, then the constants.",
+         "m": "\\left[\\begin{array}{ccc|c}1&1&1&6\\\\2&-1&1&3\\\\1&2&-1&2\\end{array}\\right]"
+        },
+        {
+         "do": "Apply $R_2\\to R_2-2R_1$.",
+         "why": "Use the 1 in the first column to clear the entry below it.",
+         "m": "\\left[\\begin{array}{ccc|c}1&1&1&6\\\\0&-3&-1&-9\\\\1&2&-1&2\\end{array}\\right]"
+        },
+        {
+         "do": "Apply $R_3\\to R_3-R_1$.",
+         "why": "Clear the entry below it in row 3.",
+         "m": "\\left[\\begin{array}{ccc|c}1&1&1&6\\\\0&-3&-1&-9\\\\0&1&-2&-4\\end{array}\\right]"
+        },
+        {
+         "do": "Apply $R_2\\leftrightarrow R_3$.",
+         "why": "Swap rows 2 and 3 so the second pivot is 1. This avoids fractions.",
+         "m": "\\left[\\begin{array}{ccc|c}1&1&1&6\\\\0&1&-2&-4\\\\0&-3&-1&-9\\end{array}\\right]"
+        },
+        {
+         "do": "Apply $R_3\\to R_3+3R_2$.",
+         "why": "Clear the entry below the second pivot.",
+         "m": "\\left[\\begin{array}{ccc|c}1&1&1&6\\\\0&1&-2&-4\\\\0&0&-7&-21\\end{array}\\right]"
+        },
+        {
+         "do": "Apply $R_3\\to -\\frac{1}{7}R_3$.",
+         "why": "Scale the last row so its leading entry is 1.",
+         "m": "\\left[\\begin{array}{ccc|c}1&1&1&6\\\\0&1&-2&-4\\\\0&0&1&3\\end{array}\\right]"
+        },
+        {
+         "do": "Back-substitute from the bottom row.",
+         "m": "x_3=3,\\qquad x_2-2x_3=-4\\Rightarrow x_2=2,\\qquad x_1+x_2+x_3=6\\Rightarrow x_1=1"
+        }
+       ],
+       "answer": "$x=1$, $y=2$, $z=3$, matching Cramer's rule."
+      },
+      {
+       "title": "Two equations",
+       "problem": "Solve $2x+3y=7$ and $4x-y=7$.",
+       "steps": [
+        {
+         "do": "Augmented matrix for $2x+3y=7$ and $4x-y=7$.",
+         "m": "\\left[\\begin{array}{cc|c}2&3&7\\\\4&-1&7\\end{array}\\right]"
+        },
+        {
+         "do": "Apply $R_2\\to R_2-2R_1$.",
+         "why": "Clear the entry below the first pivot.",
+         "m": "\\left[\\begin{array}{cc|c}2&3&7\\\\0&-7&-7\\end{array}\\right]"
+        },
+        {
+         "do": "Apply $R_2\\to -\\frac{1}{7}R_2$.",
+         "why": "Make the second pivot 1.",
+         "m": "\\left[\\begin{array}{cc|c}2&3&7\\\\0&1&1\\end{array}\\right]"
+        },
+        {
+         "do": "Back-substitute.",
+         "m": "y=1,\\qquad 2x+3(1)=7\\Rightarrow x=2"
+        }
+       ],
+       "answer": "$x=2$, $y=1$."
+      },
+      {
+       "title": "What a bad row looks like",
+       "problem": "What happens to $x+y=2$ with $2x+2y=5$, and to $x+y=2$ with $2x+2y=4$?",
+       "steps": [
+        {
+         "do": "Augmented matrix for $x+y=2$ and $2x+2y=5$.",
+         "m": "\\left[\\begin{array}{cc|c}1&1&2\\\\2&2&5\\end{array}\\right]"
+        },
+        {
+         "do": "Apply $R_2\\to R_2-2R_1$.",
+         "m": "\\left[\\begin{array}{cc|c}1&1&2\\\\0&0&1\\end{array}\\right]"
+        },
+        {
+         "do": "The last row says 0 = 1, which is impossible.",
+         "why": "No solution. The system is inconsistent."
+        },
+        {
+         "do": "Augmented matrix for $x+y=2$ and $2x+2y=4$.",
+         "m": "\\left[\\begin{array}{cc|c}1&1&2\\\\2&2&4\\end{array}\\right]"
+        },
+        {
+         "do": "Apply $R_2\\to R_2-2R_1$.",
+         "m": "\\left[\\begin{array}{cc|c}1&1&2\\\\0&0&0\\end{array}\\right]"
+        },
+        {
+         "do": "The last row is all zeros, so the second equation told us nothing new.",
+         "why": "Infinitely many solutions: y can be anything, and x = 2 - y."
+        }
+       ],
+       "answer": "The first system has no solution. The second has infinitely many."
+      }
+     ],
+     "practice": [
+      {
+       "q": "Solve $x+2y=5$ and $3x+y=10$ by Gaussian elimination. Give $(x,y)$.",
+       "type": "vector",
+       "answer": [
+        3,
+        1
+       ],
+       "hint": "Clear below the first pivot, then below the second, then back-substitute.",
+       "solution": [
+        "Row-reduce the augmented matrix to echelon form.",
+        "Back-substitute from the last row upwards.",
+        "Check in the original equations."
+       ],
+       "answerText": "(3, 1)"
+      },
+      {
+       "q": "Solve $x+y+z=4$, $2x-y+z=8$, $x+2y-z=-3$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        2,
+        -1,
+        3
+       ],
+       "hint": "Clear below the first pivot, then below the second, then back-substitute.",
+       "solution": [
+        "Row-reduce the augmented matrix to echelon form.",
+        "Back-substitute from the last row upwards.",
+        "Check in the original equations."
+       ],
+       "answerText": "(2, -1, 3)"
+      },
+      {
+       "q": "Solve $x-y+z=2$, $2x+y-z=1$, $x+2y+z=2$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        1,
+        0,
+        1
+       ],
+       "hint": "Clear below the first pivot, then below the second, then back-substitute.",
+       "solution": [
+        "Row-reduce the augmented matrix to echelon form.",
+        "Back-substitute from the last row upwards.",
+        "Check in the original equations."
+       ],
+       "answerText": "(1, 0, 1)"
+      },
+      {
+       "q": "The augmented matrix is $\\left[\\begin{array}{cc|c}1&3&4\\\\2&5&9\\end{array}\\right]$. After $R_2\\to R_2-2R_1$, write the new row 2 (three numbers).",
+       "type": "matrix",
+       "answer": [
+        [
+         0,
+         -1,
+         1
+        ]
+       ],
+       "hint": "Subtract twice row 1 from row 2, entry by entry.",
+       "solution": [
+        {
+         "do": "Entry by entry.",
+         "m": "(2-2,\\ 5-6,\\ 9-8)=(0,-1,1)"
+        }
+       ],
+       "answerText": "0 -1 1"
+      },
+      {
+       "q": "Eliminating in $x+y=2$ and $2x+2y=5$ leaves the row $0\\ \\ 0\\ \\ |\\ \\ c$. What is $c$?",
+       "type": "number",
+       "answer": 1,
+       "hint": "Subtract twice row 1 from row 2.",
+       "solution": [
+        {
+         "do": "Row 2.",
+         "m": "(0,\\ 0,\\ 5-4)=(0,0,1)"
+        },
+        "The row says 0 = 1, so there is no solution."
+       ],
+       "answerText": "1"
+      }
+     ],
+     "quiz": [
+      {
+       "q": "Which is not an allowed elementary row operation?",
+       "options": [
+        "Swap two rows",
+        "Multiply a row by 0",
+        "Multiply a row by 3",
+        "Add 2 times one row to another"
+       ],
+       "answer": 1,
+       "explain": "Multiplying a row by zero destroys an equation. The multiplier must be non-zero."
+      },
+      {
+       "q": "After elimination a row reads 0 0 | 4. What does this mean?",
+       "options": [
+        "x = 4",
+        "No solution",
+        "Infinitely many solutions",
+        "The system is homogeneous"
+       ],
+       "answer": 1,
+       "explain": "It says 0 = 4, which is impossible."
+      },
+      {
+       "q": "Back-substitution means",
+       "options": [
+        "solving the last equation first and working upwards",
+        "solving the first equation first",
+        "swapping the rows",
+        "taking the transpose"
+       ],
+       "answer": 0,
+       "explain": "The staircase makes the last equation the simplest."
+      },
+      {
+       "q": "In row-echelon form, the entries below each pivot are",
+       "options": [
+        "all 1",
+        "all zero",
+        "all equal",
+        "the constants"
+       ],
+       "answer": 1,
+       "explain": "Elimination clears everything below a pivot."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Augmented matrix",
+       "back": "The coefficient matrix with the constants added as an extra column."
+      },
+      {
+       "front": "Three row operations",
+       "back": "Swap two rows; multiply a row by a non-zero number; add a multiple of one row to another."
+      },
+      {
+       "front": "Row-echelon form",
+       "back": "A staircase: zeros below every leading entry."
+      },
+      {
+       "front": "A row 0 0 | c with c not zero",
+       "back": "No solution (0 = c)."
+      },
+      {
+       "front": "A row of all zeros",
+       "back": "A redundant equation: usually infinitely many solutions."
+      }
+     ],
+     "theory": [
+      {
+       "q": "List the three elementary row operations.",
+       "type": "List",
+       "marks": 3,
+       "points": [
+        "Interchange two rows",
+        "Multiply a row by a non-zero constant",
+        "Add a multiple of one row to another"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Describe the method of Gaussian elimination.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Write the augmented matrix",
+        "Use row operations to create zeros below each pivot",
+        "The result is row-echelon form",
+        "Back-substitute from the last row upwards"
+       ],
+       "need": 4
+      },
+      {
+       "q": "What is the augmented matrix of a system?",
+       "type": "Define",
+       "marks": 2,
+       "points": [
+        "The coefficient matrix with the column of constants added",
+        "Usually separated by a bar"
+       ],
+       "need": 2
+      },
+      {
+       "q": "How do you recognise a system with no solution during elimination?",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "A row with all zero coefficients but a non-zero constant",
+        "It reads 0 = c with c not zero",
+        "The system is inconsistent"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Solve $x+y+z=6$, $2x-y+z=3$, $x+2y-z=2$ by Gaussian elimination.",
+       "type": "Explain",
+       "marks": 6,
+       "points": [
+        "Augmented matrix with rows (1,1,1,6), (2,-1,1,3), (1,2,-1,2)",
+        "R2 - 2R1 and R3 - R1 clear column 1",
+        "Swap rows 2 and 3, then R3 + 3R2 gives the row (0,0,-7,-21)",
+        "z = 3",
+        "y = 2 and x = 1"
+       ],
+       "need": 5
+      },
+      {
+       "q": "Solve $2x+3y=7$ and $4x-y=7$ by Gaussian elimination.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Augmented matrix with rows (2,3,7), (4,-1,7)",
+        "R2 - 2R1 gives (0,-7,-7)",
+        "y = 1",
+        "x = 2"
+       ],
+       "need": 4
+      },
+      {
+       "q": "What does a row of zeros in the echelon form tell you?",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "One equation is redundant",
+        "There are fewer independent equations than unknowns, so usually infinitely many solutions"
+       ],
+       "need": 2
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=gaussian+elimination+explained+3x3"
+      }
+     ]
+    },
+    {
+     "id": "1.5",
+     "title": "The inverse of a matrix and Gauss-Jordan elimination",
+     "slides": "Lecturer's notes p.5 (definition, uniqueness); the methods are not in your notes",
+     "one_line": "The inverse of a matrix undoes it, so multiplying by the inverse solves a system the way dividing solves an equation.",
+     "analogy": "For numbers, 5 and 1/5 cancel each other: 5 times 1/5 is 1. The inverse of a matrix does the same job, with the identity matrix playing the part of 1.",
+     "recall": [
+      "What is the identity matrix, and what does multiplying by it do?",
+      "A matrix has determinant 0. Does it have an inverse?"
+     ],
+     "exam": [
+      "The inverse of an $n\\times n$ matrix $A=[a_{jk}]$ is the $n\\times n$ matrix $A^{-1}$ with $AA^{-1}=A^{-1}A=I$, where $I$ is the $n\\times n$ unit matrix.",
+      "If $A$ has an inverse it is called non-singular. If it has none it is called singular.",
+      "The inverse is unique. If $B$ and $C$ are both inverses of $A$, so that $AB=I$ and $CA=I$, then $B=IB=(CA)B=C(AB)=CI=C$.",
+      "A square matrix has an inverse exactly when $\\det A\\neq0$. Not in your notes.",
+      "For $A=\\begin{bmatrix}a&b\\\\c&d\\end{bmatrix}$ with $D=ad-bc\\neq0$: $A^{-1}=\\dfrac1D\\begin{bmatrix}d&-b\\\\-c&a\\end{bmatrix}$. Not in your notes.",
+      "Gauss-Jordan method: write $[A\\,|\\,I]$ and apply row operations until the left side becomes $I$. The right side is then $A^{-1}$. If a row of zeros appears on the left, $A$ is singular. Not in your notes.",
+      "Solving a system: if $Ax=b$ and $A^{-1}$ exists, then $x=A^{-1}b$. Also $(AB)^{-1}=B^{-1}A^{-1}$. Not in your notes."
+     ],
+     "terms": [
+      "inverse-matrix",
+      "gauss-jordan",
+      "singular-matrix",
+      "nonsingular-matrix",
+      "identity-matrix"
+     ],
+     "examples": [
+      {
+       "title": "A 2 by 2 inverse and its check",
+       "problem": "Find the inverse of $A=\\begin{bmatrix}4&3\\\\2&5\\end{bmatrix}$ and use it to solve $4x_1+3x_2=12$, $2x_1+5x_2=-8$.",
+       "steps": [
+        {
+         "do": "Find the determinant.",
+         "why": "It is not zero, so the inverse exists.",
+         "m": "D=20-6=14"
+        },
+        {
+         "do": "Swap the diagonal entries and change the signs of the others.",
+         "m": "A^{-1}=\\frac1{14}\\begin{bmatrix}5&-3\\\\-2&4\\end{bmatrix}=\\begin{bmatrix}\\frac{5}{14}&-\\frac{3}{14}\\\\-\\frac{1}{7}&\\frac{2}{7}\\end{bmatrix}"
+        },
+        {
+         "do": "Check the product.",
+         "m": "AA^{-1}=I"
+        },
+        {
+         "do": "Multiply the inverse by the constants.",
+         "m": "x=A^{-1}b=\\frac1{14}\\begin{bmatrix}5&-3\\\\-2&4\\end{bmatrix}\\begin{bmatrix}12\\\\-8\\end{bmatrix}=\\frac1{14}\\begin{bmatrix}84\\\\-56\\end{bmatrix}=\\begin{bmatrix}6\\\\-4\\end{bmatrix}"
+        }
+       ],
+       "answer": "$x_1=6$ and $x_2=-4$, the same as Cramer's rule gave."
+      },
+      {
+       "title": "Gauss-Jordan on a 3 by 3 matrix",
+       "problem": "Find the inverse of $A=\\begin{bmatrix}1&2&3\\\\0&1&4\\\\5&6&0\\end{bmatrix}$.",
+       "steps": [
+        {
+         "do": "Write $[A\\,|\\,I]$.",
+         "m": "\\left[\\begin{array}{ccc|ccc}1&2&3&1&0&0\\\\0&1&4&0&1&0\\\\5&6&0&0&0&1\\end{array}\\right]"
+        },
+        {
+         "do": "Apply $R_3\\to R_3-5R_1$.",
+         "why": "Clear the entry below the first pivot.",
+         "m": "\\left[\\begin{array}{ccc|ccc}1&2&3&1&0&0\\\\0&1&4&0&1&0\\\\0&-4&-15&-5&0&1\\end{array}\\right]"
+        },
+        {
+         "do": "Apply $R_3\\to R_3+4R_2$.",
+         "why": "Clear the entry below the second pivot. The third pivot is now 1.",
+         "m": "\\left[\\begin{array}{ccc|ccc}1&2&3&1&0&0\\\\0&1&4&0&1&0\\\\0&0&1&-5&4&1\\end{array}\\right]"
+        },
+        {
+         "do": "Apply $R_1\\to R_1-3R_3$.",
+         "why": "Now clear above the pivots, starting from the last column.",
+         "m": "\\left[\\begin{array}{ccc|ccc}1&2&0&16&-12&-3\\\\0&1&4&0&1&0\\\\0&0&1&-5&4&1\\end{array}\\right]"
+        },
+        {
+         "do": "Apply $R_2\\to R_2-4R_3$.",
+         "m": "\\left[\\begin{array}{ccc|ccc}1&2&0&16&-12&-3\\\\0&1&0&20&-15&-4\\\\0&0&1&-5&4&1\\end{array}\\right]"
+        },
+        {
+         "do": "Apply $R_1\\to R_1-2R_2$.",
+         "why": "Clear the entry above the second pivot.",
+         "m": "\\left[\\begin{array}{ccc|ccc}1&0&0&-24&18&5\\\\0&1&0&20&-15&-4\\\\0&0&1&-5&4&1\\end{array}\\right]"
+        },
+        {
+         "do": "The left side is now the identity, so the right side is the inverse.",
+         "m": "A^{-1}=\\begin{bmatrix}-24&18&5\\\\20&-15&-4\\\\-5&4&1\\end{bmatrix}"
+        }
+       ],
+       "answer": "$A^{-1}=\\begin{bmatrix}-24&18&5\\\\20&-15&-4\\\\-5&4&1\\end{bmatrix}$. Check: $AA^{-1}=I$."
+      }
+     ],
+     "practice": [
+      {
+       "q": "Find the inverse of $\\begin{bmatrix}3&1\\\\5&2\\end{bmatrix}$.",
+       "type": "matrix",
+       "answer": [
+        [
+         2,
+         -1
+        ],
+        [
+         -5,
+         3
+        ]
+       ],
+       "hint": "D = 6 - 5 = 1. Swap the diagonal entries and change the signs of the others.",
+       "solution": [
+        "Use $A^{-1}=\\frac1D\\begin{bmatrix}d&-b\\\\-c&a\\end{bmatrix}$ for a 2 by 2 matrix.",
+        "Check that $AA^{-1}=I$."
+       ],
+       "answerText": "$\\begin{bmatrix}2&-1\\\\-5&3\\end{bmatrix}$"
+      },
+      {
+       "q": "Find the inverse of $\\begin{bmatrix}2&0\\\\0&4\\end{bmatrix}$.",
+       "type": "matrix",
+       "answer": [
+        [
+         0.5,
+         0
+        ],
+        [
+         0,
+         0.25
+        ]
+       ],
+       "hint": "For a diagonal matrix, invert each diagonal entry.",
+       "solution": [
+        "Use $A^{-1}=\\frac1D\\begin{bmatrix}d&-b\\\\-c&a\\end{bmatrix}$ for a 2 by 2 matrix.",
+        "Check that $AA^{-1}=I$."
+       ],
+       "answerText": "$\\begin{bmatrix}\\frac{1}{2}&0\\\\0&\\frac{1}{4}\\end{bmatrix}$"
+      },
+      {
+       "q": "Find the inverse of $\\begin{bmatrix}4&3\\\\2&5\\end{bmatrix}$. Fractions are accepted, for example 5/14.",
+       "type": "matrix",
+       "answer": [
+        [
+         0.357142857,
+         -0.214285714
+        ],
+        [
+         -0.142857143,
+         0.285714286
+        ]
+       ],
+       "hint": "D = 14.",
+       "solution": [
+        {
+         "do": "Formula.",
+         "m": "A^{-1}=\\frac1{14}\\begin{bmatrix}5&-3\\\\-2&4\\end{bmatrix}"
+        }
+       ],
+       "answerText": "$\\begin{bmatrix}\\frac{5}{14}&-\\frac{3}{14}\\\\-\\frac{1}{7}&\\frac{2}{7}\\end{bmatrix}$"
+      },
+      {
+       "q": "For what value of $k$ is $\\begin{bmatrix}2&4\\\\1&k\\end{bmatrix}$ singular?",
+       "type": "number",
+       "answer": 2,
+       "hint": "A matrix is singular when its determinant is zero.",
+       "solution": [
+        {
+         "do": "Set D = 0.",
+         "m": "2k-4=0\\Rightarrow k=2"
+        }
+       ],
+       "answerText": "2"
+      },
+      {
+       "q": "Solve $3x+y=4$ and $5x+2y=7$ using $x=A^{-1}b$. Give $(x,y)$.",
+       "type": "vector",
+       "answer": [
+        1,
+        1
+       ],
+       "hint": "The inverse is [2 -1; -5 3].",
+       "solution": [
+        {
+         "do": "Multiply.",
+         "m": "\\begin{bmatrix}2&-1\\\\-5&3\\end{bmatrix}\\begin{bmatrix}4\\\\7\\end{bmatrix}=\\begin{bmatrix}1\\\\1\\end{bmatrix}"
+        }
+       ],
+       "answerText": "x = 1, y = 1"
+      },
+      {
+       "q": "Find the inverse of $\\begin{bmatrix}2&1&1\\\\1&2&1\\\\1&1&2\\end{bmatrix}$ by Gauss-Jordan elimination. Fractions are accepted.",
+       "type": "matrix",
+       "answer": [
+        [
+         0.75,
+         -0.25,
+         -0.25
+        ],
+        [
+         -0.25,
+         0.75,
+         -0.25
+        ],
+        [
+         -0.25,
+         -0.25,
+         0.75
+        ]
+       ],
+       "hint": "D = 4 and the inverse has 3/4 on the diagonal.",
+       "solution": [
+        "Row-reduce $[A\\,|\\,I]$ until the left side is $I$."
+       ],
+       "answerText": "$\\begin{bmatrix}\\frac{3}{4}&-\\frac{1}{4}&-\\frac{1}{4}\\\\-\\frac{1}{4}&\\frac{3}{4}&-\\frac{1}{4}\\\\-\\frac{1}{4}&-\\frac{1}{4}&\\frac{3}{4}\\end{bmatrix}$"
+      }
+     ],
+     "quiz": [
+      {
+       "q": "A matrix A has an inverse only if",
+       "options": [
+        "its determinant is zero",
+        "its determinant is not zero",
+        "it is a row matrix",
+        "it is not square"
+       ],
+       "answer": 1,
+       "explain": "A zero determinant means singular."
+      },
+      {
+       "q": "If AB = I and CA = I, then",
+       "options": [
+        "B = C",
+        "B = 0",
+        "C = 0",
+        "B and C differ"
+       ],
+       "answer": 0,
+       "explain": "B = IB = (CA)B = C(AB) = CI = C. The inverse is unique."
+      },
+      {
+       "q": "In Gauss-Jordan elimination you start from",
+       "options": [
+        "[A | A]",
+        "[A | I]",
+        "[I | A]",
+        "[A | 0]"
+       ],
+       "answer": 1,
+       "explain": "Reduce the left block to I and the right block becomes the inverse."
+      },
+      {
+       "q": "For a 2 by 2 matrix with D = 14, the inverse is multiplied by",
+       "options": [
+        "14",
+        "1/14",
+        "-14",
+        "D squared"
+       ],
+       "answer": 1,
+       "explain": "A^-1 = (1/D) times the swapped and sign-changed matrix."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Definition of the inverse",
+       "back": "$AA^{-1}=A^{-1}A=I$."
+      },
+      {
+       "front": "Singular matrix",
+       "back": "A matrix with no inverse (determinant zero)."
+      },
+      {
+       "front": "2 by 2 inverse",
+       "back": "$\\frac1D\\begin{bmatrix}d&-b\\\\-c&a\\end{bmatrix}$ (not in your notes)."
+      },
+      {
+       "front": "Gauss-Jordan method",
+       "back": "Reduce [A | I] to [I | A inverse] (not in your notes)."
+      },
+      {
+       "front": "Solving Ax = b with the inverse",
+       "back": "x = A inverse times b."
+      }
+     ],
+     "theory": [
+      {
+       "q": "Define the inverse of a matrix.",
+       "type": "Define",
+       "marks": 3,
+       "points": [
+        "The $n\\times n$ matrix $A^{-1}$ with $AA^{-1}=A^{-1}A=I$",
+        "$I$ is the $n\\times n$ unit matrix",
+        "It exists only for a square matrix"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Define singular and non-singular matrices.",
+       "type": "Define",
+       "marks": 2,
+       "points": [
+        "A matrix with an inverse is non-singular",
+        "A matrix with no inverse is singular"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Prove that the inverse of a matrix is unique.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Suppose B and C are both inverses of A, so AB = I and CA = I",
+        "B = IB",
+        "= (CA)B = C(AB)",
+        "= CI = C"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Describe the Gauss-Jordan method for finding an inverse.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Write the augmented matrix [A",
+        "I]",
+        "Apply row operations until the left side is I",
+        "The right side is then the inverse",
+        "A row of zeros on the left means A is singular"
+       ],
+       "need": 5
+      },
+      {
+       "q": "Find the inverse of the matrix with rows (4,3) and (2,5).",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "D = 20 - 6 = 14",
+        "Swap the diagonal entries and change the signs of the others",
+        "Divide by D",
+        "The inverse has rows (5/14, -3/14) and (-1/7, 2/7)"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Explain how the inverse is used to solve Ax = b.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Multiply both sides on the left by the inverse",
+        "x = A inverse times b",
+        "This needs the determinant to be non-zero"
+       ],
+       "need": 3
+      },
+      {
+       "q": "State the formula for the inverse of a product.",
+       "type": "Define",
+       "marks": 2,
+       "points": [
+        "$(AB)^{-1}=B^{-1}A^{-1}$",
+        "The order reverses"
+       ],
+       "need": 2
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=inverse+of+a+matrix+gauss+jordan+explained"
+      }
+     ]
+    },
+    {
+     "id": "1.6",
+     "title": "Homogeneous systems and when a solution exists",
+     "slides": "Lecturer's notes pp.2 and 7; past test Q4 and Q8",
+     "one_line": "A system with all constants equal to zero always has the zero solution, and has others only when its determinant is zero.",
+     "analogy": "A balanced see-saw with nothing on it is balanced at zero. The question is whether it can also balance in some other, tilted way. That happens only when the system is degenerate, which is exactly when D = 0.",
+     "recall": [
+      "What does a zero determinant tell you about a matrix?",
+      "Is x = 0, y = 0 a solution of 2x + 3y = 0?"
+     ],
+     "exam": [
+      "A linear system is homogeneous when all the right-hand constants are zero, $Ax=0$. Otherwise it is non-homogeneous.",
+      "A homogeneous system always has the trivial solution $x=0$. The interesting question is whether it has non-trivial solutions ($x\\neq0$).",
+      "Your notes (pp.2, 7): a homogeneous system has a non-trivial solution if and only if its determinant is zero. This is the condition used for eigenvalues: $\\det(A-\\lambda I)=0$.",
+      "If $D\\neq0$ the system has exactly one solution. For a homogeneous system that solution is $x=0$.",
+      "For a non-homogeneous system with $D=0$ there are two possibilities: no solution (inconsistent), or infinitely many (consistent). The past test (Q8) states this. Your notes mention only the inconsistent case. Not in your notes.",
+      "To find a non-trivial solution once $D=0$, use elimination (lesson 1.4): there is a free variable, so the solutions are multiples of one vector. Not in your notes."
+     ],
+     "terms": [
+      "homogeneous-system",
+      "trivial-solution",
+      "nontrivial-solution",
+      "consistent",
+      "inconsistent",
+      "determinant"
+     ],
+     "examples": [
+      {
+       "title": "Past test Q4: find k",
+       "problem": "Find $k$ so that $4x_1+3x_2-x_3=0$, $7x_1-x_2-3x_3=0$, $3x_1-4x_2+kx_3=0$ has a non-trivial solution, then find one.",
+       "steps": [
+        {
+         "do": "A non-trivial solution needs D = 0.",
+         "m": "D=\\begin{vmatrix}4&3&-1\\\\7&-1&-3\\\\3&-4&k\\end{vmatrix}"
+        },
+        {
+         "do": "Expand down the first column.",
+         "m": "D=4(-k-12)-7(3k-4)+3(-10)"
+        },
+        {
+         "do": "Simplify.",
+         "m": "D=-4k-48-21k+28-30=-25k-50"
+        },
+        {
+         "do": "Set D = 0.",
+         "m": "-25k-50=0\\Rightarrow k=-2"
+        },
+        {
+         "do": "Find a solution with k = -2. Use the first two equations.",
+         "why": "Eliminate x3: add the first equation times -3 to the second.",
+         "m": "4x_1+3x_2-x_3=0,\\quad 7x_1-x_2-3x_3=0\\ \\Rightarrow\\ x_1:x_2:x_3=2:-1:5"
+        },
+        {
+         "do": "Check in all three equations.",
+         "m": "4(2)+3(-1)-5=0,\\quad 7(2)+1-15=0,\\quad 3(2)+4-10=0"
+        }
+       ],
+       "answer": "$k=-2$. One non-trivial solution is $(x_1,x_2,x_3)=(2,-1,5)$; any multiple also works."
+      },
+      {
+       "title": "D = 0 for a non-homogeneous system",
+       "problem": "Compare $x+y=2$ with $2x+2y=4$, and $x+y=2$ with $2x+2y=5$.",
+       "steps": [
+        {
+         "do": "Both have D = 0.",
+         "m": "D=\\begin{vmatrix}1&1\\\\2&2\\end{vmatrix}=0"
+        },
+        {
+         "do": "First pair: the second equation is twice the first.",
+         "why": "Infinitely many solutions: any x and y with x + y = 2."
+        },
+        {
+         "do": "Second pair: twice the first would be 2x + 2y = 4.",
+         "why": "That contradicts 2x + 2y = 5, so there is no solution."
+        }
+       ],
+       "answer": "D = 0 allows either infinitely many solutions or none. Elimination (lesson 1.4) tells you which."
+      }
+     ],
+     "practice": [
+      {
+       "q": "For what value of $k$ does $x+y+z=0$, $x+2y+3z=0$, $2x+3y+kz=0$ have a non-trivial solution?",
+       "type": "number",
+       "answer": 4,
+       "hint": "Set the determinant of the coefficients to zero.",
+       "solution": [
+        {
+         "do": "Expand down the first column.",
+         "m": "D=1(2k-9)-1(k-3)+2(3-2)=k-4"
+        },
+        {
+         "do": "Set D = 0.",
+         "m": "k=4"
+        }
+       ],
+       "answerText": "4"
+      },
+      {
+       "q": "With $k=4$ in the system above, find a non-trivial solution. Any multiple is accepted.",
+       "type": "direction",
+       "answer": [
+        1,
+        -2,
+        1
+       ],
+       "hint": "Subtract the first equation from the second: y + 2z = 0.",
+       "solution": [
+        {
+         "do": "Subtract.",
+         "m": "y+2z=0\\Rightarrow y=-2z"
+        },
+        {
+         "do": "Then x.",
+         "m": "x=-y-z=z"
+        },
+        "Take z = 1 to get (1, -2, 1)."
+       ],
+       "answerText": "(1, -2, 1) or any multiple"
+      },
+      {
+       "q": "The system $x+y=2$, $2x+2y=4$ has D = 0. Does it have no solution or infinitely many? Answer none or infinite.",
+       "type": "text",
+       "answer": "infinite",
+       "hint": "The second equation is twice the first.",
+       "solution": [
+        "The second equation is 2 times the first, so it adds nothing.",
+        "There are infinitely many solutions."
+       ],
+       "answerText": "infinite",
+       "alt": [
+        "infinitely many",
+        "infinitely many solutions"
+       ]
+      },
+      {
+       "q": "The system $x+y=2$, $2x+2y=5$ has D = 0. Does it have no solution or infinitely many? Answer none or infinite.",
+       "type": "text",
+       "answer": "none",
+       "hint": "The left sides are proportional but the right sides are not.",
+       "solution": [
+        "Twice the first equation gives 2x + 2y = 4, which contradicts 2x + 2y = 5.",
+        "There is no solution."
+       ],
+       "answerText": "none",
+       "alt": [
+        "no solution",
+        "no solutions"
+       ]
+      },
+      {
+       "q": "For what value of $a$ does $ax_1+6x_2=0$, $2x_1+4x_2=0$ have a non-trivial solution?",
+       "type": "number",
+       "answer": 3,
+       "hint": "D = 4a - 12.",
+       "solution": [
+        {
+         "do": "Set D = 0.",
+         "m": "4a-12=0\\Rightarrow a=3"
+        }
+       ],
+       "answerText": "3"
+      },
+      {
+       "q": "A homogeneous system has D not equal to zero. How many solutions does it have? Enter the number.",
+       "type": "number",
+       "answer": 1,
+       "hint": "Only the trivial solution works.",
+       "solution": [
+        "With D not zero the only solution is the trivial one, x = 0.",
+        "So there is exactly 1 solution."
+       ],
+       "answerText": "1"
+      }
+     ],
+     "quiz": [
+      {
+       "q": "A homogeneous system always has",
+       "options": [
+        "no solution",
+        "the trivial solution",
+        "exactly two solutions",
+        "a non-zero determinant"
+       ],
+       "answer": 1,
+       "explain": "x = 0 satisfies Ax = 0 for any A."
+      },
+      {
+       "q": "A homogeneous system has non-trivial solutions when",
+       "options": [
+        "D = 0",
+        "D is not 0",
+        "the matrix is the identity",
+        "there are more equations than unknowns"
+       ],
+       "answer": 0,
+       "explain": "This is the condition in your notes."
+      },
+      {
+       "q": "The determinant of the coefficients of a system is zero. The system has",
+       "options": [
+        "exactly one solution",
+        "infinitely many solutions or none",
+        "exactly two solutions",
+        "only the trivial solution"
+       ],
+       "answer": 1,
+       "explain": "With D = 0 there is never a unique solution (past test Q8)."
+      },
+      {
+       "q": "In past test Q4, the value of k is",
+       "options": [
+        "2",
+        "-2",
+        "4",
+        "-4"
+       ],
+       "answer": 1,
+       "explain": "D = -25k - 50 = 0 gives k = -2."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Homogeneous system",
+       "back": "All constants on the right are zero: Ax = 0."
+      },
+      {
+       "front": "Trivial solution",
+       "back": "x = 0, which always works for a homogeneous system."
+      },
+      {
+       "front": "When is there a non-trivial solution?",
+       "back": "When the determinant of the coefficients is zero."
+      },
+      {
+       "front": "D = 0 for a non-homogeneous system",
+       "back": "No solution, or infinitely many."
+      },
+      {
+       "front": "Answer to past test Q4",
+       "back": "k = -2."
+      }
+     ],
+     "theory": [
+      {
+       "q": "Define a homogeneous system of linear equations.",
+       "type": "Define",
+       "marks": 2,
+       "points": [
+        "A system in which every constant on the right-hand side is zero",
+        "Written Ax = 0"
+       ],
+       "need": 2
+      },
+      {
+       "q": "State the condition for a homogeneous system to have a non-trivial solution.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "The determinant of the coefficient matrix must be zero",
+        "Otherwise only the trivial solution x = 0 exists",
+        "The trivial solution always exists"
+       ],
+       "need": 3
+      },
+      {
+       "q": "What can you say about a non-homogeneous system whose determinant is zero?",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "There is no unique solution",
+        "It may have no solution (inconsistent)",
+        "It may have infinitely many solutions (consistent)"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Find k so that 4x1 + 3x2 - x3 = 0, 7x1 - x2 - 3x3 = 0, 3x1 - 4x2 + kx3 = 0 has a non-trivial solution.",
+       "type": "Explain",
+       "marks": 5,
+       "points": [
+        "A non-trivial solution needs D = 0",
+        "Expand down the first column: D = 4(-k - 12) - 7(3k - 4) + 3(-10)",
+        "D = -25k - 50",
+        "k = -2"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Why is the condition D = 0 the key to eigenvalues?",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "(A - lambda I)x = 0 is a homogeneous system",
+        "An eigenvector is a non-trivial solution",
+        "So det(A - lambda I) = 0"
+       ],
+       "need": 3
+      },
+      {
+       "q": "State what happens to a homogeneous system when D is not zero.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "It has exactly one solution",
+        "That solution is the trivial one, x = 0"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Give an example of a system with D = 0 and no solution.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "x + y = 2 and 2x + 2y = 5",
+        "D = 0",
+        "Twice the first equation contradicts the second"
+       ],
+       "need": 3
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=homogeneous+system+nontrivial+solution+determinant+zero"
+      }
+     ]
+    },
+    {
+     "id": "1.7",
+     "title": "Eigenvalues and the characteristic equation",
+     "slides": "Lecturer's notes pp.6 to 9",
+     "one_line": "An eigenvalue is a number that a matrix multiplies a special direction by, and you find it by solving one determinant equation.",
+     "analogy": "Stretch a rubber sheet. Most arrows drawn on it change direction, but a few special arrows only get longer or shorter. The stretch factor along each special arrow is an eigenvalue.",
+     "recall": [
+      "What condition must a homogeneous system meet to have a non-trivial solution?",
+      "Expand the determinant with rows (4 - L, -1) and (2, 1 - L)."
+     ],
+     "exam": [
+      "Matrices appear in problems such as coupled oscillations and vibrations, which give equations of the form $Ax=\\lambda x$, where $A$ is a square matrix, $x$ is a column matrix and $\\lambda$ is a scalar.",
+      "For non-trivial solutions ($x\\neq0$) the values of $\\lambda$ are the eigenvalues (also called characteristic values or latent roots) of $A$. The corresponding solutions $x$ are the eigenvectors (characteristic vectors).",
+      "Bring $\\lambda x$ across: $Ax-\\lambda x=0$. Since only a matrix can be subtracted from a matrix, write $\\lambda x=\\lambda Ix$, so $(A-\\lambda I)x=0$.",
+      "This homogeneous system has a non-trivial solution only if $\\det(A-\\lambda I)=0$. The determinant is the characteristic determinant and the equation is the characteristic equation. Its roots are the eigenvalues.",
+      "An $n\\times n$ matrix gives a characteristic equation of degree $n$, so it has $n$ eigenvalues (counting repeats). A repeated root, as in $\\lambda=-1,1,1$, is listed each time it occurs.",
+      "Check: the sum of the eigenvalues equals the sum of the diagonal entries (the trace), and the product equals $\\det A$. Not in your notes."
+     ],
+     "terms": [
+      "eigenvalue",
+      "eigenvector",
+      "characteristic-equation",
+      "trace",
+      "homogeneous-system"
+     ],
+     "examples": [
+      {
+       "title": "A 2 by 2 matrix (your notes, p.8)",
+       "problem": "Find the eigenvalues of $A=\\begin{bmatrix}4&-1\\\\2&1\\end{bmatrix}$.",
+       "steps": [
+        {
+         "do": "Form A minus lambda I.",
+         "m": "A-\\lambda I=\\begin{bmatrix}4-\\lambda&-1\\\\2&1-\\lambda\\end{bmatrix}"
+        },
+        {
+         "do": "Set its determinant to zero.",
+         "m": "(4-\\lambda)(1-\\lambda)+2=0"
+        },
+        {
+         "do": "Expand.",
+         "m": "4-5\\lambda+\\lambda^2+2=0\\Rightarrow\\lambda^2-5\\lambda+6=0"
+        },
+        {
+         "do": "Factorise.",
+         "m": "(\\lambda-2)(\\lambda-3)=0"
+        },
+        {
+         "do": "Check with the trace and determinant.",
+         "why": "Sum 5 = 4 + 1, product 6 = 4(1) - (-1)(2)."
+        }
+       ],
+       "answer": "$\\lambda_1=2$ and $\\lambda_2=3$."
+      },
+      {
+       "title": "A 3 by 3 matrix with a repeated root (your notes, p.8)",
+       "problem": "Find the eigenvalues of $A=\\begin{bmatrix}2&3&-2\\\\1&4&-2\\\\2&10&-5\\end{bmatrix}$.",
+       "steps": [
+        {
+         "do": "Form the characteristic determinant.",
+         "m": "\\det(A-\\lambda I)=\\begin{vmatrix}2-\\lambda&3&-2\\\\1&4-\\lambda&-2\\\\2&10&-5-\\lambda\\end{vmatrix}"
+        },
+        {
+         "do": "Expand down the first column (your notes expand along the first row; the result is the same).",
+         "m": "(2-\\lambda)\\big[(4-\\lambda)(-5-\\lambda)+20\\big]-1\\big[3(-5-\\lambda)+20\\big]+2\\big[-6+2(4-\\lambda)\\big]"
+        },
+        {
+         "do": "Simplify each bracket.",
+         "m": "(2-\\lambda)\\lambda(\\lambda+1)-(5-3\\lambda)+(4-4\\lambda)=(2-\\lambda)\\lambda(\\lambda+1)-(1+\\lambda)"
+        },
+        {
+         "do": "Take out the common factor.",
+         "m": "(1+\\lambda)\\big[2\\lambda-\\lambda^2-1\\big]=-(1+\\lambda)(\\lambda-1)^2"
+        },
+        {
+         "do": "Set to zero.",
+         "m": "(\\lambda+1)(\\lambda-1)^2=0\\Rightarrow\\lambda=-1,\\ 1,\\ 1"
+        },
+        {
+         "do": "Check.",
+         "why": "Sum -1 + 1 + 1 = 1 = 2 + 4 - 5. Product -1 = det A."
+        }
+       ],
+       "answer": "$\\lambda_1=-1$, $\\lambda_2=1$, $\\lambda_3=1$ (1 is a repeated root)."
+      }
+     ],
+     "practice": [
+      {
+       "q": "Find the eigenvalues of $\\begin{bmatrix}2&1\\\\1&2\\end{bmatrix}$. Separate them with commas.",
+       "type": "set",
+       "answer": [
+        1,
+        3
+       ],
+       "hint": "Characteristic equation: (2 - L)^2 - 1 = 0.",
+       "solution": [
+        "Form $\\det(A-\\lambda I)=0$ and solve for $\\lambda$.",
+        "The eigenvalues are 1, 3."
+       ],
+       "answerText": "1, 3"
+      },
+      {
+       "q": "Find the eigenvalues of $\\begin{bmatrix}1&2\\\\4&3\\end{bmatrix}$. Separate them with commas.",
+       "type": "set",
+       "answer": [
+        -1,
+        5
+       ],
+       "hint": "(1 - L)(3 - L) - 8 = 0.",
+       "solution": [
+        "Form $\\det(A-\\lambda I)=0$ and solve for $\\lambda$.",
+        "The eigenvalues are -1, 5."
+       ],
+       "answerText": "-1, 5"
+      },
+      {
+       "q": "Find the eigenvalues of $\\begin{bmatrix}5&4\\\\1&2\\end{bmatrix}$. Separate them with commas.",
+       "type": "set",
+       "answer": [
+        1,
+        6
+       ],
+       "hint": "(5 - L)(2 - L) - 4 = 0.",
+       "solution": [
+        "Form $\\det(A-\\lambda I)=0$ and solve for $\\lambda$.",
+        "The eigenvalues are 1, 6."
+       ],
+       "answerText": "1, 6"
+      },
+      {
+       "q": "Find the eigenvalues of $\\begin{bmatrix}3&0&0\\\\0&2&0\\\\0&0&5\\end{bmatrix}$. Separate them with commas.",
+       "type": "set",
+       "answer": [
+        2,
+        3,
+        5
+       ],
+       "hint": "For a diagonal matrix the eigenvalues are the diagonal entries.",
+       "solution": [
+        "Form $\\det(A-\\lambda I)=0$ and solve for $\\lambda$.",
+        "The eigenvalues are 2, 3, 5."
+       ],
+       "answerText": "2, 3, 5"
+      },
+      {
+       "q": "Find the eigenvalues of $\\begin{bmatrix}1&-1&0\\\\1&2&1\\\\-2&1&-1\\end{bmatrix}$. Separate them with commas.",
+       "type": "set",
+       "answer": [
+        -1,
+        1,
+        2
+       ],
+       "hint": "Expand det(A - L I) down the first column.",
+       "solution": [
+        "Form $\\det(A-\\lambda I)=0$ and solve for $\\lambda$.",
+        "The eigenvalues are -1, 1, 2."
+       ],
+       "answerText": "-1, 1, 2"
+      },
+      {
+       "q": "Find the eigenvalues of $\\begin{bmatrix}2&0&0\\\\0&3&4\\\\0&4&9\\end{bmatrix}$. Separate them with commas.",
+       "type": "set",
+       "answer": [
+        1,
+        2,
+        11
+       ],
+       "hint": "The first row and column split off the eigenvalue 2.",
+       "solution": [
+        "Form $\\det(A-\\lambda I)=0$ and solve for $\\lambda$.",
+        "The eigenvalues are 1, 2, 11."
+       ],
+       "answerText": "1, 2, 11"
+      },
+      {
+       "q": "For the matrix with rows (4, -1) and (2, 1), what is the sum of the two eigenvalues?",
+       "type": "number",
+       "answer": 5,
+       "hint": "The sum of the eigenvalues equals the sum of the diagonal entries.",
+       "solution": [
+        "The eigenvalues are 2 and 3, so the sum is 5.",
+        "This equals 4 + 1, the sum of the diagonal (the trace; not in your notes)."
+       ],
+       "answerText": "5"
+      }
+     ],
+     "quiz": [
+      {
+       "q": "The characteristic equation of a square matrix A is",
+       "options": [
+        "det(A) = 0",
+        "det(A - lambda I) = 0",
+        "A x = 0",
+        "A + lambda I = 0"
+       ],
+       "answer": 1,
+       "explain": "Non-trivial solutions of (A - lambda I)x = 0 need this determinant to vanish."
+      },
+      {
+       "q": "The eigenvalues of the matrix with rows (4, -1) and (2, 1) are",
+       "options": [
+        "2 and 3",
+        "1 and 4",
+        "-2 and -3",
+        "4 and 1"
+       ],
+       "answer": 0,
+       "explain": "lambda^2 - 5 lambda + 6 = 0 gives 2 and 3."
+      },
+      {
+       "q": "A 3 by 3 matrix has how many eigenvalues, counting repeats?",
+       "options": [
+        "1",
+        "2",
+        "3",
+        "9"
+       ],
+       "answer": 2,
+       "explain": "The characteristic equation has degree 3."
+      },
+      {
+       "q": "Why is the identity matrix introduced in (A - lambda I)x = 0?",
+       "options": [
+        "Only a matrix can be subtracted from a matrix",
+        "To make A singular",
+        "To make x zero",
+        "To transpose A"
+       ],
+       "answer": 0,
+       "explain": "lambda alone is a scalar, so write lambda times I."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Eigenvalue equation",
+       "back": "$Ax=\\lambda x$ with $x\\neq0$."
+      },
+      {
+       "front": "Characteristic equation",
+       "back": "$\\det(A-\\lambda I)=0$."
+      },
+      {
+       "front": "Other names for eigenvalues",
+       "back": "Characteristic values or latent roots."
+      },
+      {
+       "front": "Eigenvalues of a diagonal matrix",
+       "back": "The diagonal entries."
+      },
+      {
+       "front": "Trace check",
+       "back": "Sum of the eigenvalues equals the sum of the diagonal entries (not in your notes)."
+      }
+     ],
+     "theory": [
+      {
+       "q": "Define eigenvalues and eigenvectors of a square matrix.",
+       "type": "Define",
+       "marks": 4,
+       "points": [
+        "For $Ax=\\lambda x$ with $x\\neq0$",
+        "The values of $\\lambda$ are the eigenvalues",
+        "They are also called characteristic values or latent roots",
+        "The corresponding solutions $x$ are the eigenvectors"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Derive the characteristic equation from $Ax=\\lambda x$.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "$Ax-\\lambda x=0$",
+        "Write $\\lambda x=\\lambda Ix$, since only a matrix can be subtracted from a matrix",
+        "$(A-\\lambda I)x=0$",
+        "A non-trivial solution needs $\\det(A-\\lambda I)=0$"
+       ],
+       "need": 4
+      },
+      {
+       "q": "What is the characteristic determinant?",
+       "type": "Define",
+       "marks": 2,
+       "points": [
+        "$\\det(A-\\lambda I)$",
+        "Setting it to zero gives the characteristic equation"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Find the eigenvalues of the matrix with rows (4, -1) and (2, 1).",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "$(4-\\lambda)(1-\\lambda)+2=0$",
+        "$\\lambda^2-5\\lambda+6=0$",
+        "$(\\lambda-2)(\\lambda-3)=0$",
+        "$\\lambda=2$ and $\\lambda=3$"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Find the eigenvalues of the matrix with rows (2, 3, -2), (1, 4, -2), (2, 10, -5).",
+       "type": "Explain",
+       "marks": 6,
+       "points": [
+        "Form det(A - lambda I) and expand down the first column",
+        "(2 - lambda)(lambda squared + lambda) - (1 + lambda)",
+        "= (1 + lambda)(2 lambda - lambda squared - 1)",
+        "= -(1 + lambda)(lambda - 1) squared",
+        "lambda = -1, 1, 1"
+       ],
+       "need": 5
+      },
+      {
+       "q": "Why does an n by n matrix have n eigenvalues?",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "The characteristic equation has degree n",
+        "A polynomial of degree n has n roots, counting repeats"
+       ],
+       "need": 2
+      },
+      {
+       "q": "State how the trace and determinant check the eigenvalues.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "The sum of the eigenvalues equals the sum of the diagonal entries",
+        "The product of the eigenvalues equals the determinant"
+       ],
+       "need": 2
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=eigenvalues+characteristic+equation+explained"
+      }
+     ]
+    },
+    {
+     "id": "1.8",
+     "title": "Eigenvectors",
+     "slides": "Lecturer's notes pp.10 to 12 (the p.11 third eigenvector is corrected here)",
+     "one_line": "An eigenvector is a direction the matrix does not turn, and you find it by solving a homogeneous system once you know the eigenvalue.",
+     "analogy": "Once you know the stretch factor, you go looking for the arrow that gets stretched by exactly that factor. The equations you solve are dependent, so you get a whole line of answers and pick the simplest.",
+     "recall": [
+      "What equation do the eigenvalues satisfy?",
+      "Solve x2 = -3 x1 for the pair (x1, x2) when x1 = 1."
+     ],
+     "exam": [
+      "The term vector here means a row or column matrix. For each eigenvalue $\\lambda$, solve $(A-\\lambda I)x=0$ for $x\\neq0$.",
+      "The equations are dependent (because $\\det(A-\\lambda I)=0$), so you get a relation between the unknowns and not a single answer. For $A=\\begin{bmatrix}4&1\\\\3&2\\end{bmatrix}$ and $\\lambda=1$, either equation gives $x_2=-3x_1$.",
+      "The general eigenvector is therefore $\\begin{bmatrix}k\\\\-3k\\end{bmatrix}$, an infinite family. The simplest one, $k=1$, is $\\begin{bmatrix}1\\\\-3\\end{bmatrix}$.",
+      "For $\\lambda=5$: $4x_1+x_2=5x_1$ gives $x_1=x_2$, so $\\begin{bmatrix}1\\\\1\\end{bmatrix}$ is an eigenvector.",
+      "Three-by-three example from your notes: $A=\\begin{bmatrix}2&0&1\\\\-1&4&-1\\\\-1&2&0\\end{bmatrix}$ has $\\lambda=1,2,3$ with eigenvectors $\\begin{bmatrix}1\\\\0\\\\-1\\end{bmatrix}$, $\\begin{bmatrix}2\\\\1\\\\0\\end{bmatrix}$ and $\\begin{bmatrix}1\\\\2\\\\1\\end{bmatrix}$. The page shows the last one with a middle entry that does not satisfy $Ax=3x$; the correct vector is $(1,2,1)$.",
+      "Always check: $A x=\\lambda x$. If it fails, an arithmetic slip has occurred. Not in your notes.",
+      "If $x$ is an eigenvector then so is any non-zero multiple of it, so answers can differ by a scale factor and both be correct. Not in your notes."
+     ],
+     "terms": [
+      "eigenvector",
+      "eigenvalue",
+      "homogeneous-system",
+      "characteristic-equation"
+     ],
+     "examples": [
+      {
+       "title": "A 2 by 2 matrix (your notes, p.10 and p.11)",
+       "problem": "Find the eigenvalues and eigenvectors of $A=\\begin{bmatrix}4&1\\\\3&2\\end{bmatrix}$.",
+       "steps": [
+        {
+         "do": "Characteristic equation.",
+         "m": "(4-\\lambda)(2-\\lambda)-3=0\\Rightarrow\\lambda^2-6\\lambda+5=0\\Rightarrow(\\lambda-1)(\\lambda-5)=0"
+        },
+        {
+         "do": "For lambda = 1, write the equations.",
+         "m": "4x_1+x_2=x_1,\\qquad 3x_1+2x_2=x_2"
+        },
+        {
+         "do": "Either equation gives the same relation.",
+         "m": "x_2=-3x_1\\Rightarrow x=\\begin{bmatrix}1\\\\-3\\end{bmatrix}"
+        },
+        {
+         "do": "For lambda = 5.",
+         "m": "4x_1+x_2=5x_1\\Rightarrow x_1=x_2\\Rightarrow x=\\begin{bmatrix}1\\\\1\\end{bmatrix}"
+        },
+        {
+         "do": "Check one.",
+         "m": "\\begin{bmatrix}4&1\\\\3&2\\end{bmatrix}\\begin{bmatrix}1\\\\1\\end{bmatrix}=\\begin{bmatrix}5\\\\5\\end{bmatrix}=5\\begin{bmatrix}1\\\\1\\end{bmatrix}"
+        }
+       ],
+       "answer": "$\\lambda_1=1$ with $(1,-3)$, and $\\lambda_2=5$ with $(1,1)$, each up to a multiple."
+      },
+      {
+       "title": "A 3 by 3 matrix, the eigenvalue 3 (your notes, p.11)",
+       "problem": "For $A=\\begin{bmatrix}2&0&1\\\\-1&4&-1\\\\-1&2&0\\end{bmatrix}$ with eigenvalues $1,2,3$, find the eigenvector for $\\lambda=3$.",
+       "steps": [
+        {
+         "do": "Form A minus 3I.",
+         "m": "A-3I=\\begin{bmatrix}-1&0&1\\\\-1&1&-1\\\\-1&2&-3\\end{bmatrix}"
+        },
+        {
+         "do": "Apply $R_2\\to R_2-R_1$ and $R_3\\to R_3-R_1$.",
+         "m": "\\begin{bmatrix}-1&0&1\\\\0&1&-2\\\\0&2&-4\\end{bmatrix}"
+        },
+        {
+         "do": "Row 3 is twice row 2, so it adds nothing. Let x3 = t.",
+         "m": "x_2-2x_3=0\\Rightarrow x_2=2t,\\qquad -x_1+x_3=0\\Rightarrow x_1=t"
+        },
+        {
+         "do": "Take t = 1.",
+         "why": "Check: A x = (2+1, -1+8-1, -1+4) = (3, 6, 3) = 3x.",
+         "m": "x=\\begin{bmatrix}1\\\\2\\\\1\\end{bmatrix}"
+        }
+       ],
+       "answer": "$x_3=(1,2,1)$. The other two are $(1,0,-1)$ for $\\lambda=1$ and $(2,1,0)$ for $\\lambda=2$."
+      },
+      {
+       "title": "The exercise on p.12 of your notes",
+       "problem": "For $A=\\begin{bmatrix}1&-1&0\\\\1&2&1\\\\-2&1&-1\\end{bmatrix}$ with eigenvalues $-1,1,2$, find the eigenvectors.",
+       "steps": [
+        {
+         "do": "Lambda = -1: solve $(A+I)x=0$.",
+         "m": "2x_1-x_2=0\\Rightarrow x_2=2x_1,\\quad x_1+3x_2+x_3=0\\Rightarrow x_3=-7x_1"
+        },
+        {
+         "do": "Lambda = 1: solve $(A-I)x=0$.",
+         "m": "-x_2=0,\\quad x_1+x_2+x_3=0\\Rightarrow x_3=-x_1"
+        },
+        {
+         "do": "Lambda = 2: solve $(A-2I)x=0$.",
+         "m": "-x_1-x_2=0,\\quad x_1+x_3=0\\Rightarrow x_2=-x_1,\\ x_3=-x_1"
+        },
+        {
+         "do": "Check each with Ax = lambda x.",
+         "why": "For example, A times (1, -1, -1) is (2, -2, -2)."
+        }
+       ],
+       "answer": "$\\lambda=-1$: $(1,2,-7)$. $\\lambda=1$: $(1,0,-1)$. $\\lambda=2$: $(1,-1,-1)$. (The notes give the eigenvalues but leave the vectors as a question.)"
+      }
+     ],
+     "practice": [
+      {
+       "q": "Find an eigenvector of $\\begin{bmatrix}2&1\\\\1&2\\end{bmatrix}$ for $\\lambda=3$. Any multiple is accepted.",
+       "type": "direction",
+       "answer": [
+        1,
+        1
+       ],
+       "hint": "Solve (A - 3I)x = 0: -x1 + x2 = 0.",
+       "solution": [
+        {
+         "do": "Form $(A-\\lambda I)x=0$ and solve.",
+         "why": "The equations are dependent, so one unknown is free."
+        },
+        "Take the free unknown as 1 to get the simplest eigenvector, then check $Ax=\\lambda x$."
+       ],
+       "answerText": "(1, 1) or any multiple"
+      },
+      {
+       "q": "Find an eigenvector of $\\begin{bmatrix}2&1\\\\1&2\\end{bmatrix}$ for $\\lambda=1$. Any multiple is accepted.",
+       "type": "direction",
+       "answer": [
+        1,
+        -1
+       ],
+       "hint": "Solve (A - I)x = 0: x1 + x2 = 0.",
+       "solution": [
+        {
+         "do": "Form $(A-\\lambda I)x=0$ and solve.",
+         "why": "The equations are dependent, so one unknown is free."
+        },
+        "Take the free unknown as 1 to get the simplest eigenvector, then check $Ax=\\lambda x$."
+       ],
+       "answerText": "(1, -1) or any multiple"
+      },
+      {
+       "q": "Find an eigenvector of $\\begin{bmatrix}1&2\\\\4&3\\end{bmatrix}$ for $\\lambda=5$. Any multiple is accepted.",
+       "type": "direction",
+       "answer": [
+        1,
+        2
+       ],
+       "hint": "Solve (A - 5I)x = 0: -4x1 + 2x2 = 0.",
+       "solution": [
+        {
+         "do": "Form $(A-\\lambda I)x=0$ and solve.",
+         "why": "The equations are dependent, so one unknown is free."
+        },
+        "Take the free unknown as 1 to get the simplest eigenvector, then check $Ax=\\lambda x$."
+       ],
+       "answerText": "(1, 2) or any multiple"
+      },
+      {
+       "q": "Find an eigenvector of $\\begin{bmatrix}1&-1&0\\\\1&2&1\\\\-2&1&-1\\end{bmatrix}$ for $\\lambda=2$. Any multiple is accepted.",
+       "type": "direction",
+       "answer": [
+        1,
+        -1,
+        -1
+       ],
+       "hint": "Row 1 of A - 2I gives x2 = -x1.",
+       "solution": [
+        {
+         "do": "Form $(A-\\lambda I)x=0$ and solve.",
+         "why": "The equations are dependent, so one unknown is free."
+        },
+        "Take the free unknown as 1 to get the simplest eigenvector, then check $Ax=\\lambda x$."
+       ],
+       "answerText": "(1, -1, -1) or any multiple"
+      },
+      {
+       "q": "Find an eigenvector of $\\begin{bmatrix}1&-1&0\\\\1&2&1\\\\-2&1&-1\\end{bmatrix}$ for $\\lambda=-1$. Any multiple is accepted.",
+       "type": "direction",
+       "answer": [
+        1,
+        2,
+        -7
+       ],
+       "hint": "Row 1 of A + I gives x2 = 2 x1.",
+       "solution": [
+        {
+         "do": "Form $(A-\\lambda I)x=0$ and solve.",
+         "why": "The equations are dependent, so one unknown is free."
+        },
+        "Take the free unknown as 1 to get the simplest eigenvector, then check $Ax=\\lambda x$."
+       ],
+       "answerText": "(1, 2, -7) or any multiple"
+      },
+      {
+       "q": "The vector $(1,k)$ is an eigenvector of $\\begin{bmatrix}4&1\\\\3&2\\end{bmatrix}$ for $\\lambda=5$. Find $k$.",
+       "type": "number",
+       "answer": 1,
+       "hint": "The first row gives 4 + k = 5.",
+       "solution": [
+        {
+         "do": "First row of Ax = 5x.",
+         "m": "4(1)+1(k)=5(1)\\Rightarrow k=1"
+        }
+       ],
+       "answerText": "1"
+      },
+      {
+       "q": "The vector $(1,1)$ is an eigenvector of $\\begin{bmatrix}2&1\\\\1&2\\end{bmatrix}$. Find its eigenvalue.",
+       "type": "number",
+       "answer": 3,
+       "hint": "Compute A times the vector and compare with the vector.",
+       "solution": [
+        {
+         "do": "Multiply.",
+         "m": "\\begin{bmatrix}2&1\\\\1&2\\end{bmatrix}\\begin{bmatrix}1\\\\1\\end{bmatrix}=\\begin{bmatrix}3\\\\3\\end{bmatrix}=3\\begin{bmatrix}1\\\\1\\end{bmatrix}"
+        }
+       ],
+       "answerText": "3"
+      }
+     ],
+     "quiz": [
+      {
+       "q": "To find the eigenvector for a known eigenvalue lambda, solve",
+       "options": [
+        "Ax = 0",
+        "(A - lambda I)x = 0",
+        "A^T x = lambda x",
+        "det A = lambda"
+       ],
+       "answer": 1,
+       "explain": "This is the homogeneous system with a non-trivial solution."
+      },
+      {
+       "q": "For the matrix with rows (4, 1) and (3, 2) and lambda = 1, an eigenvector is",
+       "options": [
+        "(1, 3)",
+        "(1, -3)",
+        "(1, 1)",
+        "(3, 1)"
+       ],
+       "answer": 1,
+       "explain": "Either equation gives x2 = -3 x1."
+      },
+      {
+       "q": "If (1, 1) is an eigenvector, which is also an eigenvector for the same eigenvalue?",
+       "options": [
+        "(2, 2)",
+        "(1, 2)",
+        "(0, 0)",
+        "(1, 0)"
+       ],
+       "answer": 0,
+       "explain": "Any non-zero multiple of an eigenvector is an eigenvector."
+      },
+      {
+       "q": "The eigenvector equations are dependent because",
+       "options": [
+        "det(A - lambda I) = 0",
+        "A is symmetric",
+        "x is zero",
+        "lambda is zero"
+       ],
+       "answer": 0,
+       "explain": "A zero determinant means the equations are not independent."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "How do you find an eigenvector?",
+       "back": "Solve $(A-\\lambda I)x=0$ for $x\\neq0$."
+      },
+      {
+       "front": "Why is there a family of eigenvectors?",
+       "back": "The equations are dependent, so any multiple works."
+      },
+      {
+       "front": "Eigenvectors of rows (4,1),(3,2)",
+       "back": "(1, -3) for lambda = 1 and (1, 1) for lambda = 5."
+      },
+      {
+       "front": "Correct third eigenvector on p.11",
+       "back": "(1, 2, 1) for lambda = 3."
+      },
+      {
+       "front": "Check an eigenvector",
+       "back": "A x must equal lambda x."
+      }
+     ],
+     "theory": [
+      {
+       "q": "Describe how to find the eigenvector for a given eigenvalue.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Write $(A-\\lambda I)x=0$ with the known $\\lambda$",
+        "Solve the homogeneous equations for $x\\neq0$",
+        "The equations are dependent, so one unknown is free",
+        "Choose the free unknown (usually 1) to get the simplest eigenvector"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Why are eigenvectors not unique?",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "Any non-zero multiple of an eigenvector is also an eigenvector",
+        "The equations are dependent, so they give only a ratio"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Find the eigenvalues and eigenvectors of the matrix with rows (4, 1) and (3, 2).",
+       "type": "Explain",
+       "marks": 6,
+       "points": [
+        "$\\lambda^2-6\\lambda+5=0$ gives $\\lambda=1,5$",
+        "For $\\lambda=1$: $x_2=-3x_1$",
+        "Eigenvector $(1,-3)$",
+        "For $\\lambda=5$: $x_1=x_2$",
+        "Eigenvector $(1,1)$",
+        "Check in $Ax=\\lambda x$"
+       ],
+       "need": 6
+      },
+      {
+       "q": "Find the eigenvector for lambda = 3 of the matrix with rows (2,0,1), (-1,4,-1), (-1,2,0).",
+       "type": "Explain",
+       "marks": 5,
+       "points": [
+        "Form A - 3I",
+        "Row-reduce to get x2 = 2 x3",
+        "And x1 = x3",
+        "Take x3 = 1: eigenvector (1, 2, 1)",
+        "Check: A x = 3 x"
+       ],
+       "need": 5
+      },
+      {
+       "q": "State how to check an eigenvalue-eigenvector pair.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "Multiply A by x",
+        "The result must equal lambda times x"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Find the eigenvectors of the matrix with rows (1,-1,0), (1,2,1), (-2,1,-1) for lambda = -1, 1, 2.",
+       "type": "Explain",
+       "marks": 6,
+       "points": [
+        "Lambda = -1: x2 = 2 x1 and x3 = -7 x1, eigenvector (1, 2, -7)",
+        "Lambda = 1: x2 = 0 and x3 = -x1, eigenvector (1, 0, -1)",
+        "Lambda = 2: x2 = -x1 and x3 = -x1, eigenvector (1, -1, -1)"
+       ],
+       "need": 3
+      },
+      {
+       "q": "What is the link between a zero characteristic determinant and the freedom in an eigenvector?",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "det(A - lambda I) = 0 means the system is singular",
+        "So the equations are dependent",
+        "That leaves a free unknown, giving infinitely many eigenvectors"
+       ],
+       "need": 3
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=eigenvectors+explained+3x3+example"
+      }
+     ]
     }
    ]
   }
@@ -487,7 +2887,245 @@
    "term": "Commutative",
    "plain": "The order does not matter.",
    "exam": "An operation is commutative if the order of the operands does not change the result. Matrix multiplication is not."
+  },
+  "determinant": {
+   "term": "Determinant",
+   "plain": "A single number worked out from a square grid.",
+   "exam": "A scalar associated with a square matrix; for 2 by 2, a11 a22 - a12 a21."
+  },
+  "minor": {
+   "term": "Minor",
+   "plain": "What is left of a determinant when you cross out a row and a column.",
+   "exam": "The determinant obtained by deleting the row and column of an entry."
+  },
+  "cofactor": {
+   "term": "Cofactor",
+   "plain": "A minor with a plus or minus sign attached.",
+   "exam": "The minor of a_ij multiplied by (-1)^(i+j) (not in the notes)."
+  },
+  "singular-matrix": {
+   "term": "Singular matrix",
+   "plain": "A matrix that cannot be undone.",
+   "exam": "A square matrix with no inverse; its determinant is zero."
+  },
+  "nonsingular-matrix": {
+   "term": "Non-singular matrix",
+   "plain": "A matrix that can be undone.",
+   "exam": "A square matrix that has an inverse; its determinant is not zero."
+  },
+  "cramers-rule": {
+   "term": "Cramer's rule",
+   "plain": "Solve each unknown as one determinant divided by another.",
+   "exam": "x_k = D_k / D, where D_k replaces column k of D by the constants; needs D not zero."
+  },
+  "linear-system": {
+   "term": "Linear system",
+   "plain": "A set of equations where the unknowns appear only to the first power.",
+   "exam": "Equations of the form a1 x1 + ... + an xn = b."
+  },
+  "augmented-matrix": {
+   "term": "Augmented matrix",
+   "plain": "The coefficient grid with the answers added as an extra column.",
+   "exam": "[A | b], the coefficient matrix with the constants appended (not in the notes)."
+  },
+  "row-operation": {
+   "term": "Row operation",
+   "plain": "A move on the rows that keeps the solution the same.",
+   "exam": "Interchange two rows; multiply a row by a non-zero number; add a multiple of one row to another."
+  },
+  "pivot": {
+   "term": "Pivot",
+   "plain": "The leading number in a row that you use to clear the numbers below it.",
+   "exam": "The first non-zero entry in a row used in elimination."
+  },
+  "row-echelon-form": {
+   "term": "Row-echelon form",
+   "plain": "A staircase shape with zeros below the steps.",
+   "exam": "A matrix with zeros below every leading entry."
+  },
+  "back-substitution": {
+   "term": "Back-substitution",
+   "plain": "Solve the last equation first, then work upwards.",
+   "exam": "Finding the unknowns from the bottom row of an echelon form upwards."
+  },
+  "gaussian-elimination": {
+   "term": "Gaussian elimination",
+   "plain": "Tidy the equations into a staircase, then solve from the bottom.",
+   "exam": "Reduction of the augmented matrix to echelon form followed by back-substitution."
+  },
+  "inverse-matrix": {
+   "term": "Inverse matrix",
+   "plain": "The matrix that undoes another matrix.",
+   "exam": "A^-1 with A A^-1 = A^-1 A = I."
+  },
+  "gauss-jordan": {
+   "term": "Gauss-Jordan elimination",
+   "plain": "Row-reduce all the way to the identity to read off the inverse.",
+   "exam": "Reducing [A | I] to [I | A^-1] using row operations (not in the notes)."
+  },
+  "homogeneous-system": {
+   "term": "Homogeneous system",
+   "plain": "A set of equations whose answers are all zero.",
+   "exam": "A linear system Ax = 0."
+  },
+  "trivial-solution": {
+   "term": "Trivial solution",
+   "plain": "The obvious solution where every unknown is zero.",
+   "exam": "x = 0, always a solution of a homogeneous system."
+  },
+  "nontrivial-solution": {
+   "term": "Non-trivial solution",
+   "plain": "A solution where at least one unknown is not zero.",
+   "exam": "A solution x not equal to 0; exists for Ax = 0 only when det A = 0."
+  },
+  "consistent": {
+   "term": "Consistent system",
+   "plain": "A system that has at least one solution.",
+   "exam": "A system with one or infinitely many solutions."
+  },
+  "inconsistent": {
+   "term": "Inconsistent system",
+   "plain": "A system whose equations contradict each other.",
+   "exam": "A system with no solution."
+  },
+  "eigenvalue": {
+   "term": "Eigenvalue",
+   "plain": "A number by which the matrix stretches a special direction.",
+   "exam": "A scalar lambda with Ax = lambda x for some x not zero; a root of det(A - lambda I) = 0."
+  },
+  "eigenvector": {
+   "term": "Eigenvector",
+   "plain": "A direction that the matrix only stretches, never turns.",
+   "exam": "A non-zero x with Ax = lambda x."
+  },
+  "characteristic-equation": {
+   "term": "Characteristic equation",
+   "plain": "The equation whose roots are the eigenvalues.",
+   "exam": "det(A - lambda I) = 0."
+  },
+  "trace": {
+   "term": "Trace",
+   "plain": "The total of the numbers down the main diagonal.",
+   "exam": "The sum of the diagonal entries of a square matrix; equals the sum of the eigenvalues (not in the notes)."
   }
  },
- "past": []
+ "past": [
+  {
+   "q": "Past test Q4. Find $k$ so that $4x_1+3x_2-x_3=0$, $7x_1-x_2-3x_3=0$, $3x_1-4x_2+kx_3=0$ has a non-trivial solution.",
+   "type": "number",
+   "answer": -2,
+   "hint": "Set the determinant of the coefficients to zero.",
+   "solution": [
+    {
+     "do": "Expand down the first column.",
+     "m": "D=4(-k-12)-7(3k-4)+3(-10)=-25k-50"
+    },
+    {
+     "do": "Set D = 0.",
+     "m": "k=-2"
+    }
+   ],
+   "answerText": "-2"
+  },
+  {
+   "q": "Past test Q5. Write the 3 by 3 identity matrix. (The original asks you to describe it: ones on the main diagonal, zeros elsewhere.)",
+   "type": "matrix",
+   "answer": [
+    [
+     1,
+     0,
+     0
+    ],
+    [
+     0,
+     1,
+     0
+    ],
+    [
+     0,
+     0,
+     1
+    ]
+   ],
+   "hint": "Ones on the diagonal, zeros everywhere else.",
+   "solution": [
+    "The identity matrix has 1 in every diagonal position and 0 elsewhere."
+   ],
+   "answerText": "$\\begin{bmatrix}1&0&0\\\\0&1&0\\\\0&0&1\\end{bmatrix}$"
+  },
+  {
+   "q": "Past test Q8 (adapted so it can be answered here). The determinant of the coefficient matrix of a system is zero. Which is true? Enter 1 for 'there is exactly one solution' or 2 for 'there are infinitely many solutions or none'.",
+   "type": "number",
+   "answer": 2,
+   "hint": "A zero determinant means there is no unique solution.",
+   "solution": [
+    "With D = 0 the system is singular.",
+    "So there are infinitely many solutions or no solution."
+   ],
+   "answerText": "2"
+  },
+  {
+   "q": "Past test Q10 (a). $A=\\begin{bmatrix}6&0&4\\\\1&5&-3\\end{bmatrix}$ and $B=\\begin{bmatrix}2&9\\\\8&0\\\\-4&7\\end{bmatrix}$. Find $A\\cdot B$. (The original layout can be read two ways; this is the reading used in lesson 1.1.)",
+   "type": "matrix",
+   "answer": [
+    [
+     -4,
+     82
+    ],
+    [
+     54,
+     -12
+    ]
+   ],
+   "hint": "A is 2 by 3 and B is 3 by 2, so the product is 2 by 2.",
+   "solution": [
+    {
+     "do": "Multiply row by column.",
+     "m": "AB=\\begin{bmatrix}-4&82\\\\54&-12\\end{bmatrix}"
+    }
+   ],
+   "answerText": "$\\begin{bmatrix}-4&82\\\\54&-12\\end{bmatrix}$"
+  },
+  {
+   "q": "Past test Q10 (b). With the same $A$ and $B$, find $B\\cdot A$.",
+   "type": "matrix",
+   "answer": [
+    [
+     21,
+     45,
+     -19
+    ],
+    [
+     48,
+     0,
+     32
+    ],
+    [
+     -17,
+     35,
+     -37
+    ]
+   ],
+   "hint": "The product is 3 by 3.",
+   "solution": [
+    {
+     "do": "Multiply row by column.",
+     "m": "BA=\\begin{bmatrix}21&45&-19\\\\48&0&32\\\\-17&35&-37\\end{bmatrix}"
+    }
+   ],
+   "answerText": "$\\begin{bmatrix}21&45&-19\\\\48&0&32\\\\-17&35&-37\\end{bmatrix}$"
+  },
+  {
+   "q": "Past test Q12. Show that $\\begin{bmatrix}0.7&0.3\\\\0.4&0.6\\end{bmatrix}$ is a stochastic matrix by finding the sum of each row. Enter the common row sum.",
+   "type": "number",
+   "answer": 1,
+   "hint": "Add 0.7 + 0.3 and 0.4 + 0.6.",
+   "solution": [
+    "Row 1: 0.7 + 0.3 = 1.",
+    "Row 2: 0.4 + 0.6 = 1.",
+    "Every row sums to 1, so the matrix is stochastic."
+   ],
+   "answerText": "1"
+  }
+ ]
 }

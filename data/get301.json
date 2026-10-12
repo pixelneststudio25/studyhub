@@ -2827,6 +2827,768 @@
        "search_fallback": "https://www.youtube.com/results?search_query=eigenvectors+explained+3x3+example"
       }
      ]
+    },
+    {
+     "id": "1.9",
+     "title": "Matrix transformations and diagonalisation",
+     "slides": "Not in your notes. The outline lists matrix transformation; this lesson covers diagonalisation, the standard use of eigenvectors, and is unconfirmed with your lecturer",
+     "one_line": "Diagonalisation uses the eigenvectors of a matrix to change to a view in which the matrix is just a list of stretch factors.",
+     "analogy": "A matrix may twist and stretch space in a complicated way. Look at it along its eigenvector directions and the picture simplifies: along each direction it only stretches by a fixed factor. Diagonalisation is that change of viewpoint, and it makes high powers of the matrix easy.",
+     "recall": [
+      "What do eigenvectors and eigenvalues of A satisfy?",
+      "What is the inverse of a 2 by 2 matrix?"
+     ],
+     "exam": [
+      "A matrix transforms a vector: $x\\mapsto Ax$. Examples in the plane: scaling $\\begin{bmatrix}k_1&0\\\\0&k_2\\end{bmatrix}$; reflection in the $x$-axis $\\begin{bmatrix}1&0\\\\0&-1\\end{bmatrix}$; rotation through $\\theta$, $\\begin{bmatrix}\\cos\\theta&-\\sin\\theta\\\\\\sin\\theta&\\cos\\theta\\end{bmatrix}$. Eigenvectors are the directions that are only stretched, which lesson 1.8 found. Not in your notes.",
+      "Let $A$ be $n\\times n$ with $n$ independent eigenvectors $x_1,\\dots,x_n$ for eigenvalues $\\lambda_1,\\dots,\\lambda_n$. Put the eigenvectors in the columns of $P=[x_1\\ \\cdots\\ x_n]$ (the modal matrix) and the eigenvalues on the diagonal of $D=\\mathrm{diag}(\\lambda_1,\\dots,\\lambda_n)$. Then $P^{-1}AP=D$, or $A=PDP^{-1}$. Not in your notes.",
+      "Why: column by column $AP=[\\lambda_1x_1\\ \\cdots\\ \\lambda_nx_n]=PD$. Since the columns of $P$ are independent, $P^{-1}$ exists, and multiplying $AP=PD$ on the left by $P^{-1}$ gives $P^{-1}AP=D$.",
+      "Condition: $A$ must have $n$ independent eigenvectors. Distinct eigenvalues guarantee this. A repeated eigenvalue may leave too few eigenvectors, for example $\\begin{bmatrix}1&1\\\\0&1\\end{bmatrix}$ has only one, so it is not diagonalisable.",
+      "The order of the columns of $P$ must match the order of the eigenvalues in $D$. Any non-zero multiples of the eigenvectors may be used.",
+      "Powers: $A^k=PD^kP^{-1}$, where $D^k=\\mathrm{diag}(\\lambda_1^k,\\dots,\\lambda_n^k)$. The eigenvalues of $A^k$ are $\\lambda_i^k$. Not in your notes.",
+      "A real symmetric matrix always has real eigenvalues and orthogonal eigenvectors, so it is always diagonalisable; with unit eigenvectors $P^{-1}=P^T$. Not in your notes."
+     ],
+     "terms": [
+      "diagonalisation",
+      "diagonal-matrix",
+      "modal-matrix",
+      "eigenvector",
+      "eigenvalue"
+     ],
+     "examples": [
+      {
+       "title": "Diagonalising a 2 by 2 matrix (your notes' example)",
+       "problem": "Diagonalise $A=\\begin{bmatrix}4&1\\\\3&2\\end{bmatrix}$, whose eigenvalues are $1,5$ with eigenvectors $(1,-3)$ and $(1,1)$ (lesson 1.8).",
+       "steps": [
+        {
+         "do": "Put the eigenvectors in the columns of P, and the eigenvalues in the same order in D.",
+         "m": "P=\\begin{bmatrix}1&1\\\\-3&1\\end{bmatrix},\\qquad D=\\begin{bmatrix}1&0\\\\0&5\\end{bmatrix}"
+        },
+        {
+         "do": "Find P inverse.",
+         "why": "det P = 1 + 3 = 4.",
+         "m": "P^{-1}=\\frac14\\begin{bmatrix}1&-1\\\\3&1\\end{bmatrix}"
+        },
+        {
+         "do": "Check that AP = PD.",
+         "m": "\\begin{bmatrix}1&5\\\\-3&5\\end{bmatrix}=\\begin{bmatrix}1&5\\\\-3&5\\end{bmatrix}"
+        },
+        {
+         "do": "Check P inverse A P.",
+         "m": "P^{-1}AP=\\begin{bmatrix}1&0\\\\0&5\\end{bmatrix}"
+        }
+       ],
+       "answer": "$P^{-1}AP=\\begin{bmatrix}1&0\\\\0&5\\end{bmatrix}$."
+      },
+      {
+       "title": "A high power",
+       "problem": "Find $A^5$ for the same $A$.",
+       "steps": [
+        {
+         "do": "Use A to the k = P D to the k P inverse.",
+         "m": "A^5=PD^5P^{-1}=\\begin{bmatrix}1&1\\\\-3&1\\end{bmatrix}\\begin{bmatrix}1&0\\\\0&3125\\end{bmatrix}\\cdot\\frac14\\begin{bmatrix}1&-1\\\\3&1\\end{bmatrix}"
+        },
+        {
+         "do": "Multiply P by D^5.",
+         "m": "\\begin{bmatrix}1&3125\\\\-3&3125\\end{bmatrix}"
+        },
+        {
+         "do": "Multiply by P inverse.",
+         "m": "A^5=\\begin{bmatrix}2344&781\\\\2343&782\\end{bmatrix}"
+        },
+        {
+         "do": "Check with the trace.",
+         "why": "The trace of A^5 is 2344 + 782 = 3126 = 1 + 3125, the sum of the fifth powers of the eigenvalues."
+        }
+       ],
+       "answer": "$A^5=\\begin{bmatrix}2344&781\\\\2343&782\\end{bmatrix}$, without multiplying $A$ by itself five times."
+      },
+      {
+       "title": "A 3 by 3 matrix (your notes, p.11)",
+       "problem": "Diagonalise $A=\\begin{bmatrix}2&0&1\\\\-1&4&-1\\\\-1&2&0\\end{bmatrix}$, with eigenvalues $1,2,3$ and eigenvectors $(1,0,-1)$, $(2,1,0)$, $(1,2,1)$.",
+       "steps": [
+        {
+         "do": "Form P and D with matching order.",
+         "m": "P=\\begin{bmatrix}1&2&1\\\\0&1&2\\\\-1&0&1\\end{bmatrix},\\qquad D=\\begin{bmatrix}1&0&0\\\\0&2&0\\\\0&0&3\\end{bmatrix}"
+        },
+        {
+         "do": "Check AP.",
+         "m": "\\begin{bmatrix}1&4&3\\\\0&2&6\\\\-1&0&3\\end{bmatrix}"
+        },
+        {
+         "do": "Check PD.",
+         "why": "The two products are equal, so AP = PD.",
+         "m": "\\begin{bmatrix}1&4&3\\\\0&2&6\\\\-1&0&3\\end{bmatrix}"
+        },
+        {
+         "do": "The columns of P are independent.",
+         "why": "det P = -2, which is not zero, so P inverse exists and P inverse A P = D."
+        }
+       ],
+       "answer": "$P^{-1}AP=\\mathrm{diag}(1,2,3)$."
+      }
+     ],
+     "practice": [
+      {
+       "q": "Let $A=\\begin{bmatrix}2&1\\\\1&2\\end{bmatrix}$ with eigenvalues $1$ and $3$ and eigenvectors $(1,-1)$ and $(1,1)$. Take $P$ with these as columns, in this order. Write $D=P^{-1}AP$.",
+       "type": "matrix",
+       "answer": [
+        [
+         1,
+         0
+        ],
+        [
+         0,
+         3
+        ]
+       ],
+       "hint": "D has the eigenvalues on its diagonal, in the same order as the columns of P.",
+       "solution": [
+        {
+         "do": "Match the order.",
+         "m": "D=\\begin{bmatrix}1&0\\\\0&3\\end{bmatrix}"
+        }
+       ],
+       "answerText": "$\\begin{bmatrix}1&0\\\\0&3\\end{bmatrix}$"
+      },
+      {
+       "q": "For the same $A$, find $A^3$.",
+       "type": "matrix",
+       "answer": [
+        [
+         14,
+         13
+        ],
+        [
+         13,
+         14
+        ]
+       ],
+       "hint": "A^3 = P D^3 P^(-1), with D^3 = diag(1, 27).",
+       "solution": [
+        {
+         "do": "Multiply.",
+         "m": "A^3=\\begin{bmatrix}14&13\\\\13&14\\end{bmatrix}"
+        },
+        "Check: A squared is [5 4; 4 5], and A times that is [14 13; 13 14]."
+       ],
+       "answerText": "$\\begin{bmatrix}14&13\\\\13&14\\end{bmatrix}$"
+      },
+      {
+       "q": "For the same $A$, the $(1,1)$ entry of $A^n$ is $(3^n+1)/2$. Find the $(1,1)$ entry of $A^{10}$.",
+       "type": "number",
+       "answer": 29525.0,
+       "hint": "3^10 = 59049.",
+       "solution": [
+        {
+         "do": "Substitute.",
+         "m": "\\frac{3^{10}+1}{2}=\\frac{59050}{2}=29525"
+        }
+       ],
+       "answerText": "29525"
+      },
+      {
+       "q": "For $A=\\begin{bmatrix}4&1\\\\3&2\\end{bmatrix}$ with eigenvectors $(1,-3)$ and $(1,1)$, take $P=\\begin{bmatrix}1&1\\\\-3&1\\end{bmatrix}$. Find $P^{-1}$. Fractions are accepted.",
+       "type": "matrix",
+       "answer": [
+        [
+         0.25,
+         -0.25
+        ],
+        [
+         0.75,
+         0.25
+        ]
+       ],
+       "hint": "det P = 1(1) - (1)(-3) = 4.",
+       "solution": [
+        {
+         "do": "Use the 2 by 2 formula.",
+         "m": "P^{-1}=\\frac14\\begin{bmatrix}1&-1\\\\3&1\\end{bmatrix}"
+        }
+       ],
+       "answerText": "$\\begin{bmatrix}\\frac{1}{4}&-\\frac{1}{4}\\\\\\frac{3}{4}&\\frac{1}{4}\\end{bmatrix}$"
+      },
+      {
+       "q": "The eigenvalues of $A=\\begin{bmatrix}4&1\\\\3&2\\end{bmatrix}$ are 1 and 5. Find the eigenvalues of $A^5$. Separate them with commas.",
+       "type": "set",
+       "answer": [
+        1,
+        3125
+       ],
+       "hint": "A^5 = P D^5 P^(-1), so the eigenvalues are the fifth powers.",
+       "solution": [
+        "1 to the fifth is 1, and 5 to the fifth is 3125."
+       ],
+       "answerText": "1, 3125"
+      },
+      {
+       "q": "A matrix $A$ has eigenvalues 2 and -3. Find the eigenvalues of $A^2$. Separate them with commas.",
+       "type": "set",
+       "answer": [
+        4,
+        9
+       ],
+       "hint": "Square each eigenvalue.",
+       "solution": [
+        "The eigenvalues of A squared are 4 and 9."
+       ],
+       "answerText": "4, 9"
+      },
+      {
+       "q": "Is $\\begin{bmatrix}1&1\\\\0&1\\end{bmatrix}$ diagonalisable? Answer yes or no.",
+       "type": "text",
+       "answer": "no",
+       "hint": "Its eigenvalue 1 is repeated. Count the independent eigenvectors.",
+       "solution": [
+        {
+         "do": "Solve (A - I)x = 0.",
+         "m": "\\begin{bmatrix}0&1\\\\0&0\\end{bmatrix}x=0\\Rightarrow x_2=0"
+        },
+        "Only one independent eigenvector, (1, 0), exists, but a 2 by 2 matrix needs two."
+       ],
+       "answerText": "no",
+       "alt": [
+        "not diagonalisable",
+        "n"
+       ]
+      }
+     ],
+     "quiz": [
+      {
+       "q": "If P has the eigenvectors of A as columns, then P inverse A P is",
+       "options": [
+        "the identity",
+        "a diagonal matrix of the eigenvalues",
+        "the transpose of A",
+        "A squared"
+       ],
+       "answer": 1,
+       "explain": "That is the definition of diagonalisation."
+      },
+      {
+       "q": "A square matrix is diagonalisable when it has",
+       "options": [
+        "n independent eigenvectors",
+        "a zero determinant",
+        "repeated eigenvalues",
+        "only real entries"
+       ],
+       "answer": 0,
+       "explain": "Independent eigenvectors make P invertible."
+      },
+      {
+       "q": "A to the power k equals",
+       "options": [
+        "P D^k P^(-1)",
+        "P^k D P^(-k)",
+        "D^k",
+        "k P D P^(-1)"
+       ],
+       "answer": 0,
+       "explain": "The inner P^(-1) P pairs cancel."
+      },
+      {
+       "q": "The matrix with rows (1, 1) and (0, 1) is",
+       "options": [
+        "diagonalisable",
+        "not diagonalisable",
+        "symmetric",
+        "singular"
+       ],
+       "answer": 1,
+       "explain": "It has one independent eigenvector but needs two."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Diagonalisation",
+       "back": "$P^{-1}AP=D$, columns of $P$ are eigenvectors, $D$ holds the eigenvalues."
+      },
+      {
+       "front": "Condition",
+       "back": "n independent eigenvectors."
+      },
+      {
+       "front": "Powers",
+       "back": "$A^k=PD^kP^{-1}$."
+      },
+      {
+       "front": "Eigenvalues of A^k",
+       "back": "The k-th powers of the eigenvalues of A."
+      },
+      {
+       "front": "A matrix that fails",
+       "back": "Repeated eigenvalue with too few eigenvectors, for example rows (1,1), (0,1)."
+      }
+     ],
+     "theory": [
+      {
+       "q": "State what it means to diagonalise a square matrix A, and how P and D are formed.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Find n independent eigenvectors of A",
+        "Put them in the columns of P",
+        "Put the matching eigenvalues on the diagonal of D",
+        "Then P inverse A P = D"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Show that P inverse A P = D.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "A x_i = lambda_i x_i for each eigenvector, so A P = P D",
+        "P has independent columns, so P inverse exists",
+        "Multiply AP = PD on the left by P inverse",
+        "P inverse A P = D"
+       ],
+       "need": 4
+      },
+      {
+       "q": "State the condition under which a matrix can be diagonalised, with an example of a matrix that cannot.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "It needs n independent eigenvectors",
+        "Distinct eigenvalues are enough",
+        "For example the matrix with rows (1,1) and (0,1) has only one independent eigenvector"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Find P and D for A with rows (4,1) and (3,2).",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Eigenvalues 1 and 5",
+        "Eigenvectors (1,-3) and (1,1)",
+        "P has these as columns and D = diag(1, 5)",
+        "Check A P = P D"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Explain how to find A to the power k using diagonalisation.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "A = P D P inverse",
+        "A^k = P D^k P inverse",
+        "D^k has the k-th powers of the eigenvalues on its diagonal"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Find A to the fifth power for A with rows (4,1) and (3,2).",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "D^5 = diag(1, 3125)",
+        "A^5 = P D^5 P inverse",
+        "The result has rows (2344, 781) and (2343, 782)",
+        "Check: trace 3126 = 1 + 3125"
+       ],
+       "need": 4
+      },
+      {
+       "q": "What is special about the diagonalisation of a symmetric matrix?",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "The eigenvalues are real and the eigenvectors are orthogonal",
+        "With unit eigenvectors P inverse = P transpose"
+       ],
+       "need": 2
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=diagonalization+of+a+matrix+eigenvalues+eigenvectors+explained"
+      }
+     ]
+    },
+    {
+     "id": "1.10",
+     "title": "Triangular (LU) decomposition",
+     "slides": "Not in your notes (the outline lists triangular decomposition, and Gaussian elimination from lesson 1.4 is its basis)",
+     "one_line": "LU decomposition splits a matrix into a lower and an upper triangular matrix, so a system can be solved by two easy sweeps.",
+     "analogy": "Solving a system straight off is like moving house in one go. LU decomposition packs the job into two simple trips: one sweep down (forward substitution), one sweep up (back substitution). Once packed, you can reuse the packing for any new right-hand side.",
+     "recall": [
+      "What does back substitution do?",
+      "What is a triangular matrix?"
+     ],
+     "exam": [
+      "Triangular decomposition: write $A=LU$ with $L$ lower triangular (zeros above the diagonal) and $U$ upper triangular (zeros below the diagonal). Not in your notes.",
+      "Link with elimination (lesson 1.4): $U$ is the echelon matrix that Gaussian elimination produces. $L$ stores the multipliers: if you use $R_i\\to R_i-m_{ij}R_j$, put $l_{ij}=m_{ij}$ below the diagonal. The diagonal of $L$ is 1 (the Doolittle form). Then $A=LU$.",
+      "To solve $Ax=b$: write $LUx=b$. Let $y=Ux$. Solve $Ly=b$ for $y$ by forward substitution (first row first), then $Ux=y$ for $x$ by back substitution (last row first).",
+      "Why it is useful: once $L$ and $U$ are found, each new right-hand side $b$ costs only the two substitutions, which is much cheaper than eliminating again or finding the inverse.",
+      "Determinant: $\\det A=\\det L\\det U=u_{11}u_{22}\\cdots u_{nn}$, since $\\det L=1$.",
+      "If a zero pivot appears, swap rows first. The result is $PA=LU$ with $P$ a permutation matrix. A matrix like $\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}$ has no LU form without a swap.",
+      "Conventions differ: Doolittle puts 1s on the diagonal of $L$; Crout puts 1s on the diagonal of $U$. Use your lecturer's."
+     ],
+     "terms": [
+      "lu-decomposition",
+      "lower-triangular",
+      "upper-triangular",
+      "forward-substitution",
+      "back-substitution",
+      "gaussian-elimination"
+     ],
+     "examples": [
+      {
+       "title": "Decompose a 3 by 3 matrix",
+       "problem": "Find $L$ and $U$ for $A=\\begin{bmatrix}2&1&1\\\\4&3&3\\\\8&7&9\\end{bmatrix}$.",
+       "steps": [
+        {
+         "do": "Clear the first column. The multipliers are 4/2 = 2 and 8/2 = 4.",
+         "m": "R_2\\to R_2-2R_1:\\ (0,1,1),\\qquad R_3\\to R_3-4R_1:\\ (0,3,5)"
+        },
+        {
+         "do": "Clear the second column. The multiplier is 3/1 = 3.",
+         "m": "R_3\\to R_3-3R_2:\\ (0,0,2)"
+        },
+        {
+         "do": "U is the echelon matrix.",
+         "m": "U=\\begin{bmatrix}2&1&1\\\\0&1&1\\\\0&0&2\\end{bmatrix}"
+        },
+        {
+         "do": "L holds the multipliers 2, 4, 3 under a diagonal of 1s.",
+         "m": "L=\\begin{bmatrix}1&0&0\\\\2&1&0\\\\4&3&1\\end{bmatrix}"
+        },
+        {
+         "do": "Check LU = A.",
+         "m": "\\begin{bmatrix}2&1&1\\\\4&3&3\\\\8&7&9\\end{bmatrix}"
+        }
+       ],
+       "answer": "$L=\\begin{bmatrix}1&0&0\\\\2&1&0\\\\4&3&1\\end{bmatrix}$ and $U=\\begin{bmatrix}2&1&1\\\\0&1&1\\\\0&0&2\\end{bmatrix}$."
+      },
+      {
+       "title": "Solve a system with L and U",
+       "problem": "Solve $Ax=b$ for $A$ above and $b=(4,10,24)$.",
+       "steps": [
+        {
+         "do": "Forward substitution for Ly = b.",
+         "m": "y_1=4,\\quad y_2=10-2(4)=2,\\quad y_3=24-4(4)-3(2)=2"
+        },
+        {
+         "do": "Back substitution for Ux = y.",
+         "m": "x_3=\\frac22=1,\\quad x_2=2-1=1,\\quad x_1=\\frac{4-1-1}{2}=1"
+        },
+        {
+         "do": "Check in A x = b.",
+         "m": "2+1+1=4,\\quad4+3+3=10,\\quad8+7+9=24"
+        },
+        {
+         "do": "The determinant is free.",
+         "why": "det A = 2(1)(2) = 4, the product of the diagonal of U."
+        }
+       ],
+       "answer": "$x=(1,1,1)$ and $\\det A=4$."
+      },
+      {
+       "title": "A 2 by 2 decomposition",
+       "problem": "Find $L$ and $U$ for $A=\\begin{bmatrix}4&3\\\\6&3\\end{bmatrix}$ and the determinant.",
+       "steps": [
+        {
+         "do": "The multiplier is 6/4 = 3/2.",
+         "m": "R_2\\to R_2-\\tfrac32R_1:\\ (0,\\ 3-\\tfrac92)=(0,\\ -\\tfrac32)"
+        },
+        {
+         "do": "Write L and U.",
+         "m": "L=\\begin{bmatrix}1&0\\\\\\frac{3}{2}&1\\end{bmatrix},\\qquad U=\\begin{bmatrix}4&3\\\\0&-\\frac{3}{2}\\end{bmatrix}"
+        },
+        {
+         "do": "Determinant.",
+         "m": "\\det A=4\\left(-\\tfrac32\\right)=-6"
+        }
+       ],
+       "answer": "L has l21 = 3/2, U has diagonal 4 and -3/2, and det A = -6, which matches 4(3) - 3(6)."
+      }
+     ],
+     "practice": [
+      {
+       "q": "For $A=\\begin{bmatrix}4&3\\\\6&3\\end{bmatrix}$, row 2 becomes $R_2-mR_1$ to clear the entry below the first pivot. Find the multiplier $m=l_{21}$. Give a decimal.",
+       "type": "number",
+       "answer": 1.5,
+       "hint": "m = 6/4.",
+       "solution": [
+        {
+         "do": "Divide.",
+         "m": "m=\\frac64=1.5"
+        }
+       ],
+       "answerText": "1.5"
+      },
+      {
+       "q": "For the same $A$, find $U$. Fractions are accepted.",
+       "type": "matrix",
+       "answer": [
+        [
+         4,
+         3
+        ],
+        [
+         0,
+         -1.5
+        ]
+       ],
+       "hint": "Row 2 minus 1.5 times row 1: (6 - 6, 3 - 4.5).",
+       "solution": [
+        {
+         "do": "Eliminate.",
+         "m": "U=\\begin{bmatrix}4&3\\\\0&-\\frac{3}{2}\\end{bmatrix}"
+        }
+       ],
+       "answerText": "$\\begin{bmatrix}4&3\\\\0&-\\frac{3}{2}\\end{bmatrix}$"
+      },
+      {
+       "q": "Using $U$ from the matrix with rows (2,1,1), (0,1,1), (0,0,2) for $A=\\begin{bmatrix}2&1&1\\\\4&3&3\\\\8&7&9\\end{bmatrix}$, find $\\det A$.",
+       "type": "number",
+       "answer": 4.0,
+       "hint": "det A is the product of the diagonal of U, because det L = 1.",
+       "solution": [
+        {
+         "do": "Multiply.",
+         "m": "2\\times1\\times2=4"
+        }
+       ],
+       "answerText": "4"
+      },
+      {
+       "q": "Given $L=\\begin{bmatrix}1&0&0\\\\2&1&0\\\\4&3&1\\end{bmatrix}$ and $b=(4,10,24)$, solve $Ly=b$ by forward substitution. Give $(y_1,y_2,y_3)$.",
+       "type": "vector",
+       "answer": [
+        4.0,
+        2.0,
+        2.0
+       ],
+       "hint": "y_1 = 4. Then y_2 = 10 - 2 y_1. Then y_3 = 24 - 4 y_1 - 3 y_2.",
+       "solution": [
+        {
+         "do": "Forward substitution.",
+         "m": "y_1=4,\\quad y_2=10-8=2,\\quad y_3=24-16-6=2"
+        }
+       ],
+       "answerText": "(4, 2, 2)"
+      },
+      {
+       "q": "Given $U=\\begin{bmatrix}2&1&1\\\\0&1&1\\\\0&0&2\\end{bmatrix}$ and $y=(4,2,2)$, solve $Ux=y$ by back substitution. Give $(x_1,x_2,x_3)$.",
+       "type": "vector",
+       "answer": [
+        1.0,
+        1.0,
+        1.0
+       ],
+       "hint": "Start from the last row: 2 x_3 = 2.",
+       "solution": [
+        {
+         "do": "Back substitution.",
+         "m": "x_3=1,\\quad x_2=2-1=1,\\quad x_1=\\frac{4-1-1}{2}=1"
+        }
+       ],
+       "answerText": "(1, 1, 1)"
+      },
+      {
+       "q": "For $A=\\begin{bmatrix}1&2\\\\3&7\\end{bmatrix}$ find the entry $u_{22}$ of $U$.",
+       "type": "number",
+       "answer": 1.0,
+       "hint": "l21 = 3, so row 2 becomes (3 - 3(1), 7 - 3(2)).",
+       "solution": [
+        {
+         "do": "Eliminate.",
+         "m": "R_2-3R_1=(0,\\ 7-6)=(0,\\ 1)"
+        }
+       ],
+       "answerText": "1"
+      },
+      {
+       "q": "For $A=\\begin{bmatrix}1&1&1\\\\2&3&5\\\\4&6&8\\end{bmatrix}$ the first elimination steps use $R_2-2R_1$ and $R_3-4R_1$, giving rows $(0,1,3)$ and $(0,2,4)$. Find the multiplier $l_{32}$.",
+       "type": "number",
+       "answer": 2.0,
+       "hint": "l32 = 2/1.",
+       "solution": [
+        {
+         "do": "Divide.",
+         "m": "l_{32}=\\frac21=2"
+        },
+        "Then R3 - 2R2 = (0, 0, -2), so det A = 1(1)(-2) = -2."
+       ],
+       "answerText": "2"
+      },
+      {
+       "q": "Does $\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}$ have an LU decomposition without swapping rows? Answer yes or no.",
+       "type": "text",
+       "answer": "no",
+       "hint": "Look at the first pivot.",
+       "solution": [
+        "The first pivot is 0, so elimination cannot start. Swapping rows gives PA = LU with P a permutation matrix."
+       ],
+       "answerText": "no",
+       "alt": [
+        "n",
+        "it needs a row swap"
+       ]
+      }
+     ],
+     "quiz": [
+      {
+       "q": "In A = LU, the matrix U is",
+       "options": [
+        "lower triangular",
+        "upper triangular",
+        "the identity",
+        "the inverse of L"
+       ],
+       "answer": 1,
+       "explain": "U has zeros below the diagonal and is the echelon form."
+      },
+      {
+       "q": "The entries of L below its diagonal are",
+       "options": [
+        "the pivots",
+        "the elimination multipliers",
+        "the constants of the system",
+        "the eigenvalues"
+       ],
+       "answer": 1,
+       "explain": "l_ij is the multiplier used to clear position (i, j)."
+      },
+      {
+       "q": "To solve Ax = b with A = LU you solve",
+       "options": [
+        "Ux = b then Ly = x",
+        "Ly = b then Ux = y",
+        "L = b then U = x",
+        "L U = b only"
+       ],
+       "answer": 1,
+       "explain": "Forward substitution first, then back substitution."
+      },
+      {
+       "q": "det A equals",
+       "options": [
+        "the sum of the diagonal of U",
+        "the product of the diagonal of U (with L having 1s on its diagonal)",
+        "the product of the diagonal of L only",
+        "u_11"
+       ],
+       "answer": 1,
+       "explain": "det L = 1."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "LU decomposition",
+       "back": "A = LU, L lower triangular with 1s on the diagonal, U upper triangular."
+      },
+      {
+       "front": "Where U comes from",
+       "back": "Gaussian elimination: U is the echelon matrix."
+      },
+      {
+       "front": "Where L comes from",
+       "back": "The multipliers used in elimination."
+      },
+      {
+       "front": "Solving Ax = b",
+       "back": "Ly = b by forward substitution, then Ux = y by back substitution."
+      },
+      {
+       "front": "Determinant from U",
+       "back": "The product of the diagonal entries of U."
+      }
+     ],
+     "theory": [
+      {
+       "q": "Define LU decomposition.",
+       "type": "Define",
+       "marks": 3,
+       "points": [
+        "A = LU",
+        "L is lower triangular and U is upper triangular",
+        "In the Doolittle form L has 1s on its diagonal"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Explain how L and U are found by Gaussian elimination.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "U is the echelon matrix produced by elimination",
+        "L stores the multipliers used, below a diagonal of 1s",
+        "Then A = LU"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Explain how Ax = b is solved once A = LU is known.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Write LUx = b and let y = Ux",
+        "Solve Ly = b by forward substitution",
+        "Solve Ux = y by back substitution",
+        "The same L and U serve every right-hand side"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Find L and U for the matrix with rows (2,1,1), (4,3,3), (8,7,9).",
+       "type": "Explain",
+       "marks": 5,
+       "points": [
+        "Multipliers 2 and 4 clear the first column",
+        "Multiplier 3 clears the second column",
+        "U has rows (2,1,1), (0,1,1), (0,0,2)",
+        "L has rows (1,0,0), (2,1,0), (4,3,1)",
+        "Check LU = A"
+       ],
+       "need": 5
+      },
+      {
+       "q": "Solve Ax = (4, 10, 24) for that matrix using LU.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Forward: y = (4, 2, 2)",
+        "Back substitution gives x3 = 1",
+        "Then x2 = 1 and x1 = 1",
+        "Check: x = (1, 1, 1)"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Explain how the determinant is found from an LU decomposition.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "det L = 1 for a unit lower triangular matrix",
+        "det A = the product of the diagonal entries of U"
+       ],
+       "need": 2
+      },
+      {
+       "q": "What happens if a zero pivot is met, and what is PA = LU?",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Rows must be swapped before elimination can continue",
+        "P is a permutation matrix recording the swaps",
+        "Then PA = LU"
+       ],
+       "need": 3
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=lu+decomposition+explained+solve+linear+system"
+      }
+     ]
     }
    ]
   },
@@ -10499,6 +11261,41 @@
    "term": "Extrapolation",
    "plain": "Predicting outside the range of the data.",
    "exam": "Using the line beyond the observed x values; unreliable."
+  },
+  "diagonalisation": {
+   "term": "Diagonalisation",
+   "plain": "Rewriting a matrix as a list of stretch factors by changing to its eigenvector directions.",
+   "exam": "P^-1 A P = D, where the columns of P are eigenvectors and D holds the eigenvalues (not in the notes)."
+  },
+  "diagonal-matrix": {
+   "term": "Diagonal matrix",
+   "plain": "A grid with numbers only on the main diagonal.",
+   "exam": "A square matrix whose entries are zero off the main diagonal."
+  },
+  "modal-matrix": {
+   "term": "Modal matrix",
+   "plain": "The matrix whose columns are the eigenvectors.",
+   "exam": "The matrix P of eigenvectors used in P^-1 A P = D."
+  },
+  "lu-decomposition": {
+   "term": "LU decomposition",
+   "plain": "Splitting a matrix into a lower and an upper triangular matrix.",
+   "exam": "A = LU with L lower triangular and U upper triangular (not in the notes)."
+  },
+  "lower-triangular": {
+   "term": "Lower triangular matrix",
+   "plain": "A grid with zeros above the diagonal.",
+   "exam": "A square matrix with all entries above the main diagonal equal to zero."
+  },
+  "upper-triangular": {
+   "term": "Upper triangular matrix",
+   "plain": "A grid with zeros below the diagonal.",
+   "exam": "A square matrix with all entries below the main diagonal equal to zero."
+  },
+  "forward-substitution": {
+   "term": "Forward substitution",
+   "plain": "Solving a lower triangular system from the first row down.",
+   "exam": "Solving Ly = b starting with y_1."
   }
  },
  "past": [

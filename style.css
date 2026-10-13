@@ -79,7 +79,7 @@ input.f:focus,#q:focus{border-color:var(--accent);outline:none}
 }
 @media(max-width:899px){.ib.wide span{display:none}.ib.wide{padding:0}}
 @media(max-width:420px){:root{--pad:16px}body{font-size:16px;line-height:1.65}h1{font-size:34px;line-height:1.15}h2{font-size:24px;line-height:1.25}.tip{font-size:18px}main{padding-top:28px}.card{padding:16px}.stat b{font-size:34px}}
-@media(max-width:370px){:root{--pad:12px}.bottom a span{display:none}.bottom a{padding:10px 4px}.btn{display:flex;width:100%;margin-right:0}.grid{grid-template-columns:1fr}.face{font-size:21px}}
+@media(max-width:375px){:root{--pad:12px}.bottom a span{display:none}.bottom a{padding:10px 4px}.btn{display:flex;width:100%;margin-right:0}.grid{grid-template-columns:1fr}.face{font-size:21px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
 /* Phase B: chapter-style lessons */
@@ -110,7 +110,7 @@ body.lesson main{max-width:none;padding:0}body.lesson main>*{animation:none}
 .secs button.on{color:var(--accent);background:var(--accent-soft);font-weight:600}.secs button.on b{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 @media(min-width:900px){.secs{top:57px;left:auto;right:0;bottom:0;width:300px;max-height:none;border-radius:0;border-width:0 0 0 1px;transform:translateX(105%)}.ctl{padding-left:32px;padding-right:32px}.stage{padding-top:64px}}
 @media(max-width:420px){.big{font-size:23px}.core li{font-size:17px}}
-@media(max-width:370px){.ctl .btn{width:auto;flex:1;padding:0 8px}.ctl .sec span{display:none}}
+@media(max-width:375px){.ctl .btn{width:auto;flex:1;padding:0 8px}.ctl .sec span{display:none}}
 
 /* Phase C: home, coach, assignment */
 .coach{padding:4px 0 28px}
@@ -144,7 +144,7 @@ body.lesson main{max-width:none;padding:0}body.lesson main>*{animation:none}
 .hint{text-align:center;font-size:14px}.grades{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;animation:rise var(--t2) var(--ease) both}.grades[hidden]{display:none}
 .grades .btn{flex-direction:column;gap:0;margin:0;min-height:56px;padding:6px}.grades small{color:var(--muted);font-size:12px}
 @media(max-width:420px){.qq{font-size:23px}.fi{min-height:260px}.ff,.fb{font-size:22px}.qscore{font-size:52px}}
-@media(max-width:370px){.grades{grid-template-columns:repeat(2,1fr)}.grades .btn{display:flex;width:auto}}
+@media(max-width:375px){.grades{grid-template-columns:repeat(2,1fr)}.grades .btn{display:flex;width:auto}}
 
 /* Loaders */
 #lbar{position:fixed;top:0;left:0;height:2px;width:0;background:var(--accent);z-index:70;opacity:0;pointer-events:none;transition:width 420ms var(--ease),opacity 240ms var(--ease)}

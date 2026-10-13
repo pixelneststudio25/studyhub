@@ -10819,6 +10819,3660 @@
      ]
     }
    ]
+  },
+  {
+   "id": "m6",
+   "title": "Vector algebra and differential calculus",
+   "source": "Dr Jack's vector calculus deck (slides 5 to 62), the past test and standard methods; anything not in your notes is labelled",
+   "lessons": [
+    {
+     "id": "6.1",
+     "title": "Vectors: magnitude, unit vectors and direction",
+     "slides": "Dr Jack's vector calculus deck, slides 5 to 12 (the slide 8 figure is wrong; see the first bullet); Sadiku Chapter 1 fills the gaps",
+     "one_line": "A vector is a quantity with both size and direction, and in components it is just three numbers you can add, scale and measure.",
+     "analogy": "A scalar is a price tag: just a number. A vector is a set of directions to a treasure: 'walk 3 east, 4 north, 12 up'. The magnitude is how far you walk in a straight line, and the unit vector is the compass direction with the distance stripped out.",
+     "recall": [
+      "What is the length of the diagonal of a 3 by 4 rectangle?",
+      "What is 2 times the vector (1, -3, 2)?"
+     ],
+     "exam": [
+      "A scalar has magnitude only (mass, volume, distance). A vector has magnitude and direction (velocity, acceleration, force). Unit vectors $\\mathbf i,\\mathbf j,\\mathbf k$ have length 1, are perpendicular to each other and point along the positive $x,y,z$ axes. Other books write them $\\mathbf a_x,\\mathbf a_y,\\mathbf a_z$ (and the past test uses this). They are the same thing, and this course uses both.",
+      "Right-handed set (your slide 8 shows a figure that cannot show handedness, because three arrows in one plane cannot): the correct statements are $\\mathbf i\\times\\mathbf j=\\mathbf k$, $\\mathbf j\\times\\mathbf k=\\mathbf i$ and $\\mathbf k\\times\\mathbf i=\\mathbf j$. Reversing the order reverses the sign. Not in your notes.",
+      "For $P=(x,y,z)$ the position vector is $\\overrightarrow{OP}=\\mathbf p=x\\mathbf i+y\\mathbf j+z\\mathbf k=[x,y,z]$, with magnitude $|\\mathbf p|=\\sqrt{x^2+y^2+z^2}$ (slide 9).",
+      "Two vectors are equal exactly when their components are equal. Add or subtract component by component: $\\mathbf a\\pm\\mathbf b=(a_1\\pm b_1)\\mathbf i+(a_2\\pm b_2)\\mathbf j+(a_3\\pm b_3)\\mathbf k$. Multiply by a scalar $\\lambda$: $\\lambda\\mathbf b=(\\lambda b_1)\\mathbf i+(\\lambda b_2)\\mathbf j+(\\lambda b_3)\\mathbf k$ (slides 10 and 11).",
+      "Unit vector in the direction of $\\mathbf a$: $\\hat{\\mathbf a}=\\dfrac{\\mathbf a}{|\\mathbf a|}$. This is what the past test (Q1) asks for. Not in your notes.",
+      "The vector from $P(x_1,y_1,z_1)$ to $Q(x_2,y_2,z_2)$ is $\\overrightarrow{PQ}=(x_2-x_1)\\mathbf i+(y_2-y_1)\\mathbf j+(z_2-z_1)\\mathbf k$: end minus start. Not in your notes.",
+      "Direction cosines: if $\\mathbf a$ makes angles $\\alpha,\\beta,\\gamma$ with the $x,y,z$ axes then $\\cos\\alpha=\\dfrac{a_x}{|\\mathbf a|}$, $\\cos\\beta=\\dfrac{a_y}{|\\mathbf a|}$, $\\cos\\gamma=\\dfrac{a_z}{|\\mathbf a|}$. They are the components of $\\hat{\\mathbf a}$, so $\\cos^2\\alpha+\\cos^2\\beta+\\cos^2\\gamma=1$. Not in your notes."
+     ],
+     "terms": [
+      "scalar-quantity",
+      "vector",
+      "unit-vector",
+      "position-vector",
+      "direction-cosines"
+     ],
+     "examples": [
+      {
+       "title": "Your slide 12: Example 1.1",
+       "problem": "Given $p=5\\mathbf i+\\mathbf j-3\\mathbf k$ and $q=4\\mathbf i-3\\mathbf j+2\\mathbf k$, find $p+q$, $p-q$, $|p|$ and $2q-10p$.",
+       "steps": [
+        {
+         "do": "Add component by component.",
+         "m": "p+q=(5+4)\\mathbf i+(1-3)\\mathbf j+(-3+2)\\mathbf k=9\\mathbf{i}-2\\mathbf{j}-\\mathbf{k}"
+        },
+        {
+         "do": "Subtract.",
+         "m": "p-q=\\mathbf{i}+4\\mathbf{j}-5\\mathbf{k}"
+        },
+        {
+         "do": "Magnitude of p.",
+         "m": "|p|=\\sqrt{5^2+1^2+(-3)^2}=\\sqrt{35}=5.916"
+        },
+        {
+         "do": "Scale first, then subtract.",
+         "m": "2q=(8,-6,4),\\quad10p=(50,10,-30)\\ \\Rightarrow\\ 2q-10p=-42\\mathbf{i}-16\\mathbf{j}+34\\mathbf{k}"
+        }
+       ],
+       "answer": "$p+q=9\\mathbf{i}-2\\mathbf{j}-\\mathbf{k}$, $p-q=\\mathbf{i}+4\\mathbf{j}-5\\mathbf{k}$, $|p|=\\sqrt{35}$, $2q-10p=-42\\mathbf{i}-16\\mathbf{j}+34\\mathbf{k}$."
+      },
+      {
+       "title": "Past test Q1: a unit vector",
+       "problem": "Find the unit vector of $B+2C$ if $B=13\\mathbf a_x-7\\mathbf a_y+6\\mathbf a_z$ and $C=10\\mathbf a_x-4\\mathbf a_y+8\\mathbf a_z$.",
+       "steps": [
+        {
+         "do": "Form B + 2C.",
+         "m": "B+2C=(13+20)\\mathbf a_x+(-7-8)\\mathbf a_y+(6+16)\\mathbf a_z=(33,-15,22)"
+        },
+        {
+         "do": "Magnitude.",
+         "m": "|B+2C|=\\sqrt{33^2+15^2+22^2}=\\sqrt{1089+225+484}=\\sqrt{1798}=42.403"
+        },
+        {
+         "do": "Divide each component by the magnitude.",
+         "m": "\\hat n=\\frac{(33,-15,22)}{42.403}=(0.7782,\\ -0.3537,\\ 0.5188)"
+        },
+        {
+         "do": "Check that the length is 1.",
+         "why": "0.7782 squared + 0.3537 squared + 0.5188 squared = 0.6056 + 0.1251 + 0.2692 = 1.0000."
+        }
+       ],
+       "answer": "$\\hat n=0.7782\\,\\mathbf a_x-0.3537\\,\\mathbf a_y+0.5188\\,\\mathbf a_z$."
+      },
+      {
+       "title": "A vector between points, and direction cosines",
+       "problem": "Find the unit vector from $P(2,-1,4)$ to $Q(5,3,16)$. Then find the direction cosines and angles of $(2,-3,6)$.",
+       "steps": [
+        {
+         "do": "End minus start.",
+         "m": "\\overrightarrow{PQ}=(3,4,12),\\quad|\\overrightarrow{PQ}|=\\sqrt{9+16+144}=13"
+        },
+        {
+         "do": "Unit vector.",
+         "m": "\\hat n=\\left(\\tfrac3{13},\\tfrac4{13},\\tfrac{12}{13}\\right)"
+        },
+        {
+         "do": "For (2, -3, 6) the magnitude is 7.",
+         "m": "\\sqrt{4+9+36}=7\\Rightarrow\\cos\\alpha=\\tfrac27,\\ \\cos\\beta=-\\tfrac37,\\ \\cos\\gamma=\\tfrac67"
+        },
+        {
+         "do": "Angles.",
+         "m": "\\alpha=73.4^\\circ,\\ \\beta=115.4^\\circ,\\ \\gamma=31.0^\\circ"
+        },
+        {
+         "do": "Check.",
+         "why": "4/49 + 9/49 + 36/49 = 1."
+        }
+       ],
+       "answer": "$\\hat n=\\left(\\tfrac3{13},\\tfrac4{13},\\tfrac{12}{13}\\right)$, and the direction cosines are $\\tfrac27,-\\tfrac37,\\tfrac67$."
+      }
+     ],
+     "practice": [
+      {
+       "q": "Given $p=5\\mathbf i+\\mathbf j-3\\mathbf k$ and $q=4\\mathbf i-3\\mathbf j+2\\mathbf k$, find $p+q$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        9.0,
+        -2.0,
+        -1.0
+       ],
+       "hint": "Add the components.",
+       "solution": [
+        {
+         "do": "Add component by component.",
+         "m": "p+q=9\\mathbf{i}-2\\mathbf{j}-\\mathbf{k}"
+        }
+       ],
+       "answerText": "9i - 2j - k"
+      },
+      {
+       "q": "For the same $p$ and $q$ find $2q-10p$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        -42.0,
+        -16.0,
+        34.0
+       ],
+       "hint": "2q = (8, -6, 4) and 10p = (50, 10, -30).",
+       "solution": [
+        {
+         "do": "Subtract.",
+         "m": "2q-10p=(8-50)\\mathbf i+(-6-10)\\mathbf j+(4+30)\\mathbf k=-42\\mathbf{i}-16\\mathbf{j}+34\\mathbf{k}"
+        }
+       ],
+       "answerText": "-42i - 16j + 34k"
+      },
+      {
+       "q": "Find the magnitude of $p=5\\mathbf i+\\mathbf j-3\\mathbf k$. Give a decimal.",
+       "type": "number",
+       "answer": 5.916079783,
+       "hint": "Square root of the sum of the squares of the components.",
+       "solution": [
+        {
+         "do": "Compute.",
+         "m": "|p|=\\sqrt{25+1+9}=\\sqrt{35}=5.916"
+        }
+       ],
+       "answerText": "5.916",
+       "tol": 0.005
+      },
+      {
+       "q": "Past test Q1 (first step). With $B=13\\mathbf a_x-7\\mathbf a_y+6\\mathbf a_z$ and $C=10\\mathbf a_x-4\\mathbf a_y+8\\mathbf a_z$, find the magnitude of $B+2C$. Give a decimal.",
+       "type": "number",
+       "answer": 42.402830094,
+       "hint": "First find B + 2C = (33, -15, 22).",
+       "solution": [
+        {
+         "do": "Magnitude.",
+         "m": "\\sqrt{33^2+15^2+22^2}=\\sqrt{1798}=42.40"
+        }
+       ],
+       "answerText": "42.40",
+       "tol": 0.05
+      },
+      {
+       "q": "Points $P(2,-1,4)$ and $Q(5,3,16)$. Find the vector $\\overrightarrow{PQ}$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        3.0,
+        4.0,
+        12.0
+       ],
+       "hint": "Subtract the coordinates of P from those of Q.",
+       "solution": [
+        {
+         "do": "Subtract.",
+         "m": "\\overrightarrow{PQ}=(5-2,\\ 3+1,\\ 16-4)=(3,4,12)"
+        }
+       ],
+       "answerText": "(3, 4, 12)"
+      },
+      {
+       "q": "Find the unit vector along $\\overrightarrow{PQ}=(3,4,12)$. Give $(x,y,z)$ as decimals.",
+       "type": "vector",
+       "answer": [
+        0.230769231,
+        0.307692308,
+        0.923076923
+       ],
+       "hint": "The magnitude is 13.",
+       "solution": [
+        {
+         "do": "Divide by the magnitude.",
+         "m": "\\hat n=\\frac1{13}(3,4,12)=(0.2308,\\ 0.3077,\\ 0.9231)"
+        }
+       ],
+       "answerText": "(3/13, 4/13, 12/13)",
+       "tol": 0.002
+      },
+      {
+       "q": "A vector has components $(2,-3,6)$. Find its direction cosine with the $y$-axis, $m=\\cos\\beta$. Give a decimal.",
+       "type": "number",
+       "answer": -0.428571429,
+       "hint": "The magnitude is 7; the direction cosines are the components divided by 7.",
+       "solution": [
+        {
+         "do": "Divide.",
+         "m": "m=\\frac{-3}{7}=-0.4286"
+        }
+       ],
+       "answerText": "-3/7 = -0.4286",
+       "tol": 0.002
+      },
+      {
+       "q": "Is velocity a scalar or a vector? Answer scalar or vector.",
+       "type": "text",
+       "answer": "vector",
+       "hint": "Does velocity have a direction?",
+       "solution": [
+        "Velocity has magnitude and direction, so it is a vector. Speed, its magnitude, is a scalar."
+       ],
+       "answerText": "vector"
+      }
+     ],
+     "quiz": [
+      {
+       "q": "The magnitude of the vector 3i + 4j + 12k is",
+       "options": [
+        "7",
+        "13",
+        "19",
+        "5"
+       ],
+       "answer": 1,
+       "explain": "sqrt(9 + 16 + 144) = sqrt(169) = 13."
+      },
+      {
+       "q": "A unit vector has",
+       "options": [
+        "magnitude 1",
+        "all components 1",
+        "magnitude 0",
+        "no direction"
+       ],
+       "answer": 0,
+       "explain": "Dividing a vector by its magnitude gives magnitude 1."
+      },
+      {
+       "q": "In the notation of the past test, a_x is the same as",
+       "options": [
+        "i",
+        "j",
+        "k",
+        "the zero vector"
+       ],
+       "answer": 0,
+       "explain": "a_x, a_y, a_z are another name for i, j, k."
+      },
+      {
+       "q": "The vector from P to Q is",
+       "options": [
+        "P minus Q",
+        "Q minus P",
+        "P plus Q",
+        "the magnitude of Q"
+       ],
+       "answer": 1,
+       "explain": "End minus start."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Magnitude",
+       "back": "$|\\mathbf p|=\\sqrt{x^2+y^2+z^2}$."
+      },
+      {
+       "front": "Unit vector of a",
+       "back": "$\\mathbf a/|\\mathbf a|$."
+      },
+      {
+       "front": "Vector from P to Q",
+       "back": "End minus start: Q - P (not in your notes)."
+      },
+      {
+       "front": "Direction cosines",
+       "back": "Components of the unit vector; their squares add to 1 (not in your notes)."
+      },
+      {
+       "front": "i, j, k and a_x, a_y, a_z",
+       "back": "Two names for the same three unit vectors."
+      }
+     ],
+     "theory": [
+      {
+       "q": "Distinguish a scalar from a vector with two examples of each.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "A scalar has magnitude only, for example mass or distance",
+        "A vector has magnitude and direction, for example velocity or force",
+        "Speed is a scalar and velocity is a vector"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Define the unit vectors i, j and k and the position vector of a point.",
+       "type": "Define",
+       "marks": 4,
+       "points": [
+        "i, j, k have length 1 and point along the positive x, y and z axes",
+        "They are mutually perpendicular",
+        "The position vector of (x, y, z) is x i + y j + z k",
+        "Its magnitude is the square root of x squared + y squared + z squared"
+       ],
+       "need": 4
+      },
+      {
+       "q": "State how vectors are added, subtracted and multiplied by a scalar.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Add or subtract component by component",
+        "Multiply every component by the scalar",
+        "Two vectors are equal only if all components are equal"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Define a unit vector and find the unit vector of B + 2C for B = (13, -7, 6) and C = (10, -4, 8).",
+       "type": "Explain",
+       "marks": 5,
+       "points": [
+        "A unit vector of a is a divided by its magnitude",
+        "B + 2C = (33, -15, 22)",
+        "Magnitude = square root of 1798 = 42.40",
+        "Unit vector = (0.7782, -0.3537, 0.5188)"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Define the direction cosines of a vector and state the relation between them.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "They are the cosines of the angles between the vector and the x, y and z axes",
+        "Each is a component divided by the magnitude",
+        "Their squares add up to 1"
+       ],
+       "need": 3
+      },
+      {
+       "q": "State the right-handed relations among i, j and k.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "i cross j = k",
+        "j cross k = i",
+        "k cross i = j and reversing the order changes the sign"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Find the vector from P(2, -1, 4) to Q(5, 3, 16) and its length.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "End minus start gives (3, 4, 12)",
+        "The length is the square root of 9 + 16 + 144, which is 13"
+       ],
+       "need": 2
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=vectors+magnitude+unit+vector+direction+cosines+explained"
+      }
+     ]
+    },
+    {
+     "id": "6.2",
+     "title": "Dot and cross products and their applications",
+     "slides": "Dr Jack's deck, slides 13 to 16 (Example 1.3); the perpendicular component (past test Q2) is not in the deck",
+     "one_line": "The dot product measures how much two vectors point the same way, and the cross product gives a vector perpendicular to both whose size is the area they span.",
+     "analogy": "Shine a torch on a wall at a slant. The dot product tells you how much of the torch's push lands straight on the wall. The cross product is the spin you get turning a spanner: its direction is the axis of the spin, and its size is how hard you are turning.",
+     "recall": [
+      "What is cos 90 degrees?",
+      "What is the value of the determinant with rows (1,0), (0,1)?"
+     ],
+     "exam": [
+      "Dot (scalar) product: $\\mathbf a\\cdot\\mathbf b=a_1b_1+a_2b_2+a_3b_3=|\\mathbf a||\\mathbf b|\\cos\\theta$. The result is a number. $\\mathbf a\\cdot\\mathbf b=0$ means perpendicular, and $\\mathbf a\\cdot\\mathbf b=\\mathbf b\\cdot\\mathbf a$. So $\\cos\\theta=\\dfrac{\\mathbf a\\cdot\\mathbf b}{|\\mathbf a||\\mathbf b|}$.",
+      "Cross (vector) product: $\\mathbf a\\times\\mathbf b=\\begin{vmatrix}\\mathbf i&\\mathbf j&\\mathbf k\\\\a_1&a_2&a_3\\\\b_1&b_2&b_3\\end{vmatrix}=(a_2b_3-a_3b_2)\\mathbf i-(a_1b_3-a_3b_1)\\mathbf j+(a_1b_2-a_2b_1)\\mathbf k$. The result is a vector perpendicular to both. $|\\mathbf a\\times\\mathbf b|=|\\mathbf a||\\mathbf b|\\sin\\theta$ and $\\mathbf a\\times\\mathbf b=-\\,\\mathbf b\\times\\mathbf a$. Not in your notes.",
+      "Projection (slide 14): the scalar projection of $\\mathbf a$ onto $\\mathbf b$ is $\\mathrm{comp}_{\\mathbf b}\\mathbf a=\\dfrac{\\mathbf a\\cdot\\mathbf b}{|\\mathbf b|}$.",
+      "Areas (slides 14 and 15): triangle $=\\tfrac12|\\mathbf a\\times\\mathbf b|$; parallelogram $=|\\mathbf a\\times\\mathbf b|$.",
+      "Volumes (slide 15; the deck writes “tetrahedrone”, the word is tetrahedron): tetrahedron $=\\tfrac16\\left|\\mathbf a\\cdot(\\mathbf b\\times\\mathbf c)\\right|$; parallelepiped $=\\left|\\mathbf a\\cdot(\\mathbf b\\times\\mathbf c)\\right|$. The scalar triple product is the determinant of the three rows.",
+      "Perpendicular component (past test Q2, not in the deck): the part of $\\mathbf E$ along $\\mathbf F$ is $\\dfrac{\\mathbf E\\cdot\\mathbf F}{|\\mathbf F|^2}\\mathbf F$, so $\\mathbf E_\\perp=\\mathbf E-\\dfrac{\\mathbf E\\cdot\\mathbf F}{|\\mathbf F|^2}\\mathbf F$ and $|\\mathbf E_\\perp|=\\dfrac{|\\mathbf E\\times\\mathbf F|}{|\\mathbf F|}$. The word “component” can mean the vector or its magnitude, so give both. Not in your notes.",
+      "The question reads “component of Ay perpendicular to F if E = ...”: the “Ay” appears to be a typing slip for $\\mathbf E$ (the only vector defined with $\\mathbf F$). Confirm with your lecturer."
+     ],
+     "terms": [
+      "dot-product",
+      "cross-product",
+      "scalar-projection",
+      "scalar-triple-product"
+     ],
+     "examples": [
+      {
+       "title": "Your slide 16: Example 1.3",
+       "problem": "Given $a=2\\mathbf i+3\\mathbf j-\\mathbf k$ and $b=\\mathbf i+2\\mathbf j+\\mathbf k$, find $a\\cdot b$, $a\\times b$ and the angle between them.",
+       "steps": [
+        {
+         "do": "Dot product.",
+         "m": "a\\cdot b=2(1)+3(2)+(-1)(1)=7"
+        },
+        {
+         "do": "Cross product.",
+         "m": "a\\times b=\\begin{vmatrix}\\mathbf i&\\mathbf j&\\mathbf k\\\\2&3&-1\\\\1&2&1\\end{vmatrix}=(3+2)\\mathbf i-(2+1)\\mathbf j+(4-3)\\mathbf k=5\\mathbf{i}-3\\mathbf{j}+\\mathbf{k}"
+        },
+        {
+         "do": "Magnitudes.",
+         "m": "|a|=\\sqrt{14},\\quad|b|=\\sqrt6"
+        },
+        {
+         "do": "Angle.",
+         "m": "\\cos\\theta=\\frac{7}{\\sqrt{14}\\sqrt6}=0.7638\\Rightarrow\\theta=40.20^\\circ"
+        },
+        {
+         "do": "Check the cross product is perpendicular to a.",
+         "why": "(5, -3, 1) . (2, 3, -1) = 10 - 9 - 1 = 0."
+        }
+       ],
+       "answer": "$a\\cdot b=7$, $a\\times b=5\\mathbf{i}-3\\mathbf{j}+\\mathbf{k}$, $\\theta=40.20^\\circ$."
+      },
+      {
+       "title": "Past test Q2: the perpendicular component",
+       "problem": "Find the component of $E=3\\mathbf a_y+4\\mathbf a_z$ perpendicular to $F=4\\mathbf a_x-10\\mathbf a_y+5\\mathbf a_z$.",
+       "steps": [
+        {
+         "do": "Dot product and length squared.",
+         "m": "E\\cdot F=0+3(-10)+4(5)=-10,\\qquad|F|^2=16+100+25=141"
+        },
+        {
+         "do": "The part of E along F.",
+         "m": "\\frac{E\\cdot F}{|F|^2}F=-\\tfrac{10}{141}(4,-10,5)"
+        },
+        {
+         "do": "Subtract it from E.",
+         "m": "E_\\perp=(0,3,4)+\\tfrac{10}{141}(4,-10,5)=(0.2837,\\ 2.2908,\\ 4.3546)"
+        },
+        {
+         "do": "Its magnitude, by the cross-product shortcut.",
+         "m": "E\\times F=(55,16,-12),\\quad\\frac{|E\\times F|}{|F|}=\\frac{\\sqrt{3425}}{\\sqrt{141}}=4.9286"
+        },
+        {
+         "do": "Check that E perp is perpendicular to F.",
+         "why": "0.2837(4) + 2.2908(-10) + 4.3546(5) = 1.135 - 22.908 + 21.773 = 0 (to rounding)."
+        }
+       ],
+       "answer": "$E_\\perp=(0.2837,\\ 2.2908,\\ 4.3546)$, with magnitude $4.9286$."
+      },
+      {
+       "title": "Areas and a volume",
+       "problem": "Find the area of the triangle with vertices $A(1,0,0)$, $B(0,2,0)$, $C(0,0,3)$, and the volume of the parallelepiped with edges $(1,2,3)$, $(0,1,4)$, $(5,6,0)$.",
+       "steps": [
+        {
+         "do": "Two edges from A.",
+         "m": "\\overrightarrow{AB}=(-1,2,0),\\quad\\overrightarrow{AC}=(-1,0,3)"
+        },
+        {
+         "do": "Cross product.",
+         "m": "\\overrightarrow{AB}\\times\\overrightarrow{AC}=(6,3,2),\\quad|\\ |=\\sqrt{36+9+4}=7"
+        },
+        {
+         "do": "Triangle area is half of it.",
+         "m": "\\text{Area}=\\tfrac72=3.5"
+        },
+        {
+         "do": "Scalar triple product is a determinant.",
+         "m": "V=\\left|\\det\\begin{bmatrix}1&2&3\\\\0&1&4\\\\5&6&0\\end{bmatrix}\\right|=1"
+        },
+        {
+         "do": "The tetrahedron on the same three edges has one sixth of that volume.",
+         "m": "V_{tet}=\\tfrac16"
+        }
+       ],
+       "answer": "Area 3.5, parallelepiped volume 1, tetrahedron volume 1/6."
+      }
+     ],
+     "practice": [
+      {
+       "q": "For $a=(1,2,3)$ and $b=(4,-5,6)$ find $a\\cdot b$.",
+       "type": "number",
+       "answer": 12.0,
+       "hint": "Multiply matching components and add.",
+       "solution": [
+        {
+         "do": "Compute.",
+         "m": "1(4)+2(-5)+3(6)=4-10+18=12"
+        }
+       ],
+       "answerText": "12"
+      },
+      {
+       "q": "For the same $a$ and $b$ find $a\\times b$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        27.0,
+        6.0,
+        -13.0
+       ],
+       "hint": "Expand the determinant with i, j, k in the top row.",
+       "solution": [
+        {
+         "do": "Expand.",
+         "m": "a\\times b=(2\\cdot6-3(-5))\\mathbf i-(1\\cdot6-3\\cdot4)\\mathbf j+(1(-5)-2\\cdot4)\\mathbf k=27\\mathbf{i}+6\\mathbf{j}-13\\mathbf{k}"
+        }
+       ],
+       "answerText": "27i + 6j - 13k"
+      },
+      {
+       "q": "Find the angle between $a=(1,2,3)$ and $b=(4,-5,6)$, in degrees. Give a decimal.",
+       "type": "number",
+       "answer": 68.562446966,
+       "hint": "cos theta = a.b / (|a||b|) with |a| = sqrt 14 and |b| = sqrt 77.",
+       "solution": [
+        {
+         "do": "Compute.",
+         "m": "\\cos\\theta=\\frac{12}{\\sqrt{14}\\sqrt{77}}=0.3655\\Rightarrow\\theta=68.56^\\circ"
+        }
+       ],
+       "answerText": "68.56 degrees",
+       "tol": 0.05
+      },
+      {
+       "q": "Find the scalar projection of $a=(2,3,-1)$ onto $b=(1,2,1)$. Give a decimal.",
+       "type": "number",
+       "answer": 2.857738033,
+       "hint": "comp_b a = a.b / |b|.",
+       "solution": [
+        {
+         "do": "Compute.",
+         "m": "\\frac{7}{\\sqrt6}=2.858"
+        }
+       ],
+       "answerText": "2.858",
+       "tol": 0.005
+      },
+      {
+       "q": "Find the area of the parallelogram with sides $a=(2,3,-1)$ and $b=(1,2,1)$. Give a decimal.",
+       "type": "number",
+       "answer": 5.916079783,
+       "hint": "Area = magnitude of a cross b = (5, -3, 1).",
+       "solution": [
+        {
+         "do": "Compute.",
+         "m": "\\sqrt{25+9+1}=\\sqrt{35}=5.916"
+        }
+       ],
+       "answerText": "5.916",
+       "tol": 0.005
+      },
+      {
+       "q": "Past test Q2. Find the magnitude of the component of $E=3\\mathbf a_y+4\\mathbf a_z$ perpendicular to $F=4\\mathbf a_x-10\\mathbf a_y+5\\mathbf a_z$. Give a decimal.",
+       "type": "number",
+       "answer": 4.928567758,
+       "hint": "Use abs(E x F)/abs(F), or the square root of abs(E) squared minus the parallel part squared.",
+       "solution": [
+        {
+         "do": "Use the cross product.",
+         "m": "E\\times F=(15+40)\\mathbf a_x+(16)\\mathbf a_y+(-12)\\mathbf a_z\\Rightarrow\\frac{|E\\times F|}{|F|}=\\frac{\\sqrt{3025+256+144}}{\\sqrt{141}}=4.9286"
+        }
+       ],
+       "answerText": "4.9286",
+       "tol": 0.001
+      },
+      {
+       "q": "Past test Q2 as a vector. Find the perpendicular component vector $E-\\frac{E\\cdot F}{|F|^2}F$ for the same $E$ and $F$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        0.283687943,
+        2.290780142,
+        4.354609929
+       ],
+       "hint": "E.F = -10 and abs(F) squared = 141.",
+       "solution": [
+        {
+         "do": "Subtract the parallel part.",
+         "m": "E_\\perp=(0,3,4)+\\tfrac{10}{141}(4,-10,5)=(0.2837,\\ 2.2908,\\ 4.3546)"
+        }
+       ],
+       "answerText": "(0.2837, 2.2908, 4.3546)",
+       "tol": 0.002
+      },
+      {
+       "q": "Find the volume of the parallelepiped with edges $a=(1,2,3)$, $b=(0,1,4)$, $c=(5,6,0)$. Give a number.",
+       "type": "number",
+       "answer": 1.0,
+       "hint": "Evaluate the determinant with these three rows (the same one as lesson 1.2).",
+       "solution": [
+        {
+         "do": "Triple product.",
+         "m": "\\det\\begin{bmatrix}1&2&3\\\\0&1&4\\\\5&6&0\\end{bmatrix}=1(0-24)-0+5(8-3)=1"
+        }
+       ],
+       "answerText": "1"
+      }
+     ],
+     "quiz": [
+      {
+       "q": "a . b = 0 means that a and b are",
+       "options": [
+        "parallel",
+        "perpendicular",
+        "equal",
+        "unit vectors"
+       ],
+       "answer": 1,
+       "explain": "cos 90 degrees = 0."
+      },
+      {
+       "q": "The cross product a x b is",
+       "options": [
+        "a number",
+        "a vector perpendicular to a and b",
+        "a vector parallel to a",
+        "always zero"
+       ],
+       "answer": 1,
+       "explain": "It is perpendicular to both."
+      },
+      {
+       "q": "The area of the triangle with sides a and b is",
+       "options": [
+        "abs(a x b)",
+        "abs(a x b)/2",
+        "a . b",
+        "abs(a)abs(b)"
+       ],
+       "answer": 1,
+       "explain": "Half the parallelogram."
+      },
+      {
+       "q": "The volume of a tetrahedron on edges a, b, c is",
+       "options": [
+        "abs(a.(b x c))",
+        "abs(a.(b x c))/6",
+        "abs(a x b)/6",
+        "a.b.c"
+       ],
+       "answer": 1,
+       "explain": "One sixth of the parallelepiped."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Dot product",
+       "back": "$a_1b_1+a_2b_2+a_3b_3=|a||b|\\cos\\theta$; a number."
+      },
+      {
+       "front": "Cross product",
+       "back": "Determinant with i, j, k on top; a vector perpendicular to both."
+      },
+      {
+       "front": "Scalar projection of a on b",
+       "back": "$a\\cdot b/|b|$."
+      },
+      {
+       "front": "Parallelogram and triangle areas",
+       "back": "$|a\\times b|$ and $\\tfrac12|a\\times b|$."
+      },
+      {
+       "front": "Perpendicular component of E to F",
+       "back": "$E-\\frac{E\\cdot F}{|F|^2}F$, magnitude $|E\\times F|/|F|$ (not in your notes)."
+      }
+     ],
+     "theory": [
+      {
+       "q": "State the two forms of the dot product and what a zero dot product means.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "a.b = a1b1 + a2b2 + a3b3",
+        "a.b = abs(a) abs(b) cos theta",
+        "a.b = 0 means the vectors are perpendicular"
+       ],
+       "need": 3
+      },
+      {
+       "q": "State the cross product formula and its main properties.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Expand the determinant with i, j, k in the top row",
+        "The result is a vector perpendicular to both a and b",
+        "Its magnitude is abs(a) abs(b) sin theta",
+        "a x b = - (b x a)"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Find a.b, a x b and the angle for a = 2i + 3j - k and b = i + 2j + k.",
+       "type": "Explain",
+       "marks": 5,
+       "points": [
+        "a.b = 2 + 6 - 1 = 7",
+        "a x b = 5i - 3j + k",
+        "abs(a) = sqrt(14) and abs(b) = sqrt(6)",
+        "cos theta = 7/sqrt(84) = 0.7638",
+        "theta = 40.20 degrees"
+       ],
+       "need": 5
+      },
+      {
+       "q": "State the formulas for the areas of a triangle and a parallelogram and the volumes of a tetrahedron and a parallelepiped in vector form.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Parallelogram: the magnitude of a x b",
+        "Triangle: half of that",
+        "Parallelepiped: the magnitude of a.(b x c)",
+        "Tetrahedron: one sixth of that"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Define the scalar projection of a onto b and give its formula.",
+       "type": "Define",
+       "marks": 2,
+       "points": [
+        "The length of the shadow of a along b",
+        "comp_b a = a.b / abs(b)"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Find the component of E = 3 a_y + 4 a_z perpendicular to F = 4 a_x - 10 a_y + 5 a_z.",
+       "type": "Explain",
+       "marks": 5,
+       "points": [
+        "E.F = -10 and abs(F) squared = 141",
+        "Parallel part = (E.F/abs(F) squared) F",
+        "E perp = E minus the parallel part = (0.2837, 2.2908, 4.3546)",
+        "Magnitude = abs(E x F)/abs(F) = 4.9286"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Explain why the cross product of two vectors is perpendicular to both.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Dot a with a x b: the determinant has two equal rows, so it is 0",
+        "The same holds for b",
+        "Hence a x b is perpendicular to a and b"
+       ],
+       "need": 3
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=dot+product+cross+product+vectors+explained"
+      }
+     ]
+    },
+    {
+     "id": "6.3",
+     "title": "Differentiation of vectors",
+     "slides": "Dr Jack's deck, slides 17 to 28 (Examples 1.4 to 1.6, Exercise 1.1; Exercise 1.1 has no printed answer)",
+     "one_line": "To differentiate a vector, differentiate each component separately; the result describes velocity, acceleration and how a field changes.",
+     "analogy": "A vector that changes with time is three numbers each changing at its own rate. To find how fast the whole arrow is changing, you find how fast each of the three numbers is changing and bundle them back into an arrow.",
+     "recall": [
+      "What is the derivative of 3 t squared?",
+      "What does a partial derivative treat as a constant?"
+     ],
+     "exam": [
+      "If $\\mathbf A(u)=a_x(u)\\mathbf i+a_y(u)\\mathbf j+a_z(u)\\mathbf k$ then $\\dfrac{d\\mathbf A}{du}=\\dfrac{da_x}{du}\\mathbf i+\\dfrac{da_y}{du}\\mathbf j+\\dfrac{da_z}{du}\\mathbf k$. Differentiate each component separately. The $n$th derivative is the same with $\\dfrac{d^na}{du^n}$, and the magnitude is the square root of the sum of the squares of the components (slides 17 and 18).",
+      "Motion: with position $\\mathbf r(t)$, velocity is $\\dfrac{d\\mathbf r}{dt}$ and acceleration is $\\dfrac{d^2\\mathbf r}{dt^2}$. Speed is the magnitude of the velocity (slides 20 to 23).",
+      "Rules (slide 24): $\\dfrac{d}{du}(c\\mathbf A)=c\\dfrac{d\\mathbf A}{du}$; $\\dfrac{d}{du}(\\mathbf A+\\mathbf B)=\\dfrac{d\\mathbf A}{du}+\\dfrac{d\\mathbf B}{du}$; $\\dfrac{d}{du}(\\mathbf A\\cdot\\mathbf B)=\\mathbf A\\cdot\\dfrac{d\\mathbf B}{du}+\\dfrac{d\\mathbf A}{du}\\cdot\\mathbf B$; $\\dfrac{d}{du}(\\mathbf A\\times\\mathbf B)=\\mathbf A\\times\\dfrac{d\\mathbf B}{du}+\\dfrac{d\\mathbf A}{du}\\times\\mathbf B$. Keep the order in the cross product.",
+      "Partial derivatives (slides 25 to 27): if $\\mathbf A$ depends on $u_1,u_2,\\dots$ then $\\dfrac{\\partial\\mathbf A}{\\partial u_1}=\\dfrac{\\partial a_x}{\\partial u_1}\\mathbf i+\\dfrac{\\partial a_y}{\\partial u_1}\\mathbf j+\\dfrac{\\partial a_z}{\\partial u_1}\\mathbf k$, treating the other variables as constants. Mixed partial derivatives are equal: $\\dfrac{\\partial^2\\mathbf A}{\\partial u\\,\\partial v}=\\dfrac{\\partial^2\\mathbf A}{\\partial v\\,\\partial u}$ for smooth functions.",
+      "A unit tangent to a curve $\\mathbf r(t)$ is $\\dfrac{d\\mathbf r/dt}{|d\\mathbf r/dt|}$. Not in your notes.",
+      "The deck's Example 1.1 and Example 1.4 show no answers. Example 1.4: $\\mathbf A=3u^2\\mathbf i-2u\\mathbf j+5\\mathbf k$ gives $\\dfrac{d\\mathbf A}{du}=6u\\mathbf i-2\\mathbf j$ and $\\dfrac{d^2\\mathbf A}{du^2}=6\\mathbf i$."
+     ],
+     "terms": [
+      "velocity",
+      "acceleration",
+      "partial-derivative"
+     ],
+     "examples": [
+      {
+       "title": "Your slide 20: Example 1.5",
+       "problem": "A particle has $x=4t+3$, $y=t^2+3t$, $z=t^3+5t^2$. Find its velocity and acceleration, and their magnitudes at $t=1$.",
+       "steps": [
+        {
+         "do": "Position vector.",
+         "m": "\\mathbf r=(4t+3)\\mathbf i+(t^2+3t)\\mathbf j+(t^3+5t^2)\\mathbf k"
+        },
+        {
+         "do": "Velocity.",
+         "m": "\\dot{\\mathbf r}=4\\mathbf i+(2t+3)\\mathbf j+(3t^2+10t)\\mathbf k"
+        },
+        {
+         "do": "Acceleration.",
+         "m": "\\ddot{\\mathbf r}=2\\mathbf j+(6t+10)\\mathbf k"
+        },
+        {
+         "do": "At t = 1.",
+         "m": "\\dot{\\mathbf r}(1)=4\\mathbf i+5\\mathbf j+13\\mathbf k,\\quad|\\dot{\\mathbf r}|=\\sqrt{16+25+169}=\\sqrt{210}"
+        },
+        {
+         "do": "Acceleration at t = 1.",
+         "m": "\\ddot{\\mathbf r}(1)=2\\mathbf j+16\\mathbf k,\\quad|\\ddot{\\mathbf r}|=\\sqrt{4+256}=2\\sqrt{65}"
+        }
+       ],
+       "answer": "Velocity $(4,5,13)$ with speed $\\sqrt{210}=14.49$; acceleration $(0,2,16)$ with magnitude $2\\sqrt{65}=16.12$."
+      },
+      {
+       "title": "Your slide 27: Example 1.6, partial derivatives",
+       "problem": "For $\\mathbf F=3uv^2\\mathbf i+(2u^2-v)\\mathbf j+(u^3+v^2)\\mathbf k$ find all the first and second partial derivatives.",
+       "steps": [
+        {
+         "do": "First derivatives.",
+         "m": "\\frac{\\partial\\mathbf F}{\\partial u}=3v^2\\mathbf i+4u\\mathbf j+3u^2\\mathbf k,\\qquad\\frac{\\partial\\mathbf F}{\\partial v}=6uv\\mathbf i-\\mathbf j+2v\\mathbf k"
+        },
+        {
+         "do": "Second derivatives.",
+         "m": "\\frac{\\partial^2\\mathbf F}{\\partial u^2}=4\\mathbf j+6u\\mathbf k,\\qquad\\frac{\\partial^2\\mathbf F}{\\partial v^2}=6u\\mathbf i+2\\mathbf k"
+        },
+        {
+         "do": "Mixed derivatives, in both orders.",
+         "m": "\\frac{\\partial^2\\mathbf F}{\\partial u\\,\\partial v}=\\frac{\\partial^2\\mathbf F}{\\partial v\\,\\partial u}=6v\\mathbf i"
+        }
+       ],
+       "answer": "As above; the two mixed derivatives are equal."
+      },
+      {
+       "title": "Exercise 1.1 (no answer printed on slide 28)",
+       "problem": "For $\\mathbf F=2u^2v\\mathbf i+(3u-v^3)\\mathbf j+(u^3+3v^2)\\mathbf k$ find the first and second partial derivatives.",
+       "steps": [
+        {
+         "do": "First derivatives.",
+         "m": "\\frac{\\partial\\mathbf F}{\\partial u}=4uv\\mathbf i+3\\mathbf j+3u^2\\mathbf k,\\qquad\\frac{\\partial\\mathbf F}{\\partial v}=2u^2\\mathbf i-3v^2\\mathbf j+6v\\mathbf k"
+        },
+        {
+         "do": "Second derivatives.",
+         "m": "\\frac{\\partial^2\\mathbf F}{\\partial u^2}=4v\\mathbf i+6u\\mathbf k,\\qquad\\frac{\\partial^2\\mathbf F}{\\partial v^2}=-6v\\mathbf j+6\\mathbf k"
+        },
+        {
+         "do": "Mixed derivatives.",
+         "m": "\\frac{\\partial^2\\mathbf F}{\\partial u\\,\\partial v}=\\frac{\\partial^2\\mathbf F}{\\partial v\\,\\partial u}=4u\\mathbf i"
+        }
+       ],
+       "answer": "As above (computed here; the deck prints no answer)."
+      }
+     ],
+     "practice": [
+      {
+       "q": "A particle has position $r=(t^2,\\ 3t,\\ t^3)$. Find its velocity at $t=2$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        4.0,
+        3.0,
+        12.0
+       ],
+       "hint": "Differentiate each component, then put t = 2.",
+       "solution": [
+        {
+         "do": "Differentiate.",
+         "m": "\\frac{dr}{dt}=(2t,\\ 3,\\ 3t^2)\\Rightarrow(4,3,12)"
+        }
+       ],
+       "answerText": "(4, 3, 12)"
+      },
+      {
+       "q": "For the same particle find the speed at t = 2.",
+       "type": "number",
+       "answer": 13.0,
+       "hint": "The speed is the magnitude of the velocity (4, 3, 12).",
+       "solution": [
+        {
+         "do": "Magnitude.",
+         "m": "\\sqrt{16+9+144}=13"
+        }
+       ],
+       "answerText": "13"
+      },
+      {
+       "q": "For the same particle find the magnitude of the acceleration at t = 2. Give a decimal.",
+       "type": "number",
+       "answer": 12.165525061,
+       "hint": "The acceleration is (2, 0, 6t).",
+       "solution": [
+        {
+         "do": "Compute.",
+         "m": "a=(2,0,12)\\Rightarrow\\sqrt{4+144}=\\sqrt{148}=12.17"
+        }
+       ],
+       "answerText": "12.17",
+       "tol": 0.02
+      },
+      {
+       "q": "If $A=3u^2\\mathbf i-2u\\mathbf j+5\\mathbf k$ find $dA/du$ at $u=2$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        12.0,
+        -2.0,
+        0.0
+       ],
+       "hint": "Differentiate each component.",
+       "solution": [
+        {
+         "do": "Differentiate.",
+         "m": "\\frac{dA}{du}=6u\\mathbf i-2\\mathbf j\\Rightarrow(12,-2,0)"
+        }
+       ],
+       "answerText": "(12, -2, 0)"
+      },
+      {
+       "q": "Exercise 1.1: $F=2u^2v\\,\\mathbf i+(3u-v^3)\\mathbf j+(u^3+3v^2)\\mathbf k$. Find $\\partial F/\\partial u$ at $(u,v)=(1,2)$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        8.0,
+        3.0,
+        3.0
+       ],
+       "hint": "Treat v as a constant: (4uv, 3, 3u^2).",
+       "solution": [
+        {
+         "do": "Differentiate with respect to u.",
+         "m": "\\frac{\\partial F}{\\partial u}=4uv\\,\\mathbf i+3\\mathbf j+3u^2\\mathbf k\\Rightarrow(8,3,3)"
+        }
+       ],
+       "answerText": "(8, 3, 3)"
+      },
+      {
+       "q": "For the same $F$ find $\\partial F/\\partial v$ at $(1,2)$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        2.0,
+        -12.0,
+        12.0
+       ],
+       "hint": "Treat u as a constant: (2u^2, -3v^2, 6v).",
+       "solution": [
+        {
+         "do": "Differentiate with respect to v.",
+         "m": "\\frac{\\partial F}{\\partial v}=2u^2\\mathbf i-3v^2\\mathbf j+6v\\mathbf k\\Rightarrow(2,-12,12)"
+        }
+       ],
+       "answerText": "(2, -12, 12)"
+      },
+      {
+       "q": "For the same $F$ find $\\partial^2F/\\partial u\\,\\partial v$ at $(1,2)$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        4.0,
+        0.0,
+        0.0
+       ],
+       "hint": "Differentiate dF/du with respect to v.",
+       "solution": [
+        {
+         "do": "Differentiate.",
+         "m": "\\frac{\\partial^2F}{\\partial u\\,\\partial v}=4u\\,\\mathbf i\\Rightarrow(4,0,0)"
+        },
+        "The other order, d/du of dF/dv, gives the same."
+       ],
+       "answerText": "(4, 0, 0)"
+      },
+      {
+       "q": "With $A=(u,u^2,0)$ and $B=(1,u,u^2)$ find $\\dfrac{d}{du}(A\\cdot B)$ at $u=2$.",
+       "type": "number",
+       "answer": 13.0,
+       "hint": "A.B = u + u^3, or use the product rule A.B' + A'.B.",
+       "solution": [
+        {
+         "do": "Compute.",
+         "m": "A\\cdot B=u+u^3\\Rightarrow\\frac{d}{du}=1+3u^2=13"
+        }
+       ],
+       "answerText": "13"
+      }
+     ],
+     "quiz": [
+      {
+       "q": "To differentiate a vector function you",
+       "options": [
+        "differentiate the magnitude only",
+        "differentiate each component",
+        "integrate each component",
+        "take the cross product"
+       ],
+       "answer": 1,
+       "explain": "The derivative acts component by component."
+      },
+      {
+       "q": "If r(t) is position, the acceleration is",
+       "options": [
+        "dr/dt",
+        "d2r/dt2",
+        "the integral of r",
+        "the magnitude of r"
+       ],
+       "answer": 1,
+       "explain": "Velocity is the first derivative and acceleration the second."
+      },
+      {
+       "q": "The derivative of A.B is",
+       "options": [
+        "A.B' only",
+        "A.B' + A'.B",
+        "A' x B'",
+        "A'.B'"
+       ],
+       "answer": 1,
+       "explain": "The product rule."
+      },
+      {
+       "q": "Mixed partial derivatives of a smooth vector function are",
+       "options": [
+        "different",
+        "equal",
+        "zero",
+        "infinite"
+       ],
+       "answer": 1,
+       "explain": "The order of partial differentiation does not matter."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Derivative of a vector",
+       "back": "Differentiate each component separately."
+      },
+      {
+       "front": "Velocity and acceleration",
+       "back": "$\\dot{\\mathbf r}$ and $\\ddot{\\mathbf r}$; speed is the magnitude of the velocity."
+      },
+      {
+       "front": "Product rule for the dot product",
+       "back": "$(\\mathbf A\\cdot\\mathbf B)'=\\mathbf A\\cdot\\mathbf B'+\\mathbf A'\\cdot\\mathbf B$."
+      },
+      {
+       "front": "Partial derivative of a vector",
+       "back": "Differentiate each component with the other variables held constant."
+      },
+      {
+       "front": "Unit tangent to a curve",
+       "back": "$\\dot{\\mathbf r}/|\\dot{\\mathbf r}|$ (not in your notes)."
+      }
+     ],
+     "theory": [
+      {
+       "q": "Explain how a vector function of one variable is differentiated.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Differentiate each component separately",
+        "The derivative is a vector made from the three derivatives",
+        "The nth derivative is found the same way with n derivatives"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Define velocity, acceleration and speed for a moving particle with position vector r(t).",
+       "type": "Define",
+       "marks": 3,
+       "points": [
+        "Velocity is dr/dt",
+        "Acceleration is d2r/dt2",
+        "Speed is the magnitude of the velocity"
+       ],
+       "need": 3
+      },
+      {
+       "q": "State the product rules for differentiating a dot product and a cross product.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "(A.B)' = A.B' + A'.B",
+        "(A x B)' = A x B' + A' x B",
+        "The order of the factors in the cross product must be kept"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Find the velocity and acceleration at t = 1 for x = 4t + 3, y = t squared + 3t, z = t cubed + 5 t squared.",
+       "type": "Explain",
+       "marks": 5,
+       "points": [
+        "Velocity = 4i + (2t + 3)j + (3t squared + 10t)k",
+        "At t = 1 it is (4, 5, 13) with magnitude sqrt(210)",
+        "Acceleration = 2j + (6t + 10)k",
+        "At t = 1 it is (0, 2, 16) with magnitude 2 sqrt(65)"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Define the partial derivatives of a vector depending on u and v.",
+       "type": "Define",
+       "marks": 2,
+       "points": [
+        "Differentiate each component with respect to u, holding v constant",
+        "And similarly with respect to v"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Find the first partial derivatives of F = 3uv squared i + (2u squared - v)j + (u cubed + v squared)k.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "dF/du = 3v squared i + 4u j + 3u squared k",
+        "dF/dv = 6uv i - j + 2v k",
+        "Mixed second derivatives both equal 6v i"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Differentiate A = 3u squared i - 2u j + 5k twice.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "dA/du = 6u i - 2j",
+        "d2A/du2 = 6i"
+       ],
+       "need": 2
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=differentiation+of+vectors+velocity+acceleration+explained"
+      }
+     ]
+    },
+    {
+     "id": "6.4",
+     "title": "Integration of vectors",
+     "slides": "Dr Jack's deck, slides 29 to 31 (Example 1.7, Exercise 1.2)",
+     "one_line": "To integrate a vector, integrate each component separately; the result is a vector.",
+     "analogy": "Differentiating a vector tells you how each of its three numbers is changing. Integrating goes the other way: given the rate of change of each number, you rebuild the three numbers. If you know a car's acceleration and where it started, you can rebuild its velocity and then its position.",
+     "recall": [
+      "What is the integral of 3 t squared?",
+      "What does a constant of integration do when you know the starting value?"
+     ],
+     "exam": [
+      "If $\\mathbf A(u)=a_x\\mathbf i+a_y\\mathbf j+a_z\\mathbf k$ then $\\displaystyle\\int_a^b\\mathbf A\\,du=\\left(\\int_a^ba_x\\,du\\right)\\mathbf i+\\left(\\int_a^ba_y\\,du\\right)\\mathbf j+\\left(\\int_a^ba_z\\,du\\right)\\mathbf k$. The result is a vector (slide 29).",
+      "Indefinite integrals carry a constant vector: $\\int\\mathbf A\\,du=\\mathbf F(u)+\\mathbf c$, where $\\mathbf c$ has three constant components. Not in your notes.",
+      "Example 1.7 (slide 30): $\\displaystyle\\int_1^3\\left[(3t^2+4t)\\mathbf i+(2t-5)\\mathbf j+4t^3\\mathbf k\\right]dt=42\\mathbf i-2\\mathbf j+80\\mathbf k$.",
+      "Exercise 1.2 (slide 31): $\\displaystyle\\int_0^1\\left[(t^3+3t)\\mathbf i+2t^2\\mathbf j+(t-4)\\mathbf k\\right]dt=\\tfrac74\\mathbf i+\\tfrac23\\mathbf j-\\tfrac72\\mathbf k$. The slide leaves the middle line of working blank.",
+      "Use in mechanics: integrate acceleration to get velocity, and velocity to get position, using the starting velocity and position to fix the constants. Not in your notes.",
+      "These are ordinary integrals of ordinary functions, one per component. Line, surface and volume integrals of vector fields (Module 7) are built on this."
+     ],
+     "terms": [
+      "vector-integral"
+     ],
+     "examples": [
+      {
+       "title": "Your slide 30: Example 1.7",
+       "problem": "Calculate $\\displaystyle\\int_1^3\\mathbf F\\,dt$ for $\\mathbf F=(3t^2+4t)\\mathbf i+(2t-5)\\mathbf j+4t^3\\mathbf k$.",
+       "steps": [
+        {
+         "do": "Integrate each component.",
+         "m": "\\int_1^3(3t^2+4t)dt=[t^3+2t^2]_1^3=45-3=42"
+        },
+        {
+         "do": "The j component.",
+         "m": "\\int_1^3(2t-5)dt=[t^2-5t]_1^3=-6-(-4)=-2"
+        },
+        {
+         "do": "The k component.",
+         "m": "\\int_1^34t^3dt=[t^4]_1^3=81-1=80"
+        }
+       ],
+       "answer": "$42\\mathbf i-2\\mathbf j+80\\mathbf k$."
+      },
+      {
+       "title": "Your slide 31: Exercise 1.2",
+       "problem": "Calculate $\\displaystyle\\int_0^1\\mathbf F\\,dt$ for $\\mathbf F=(t^3+3t)\\mathbf i+2t^2\\mathbf j+(t-4)\\mathbf k$.",
+       "steps": [
+        {
+         "do": "i component.",
+         "m": "\\left[\\tfrac{t^4}{4}+\\tfrac{3t^2}{2}\\right]_0^1=\\tfrac14+\\tfrac32=\\tfrac74"
+        },
+        {
+         "do": "j component.",
+         "m": "\\left[\\tfrac{2t^3}{3}\\right]_0^1=\\tfrac23"
+        },
+        {
+         "do": "k component.",
+         "m": "\\left[\\tfrac{t^2}{2}-4t\\right]_0^1=\\tfrac12-4=-\\tfrac72"
+        }
+       ],
+       "answer": "$\\tfrac74\\mathbf i+\\tfrac23\\mathbf j-\\tfrac72\\mathbf k$."
+      },
+      {
+       "title": "From acceleration to position",
+       "problem": "A particle has $\\mathbf a=6t\\,\\mathbf i+2\\mathbf j$, starts at the origin with velocity $\\mathbf i$. Find $\\mathbf v$ and $\\mathbf r$.",
+       "steps": [
+        {
+         "do": "Integrate the acceleration.",
+         "m": "\\mathbf v=(3t^2+c_1)\\mathbf i+(2t+c_2)\\mathbf j+c_3\\mathbf k"
+        },
+        {
+         "do": "Use v(0) = i.",
+         "m": "c_1=1,\\ c_2=0,\\ c_3=0\\Rightarrow\\mathbf v=(3t^2+1)\\mathbf i+2t\\,\\mathbf j"
+        },
+        {
+         "do": "Integrate the velocity, with r(0) = 0.",
+         "m": "\\mathbf r=(t^3+t)\\mathbf i+t^2\\mathbf j"
+        },
+        {
+         "do": "Check.",
+         "why": "Differentiating r gives v, and differentiating v gives a."
+        }
+       ],
+       "answer": "$\\mathbf v=(3t^2+1)\\mathbf i+2t\\mathbf j$ and $\\mathbf r=(t^3+t)\\mathbf i+t^2\\mathbf j$."
+      }
+     ],
+     "practice": [
+      {
+       "q": "Exercise 1.2 (answer on slide 31). Find $\\int_0^1\\left[(t^3+3t)\\mathbf i+2t^2\\mathbf j+(t-4)\\mathbf k\\right]dt$. Give $(x,y,z)$ as decimals or fractions.",
+       "type": "vector",
+       "answer": [
+        1.75,
+        0.666666667,
+        -3.5
+       ],
+       "hint": "Integrate each component from 0 to 1.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "\\left[\\tfrac{t^4}4+\\tfrac{3t^2}{2}\\right]_0^1=\\tfrac74,\\quad\\left[\\tfrac{2t^3}3\\right]_0^1=\\tfrac23,\\quad\\left[\\tfrac{t^2}2-4t\\right]_0^1=-\\tfrac72"
+        }
+       ],
+       "answerText": "(7/4, 2/3, -7/2)"
+      },
+      {
+       "q": "Find $\\int_1^3\\left[(3t^2+4t)\\mathbf i+(2t-5)\\mathbf j+4t^3\\mathbf k\\right]dt$ (slide 30). Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        42.0,
+        -2.0,
+        80.0
+       ],
+       "hint": "Integrate each component from 1 to 3.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "[t^3+2t^2]_1^3=42,\\ [t^2-5t]_1^3=-2,\\ [t^4]_1^3=80"
+        }
+       ],
+       "answerText": "(42, -2, 80)"
+      },
+      {
+       "q": "Find $\\int_0^2\\left(3t^2\\mathbf i+2t\\mathbf j+\\mathbf k\\right)dt$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        8.0,
+        4.0,
+        2.0
+       ],
+       "hint": "Integrate each component from 0 to 2.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "[t^3]_0^2=8,\\ [t^2]_0^2=4,\\ [t]_0^2=2"
+        }
+       ],
+       "answerText": "(8, 4, 2)"
+      },
+      {
+       "q": "Find $\\int_0^{\\pi/2}\\left(\\sin t\\,\\mathbf i+\\cos t\\,\\mathbf j+2t\\,\\mathbf k\\right)dt$. Give $(x,y,z)$ as decimals.",
+       "type": "vector",
+       "answer": [
+        1.0,
+        1.0,
+        2.4674011
+       ],
+       "hint": "The k component is [t^2] from 0 to pi/2.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "[-\\cos t]=1,\\ [\\sin t]=1,\\ \\left[t^2\\right]=\\tfrac{\\pi^2}{4}=2.467"
+        }
+       ],
+       "answerText": "(1, 1, 2.467)",
+       "tol": 0.01
+      },
+      {
+       "q": "A particle has acceleration $a=6t\\,\\mathbf i+2\\mathbf j$ and starts with velocity $\\mathbf i$. Find its velocity at $t=2$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        13.0,
+        4.0,
+        0.0
+       ],
+       "hint": "Integrate a, then fix the constant with v(0) = i.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "v=(3t^2+c_1)\\mathbf i+2t\\mathbf j,\\ v(0)=\\mathbf i\\Rightarrow c_1=1"
+        },
+        {
+         "do": "Evaluate at t = 2.",
+         "m": "v(2)=(13,4,0)"
+        }
+       ],
+       "answerText": "(13, 4, 0)"
+      },
+      {
+       "q": "The same particle starts at the origin. Find its position at $t=2$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        10.0,
+        4.0,
+        0.0
+       ],
+       "hint": "Integrate v = (3t^2 + 1, 2t, 0) with r(0) = 0.",
+       "solution": [
+        {
+         "do": "Integrate again.",
+         "m": "r=(t^3+t)\\mathbf i+t^2\\mathbf j\\Rightarrow r(2)=(10,4,0)"
+        }
+       ],
+       "answerText": "(10, 4, 0)"
+      },
+      {
+       "q": "Find the magnitude of $\\int_0^1\\left(6t\\,\\mathbf i+8t\\,\\mathbf j\\right)dt$.",
+       "type": "number",
+       "answer": 5.0,
+       "hint": "Integrate first, then take the magnitude of the result.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "(3,4,0)\\Rightarrow\\sqrt{9+16}=5"
+        }
+       ],
+       "answerText": "5"
+      }
+     ],
+     "quiz": [
+      {
+       "q": "The integral of a vector function is",
+       "options": [
+        "a scalar",
+        "a vector",
+        "always zero",
+        "a matrix"
+       ],
+       "answer": 1,
+       "explain": "Each component integrates to a number or function, giving a vector."
+      },
+      {
+       "q": "To integrate a vector function you",
+       "options": [
+        "integrate the magnitude",
+        "integrate each component",
+        "differentiate each component",
+        "take the dot product"
+       ],
+       "answer": 1,
+       "explain": "Component by component."
+      },
+      {
+       "q": "Integrating the acceleration gives",
+       "options": [
+        "the position",
+        "the velocity (plus a constant vector)",
+        "the speed only",
+        "the jerk"
+       ],
+       "answer": 1,
+       "explain": "Acceleration is the derivative of velocity."
+      },
+      {
+       "q": "The integral from 0 to 1 of (2t i + 3t^2 j) dt is",
+       "options": [
+        "i + j",
+        "2i + 3j",
+        "i + 3j",
+        "t^2 i + t^3 j"
+       ],
+       "answer": 0,
+       "explain": "[t^2] = 1 and [t^3] = 1."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Integral of a vector",
+       "back": "Integrate each component; the result is a vector."
+      },
+      {
+       "front": "Example 1.7 answer",
+       "back": "$42\\mathbf i-2\\mathbf j+80\\mathbf k$."
+      },
+      {
+       "front": "Exercise 1.2 answer",
+       "back": "$\\tfrac74\\mathbf i+\\tfrac23\\mathbf j-\\tfrac72\\mathbf k$."
+      },
+      {
+       "front": "Indefinite vector integral",
+       "back": "Add a constant vector (three constants; not in your notes)."
+      },
+      {
+       "front": "Acceleration to position",
+       "back": "Integrate twice, using the starting velocity and position (not in your notes)."
+      }
+     ],
+     "theory": [
+      {
+       "q": "Explain how a vector function is integrated.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Integrate each component separately",
+        "The result is a vector",
+        "Definite integrals use the same limits for every component"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Evaluate the integral from 1 to 3 of (3t squared + 4t)i + (2t - 5)j + 4t cubed k with respect to t.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "i component: [t cubed + 2 t squared] from 1 to 3 = 42",
+        "j component: [t squared - 5t] from 1 to 3 = -2",
+        "k component: [t^4] from 1 to 3 = 80",
+        "The result is 42i - 2j + 80k"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Evaluate the integral from 0 to 1 of (t cubed + 3t)i + 2 t squared j + (t - 4)k.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "i component: 1/4 + 3/2 = 7/4",
+        "j component: 2/3",
+        "k component: 1/2 - 4 = -7/2",
+        "The result is (7/4)i + (2/3)j - (7/2)k"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Explain why an indefinite integral of a vector function has a constant vector.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "Each component has its own constant of integration",
+        "Together they form a constant vector c"
+       ],
+       "need": 2
+      },
+      {
+       "q": "A particle has acceleration 6t i + 2j and starts at the origin with velocity i. Find its velocity and position.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Integrate a: v = (3t squared + c1)i + 2t j + ...",
+        "v(0) = i gives c1 = 1",
+        "v = (3t squared + 1)i + 2t j",
+        "r = (t cubed + t)i + t squared j"
+       ],
+       "need": 4
+      },
+      {
+       "q": "How is vector integration related to differentiation?",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "It is the reverse operation component by component",
+        "Integrating the derivative of a vector recovers it up to a constant vector"
+       ],
+       "need": 2
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=integration+of+vector+functions+explained"
+      }
+     ]
+    },
+    {
+     "id": "6.5",
+     "title": "The del operator and the gradient",
+     "slides": "Dr Jack's deck, slides 32 to 38 (Example 1.8, Exercise 1.3; slide 38 lists only two properties, the rest are added); past test Q3, Q7, Q9, Q11",
+     "one_line": "The gradient of a scalar field is the vector that points the way the field increases fastest, and its length says how fast.",
+     "analogy": "Imagine a hillside where the height at each point is a scalar. The gradient at your feet is an arrow pointing straight uphill, as long as the slope is steep. It is exactly the direction a ball would roll if you reversed it.",
+     "recall": [
+      "What is the partial derivative of x squared y with respect to x?",
+      "What is the magnitude of the vector (6, 3, 2)?"
+     ],
+     "exam": [
+      "The del (nabla) operator is the vector differential operator $\\nabla=\\dfrac{\\partial}{\\partial x}\\mathbf i+\\dfrac{\\partial}{\\partial y}\\mathbf j+\\dfrac{\\partial}{\\partial z}\\mathbf k$ (slide 32). On its own it means nothing; it acts on something.",
+      "The gradient of a scalar function $\\phi(x,y,z)$ is $\\nabla\\phi=\\mathrm{grad}\\,\\phi=\\dfrac{\\partial\\phi}{\\partial x}\\mathbf i+\\dfrac{\\partial\\phi}{\\partial y}\\mathbf j+\\dfrac{\\partial\\phi}{\\partial z}\\mathbf k$. $\\phi$ is a scalar function and $\\nabla\\phi$ is a vector function (slide 33).",
+      "Example 1.8 (slides 34 and 35): $\\phi=x^2yz^3+xy^2z^2$ at $(1,3,2)$ gives $\\nabla\\phi=84\\mathbf i+32\\mathbf j+72\\mathbf k$. Exercise 1.3 (slides 36 and 37): $\\phi=x^3yz+xy^2z^3$ at $(1,2,3)$ gives $126\\mathbf i+111\\mathbf j+110\\mathbf k$.",
+      "Properties (slide 38): $\\nabla(A+B)=\\nabla A+\\nabla B$ and $\\nabla(AB)=A\\nabla B+B\\nabla A$. Two more are needed in practice: the quotient rule $\\nabla\\left(\\dfrac AB\\right)=\\dfrac{B\\nabla A-A\\nabla B}{B^2}$ and the chain rule $\\nabla f(\\phi)=f'(\\phi)\\nabla\\phi$. Not in your notes.",
+      "Meaning: $\\nabla\\phi$ points in the direction in which $\\phi$ increases fastest, and $|\\nabla\\phi|$ is that greatest rate of increase. It is perpendicular to the surfaces $\\phi=\\text{constant}$ (lesson 6.6). Not in your notes.",
+      "The past test asks for gradients without a point: write the formula. Q3: $\\nabla(x^2y+xyz)=(2xy+yz)\\mathbf a_x+(x^2+xz)\\mathbf a_y+xy\\,\\mathbf a_z$. Q11: $\\nabla(xy+yz+x^2)=(y+2x)\\mathbf a_x+(x+z)\\mathbf a_y+y\\,\\mathbf a_z$. Not in your notes.",
+      "Past test Q7 is garbled (“C = xy + y2 of x2 at (1,2,3)”). Two readings: $C=xy+y^2x^2$ gives $(y+2xy^2,\\ x+2x^2y,\\ 0)$, which is $(10,5,0)$ at $(1,2,3)$; $C=xy+y^2+x^2$ gives $(y+2x,\\ x+2y,\\ 0)$, which is $(4,5,0)$. Q9 (“gradient of the scalar field F = cos”) is cut off. Ask for the originals; neither is graded here. Not in your notes."
+     ],
+     "terms": [
+      "del-operator",
+      "gradient",
+      "scalar-field",
+      "vector-field"
+     ],
+     "examples": [
+      {
+       "title": "Your slide 34: Example 1.8",
+       "problem": "Find $\\mathrm{grad}\\,\\phi$ at $P(1,3,2)$ for $\\phi=x^2yz^3+xy^2z^2$.",
+       "steps": [
+        {
+         "do": "Differentiate with respect to x, treating y and z as constants.",
+         "m": "\\frac{\\partial\\phi}{\\partial x}=2xyz^3+y^2z^2"
+        },
+        {
+         "do": "With respect to y.",
+         "m": "\\frac{\\partial\\phi}{\\partial y}=x^2z^3+2xyz^2"
+        },
+        {
+         "do": "With respect to z.",
+         "m": "\\frac{\\partial\\phi}{\\partial z}=3x^2yz^2+2xy^2z"
+        },
+        {
+         "do": "Substitute x = 1, y = 3, z = 2.",
+         "m": "(2\\cdot1\\cdot3\\cdot8+9\\cdot4,\\ 8+2\\cdot3\\cdot4,\\ 3\\cdot3\\cdot4+2\\cdot9\\cdot2)=(84,\\ 32,\\ 72)"
+        }
+       ],
+       "answer": "$\\nabla\\phi=84\\mathbf i+32\\mathbf j+72\\mathbf k$."
+      },
+      {
+       "title": "Past test Q3 and Q11",
+       "problem": "Find the gradient of $U=x^2y+xyz$ and of $F=xy+yz+x^2$.",
+       "steps": [
+        {
+         "do": "For U, differentiate three times.",
+         "m": "U_x=2xy+yz,\\quad U_y=x^2+xz,\\quad U_z=xy"
+        },
+        {
+         "do": "Assemble.",
+         "m": "\\nabla U=(2xy+yz)\\mathbf a_x+(x^2+xz)\\mathbf a_y+xy\\,\\mathbf a_z"
+        },
+        {
+         "do": "For F, differentiate three times.",
+         "m": "F_x=y+2x,\\quad F_y=x+z,\\quad F_z=y"
+        },
+        {
+         "do": "Assemble.",
+         "m": "\\nabla F=(y+2x)\\mathbf a_x+(x+z)\\mathbf a_y+y\\,\\mathbf a_z"
+        },
+        {
+         "do": "At (1, 2, 3).",
+         "m": "\\nabla U=(10,4,2),\\qquad\\nabla F=(4,4,2)"
+        }
+       ],
+       "answer": "As above, with values $(10,4,2)$ and $(4,4,2)$ at $(1,2,3)$."
+      },
+      {
+       "title": "The product rule in action",
+       "problem": "Check $\\nabla(\\phi\\psi)=\\psi\\nabla\\phi+\\phi\\nabla\\psi$ for $\\phi=x^2$ and $\\psi=yz$.",
+       "steps": [
+        {
+         "do": "Left side: the gradient of x^2 y z.",
+         "m": "\\nabla(x^2yz)=(2xyz,\\ x^2z,\\ x^2y)"
+        },
+        {
+         "do": "Right side.",
+         "m": "yz(2x,0,0)+x^2(0,z,y)=(2xyz,\\ x^2z,\\ x^2y)"
+        },
+        {
+         "do": "The two agree.",
+         "why": "Each partial derivative of a product obeys the ordinary product rule, which is why the vector version holds."
+        }
+       ],
+       "answer": "Both sides equal $(2xyz,\\ x^2z,\\ x^2y)$."
+      }
+     ],
+     "practice": [
+      {
+       "q": "Example 1.8. Find $\\nabla\\phi$ at $P(1,3,2)$ for $\\phi=x^2yz^3+xy^2z^2$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        84.0,
+        32.0,
+        72.0
+       ],
+       "hint": "Differentiate with respect to x, y and z in turn, then substitute.",
+       "solution": [
+        {
+         "do": "Partial derivatives.",
+         "m": "\\phi_x=2xyz^3+y^2z^2,\\ \\phi_y=x^2z^3+2xyz^2,\\ \\phi_z=3x^2yz^2+2xy^2z"
+        },
+        {
+         "do": "Substitute (1, 3, 2).",
+         "m": "(48+36,\\ 8+24,\\ 36+36)=(84,32,72)"
+        }
+       ],
+       "answerText": "(84, 32, 72)"
+      },
+      {
+       "q": "Exercise 1.3. Find $\\nabla\\phi$ at $(1,2,3)$ for $\\phi=x^3yz+xy^2z^3$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        126.0,
+        111.0,
+        110.0
+       ],
+       "hint": "phi_x = 3x^2 yz + y^2 z^3.",
+       "solution": [
+        {
+         "do": "Partial derivatives.",
+         "m": "\\phi_x=3x^2yz+y^2z^3,\\ \\phi_y=x^3z+2xyz^3,\\ \\phi_z=x^3y+3xy^2z^2"
+        },
+        {
+         "do": "Substitute (1, 2, 3).",
+         "m": "(18+108,\\ 3+108,\\ 2+108)=(126,111,110)"
+        }
+       ],
+       "answerText": "(126, 111, 110)"
+      },
+      {
+       "q": "Past test Q3, evaluated at a point so that it can be checked. Find $\\nabla U$ at $(1,2,3)$ for $U=x^2y+xyz$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        10.0,
+        4.0,
+        2.0
+       ],
+       "hint": "The general gradient is (2xy + yz) a_x + (x^2 + xz) a_y + xy a_z.",
+       "solution": [
+        {
+         "do": "General gradient.",
+         "m": "\\nabla U=(2xy+yz)\\mathbf a_x+(x^2+xz)\\mathbf a_y+xy\\,\\mathbf a_z"
+        },
+        {
+         "do": "Substitute (1, 2, 3).",
+         "m": "(4+6,\\ 1+3,\\ 2)=(10,4,2)"
+        }
+       ],
+       "answerText": "(10, 4, 2)"
+      },
+      {
+       "q": "Past test Q11, evaluated at a point. Find the gradient of $xy+yz+x^2$ at $(1,2,3)$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        4.0,
+        4.0,
+        2.0
+       ],
+       "hint": "The general gradient is (y + 2x) a_x + (x + z) a_y + y a_z.",
+       "solution": [
+        {
+         "do": "General gradient.",
+         "m": "(y+2x)\\mathbf a_x+(x+z)\\mathbf a_y+y\\,\\mathbf a_z"
+        },
+        {
+         "do": "Substitute (1, 2, 3).",
+         "m": "(2+2,\\ 1+3,\\ 2)=(4,4,2)"
+        }
+       ],
+       "answerText": "(4, 4, 2)"
+      },
+      {
+       "q": "Find $\\nabla\\phi$ at $(1,2,2)$ for $\\phi=x^2+y^2+z^2$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        2.0,
+        4.0,
+        4.0
+       ],
+       "hint": "The gradient is (2x, 2y, 2z).",
+       "solution": [
+        {
+         "do": "Substitute.",
+         "m": "(2,4,4)"
+        }
+       ],
+       "answerText": "(2, 4, 4)"
+      },
+      {
+       "q": "Find the magnitude of $\\nabla\\phi$ at $(1,2,3)$ for $\\phi=xyz$.",
+       "type": "number",
+       "answer": 7.0,
+       "hint": "The gradient is (yz, xz, xy) = (6, 3, 2).",
+       "solution": [
+        {
+         "do": "Magnitude.",
+         "m": "\\sqrt{36+9+4}=7"
+        }
+       ],
+       "answerText": "7"
+      },
+      {
+       "q": "Use the product rule $\\nabla(\\phi\\psi)=\\psi\\nabla\\phi+\\phi\\nabla\\psi$ with $\\phi=x$, $\\psi=y$ to find $\\nabla(xy)$ at $(2,3,0)$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        3.0,
+        2.0,
+        0.0
+       ],
+       "hint": "grad x = (1, 0, 0) and grad y = (0, 1, 0).",
+       "solution": [
+        {
+         "do": "Apply the rule.",
+         "m": "y(1,0,0)+x(0,1,0)=(3,0,0)+(0,2,0)=(3,2,0)"
+        }
+       ],
+       "answerText": "(3, 2, 0)"
+      },
+      {
+       "q": "Is the gradient of a scalar function a scalar or a vector? Answer scalar or vector.",
+       "type": "text",
+       "answer": "vector",
+       "hint": "Look at the definition of del.",
+       "solution": [
+        "Grad of phi is a vector: the components are the three partial derivatives."
+       ],
+       "answerText": "vector"
+      }
+     ],
+     "quiz": [
+      {
+       "q": "grad phi is",
+       "options": [
+        "a scalar",
+        "a vector",
+        "a matrix",
+        "always zero"
+       ],
+       "answer": 1,
+       "explain": "Three partial derivatives give three components."
+      },
+      {
+       "q": "grad phi points in the direction of",
+       "options": [
+        "the greatest increase of phi",
+        "the greatest decrease of phi",
+        "no change in phi",
+        "the x-axis only"
+       ],
+       "answer": 0,
+       "explain": "The gradient points uphill."
+      },
+      {
+       "q": "grad(AB) equals",
+       "options": [
+        "A grad B + B grad A",
+        "grad A + grad B",
+        "grad A . grad B",
+        "A B grad"
+       ],
+       "answer": 0,
+       "explain": "The product rule."
+      },
+      {
+       "q": "For phi = x^2 + y^2 + z^2, grad phi is",
+       "options": [
+        "(x, y, z)",
+        "(2x, 2y, 2z)",
+        "2",
+        "(x^2, y^2, z^2)"
+       ],
+       "answer": 1,
+       "explain": "Differentiate each term."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Del operator",
+       "back": "$\\nabla=\\frac{\\partial}{\\partial x}\\mathbf i+\\frac{\\partial}{\\partial y}\\mathbf j+\\frac{\\partial}{\\partial z}\\mathbf k$."
+      },
+      {
+       "front": "Gradient",
+       "back": "$\\nabla\\phi=(\\phi_x,\\phi_y,\\phi_z)$, a vector."
+      },
+      {
+       "front": "Product and quotient rules",
+       "back": "$\\nabla(AB)=A\\nabla B+B\\nabla A$; quotient rule not in your notes."
+      },
+      {
+       "front": "Meaning of the gradient",
+       "back": "Points where phi increases fastest; its length is that rate (not in your notes)."
+      },
+      {
+       "front": "Example 1.8 answer",
+       "back": "$84\\mathbf i+32\\mathbf j+72\\mathbf k$."
+      }
+     ],
+     "theory": [
+      {
+       "q": "Define the del operator and the gradient of a scalar function.",
+       "type": "Define",
+       "marks": 3,
+       "points": [
+        "Del = d/dx i + d/dy j + d/dz k",
+        "grad phi = phi_x i + phi_y j + phi_z k",
+        "phi is a scalar function and grad phi is a vector function"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Find grad phi at (1, 3, 2) for phi = x squared y z cubed + x y squared z squared.",
+       "type": "Explain",
+       "marks": 5,
+       "points": [
+        "phi_x = 2xyz cubed + y squared z squared",
+        "phi_y = x squared z cubed + 2xyz squared",
+        "phi_z = 3 x squared y z squared + 2 x y squared z",
+        "Substitute (1, 3, 2)",
+        "grad phi = 84i + 32j + 72k"
+       ],
+       "need": 5
+      },
+      {
+       "q": "State the properties of the gradient of a sum and of a product.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "grad(A + B) = grad A + grad B",
+        "grad(AB) = A grad B + B grad A"
+       ],
+       "need": 2
+      },
+      {
+       "q": "State the quotient rule and the chain rule for the gradient.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "grad(A/B) = (B grad A - A grad B)/B squared",
+        "grad f(phi) = f'(phi) grad phi"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Describe the geometrical meaning of the gradient.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "It points in the direction of the greatest increase of the function",
+        "Its magnitude is the greatest rate of increase",
+        "It is perpendicular to the surfaces on which the function is constant"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Find the gradient of U = x squared y + x y z and of F = x y + y z + x squared.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "grad U = (2xy + yz) a_x + (x squared + xz) a_y + xy a_z",
+        "grad F = (y + 2x) a_x + (x + z) a_y + y a_z",
+        "At (1, 2, 3) these are (10, 4, 2) and (4, 4, 2)"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Why should you not simply guess the intended function in an ambiguous question such as past test Q7?",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "A garbled function has more than one plausible reading and each gives a different gradient",
+        "State the interpretation you use and, if possible, check the original with the lecturer"
+       ],
+       "need": 2
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=gradient+of+scalar+field+del+operator+explained"
+      }
+     ]
+    },
+    {
+     "id": "6.6",
+     "title": "The directional derivative and the unit normal",
+     "slides": "Dr Jack's deck, slides 39 to 47 (Examples 1.9 and 1.10); the maximum-rate result and the tangent plane are added",
+     "one_line": "The directional derivative tells you how fast a field changes in any chosen direction, and the gradient gives the direction perpendicular to a level surface.",
+     "analogy": "On a hillside the gradient points uphill. If you walk in some other direction, only part of that uphill push helps you, which is the dot product of the gradient with your direction. Walk along a contour line and the slope is zero, because the gradient is perpendicular to the contour.",
+     "recall": [
+      "What is the unit vector in the direction (2, 3, -4)?",
+      "What is the dot product of (3, 4) and (1, 2)?"
+     ],
+     "exam": [
+      "Directional derivative of $\\phi$ in the direction of $\\mathbf a$: $\\dfrac{d\\phi}{ds}=\\hat{\\mathbf a}\\cdot\\nabla\\phi$, where $\\hat{\\mathbf a}=\\dfrac{\\mathbf a}{|\\mathbf a|}$ is a unit vector (slide 39). You must normalise $\\mathbf a$ first.",
+      "Example 1.9 (slides 40 to 43): $\\phi=x^2z+2xy^2+yz^2$ at $(1,2,-1)$ in the direction $2\\mathbf i+3\\mathbf j-4\\mathbf k$. Here $\\nabla\\phi=6\\mathbf i+9\\mathbf j-3\\mathbf k$ and $|\\mathbf A|=\\sqrt{29}$, so $\\dfrac{d\\phi}{ds}=\\dfrac{12+27+12}{\\sqrt{29}}=\\dfrac{51}{\\sqrt{29}}=9.4705$.",
+      "Why the gradient is normal to a surface (slides 44 and 45): on the surface $\\phi=\\text{constant}$, $d\\phi=d\\mathbf r\\cdot\\nabla\\phi=0$ for every small step $d\\mathbf r$ along the surface, so $\\nabla\\phi\\perp d\\mathbf r$. Hence $\\nabla\\phi$ is normal to the surface.",
+      "Unit normal (slide 46): $\\hat{\\mathbf n}=\\dfrac{\\nabla\\phi}{|\\nabla\\phi|}$.",
+      "Example 1.10 (slide 47): $\\phi=2yz+xz+xy$ at $(-1,1,1)$. $\\nabla\\phi=(z+y)\\mathbf i+(2z+x)\\mathbf j+(2y+x)\\mathbf k=2\\mathbf i+\\mathbf j+\\mathbf k$ and $\\hat{\\mathbf n}=\\dfrac1{\\sqrt6}(2\\mathbf i+\\mathbf j+\\mathbf k)$. The point lies on the surface: $2(1)(1)+(-1)(1)+(-1)(1)=0$ (the slide does not check this).",
+      "Greatest rate of change: $\\dfrac{d\\phi}{ds}=|\\nabla\\phi|\\cos\\theta$, so it is largest ($=|\\nabla\\phi|$) in the direction of $\\nabla\\phi$, and zero along directions tangent to the surface. Not in your notes.",
+      "Tangent plane at a point $P_0$ of the surface: $\\nabla\\phi(P_0)\\cdot(\\mathbf r-\\mathbf r_0)=0$. For Example 1.10 this is $2(x+1)+(y-1)+(z-1)=0$, that is $2x+y+z=0$. Not in your notes."
+     ],
+     "terms": [
+      "directional-derivative",
+      "unit-normal",
+      "level-surface"
+     ],
+     "examples": [
+      {
+       "title": "Your slide 40: Example 1.9",
+       "problem": "Find the directional derivative of $\\phi=x^2z+2xy^2+yz^2$ at $(1,2,-1)$ in the direction of $\\mathbf A=2\\mathbf i+3\\mathbf j-4\\mathbf k$.",
+       "steps": [
+        {
+         "do": "Gradient.",
+         "m": "\\nabla\\phi=(2xz+2y^2)\\mathbf i+(4xy+z^2)\\mathbf j+(x^2+2yz)\\mathbf k"
+        },
+        {
+         "do": "At (1, 2, -1).",
+         "m": "\\nabla\\phi=(-2+8,\\ 8+1,\\ 1-4)=(6,9,-3)"
+        },
+        {
+         "do": "Unit vector in the direction of A.",
+         "m": "|\\mathbf A|=\\sqrt{4+9+16}=\\sqrt{29},\\quad\\hat{\\mathbf a}=\\tfrac1{\\sqrt{29}}(2,3,-4)"
+        },
+        {
+         "do": "Dot product.",
+         "m": "\\frac{d\\phi}{ds}=\\frac{2(6)+3(9)+(-4)(-3)}{\\sqrt{29}}=\\frac{51}{\\sqrt{29}}=9.4705"
+        }
+       ],
+       "answer": "$\\dfrac{51}{\\sqrt{29}}=9.4705$."
+      },
+      {
+       "title": "Your slide 46: Example 1.10, with the tangent plane",
+       "problem": "Find the unit normal to $2yz+xz+xy=0$ at $(-1,1,1)$, and the tangent plane there.",
+       "steps": [
+        {
+         "do": "Check the point is on the surface.",
+         "m": "2(1)(1)+(-1)(1)+(-1)(1)=0"
+        },
+        {
+         "do": "Gradient.",
+         "m": "\\nabla\\phi=(z+y)\\mathbf i+(2z+x)\\mathbf j+(2y+x)\\mathbf k\\Rightarrow(2,1,1)"
+        },
+        {
+         "do": "Normalise.",
+         "m": "\\hat{\\mathbf n}=\\frac{(2,1,1)}{\\sqrt6}=(0.8165,\\ 0.4082,\\ 0.4082)"
+        },
+        {
+         "do": "Tangent plane (not in your notes).",
+         "m": "2(x+1)+(y-1)+(z-1)=0\\Rightarrow2x+y+z=0"
+        }
+       ],
+       "answer": "$\\hat{\\mathbf n}=\\tfrac1{\\sqrt6}(2\\mathbf i+\\mathbf j+\\mathbf k)$; tangent plane $2x+y+z=0$."
+      },
+      {
+       "title": "Greatest rate of change",
+       "problem": "For $\\phi=x^2+y^2+z^2$ at $(1,2,2)$ find the greatest rate of increase, its direction, and the rate along $(1,1,1)$.",
+       "steps": [
+        {
+         "do": "Gradient.",
+         "m": "\\nabla\\phi=(2,4,4),\\quad|\\nabla\\phi|=6"
+        },
+        {
+         "do": "The greatest rate is 6, in the direction of the gradient.",
+         "m": "\\hat{\\mathbf n}=\\left(\\tfrac13,\\tfrac23,\\tfrac23\\right)"
+        },
+        {
+         "do": "Along (1, 1, 1).",
+         "m": "\\frac{(1,1,1)}{\\sqrt3}\\cdot(2,4,4)=\\frac{10}{\\sqrt3}=5.77"
+        },
+        {
+         "do": "Check that it is less than 6.",
+         "why": "5.77 < 6, as it must be, since 6 is the greatest rate."
+        }
+       ],
+       "answer": "Greatest rate 6 along (1/3, 2/3, 2/3); rate 5.77 along (1, 1, 1)."
+      }
+     ],
+     "practice": [
+      {
+       "q": "Example 1.9. Find the directional derivative of $\\phi=x^2z+2xy^2+yz^2$ at $(1,2,-1)$ in the direction of $A=2\\mathbf i+3\\mathbf j-4\\mathbf k$. Give a decimal.",
+       "type": "number",
+       "answer": 9.470462247,
+       "hint": "Gradient (6, 9, -3); unit vector A / sqrt(29).",
+       "solution": [
+        {
+         "do": "Dot them.",
+         "m": "\\frac{2(6)+3(9)-4(-3)}{\\sqrt{29}}=\\frac{51}{\\sqrt{29}}=9.4705"
+        }
+       ],
+       "answerText": "9.4705",
+       "tol": 0.005
+      },
+      {
+       "q": "Find the directional derivative of $\\phi=x^2+y^2+z^2$ at $(1,2,2)$ in the direction of $(1,1,1)$. Give a decimal.",
+       "type": "number",
+       "answer": 5.773502692,
+       "hint": "The gradient is (2, 4, 4) and the unit vector is (1, 1, 1)/sqrt 3.",
+       "solution": [
+        {
+         "do": "Dot them.",
+         "m": "\\frac{2+4+4}{\\sqrt3}=\\frac{10}{\\sqrt3}=5.7735"
+        }
+       ],
+       "answerText": "5.7735",
+       "tol": 0.005
+      },
+      {
+       "q": "Find the greatest rate of increase of $\\phi=x^2+y^2+z^2$ at $(1,2,2)$.",
+       "type": "number",
+       "answer": 6.0,
+       "hint": "The greatest rate is the magnitude of the gradient (2, 4, 4).",
+       "solution": [
+        {
+         "do": "Magnitude.",
+         "m": "\\sqrt{4+16+16}=6"
+        }
+       ],
+       "answerText": "6"
+      },
+      {
+       "q": "Find the unit normal to the sphere $x^2+y^2+z^2=9$ at $(1,2,2)$. Give $(x,y,z)$ as decimals.",
+       "type": "vector",
+       "answer": [
+        0.333333333,
+        0.666666667,
+        0.666666667
+       ],
+       "hint": "The gradient is (2, 4, 4) with magnitude 6.",
+       "solution": [
+        {
+         "do": "Divide.",
+         "m": "\\hat n=\\frac{(2,4,4)}{6}=\\left(\\tfrac13,\\tfrac23,\\tfrac23\\right)"
+        }
+       ],
+       "answerText": "(1/3, 2/3, 2/3)",
+       "tol": 0.002
+      },
+      {
+       "q": "Example 1.10. Find the unit normal to $2yz+xz+xy=0$ at $(-1,1,1)$. Give $(x,y,z)$ as decimals.",
+       "type": "vector",
+       "answer": [
+        0.816496581,
+        0.40824829,
+        0.40824829
+       ],
+       "hint": "The gradient is (z + y, 2z + x, 2y + x).",
+       "solution": [
+        {
+         "do": "Evaluate and normalise.",
+         "m": "\\nabla\\phi=(2,1,1),\\ |\\nabla\\phi|=\\sqrt6\\Rightarrow\\hat n=(0.8165,\\ 0.4082,\\ 0.4082)"
+        }
+       ],
+       "answerText": "(0.8165, 0.4082, 0.4082)",
+       "tol": 0.002
+      },
+      {
+       "q": "Find the directional derivative of $\\phi=xy^2+z$ at $(1,2,3)$ in the direction of $(2,-2,1)$. Give a decimal.",
+       "type": "number",
+       "answer": 0.333333333,
+       "hint": "The gradient is (y^2, 2xy, 1) = (4, 4, 1) and the unit vector is (2, -2, 1)/3.",
+       "solution": [
+        {
+         "do": "Dot them.",
+         "m": "\\frac{8-8+1}{3}=\\frac13"
+        }
+       ],
+       "answerText": "0.3333",
+       "tol": 0.002
+      },
+      {
+       "q": "At a point, is the directional derivative of phi greatest in the direction of the gradient? Answer yes or no.",
+       "type": "text",
+       "answer": "yes",
+       "hint": "Compare a.grad phi = abs(grad phi) cos(theta).",
+       "solution": [
+        "The directional derivative is abs(grad phi) cos theta, which is largest (equal to abs(grad phi)) when theta = 0, that is, along the gradient."
+       ],
+       "answerText": "yes",
+       "alt": [
+        "y"
+       ]
+      }
+     ],
+     "quiz": [
+      {
+       "q": "The directional derivative of phi along a is",
+       "options": [
+        "a . grad phi",
+        "unit a . grad phi",
+        "a x grad phi",
+        "grad phi / a"
+       ],
+       "answer": 1,
+       "explain": "The direction vector must be a unit vector."
+      },
+      {
+       "q": "grad phi is perpendicular to",
+       "options": [
+        "the surfaces phi = constant",
+        "the x-axis",
+        "the origin",
+        "nothing in particular"
+       ],
+       "answer": 0,
+       "explain": "The change of phi along such a surface is zero."
+      },
+      {
+       "q": "The unit normal to phi = constant is",
+       "options": [
+        "grad phi",
+        "grad phi / abs(grad phi)",
+        "abs(grad phi)",
+        "phi / abs(phi)"
+       ],
+       "answer": 1,
+       "explain": "Divide the gradient by its length."
+      },
+      {
+       "q": "The greatest value of the directional derivative at a point is",
+       "options": [
+        "abs(grad phi)",
+        "zero",
+        "phi",
+        "the average of the partial derivatives"
+       ],
+       "answer": 0,
+       "explain": "It occurs along the gradient."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Directional derivative",
+       "back": "$\\hat{\\mathbf a}\\cdot\\nabla\\phi$, with $\\hat{\\mathbf a}$ a unit vector."
+      },
+      {
+       "front": "Unit normal to a surface",
+       "back": "$\\nabla\\phi/|\\nabla\\phi|$."
+      },
+      {
+       "front": "Why the gradient is normal",
+       "back": "$d\\phi=d\\mathbf r\\cdot\\nabla\\phi=0$ along the surface."
+      },
+      {
+       "front": "Example 1.9 answer",
+       "back": "$51/\\sqrt{29}=9.4705$."
+      },
+      {
+       "front": "Greatest rate of increase",
+       "back": "$|\\nabla\\phi|$, along $\\nabla\\phi$ (not in your notes)."
+      }
+     ],
+     "theory": [
+      {
+       "q": "Define the directional derivative and state how it is calculated.",
+       "type": "Define",
+       "marks": 3,
+       "points": [
+        "The rate of change of phi in a given direction",
+        "d phi/ds = a-hat . grad phi",
+        "a-hat is the unit vector in the given direction"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Show that grad phi is normal to the surface phi(x, y, z) = constant.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "On the surface d phi = 0",
+        "d phi = dr . grad phi, so dr . grad phi = 0",
+        "dr lies in the surface and is perpendicular to grad phi",
+        "Hence grad phi is normal to the surface"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Define the unit normal vector to a surface.",
+       "type": "Define",
+       "marks": 2,
+       "points": [
+        "n-hat = grad phi / abs(grad phi)",
+        "It has length 1 and is perpendicular to the surface"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Find the directional derivative of phi = x squared z + 2xy squared + y z squared at (1, 2, -1) in the direction of 2i + 3j - 4k.",
+       "type": "Explain",
+       "marks": 5,
+       "points": [
+        "grad phi = (2xz + 2y squared, 4xy + z squared, x squared + 2yz)",
+        "At (1, 2, -1): (6, 9, -3)",
+        "abs(A) = sqrt(29)",
+        "Dot product 51/sqrt(29)",
+        "= 9.4705"
+       ],
+       "need": 5
+      },
+      {
+       "q": "Find the unit normal to 2yz + xz + xy = 0 at (-1, 1, 1).",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "grad phi = (z + y, 2z + x, 2y + x)",
+        "At (-1, 1, 1): (2, 1, 1)",
+        "Magnitude sqrt(6)",
+        "n-hat = (2i + j + k)/sqrt(6)"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Explain why the directional derivative is greatest along the gradient.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "d phi/ds = abs(grad phi) cos theta",
+        "It is greatest when cos theta = 1, that is theta = 0",
+        "Then it equals abs(grad phi)"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Find the equation of the tangent plane to a surface at a point using the gradient.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "The gradient at the point is normal to the plane",
+        "The plane is grad phi . (r - r0) = 0",
+        "For 2yz + xz + xy = 0 at (-1, 1, 1) it is 2x + y + z = 0"
+       ],
+       "need": 3
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=directional+derivative+gradient+unit+normal+explained"
+      }
+     ]
+    },
+    {
+     "id": "6.7",
+     "title": "Divergence",
+     "slides": "Dr Jack's deck, slides 48 to 51 (Example 1.11, Exercise 1.4); the physical meaning is added, and “solenoid” on slide 51 should read solenoidal",
+     "one_line": "Divergence is a number at each point that says how much the field is spreading out from, or flowing into, that point.",
+     "analogy": "Picture water flowing in a pipe system. At a tap the water comes out: the divergence there is positive. At a drain it disappears: negative. Along a plain stretch of pipe where nothing is added or removed the divergence is zero.",
+     "recall": [
+      "What is the partial derivative of x squared y with respect to x?",
+      "What is the sum 2 + 3 + 4?"
+     ],
+     "exam": [
+      "If $\\mathbf A=a_x\\mathbf i+a_y\\mathbf j+a_z\\mathbf k$ then $\\mathrm{div}\\,\\mathbf A=\\nabla\\cdot\\mathbf A=\\dfrac{\\partial a_x}{\\partial x}+\\dfrac{\\partial a_y}{\\partial y}+\\dfrac{\\partial a_z}{\\partial z}$ (slide 48). It is the dot product of del with $\\mathbf A$.",
+      "$\\mathbf A$ is a vector function but $\\mathrm{div}\\,\\mathbf A$ is a scalar function (slide 51).",
+      "Example 1.11 (slide 49): $\\mathbf A=x^2y\\mathbf i-xyz\\mathbf j+yz^2\\mathbf k$ gives $\\nabla\\cdot\\mathbf A=2xy-xz+2yz$, which is $13$ at $(1,2,3)$.",
+      "Exercise 1.4 (slide 50): $\\mathbf A=x^3y^2\\mathbf i+xy^2z\\mathbf j-yz^3\\mathbf k$ gives $\\nabla\\cdot\\mathbf A=3x^2y^2+2xyz-3yz^2$, which is $114$ at $(3,2,1)$. The slide leaves the working blank.",
+      "If $\\nabla\\cdot\\mathbf A=0$ the field is called solenoidal (the slide writes “solenoid vector”; a solenoid is a coil). A solenoidal field has no sources or sinks: whatever flows into a small region flows out again. An example is the rotating field $\\mathbf A=-y\\mathbf i+x\\mathbf j$.",
+      "Meaning: the divergence at a point is the net outflow of the field per unit volume from a tiny region around that point. Positive means a source, negative means a sink. This is why the divergence theorem (lesson 7.6) turns a surface integral into a volume integral. Not in your notes.",
+      "In electromagnetics (not in your notes): Gauss's law in point form is $\\nabla\\cdot\\mathbf D=\\rho_v$ (the charge density is the source of the electric flux density), and $\\nabla\\cdot\\mathbf B=0$ (magnetic field lines have no sources, so $\\mathbf B$ is solenoidal). Not in your notes."
+     ],
+     "terms": [
+      "divergence",
+      "solenoidal-field"
+     ],
+     "examples": [
+      {
+       "title": "Your slide 49: Example 1.11",
+       "problem": "Find $\\nabla\\cdot\\mathbf A$ at $(1,2,3)$ for $\\mathbf A=x^2y\\,\\mathbf i-xyz\\,\\mathbf j+yz^2\\mathbf k$.",
+       "steps": [
+        {
+         "do": "Differentiate each component with respect to its own variable.",
+         "m": "\\frac{\\partial}{\\partial x}(x^2y)=2xy,\\quad\\frac{\\partial}{\\partial y}(-xyz)=-xz,\\quad\\frac{\\partial}{\\partial z}(yz^2)=2yz"
+        },
+        {
+         "do": "Add.",
+         "m": "\\nabla\\cdot\\mathbf A=2xy-xz+2yz"
+        },
+        {
+         "do": "Substitute (1, 2, 3).",
+         "m": "4-3+12=13"
+        }
+       ],
+       "answer": "$\\nabla\\cdot\\mathbf A=13$."
+      },
+      {
+       "title": "Your slide 50: Exercise 1.4",
+       "problem": "Find $\\nabla\\cdot\\mathbf A$ at $(3,2,1)$ for $\\mathbf A=x^3y^2\\mathbf i+xy^2z\\,\\mathbf j-yz^3\\mathbf k$.",
+       "steps": [
+        {
+         "do": "Differentiate.",
+         "m": "\\frac{\\partial}{\\partial x}(x^3y^2)=3x^2y^2,\\quad\\frac{\\partial}{\\partial y}(xy^2z)=2xyz,\\quad\\frac{\\partial}{\\partial z}(-yz^3)=-3yz^2"
+        },
+        {
+         "do": "Substitute (3, 2, 1).",
+         "m": "3(9)(4)+2(3)(2)(1)-3(2)(1)=108+12-6=114"
+        }
+       ],
+       "answer": "$\\nabla\\cdot\\mathbf A=114$, matching the slide."
+      },
+      {
+       "title": "Source, sink and solenoidal fields",
+       "problem": "Find the divergence of $\\mathbf A=x\\mathbf i+y\\mathbf j+z\\mathbf k$ and of $\\mathbf B=-y\\mathbf i+x\\mathbf j$, and interpret.",
+       "steps": [
+        {
+         "do": "The position field.",
+         "m": "\\nabla\\cdot\\mathbf A=1+1+1=3"
+        },
+        {
+         "do": "The rotating field.",
+         "m": "\\nabla\\cdot\\mathbf B=0+0=0"
+        },
+        {
+         "do": "Interpret.",
+         "why": "A points away from the origin everywhere, so it spreads out: positive divergence, a source. B just circulates around the z-axis and neither gathers nor spreads: it is solenoidal."
+        }
+       ],
+       "answer": "div A = 3 (a uniform source) and div B = 0 (solenoidal)."
+      }
+     ],
+     "practice": [
+      {
+       "q": "Example 1.11. Find $\\nabla\\cdot\\mathbf A$ at $(1,2,3)$ for $\\mathbf A=x^2y\\,\\mathbf i-xyz\\,\\mathbf j+yz^2\\mathbf k$.",
+       "type": "number",
+       "answer": 13.0,
+       "hint": "div A = 2xy - xz + 2yz.",
+       "solution": [
+        {
+         "do": "Substitute.",
+         "m": "2(1)(2)-(1)(3)+2(2)(3)=4-3+12=13"
+        }
+       ],
+       "answerText": "13"
+      },
+      {
+       "q": "Exercise 1.4. Find $\\nabla\\cdot\\mathbf A$ at $(3,2,1)$ for $\\mathbf A=x^3y^2\\mathbf i+xy^2z\\,\\mathbf j-yz^3\\mathbf k$.",
+       "type": "number",
+       "answer": 114.0,
+       "hint": "div A = 3x^2 y^2 + 2xyz - 3yz^2.",
+       "solution": [
+        {
+         "do": "Substitute.",
+         "m": "3(9)(4)+2(3)(2)(1)-3(2)(1)=108+12-6=114"
+        }
+       ],
+       "answerText": "114"
+      },
+      {
+       "q": "Find $\\nabla\\cdot\\mathbf A$ for the position field $\\mathbf A=x\\mathbf i+y\\mathbf j+z\\mathbf k$.",
+       "type": "number",
+       "answer": 3.0,
+       "hint": "Each component contributes 1.",
+       "solution": [
+        {
+         "do": "Add.",
+         "m": "1+1+1=3"
+        }
+       ],
+       "answerText": "3"
+      },
+      {
+       "q": "Find $\\nabla\\cdot\\mathbf A$ for the rotating field $\\mathbf A=-y\\,\\mathbf i+x\\,\\mathbf j$.",
+       "type": "number",
+       "answer": 0.0,
+       "hint": "d(-y)/dx = 0 and dx/dy = 0.",
+       "solution": [
+        "Both terms are 0, so the field is solenoidal."
+       ],
+       "answerText": "0"
+      },
+      {
+       "q": "Find $\\nabla\\cdot\\mathbf A$ at $(1,1,1)$ for $\\mathbf A=x^2y\\,\\mathbf i+y^2z\\,\\mathbf j+z^2x\\,\\mathbf k$.",
+       "type": "number",
+       "answer": 6.0,
+       "hint": "div A = 2xy + 2yz + 2zx.",
+       "solution": [
+        {
+         "do": "Substitute.",
+         "m": "2+2+2=6"
+        }
+       ],
+       "answerText": "6"
+      },
+      {
+       "q": "Is $\\mathbf A=yz\\,\\mathbf i+xz\\,\\mathbf j+xy\\,\\mathbf k$ solenoidal? Answer yes or no.",
+       "type": "text",
+       "answer": "yes",
+       "hint": "Compute the divergence.",
+       "solution": [
+        "Each partial derivative vanishes, since yz does not depend on x and so on. The divergence is 0, so the field is solenoidal."
+       ],
+       "answerText": "yes",
+       "alt": [
+        "y"
+       ]
+      },
+      {
+       "q": "Find $k$ so that $\\mathbf A=x\\mathbf i+ky\\mathbf j-2z\\mathbf k$ is solenoidal.",
+       "type": "number",
+       "answer": 1.0,
+       "hint": "Set 1 + k - 2 = 0.",
+       "solution": [
+        {
+         "do": "Solve.",
+         "m": "1+k-2=0\\Rightarrow k=1"
+        }
+       ],
+       "answerText": "1"
+      },
+      {
+       "q": "Find $\\nabla\\cdot(\\nabla\\phi)$ for $\\phi=x^2+y^2+z^2$.",
+       "type": "number",
+       "answer": 6.0,
+       "hint": "The gradient is (2x, 2y, 2z).",
+       "solution": [
+        {
+         "do": "Differentiate again.",
+         "m": "2+2+2=6"
+        }
+       ],
+       "answerText": "6"
+      }
+     ],
+     "quiz": [
+      {
+       "q": "The divergence of a vector field is",
+       "options": [
+        "a vector",
+        "a scalar",
+        "a matrix",
+        "always zero"
+       ],
+       "answer": 1,
+       "explain": "It is the dot product of del with a vector, a scalar."
+      },
+      {
+       "q": "A field with divergence zero everywhere is called",
+       "options": [
+        "irrotational",
+        "solenoidal",
+        "conservative",
+        "singular"
+       ],
+       "answer": 1,
+       "explain": "No sources or sinks."
+      },
+      {
+       "q": "The divergence of x i + y j + z k is",
+       "options": [
+        "0",
+        "1",
+        "3",
+        "x + y + z"
+       ],
+       "answer": 2,
+       "explain": "1 + 1 + 1."
+      },
+      {
+       "q": "A positive divergence at a point means the point is",
+       "options": [
+        "a sink",
+        "a source",
+        "a centre of rotation",
+        "a saddle"
+       ],
+       "answer": 1,
+       "explain": "Net outflow."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Divergence",
+       "back": "$\\nabla\\cdot\\mathbf A=\\partial_xa_x+\\partial_ya_y+\\partial_za_z$, a scalar."
+      },
+      {
+       "front": "Solenoidal field",
+       "back": "$\\nabla\\cdot\\mathbf A=0$ (the slide says “solenoid vector”)."
+      },
+      {
+       "front": "Meaning of divergence",
+       "back": "Net outflow per unit volume: source if positive, sink if negative (not in your notes)."
+      },
+      {
+       "front": "Example 1.11 answer",
+       "back": "13."
+      },
+      {
+       "front": "Exercise 1.4 answer",
+       "back": "114."
+      }
+     ],
+     "theory": [
+      {
+       "q": "Define the divergence of a vector field and state whether it is a scalar or a vector.",
+       "type": "Define",
+       "marks": 3,
+       "points": [
+        "div A = dax/dx + day/dy + daz/dz",
+        "It is the dot product of del with A",
+        "It is a scalar function"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Find the divergence of A = x squared y i - xyz j + y z squared k at (1, 2, 3).",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "d/dx of x squared y = 2xy",
+        "d/dy of -xyz = -xz",
+        "d/dz of y z squared = 2yz",
+        "At (1, 2, 3): 4 - 3 + 12 = 13"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Find the divergence of A = x cubed y squared i + x y squared z j - y z cubed k at (3, 2, 1).",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "d/dx of x cubed y squared is 3 x squared y squared",
+        "d/dy of x y squared z is 2xyz",
+        "d/dz of -y z cubed is -3 y z squared",
+        "At (3, 2, 1): 108 + 12 - 6 = 114"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Define a solenoidal vector field and give an example.",
+       "type": "Define",
+       "marks": 2,
+       "points": [
+        "A field whose divergence is zero everywhere",
+        "For example -y i + x j"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Explain the physical meaning of the divergence.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "The net outflow of the field per unit volume at a point",
+        "Positive divergence means a source",
+        "Negative divergence means a sink"
+       ],
+       "need": 3
+      },
+      {
+       "q": "State the divergence of the field x i + y j + z k and what it shows.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "The divergence is 3",
+        "The field spreads out uniformly from the origin"
+       ],
+       "need": 2
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=divergence+of+a+vector+field+explained"
+      }
+     ]
+    },
+    {
+     "id": "6.8",
+     "title": "Curl",
+     "slides": "Dr Jack's deck, slides 52 to 56 (Example 1.12, Exercise 1.5); the meaning, irrotational and conservative fields are added",
+     "one_line": "Curl measures how much a field swirls around each point, and a field with no swirl can be written as the gradient of a scalar.",
+     "analogy": "Drop a tiny paddle wheel into flowing water. If the wheel spins, the water has curl there, and the axis of the spin points along the curl vector. If the wheel just drifts along without turning, the curl is zero.",
+     "recall": [
+      "What is the cross product of i and j?",
+      "How do you expand a 3 by 3 determinant down its first row?"
+     ],
+     "exam": [
+      "If $\\mathbf A=a_x\\mathbf i+a_y\\mathbf j+a_z\\mathbf k$ then $\\mathrm{curl}\\,\\mathbf A=\\nabla\\times\\mathbf A=\\begin{vmatrix}\\mathbf i&\\mathbf j&\\mathbf k\\\\\\dfrac{\\partial}{\\partial x}&\\dfrac{\\partial}{\\partial y}&\\dfrac{\\partial}{\\partial z}\\\\a_x&a_y&a_z\\end{vmatrix}$ (slide 52). The result is a vector function.",
+      "Written out: $\\nabla\\times\\mathbf A=\\left(\\dfrac{\\partial a_z}{\\partial y}-\\dfrac{\\partial a_y}{\\partial z}\\right)\\mathbf i+\\left(\\dfrac{\\partial a_x}{\\partial z}-\\dfrac{\\partial a_z}{\\partial x}\\right)\\mathbf j+\\left(\\dfrac{\\partial a_y}{\\partial x}-\\dfrac{\\partial a_x}{\\partial y}\\right)\\mathbf k$. The $\\partial$'s multiply the components below them (they act on them), so keep each derivative in the numerator.",
+      "Example 1.12 (slides 53 and 54): $\\mathbf A=(y^4-x^2z^2)\\mathbf i+(x^2+y^2)\\mathbf j-x^2yz\\,\\mathbf k$ has $\\nabla\\times\\mathbf A=-x^2z\\,\\mathbf i-(2x^2z-2xyz)\\mathbf j+(2x-4y^3)\\mathbf k$, which is $2\\mathbf i-8\\mathbf j-106\\mathbf k$ at $(1,3,-2)$.",
+      "Exercise 1.5 (slides 55 and 56): $\\mathbf A=(xy^3-y^2z^2)\\mathbf i+(x^2+z^2)\\mathbf j-x^2yz^2\\mathbf k$ has $\\nabla\\times\\mathbf A=(-x^2z^2-2z)\\mathbf i-(2y^2z-2xyz^2)\\mathbf j+(2x-3xy^2+2yz^2)\\mathbf k$, which is $-15\\mathbf i+12\\mathbf j+26\\mathbf k$ at $(1,2,3)$.",
+      "Meaning: the curl is a measure of the rotation of the field. Its direction is the axis of rotation, by the right-hand rule, and its magnitude is twice the angular speed of a tiny paddle wheel. The rotating field $-y\\mathbf i+x\\mathbf j$ has curl $2\\mathbf k$. Not in your notes.",
+      "A field with $\\nabla\\times\\mathbf F=\\mathbf 0$ is irrotational. Such a field is conservative: it can be written as $\\mathbf F=\\nabla\\phi$, where $\\phi$ is the scalar potential, and its line integral between two points does not depend on the path (lesson 7.1). Always $\\nabla\\times(\\nabla\\phi)=\\mathbf 0$. Not in your notes.",
+      "In electromagnetics (not in your notes): for static fields $\\nabla\\times\\mathbf E=\\mathbf 0$, which is why $\\mathbf E=-\\nabla V$ for a scalar potential $V$. Not in your notes."
+     ],
+     "terms": [
+      "curl",
+      "irrotational-field",
+      "conservative-field",
+      "scalar-potential"
+     ],
+     "examples": [
+      {
+       "title": "Your slide 53: Example 1.12",
+       "problem": "Find $\\nabla\\times\\mathbf A$ at $(1,3,-2)$ for $\\mathbf A=(y^4-x^2z^2)\\mathbf i+(x^2+y^2)\\mathbf j-x^2yz\\,\\mathbf k$.",
+       "steps": [
+        {
+         "do": "The i component.",
+         "m": "\\frac{\\partial(-x^2yz)}{\\partial y}-\\frac{\\partial(x^2+y^2)}{\\partial z}=-x^2z-0"
+        },
+        {
+         "do": "The j component (note the minus sign from the determinant).",
+         "m": "-\\left[\\frac{\\partial(-x^2yz)}{\\partial x}-\\frac{\\partial(y^4-x^2z^2)}{\\partial z}\\right]=-\\left[-2xyz+2x^2z\\right]"
+        },
+        {
+         "do": "The k component.",
+         "m": "\\frac{\\partial(x^2+y^2)}{\\partial x}-\\frac{\\partial(y^4-x^2z^2)}{\\partial y}=2x-4y^3"
+        },
+        {
+         "do": "Substitute (1, 3, -2).",
+         "m": "(2,\\ -(12-4),\\ 2-108)=(2,-8,-106)"
+        }
+       ],
+       "answer": "$\\nabla\\times\\mathbf A=2\\mathbf i-8\\mathbf j-106\\mathbf k$."
+      },
+      {
+       "title": "Your slide 55: Exercise 1.5",
+       "problem": "Find $\\nabla\\times\\mathbf A$ at $(1,2,3)$ for $\\mathbf A=(xy^3-y^2z^2)\\mathbf i+(x^2+z^2)\\mathbf j-x^2yz^2\\mathbf k$.",
+       "steps": [
+        {
+         "do": "i component.",
+         "m": "\\frac{\\partial A_z}{\\partial y}-\\frac{\\partial A_y}{\\partial z}=-x^2z^2-2z"
+        },
+        {
+         "do": "j component.",
+         "m": "\\frac{\\partial A_x}{\\partial z}-\\frac{\\partial A_z}{\\partial x}=-2y^2z+2xyz^2"
+        },
+        {
+         "do": "k component.",
+         "m": "\\frac{\\partial A_y}{\\partial x}-\\frac{\\partial A_x}{\\partial y}=2x-3xy^2+2yz^2"
+        },
+        {
+         "do": "Substitute (1, 2, 3).",
+         "m": "(-9-6,\\ -24+36,\\ 2-12+36)=(-15,12,26)"
+        }
+       ],
+       "answer": "$\\nabla\\times\\mathbf A=-15\\mathbf i+12\\mathbf j+26\\mathbf k$, matching the slide."
+      },
+      {
+       "title": "Irrotational fields and the scalar potential",
+       "problem": "Show that $\\mathbf F=2xy\\,\\mathbf i+(x^2+z)\\mathbf j+y\\,\\mathbf k$ is irrotational, and find $\\phi$ with $\\mathbf F=\\nabla\\phi$.",
+       "steps": [
+        {
+         "do": "Curl.",
+         "m": "\\nabla\\times\\mathbf F=(1-1,\\ 0-0,\\ 2x-2x)=\\mathbf 0"
+        },
+        {
+         "do": "Integrate F_x with respect to x.",
+         "m": "\\phi=x^2y+g(y,z)"
+        },
+        {
+         "do": "Match F_y = x^2 + z.",
+         "m": "\\frac{\\partial\\phi}{\\partial y}=x^2+g_y=x^2+z\\Rightarrow g=yz+h(z)"
+        },
+        {
+         "do": "Match F_z = y.",
+         "m": "\\frac{\\partial\\phi}{\\partial z}=y+h'(z)=y\\Rightarrow h=\\text{constant}"
+        },
+        {
+         "do": "Check.",
+         "m": "\\nabla(x^2y+yz)=(2xy,\\ x^2+z,\\ y)"
+        }
+       ],
+       "answer": "$\\phi=x^2y+yz$ (plus any constant)."
+      }
+     ],
+     "practice": [
+      {
+       "q": "Example 1.12. Find $\\nabla\\times\\mathbf A$ at $(1,3,-2)$ for $\\mathbf A=(y^4-x^2z^2)\\mathbf i+(x^2+y^2)\\mathbf j-x^2yz\\,\\mathbf k$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        2.0,
+        -8.0,
+        -106.0
+       ],
+       "hint": "i component: d(Az)/dy - d(Ay)/dz = -x^2 z.",
+       "solution": [
+        {
+         "do": "Components.",
+         "m": "(-x^2z,\\ 2xyz-2x^2z,\\ 2x-4y^3)"
+        },
+        {
+         "do": "Substitute (1, 3, -2).",
+         "m": "(2,\\ -12+4,\\ 2-108)=(2,-8,-106)"
+        }
+       ],
+       "answerText": "(2, -8, -106)"
+      },
+      {
+       "q": "Exercise 1.5. Find $\\nabla\\times\\mathbf A$ at $(1,2,3)$ for $\\mathbf A=(xy^3-y^2z^2)\\mathbf i+(x^2+z^2)\\mathbf j-x^2yz^2\\mathbf k$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        -15.0,
+        12.0,
+        26.0
+       ],
+       "hint": "k component: d(Ay)/dx - d(Ax)/dy = 2x - 3xy^2 + 2yz^2.",
+       "solution": [
+        {
+         "do": "Components.",
+         "m": "(-x^2z^2-2z,\\ 2xyz^2-2y^2z,\\ 2x-3xy^2+2yz^2)"
+        },
+        {
+         "do": "Substitute (1, 2, 3).",
+         "m": "(-9-6,\\ 36-24,\\ 2-12+36)=(-15,12,26)"
+        }
+       ],
+       "answerText": "(-15, 12, 26)"
+      },
+      {
+       "q": "Find $\\nabla\\times\\mathbf A$ for the rotating field $\\mathbf A=-y\\,\\mathbf i+x\\,\\mathbf j$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        0.0,
+        0.0,
+        2.0
+       ],
+       "hint": "Only the k component, d(Ay)/dx - d(Ax)/dy, is non-zero.",
+       "solution": [
+        {
+         "do": "k component.",
+         "m": "\\frac{\\partial x}{\\partial x}-\\frac{\\partial(-y)}{\\partial y}=1+1=2"
+        }
+       ],
+       "answerText": "(0, 0, 2)"
+      },
+      {
+       "q": "Find $\\nabla\\times\\mathbf A$ at $(1,2,3)$ for $\\mathbf A=z^2\\mathbf i+x^2\\mathbf j+y^2\\mathbf k$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        4.0,
+        6.0,
+        2.0
+       ],
+       "hint": "The curl is (2y, 2z, 2x).",
+       "solution": [
+        {
+         "do": "Substitute (1, 2, 3).",
+         "m": "(4,6,2)"
+        }
+       ],
+       "answerText": "(4, 6, 2)"
+      },
+      {
+       "q": "Is $\\mathbf A=yz\\,\\mathbf i+xz\\,\\mathbf j+xy\\,\\mathbf k$ irrotational? Answer yes or no.",
+       "type": "text",
+       "answer": "yes",
+       "hint": "Compute the curl.",
+       "solution": [
+        "The curl is (x - x, y - y, z - z) = 0, so the field is irrotational. It is the gradient of xyz."
+       ],
+       "answerText": "yes",
+       "alt": [
+        "y"
+       ]
+      },
+      {
+       "q": "$\\mathbf F=2xy\\,\\mathbf i+(x^2+z)\\mathbf j+y\\,\\mathbf k$ has zero curl. It equals $\\nabla\\phi$ for $\\phi=x^2y+yz$ (with $\\phi(0,0,0)=0$). Find $\\phi(1,2,3)$.",
+       "type": "number",
+       "answer": 8.0,
+       "hint": "Substitute into x^2 y + yz.",
+       "solution": [
+        {
+         "do": "Substitute.",
+         "m": "1(2)+2(3)=8"
+        }
+       ],
+       "answerText": "8"
+      },
+      {
+       "q": "What is the curl of a gradient, curl(grad phi)? Answer zero or nonzero.",
+       "type": "text",
+       "answer": "zero",
+       "hint": "Mixed partial derivatives are equal.",
+       "solution": [
+        "Each component of curl(grad phi) is a difference of two equal mixed partial derivatives, so it is zero."
+       ],
+       "answerText": "zero",
+       "alt": [
+        "0"
+       ]
+      }
+     ],
+     "quiz": [
+      {
+       "q": "The curl of a vector field is",
+       "options": [
+        "a scalar",
+        "a vector",
+        "a matrix",
+        "always positive"
+       ],
+       "answer": 1,
+       "explain": "It is the cross product of del with a vector field."
+      },
+      {
+       "q": "An irrotational field has",
+       "options": [
+        "zero divergence",
+        "zero curl",
+        "zero magnitude",
+        "constant magnitude"
+       ],
+       "answer": 1,
+       "explain": "No rotation means curl = 0."
+      },
+      {
+       "q": "curl(grad phi) equals",
+       "options": [
+        "grad phi",
+        "the zero vector",
+        "phi",
+        "div phi"
+       ],
+       "answer": 1,
+       "explain": "The mixed partial derivatives cancel."
+      },
+      {
+       "q": "The curl of -y i + x j is",
+       "options": [
+        "0",
+        "2k",
+        "-2k",
+        "i + j"
+       ],
+       "answer": 1,
+       "explain": "d(x)/dx - d(-y)/dy = 2."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Curl",
+       "back": "$\\nabla\\times\\mathbf A$: the determinant with i, j, k, the three partial derivatives, and the components."
+      },
+      {
+       "front": "Irrotational field",
+       "back": "$\\nabla\\times\\mathbf F=\\mathbf 0$."
+      },
+      {
+       "front": "Conservative field",
+       "back": "$\\mathbf F=\\nabla\\phi$ for a scalar potential; path independent (not in your notes)."
+      },
+      {
+       "front": "Example 1.12 answer",
+       "back": "$2\\mathbf i-8\\mathbf j-106\\mathbf k$."
+      },
+      {
+       "front": "Exercise 1.5 answer",
+       "back": "$-15\\mathbf i+12\\mathbf j+26\\mathbf k$."
+      }
+     ],
+     "theory": [
+      {
+       "q": "Define the curl of a vector field.",
+       "type": "Define",
+       "marks": 3,
+       "points": [
+        "curl A = del cross A",
+        "It is a determinant with i, j, k, the three partial derivatives and the components of A",
+        "It is a vector function"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Find the curl of A = (y^4 - x squared z squared) i + (x squared + y squared) j - x squared y z k at (1, 3, -2).",
+       "type": "Explain",
+       "marks": 5,
+       "points": [
+        "i component: -x squared z",
+        "j component: -(2 x squared z - 2xyz)",
+        "k component: 2x - 4 y cubed",
+        "Substitute (1, 3, -2)",
+        "Result 2i - 8j - 106k"
+       ],
+       "need": 5
+      },
+      {
+       "q": "Explain the physical meaning of the curl.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "It measures the rotation of the field at a point",
+        "Its direction is the axis of the rotation",
+        "The curl of -y i + x j is 2k"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Define an irrotational field and state its connection to a scalar potential.",
+       "type": "Define",
+       "marks": 3,
+       "points": [
+        "An irrotational field has zero curl",
+        "Such a field can be written as the gradient of a scalar potential",
+        "It is then conservative: its line integral is independent of the path"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Show that curl(grad phi) = 0.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "The i component of curl(grad phi) is phi_zy - phi_yz",
+        "Mixed partial derivatives are equal, so it is 0",
+        "The same holds for j and k"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Find the curl of A = (x y cubed - y squared z squared) i + (x squared + z squared) j - x squared y z squared k at (1, 2, 3).",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "i: -x squared z squared - 2z",
+        "j: -2 y squared z + 2xy z squared",
+        "k: 2x - 3 x y squared + 2 y z squared",
+        "At (1, 2, 3): -15i + 12j + 26k"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Show that F = 2xy i + (x squared + z) j + y k is irrotational and find its scalar potential.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Its curl is zero",
+        "phi = x squared y + g(y, z) from F_x",
+        "Matching F_y and F_z gives g = yz",
+        "phi = x squared y + yz"
+       ],
+       "need": 4
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=curl+of+a+vector+field+explained+irrotational"
+      }
+     ]
+    },
+    {
+     "id": "6.9",
+     "title": "Cylindrical and spherical coordinates",
+     "slides": "Dr Jack's deck, slides 59 to 62 (the deck calls them “polar”); Sadiku Chapter 2 fills the gaps (unit vectors, del in these coordinates)",
+     "one_line": "Cylindrical and spherical coordinates describe a point by distance and angles instead of x, y, z, which makes problems with round symmetry much easier.",
+     "analogy": "To find a house you can say 'three blocks east, four north, one floor up' (Cartesian), or 'five blocks away at this compass angle, one floor up' (cylindrical). To point at a star you give a compass angle and a height angle, plus the distance (spherical).",
+     "recall": [
+      "What are sin 60 degrees and cos 60 degrees?",
+      "What is the area of a circle of radius r?"
+     ],
+     "exam": [
+      "Polar (plane) $(r,\\theta)$ (slide 60): $x=r\\cos\\theta$, $y=r\\sin\\theta$, $dS=r\\,dr\\,d\\theta$.",
+      "Cylindrical $(\\rho,\\phi,z)$ (slide 61): $x=\\rho\\cos\\phi$, $y=\\rho\\sin\\phi$, $z=z$; the surface element at fixed $\\rho$ is $dS=\\rho\\,d\\phi\\,dz$, and the volume element is $dV=\\rho\\,d\\rho\\,d\\phi\\,dz$.",
+      "Spherical $(r,\\theta,\\phi)$ (slide 62): $x=r\\sin\\theta\\cos\\phi$, $y=r\\sin\\theta\\sin\\phi$, $z=r\\cos\\theta$; the surface element at fixed $r$ is $dS=r^2\\sin\\theta\\,d\\theta\\,d\\phi$, and the volume element is $dV=r^2\\sin\\theta\\,dr\\,d\\theta\\,d\\phi$.",
+      "Convention: here $\\theta$ is measured from the $z$-axis ($0\\le\\theta\\le\\pi$) and $\\phi$ is the azimuth in the $xy$-plane ($0\\le\\phi<2\\pi$). This is the physics and Sadiku convention. Many mathematics books swap the meanings of $\\theta$ and $\\phi$. The deck's name “polar coordinates” for all three systems is unusual: the standard names are polar (plane), cylindrical and spherical. Check which convention your lecturer uses. Not in your notes.",
+      "Going back: $\\rho=\\sqrt{x^2+y^2}$, $r=\\sqrt{x^2+y^2+z^2}$, $\\theta=\\cos^{-1}(z/r)$, $\\phi=\\tan^{-1}(y/x)$ (choose the quadrant from the signs of $x$ and $y$). Not in your notes.",
+      "Unit vectors point along the directions in which each coordinate increases: $\\mathbf a_\\rho,\\mathbf a_\\phi,\\mathbf a_z$ and $\\mathbf a_r,\\mathbf a_\\theta,\\mathbf a_\\phi$. Unlike $\\mathbf i,\\mathbf j,\\mathbf k$ they change direction from point to point. Not in your notes.",
+      "Del in these coordinates (Sadiku Ch. 3, not in your notes): cylindrical $\\nabla\\phi=\\dfrac{\\partial\\phi}{\\partial\\rho}\\mathbf a_\\rho+\\dfrac1\\rho\\dfrac{\\partial\\phi}{\\partial\\phi}\\mathbf a_\\phi+\\dfrac{\\partial\\phi}{\\partial z}\\mathbf a_z$ and $\\nabla\\cdot\\mathbf A=\\dfrac1\\rho\\dfrac{\\partial(\\rho A_\\rho)}{\\partial\\rho}+\\dfrac1\\rho\\dfrac{\\partial A_\\phi}{\\partial\\phi}+\\dfrac{\\partial A_z}{\\partial z}$. Spherical $\\nabla\\phi=\\dfrac{\\partial\\phi}{\\partial r}\\mathbf a_r+\\dfrac1r\\dfrac{\\partial\\phi}{\\partial\\theta}\\mathbf a_\\theta+\\dfrac1{r\\sin\\theta}\\dfrac{\\partial\\phi}{\\partial\\phi}\\mathbf a_\\phi$ and $\\nabla\\cdot\\mathbf A=\\dfrac1{r^2}\\dfrac{\\partial(r^2A_r)}{\\partial r}+\\dfrac1{r\\sin\\theta}\\dfrac{\\partial(\\sin\\theta A_\\theta)}{\\partial\\theta}+\\dfrac1{r\\sin\\theta}\\dfrac{\\partial A_\\phi}{\\partial\\phi}$. Whether your lecturer expects these is an open question. Not in your notes."
+     ],
+     "terms": [
+      "cylindrical-coordinates",
+      "spherical-coordinates",
+      "volume-element"
+     ],
+     "examples": [
+      {
+       "title": "Converting points",
+       "problem": "Convert the cylindrical point $(2,60^\\circ,5)$ and the spherical point $(4,60^\\circ,30^\\circ)$ to Cartesian coordinates, and the Cartesian point $(1,1,\\sqrt2)$ to spherical.",
+       "steps": [
+        {
+         "do": "Cylindrical to Cartesian.",
+         "m": "x=2\\cos60^\\circ=1,\\quad y=2\\sin60^\\circ=\\sqrt3,\\quad z=5"
+        },
+        {
+         "do": "Spherical to Cartesian.",
+         "m": "x=4\\sin60^\\circ\\cos30^\\circ=3,\\quad y=4\\sin60^\\circ\\sin30^\\circ=\\sqrt3,\\quad z=4\\cos60^\\circ=2"
+        },
+        {
+         "do": "Cartesian to spherical.",
+         "m": "r=\\sqrt{1+1+2}=2,\\quad\\theta=\\cos^{-1}\\frac{\\sqrt2}{2}=45^\\circ,\\quad\\phi=\\tan^{-1}1=45^\\circ"
+        }
+       ],
+       "answer": "$(1,\\sqrt3,5)$, $(3,\\sqrt3,2)$ and $(r,\\theta,\\phi)=(2,45^\\circ,45^\\circ)$."
+      },
+      {
+       "title": "Volume and surface elements at work",
+       "problem": "Use the elements on slides 61 and 62 to find the volume of a cylinder (radius $a$, height $h$), the volume of a sphere (radius $R$) and the surface area of a sphere.",
+       "steps": [
+        {
+         "do": "Cylinder.",
+         "m": "V=\\int_0^h\\int_0^{2\\pi}\\int_0^a\\rho\\,d\\rho\\,d\\phi\\,dz=\\frac{a^2}{2}\\cdot2\\pi\\cdot h=\\pi a^2h"
+        },
+        {
+         "do": "Sphere volume.",
+         "m": "V=\\int_0^{2\\pi}\\int_0^\\pi\\int_0^Rr^2\\sin\\theta\\,dr\\,d\\theta\\,d\\phi=\\frac{R^3}{3}\\cdot2\\cdot2\\pi=\\frac43\\pi R^3"
+        },
+        {
+         "do": "Sphere surface (fixed r = R).",
+         "m": "S=\\int_0^{2\\pi}\\int_0^\\pi R^2\\sin\\theta\\,d\\theta\\,d\\phi=R^2\\cdot2\\cdot2\\pi=4\\pi R^2"
+        },
+        {
+         "do": "These are the familiar formulas.",
+         "why": "Getting them back is the best check that the elements on the slides are right."
+        }
+       ],
+       "answer": "$\\pi a^2h$, $\\tfrac43\\pi R^3$ and $4\\pi R^2$."
+      },
+      {
+       "title": "Checking del in curvilinear coordinates",
+       "problem": "Check the spherical divergence formula with $\\mathbf A=r\\,\\mathbf a_r$ (the position vector), and the cylindrical gradient with $\\phi=\\rho^2$.",
+       "steps": [
+        {
+         "do": "Position vector in spherical coordinates.",
+         "m": "\\nabla\\cdot(r\\,\\mathbf a_r)=\\frac1{r^2}\\frac{\\partial(r^2\\cdot r)}{\\partial r}=\\frac{3r^2}{r^2}=3"
+        },
+        {
+         "do": "In Cartesian coordinates.",
+         "m": "\\nabla\\cdot(x\\mathbf i+y\\mathbf j+z\\mathbf k)=3\\quad\\text{(the same)}"
+        },
+        {
+         "do": "Cylindrical gradient of rho squared.",
+         "m": "\\nabla\\rho^2=2\\rho\\,\\mathbf a_\\rho"
+        },
+        {
+         "do": "In Cartesian coordinates.",
+         "m": "\\nabla(x^2+y^2)=(2x,2y,0)=2\\rho(\\cos\\phi,\\sin\\phi,0)=2\\rho\\,\\mathbf a_\\rho\\quad\\text{(the same)}"
+        }
+       ],
+       "answer": "Both agree with the Cartesian results."
+      }
+     ],
+     "practice": [
+      {
+       "q": "Cylindrical point $(\\rho,\\phi,z)=(2,60^\\circ,5)$. Find $x=\\rho\\cos\\phi$.",
+       "type": "number",
+       "answer": 1.0,
+       "hint": "cos 60 degrees = 0.5.",
+       "solution": [
+        {
+         "do": "Compute.",
+         "m": "x=2\\cos60^\\circ=1"
+        }
+       ],
+       "answerText": "1"
+      },
+      {
+       "q": "For the same point find $y=\\rho\\sin\\phi$. Give a decimal.",
+       "type": "number",
+       "answer": 1.732050808,
+       "hint": "sin 60 degrees = 0.866.",
+       "solution": [
+        {
+         "do": "Compute.",
+         "m": "y=2\\sin60^\\circ=\\sqrt3=1.732"
+        }
+       ],
+       "answerText": "1.732",
+       "tol": 0.005
+      },
+      {
+       "q": "Spherical point $(r,\\theta,\\phi)=(4,60^\\circ,30^\\circ)$ with $\\theta$ measured from the $z$-axis. Find $x=r\\sin\\theta\\cos\\phi$.",
+       "type": "number",
+       "answer": 3.0,
+       "hint": "sin 60 = cos 30 = 0.866.",
+       "solution": [
+        {
+         "do": "Compute.",
+         "m": "x=4\\left(\\tfrac{\\sqrt3}2\\right)\\left(\\tfrac{\\sqrt3}2\\right)=3"
+        }
+       ],
+       "answerText": "3"
+      },
+      {
+       "q": "For the same spherical point find z = r cos(theta).",
+       "type": "number",
+       "answer": 2.0,
+       "hint": "cos 60 degrees = 0.5.",
+       "solution": [
+        {
+         "do": "Compute.",
+         "m": "z=4\\cos60^\\circ=2"
+        }
+       ],
+       "answerText": "2"
+      },
+      {
+       "q": "Find r, the distance from the origin, for the Cartesian point (3, 4, 12).",
+       "type": "number",
+       "answer": 13.0,
+       "hint": "r = sqrt(x^2 + y^2 + z^2).",
+       "solution": [
+        {
+         "do": "Compute.",
+         "m": "\\sqrt{9+16+144}=13"
+        }
+       ],
+       "answerText": "13"
+      },
+      {
+       "q": "For the point $(3,4,12)$ find the spherical angle $\\theta$ from the $z$-axis, in degrees. Give a decimal.",
+       "type": "number",
+       "answer": 22.619864948,
+       "hint": "cos theta = z / r = 12/13.",
+       "solution": [
+        {
+         "do": "Compute.",
+         "m": "\\theta=\\cos^{-1}\\tfrac{12}{13}=22.62^\\circ"
+        }
+       ],
+       "answerText": "22.62 degrees",
+       "tol": 0.05
+      },
+      {
+       "q": "Use $dV=\\rho\\,d\\rho\\,d\\phi\\,dz$ to find the volume of a cylinder of radius 2 and height 5. Give a decimal.",
+       "type": "number",
+       "answer": 62.831853072,
+       "hint": "Integrate rho from 0 to 2, phi from 0 to 2 pi, z from 0 to 5.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "\\int_0^5\\int_0^{2\\pi}\\int_0^2\\rho\\,d\\rho\\,d\\phi\\,dz=2\\cdot2\\pi\\cdot5=20\\pi=62.83"
+        }
+       ],
+       "answerText": "62.83",
+       "tol": 0.05
+      },
+      {
+       "q": "Use $dV=r^2\\sin\\theta\\,dr\\,d\\theta\\,d\\phi$ to find the volume of a sphere of radius 3. Give a decimal.",
+       "type": "number",
+       "answer": 113.097335529,
+       "hint": "The three integrals separate: r from 0 to 3, theta from 0 to pi, phi from 0 to 2 pi.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "\\tfrac{3^3}{3}\\cdot2\\cdot2\\pi=36\\pi=113.10"
+        }
+       ],
+       "answerText": "113.10",
+       "tol": 0.2
+      }
+     ],
+     "quiz": [
+      {
+       "q": "In spherical coordinates the volume element is",
+       "options": [
+        "r dr dtheta dphi",
+        "r^2 sin(theta) dr dtheta dphi",
+        "r^2 dr dtheta dphi",
+        "sin(theta) dr dtheta dphi"
+       ],
+       "answer": 1,
+       "explain": "The factor r^2 sin(theta) is the Jacobian."
+      },
+      {
+       "q": "In cylindrical coordinates x equals",
+       "options": [
+        "rho sin(phi)",
+        "rho cos(phi)",
+        "z cos(phi)",
+        "r cos(theta)"
+       ],
+       "answer": 1,
+       "explain": "x = rho cos(phi) and y = rho sin(phi)."
+      },
+      {
+       "q": "In the deck's spherical coordinates theta is measured from",
+       "options": [
+        "the x-axis",
+        "the y-axis",
+        "the z-axis",
+        "the origin"
+       ],
+       "answer": 2,
+       "explain": "theta is the angle from the z-axis; phi is the azimuth."
+      },
+      {
+       "q": "The volume of a cylinder of radius a and height h from dV is",
+       "options": [
+        "pi a h",
+        "pi a squared h",
+        "2 pi a h",
+        "(4/3) pi a squared h"
+       ],
+       "answer": 1,
+       "explain": "Integrate rho d rho d phi dz."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Cylindrical coordinates",
+       "back": "$x=\\rho\\cos\\phi,\\ y=\\rho\\sin\\phi,\\ z=z$; $dV=\\rho\\,d\\rho\\,d\\phi\\,dz$."
+      },
+      {
+       "front": "Spherical coordinates",
+       "back": "$x=r\\sin\\theta\\cos\\phi$, $y=r\\sin\\theta\\sin\\phi$, $z=r\\cos\\theta$; $dV=r^2\\sin\\theta\\,dr\\,d\\theta\\,d\\phi$."
+      },
+      {
+       "front": "Convention",
+       "back": "theta from the z-axis, phi the azimuth (physics and Sadiku); some maths books swap them."
+      },
+      {
+       "front": "Surface elements",
+       "back": "Cylinder: $\\rho\\,d\\phi\\,dz$. Sphere: $r^2\\sin\\theta\\,d\\theta\\,d\\phi$."
+      },
+      {
+       "front": "Spherical to Cartesian check",
+       "back": "$x^2+y^2+z^2=r^2$."
+      }
+     ],
+     "theory": [
+      {
+       "q": "State the relations between Cartesian and cylindrical coordinates and the volume element.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "x = rho cos phi, y = rho sin phi, z = z",
+        "dV = rho d rho d phi dz",
+        "The surface element at fixed rho is rho d phi dz"
+       ],
+       "need": 3
+      },
+      {
+       "q": "State the relations between Cartesian and spherical coordinates and the volume element.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "x = r sin theta cos phi",
+        "y = r sin theta sin phi and z = r cos theta",
+        "dV = r squared sin theta dr d theta d phi",
+        "The surface element at fixed r is r squared sin theta d theta d phi"
+       ],
+       "need": 4
+      },
+      {
+       "q": "State clearly which angle is theta and which is phi in the spherical system used in the course, and warn about other conventions.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "theta is measured from the z-axis",
+        "phi is the azimuth in the xy-plane",
+        "Some mathematics books swap the two"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Use the volume element to find the volume of a sphere of radius R.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Integrate r squared sin theta dr d theta d phi",
+        "r from 0 to R gives R cubed over 3",
+        "theta from 0 to pi gives 2 and phi from 0 to 2 pi gives 2 pi",
+        "V = (4/3) pi R cubed"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Convert the Cartesian point (1, 1, square root of 2) to spherical coordinates.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "r = sqrt(1 + 1 + 2) = 2",
+        "theta = inverse cosine of z/r = 45 degrees",
+        "phi = inverse tangent of y/x = 45 degrees"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Write the gradient in cylindrical coordinates.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "d phi/d rho in the rho direction",
+        "(1/rho) d phi/d phi in the phi direction",
+        "d phi/d z in the z direction"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Explain why the unit vectors of cylindrical and spherical systems differ from i, j, k.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "They point in the directions in which the coordinates increase",
+        "Their directions change from point to point, whereas i, j, k are fixed"
+       ],
+       "need": 2
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=cylindrical+and+spherical+coordinates+explained+volume+element"
+      }
+     ]
+    },
+    {
+     "id": "6.10",
+     "title": "Second-order derivatives and vector identities",
+     "slides": "Not in your notes (the courseware outline lists second-order derivatives and their applications to electrical engineering; the deck does not teach them)",
+     "one_line": "Applying del twice gives the Laplacian and a few identities, which are the tools of electromagnetic theory.",
+     "analogy": "Del is like a machine with three settings: gradient (scalar in, vector out), divergence (vector in, scalar out) and curl (vector in, vector out). You can chain them, but only some chains make sense, and two of them, curl of a gradient and divergence of a curl, always give zero.",
+     "recall": [
+      "What are grad, div and curl, and what kind of quantity does each give?",
+      "Which of the two, div or curl, can be applied to a scalar?"
+     ],
+     "exam": [
+      "Del can be applied twice. For a scalar $\\phi$: $\\nabla\\cdot(\\nabla\\phi)=\\nabla^2\\phi$, the Laplacian. For a vector $\\mathbf A$: $\\nabla(\\nabla\\cdot\\mathbf A)$, $\\nabla\\times(\\nabla\\times\\mathbf A)$, $\\nabla\\cdot(\\nabla\\times\\mathbf A)$. Also $\\nabla\\times(\\nabla\\phi)$. Not in your notes.",
+      "Laplacian in Cartesian coordinates: $\\nabla^2\\phi=\\dfrac{\\partial^2\\phi}{\\partial x^2}+\\dfrac{\\partial^2\\phi}{\\partial y^2}+\\dfrac{\\partial^2\\phi}{\\partial z^2}$. A function with $\\nabla^2\\phi=0$ is harmonic, and the equation is Laplace's equation. For example $x^2-y^2$ and $\\dfrac1r$ (away from the origin) are harmonic. Not in your notes.",
+      "Two always-zero results: $\\nabla\\times(\\nabla\\phi)=\\mathbf 0$ (the curl of a gradient) and $\\nabla\\cdot(\\nabla\\times\\mathbf A)=0$ (the divergence of a curl). Both follow because mixed partial derivatives are equal. Not in your notes.",
+      "Product rules: $\\nabla\\cdot(\\phi\\mathbf A)=\\phi\\,\\nabla\\cdot\\mathbf A+\\mathbf A\\cdot\\nabla\\phi$; $\\nabla\\times(\\phi\\mathbf A)=\\phi\\,\\nabla\\times\\mathbf A+\\nabla\\phi\\times\\mathbf A$; $\\nabla\\cdot(\\mathbf A\\times\\mathbf B)=\\mathbf B\\cdot(\\nabla\\times\\mathbf A)-\\mathbf A\\cdot(\\nabla\\times\\mathbf B)$. Not in your notes.",
+      "The curl of a curl: $\\nabla\\times(\\nabla\\times\\mathbf A)=\\nabla(\\nabla\\cdot\\mathbf A)-\\nabla^2\\mathbf A$, where $\\nabla^2\\mathbf A$ applies the Laplacian to each component. Not in your notes.",
+      "Meaningless combinations: $\\nabla\\times$ or $\\nabla\\cdot$ of a scalar, $\\nabla$ of a vector in the sense of gradient, and $\\nabla(\\nabla\\times\\mathbf A)$ with no meaning as written. Check what each quantity is (scalar or vector) before applying the next operator. Not in your notes.",
+      "Applications to electrical engineering (standard results, not in your notes): for static fields $\\nabla\\times\\mathbf E=\\mathbf 0$, so $\\mathbf E=-\\nabla V$; Gauss's law $\\nabla\\cdot\\mathbf D=\\rho_v$ with $\\mathbf D=\\varepsilon\\mathbf E$ gives Poisson's equation $\\nabla^2V=-\\dfrac{\\rho_v}{\\varepsilon}$, which becomes Laplace's equation $\\nabla^2V=0$ where there is no charge. Also $\\nabla\\cdot\\mathbf B=0$. Not in your notes."
+     ],
+     "terms": [
+      "laplacian",
+      "harmonic-function",
+      "scalar-field",
+      "vector-field"
+     ],
+     "examples": [
+      {
+       "title": "Laplacians",
+       "problem": "Find $\\nabla^2\\phi$ for $\\phi=x^3+y^3+z^3$ and $\\phi=x^2-y^2$, and show that $\\dfrac1r$ is harmonic away from the origin.",
+       "steps": [
+        {
+         "do": "First function.",
+         "m": "\\nabla^2\\phi=6x+6y+6z"
+        },
+        {
+         "do": "Second function.",
+         "m": "\\nabla^2\\phi=2-2+0=0\\ \\Rightarrow\\ \\text{harmonic}"
+        },
+        {
+         "do": "For 1/r use the spherical form of the Laplacian (not in your notes).",
+         "m": "\\nabla^2\\!\\left(\\frac1r\\right)=\\frac1{r^2}\\frac{d}{dr}\\left(r^2\\cdot\\left(-\\frac1{r^2}\\right)\\right)=\\frac1{r^2}\\frac{d(-1)}{dr}=0"
+        },
+        {
+         "do": "Check in Cartesian coordinates.",
+         "why": "Each of the three second derivatives of (x^2 + y^2 + z^2)^(-1/2) is calculated; they sum to 0 for r not equal to 0 (checked by computer algebra)."
+        }
+       ],
+       "answer": "$6(x+y+z)$; harmonic; harmonic."
+      },
+      {
+       "title": "The two zero identities",
+       "problem": "Show that $\\nabla\\times(\\nabla\\phi)=\\mathbf 0$ for $\\phi=x^2yz$, and that $\\nabla\\cdot(\\nabla\\times\\mathbf A)=0$ for $\\mathbf A=y^2z\\,\\mathbf i+xz^2\\mathbf j+x^2y\\,\\mathbf k$.",
+       "steps": [
+        {
+         "do": "Gradient.",
+         "m": "\\nabla\\phi=(2xyz,\\ x^2z,\\ x^2y)"
+        },
+        {
+         "do": "Curl of the gradient.",
+         "m": "(x^2-x^2,\\ 2xy-2xy,\\ 2xz-2xz)=\\mathbf 0"
+        },
+        {
+         "do": "Curl of A.",
+         "m": "\\nabla\\times\\mathbf A=(x^2-2xz,\\ y^2-2xy,\\ z^2-2yz)"
+        },
+        {
+         "do": "Divergence of that curl.",
+         "m": "\\frac{\\partial}{\\partial x}(x^2-2xz)+\\frac{\\partial}{\\partial y}(y^2-2xy)+\\frac{\\partial}{\\partial z}(z^2-2yz)=2x-2z+2y-2x+2z-2y=0"
+        }
+       ],
+       "answer": "Both are zero."
+      },
+      {
+       "title": "Electrostatics",
+       "problem": "A potential is $V=x^2y+z$. Find $\\mathbf E=-\\nabla V$, check $\\nabla\\times\\mathbf E=\\mathbf 0$, and find $\\nabla^2V$.",
+       "steps": [
+        {
+         "do": "Field.",
+         "m": "\\mathbf E=-(2xy,\\ x^2,\\ 1)"
+        },
+        {
+         "do": "Curl is zero, as it must be for a gradient.",
+         "m": "\\nabla\\times\\mathbf E=\\mathbf 0"
+        },
+        {
+         "do": "Laplacian.",
+         "m": "\\nabla^2V=2y"
+        },
+        {
+         "do": "Poisson's equation gives the charge density.",
+         "m": "\\rho_v=-\\varepsilon_0\\nabla^2V=-2\\varepsilon_0y"
+        }
+       ],
+       "answer": "$\\mathbf E=-2xy\\,\\mathbf i-x^2\\mathbf j-\\mathbf k$; $\\nabla^2V=2y$, so charge is present wherever $y\\neq0$."
+      }
+     ],
+     "practice": [
+      {
+       "q": "Find $\\nabla^2\\phi$ for $\\phi=x^2+y^2+z^2$.",
+       "type": "number",
+       "answer": 6.0,
+       "hint": "Add the three second derivatives: 2 + 2 + 2.",
+       "solution": [
+        {
+         "do": "Differentiate twice in each variable.",
+         "m": "\\nabla^2\\phi=2+2+2=6"
+        }
+       ],
+       "answerText": "6"
+      },
+      {
+       "q": "Find $\\nabla^2\\phi$ at $(1,2,3)$ for $\\phi=x^3+y^3+z^3$.",
+       "type": "number",
+       "answer": 36.0,
+       "hint": "The second derivatives are 6x, 6y and 6z.",
+       "solution": [
+        {
+         "do": "Substitute.",
+         "m": "6(1)+6(2)+6(3)=36"
+        }
+       ],
+       "answerText": "36"
+      },
+      {
+       "q": "Find $\\nabla^2\\phi$ for $\\phi=xyz$.",
+       "type": "number",
+       "answer": 0.0,
+       "hint": "The second derivative with respect to each variable alone is zero.",
+       "solution": [
+        "phi_xx = 0, phi_yy = 0 and phi_zz = 0, so the Laplacian is 0."
+       ],
+       "answerText": "0"
+      },
+      {
+       "q": "Is phi = x^2 - y^2 harmonic (does it satisfy Laplace's equation)? Answer yes or no.",
+       "type": "text",
+       "answer": "yes",
+       "hint": "Add phi_xx and phi_yy.",
+       "solution": [
+        "phi_xx = 2 and phi_yy = -2, so the Laplacian is 0: yes, it is harmonic."
+       ],
+       "answerText": "yes",
+       "alt": [
+        "y"
+       ]
+      },
+      {
+       "q": "What is the divergence of a curl, div(curl A), for any smooth field A? Answer zero or nonzero.",
+       "type": "text",
+       "answer": "zero",
+       "hint": "Mixed partial derivatives cancel in pairs.",
+       "solution": [
+        "The six mixed derivatives cancel in pairs, so div(curl A) = 0."
+       ],
+       "answerText": "zero",
+       "alt": [
+        "0"
+       ]
+      },
+      {
+       "q": "Use $\\nabla\\cdot(\\phi\\mathbf A)=\\phi\\,\\nabla\\cdot\\mathbf A+\\mathbf A\\cdot\\nabla\\phi$ with $\\phi=x$ and $\\mathbf A=x\\mathbf i+y\\mathbf j+z\\mathbf k$ to find $\\nabla\\cdot(\\phi\\mathbf A)$ at $(1,2,3)$.",
+       "type": "number",
+       "answer": 4.0,
+       "hint": "div A = 3 and grad phi = (1, 0, 0).",
+       "solution": [
+        {
+         "do": "Apply the rule.",
+         "m": "x(3)+(x,y,z)\\cdot(1,0,0)=3x+x=4x\\Rightarrow4"
+        }
+       ],
+       "answerText": "4"
+      },
+      {
+       "q": "Not in your notes. An electrostatic potential is $V=x^2y+z$ (in volts, with distances in metres). Find $\\mathbf E=-\\nabla V$ at $(1,2,3)$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        -4.0,
+        -1.0,
+        -1.0
+       ],
+       "hint": "grad V = (2xy, x^2, 1).",
+       "solution": [
+        {
+         "do": "Substitute.",
+         "m": "\\mathbf E=-(2xy,\\ x^2,\\ 1)=-(4,1,1)=(-4,-1,-1)"
+        }
+       ],
+       "answerText": "(-4, -1, -1) V/m"
+      },
+      {
+       "q": "For the same $V=x^2y+z$ find $\\nabla^2V$ at $(1,2,3)$. (By Poisson's equation, $\\rho_v=-\\varepsilon_0\\nabla^2V$ gives the charge density.)",
+       "type": "number",
+       "answer": 4.0,
+       "hint": "V_xx = 2y, V_yy = 0 and V_zz = 0.",
+       "solution": [
+        {
+         "do": "Substitute.",
+         "m": "\\nabla^2V=2y=4"
+        }
+       ],
+       "answerText": "4"
+      }
+     ],
+     "quiz": [
+      {
+       "q": "The Laplacian of a scalar phi is",
+       "options": [
+        "grad phi",
+        "div(grad phi)",
+        "curl(grad phi)",
+        "grad(div phi)"
+       ],
+       "answer": 1,
+       "explain": "It is del dot del acting on phi."
+      },
+      {
+       "q": "curl(grad phi) equals",
+       "options": [
+        "0",
+        "phi",
+        "grad phi",
+        "div phi"
+       ],
+       "answer": 0,
+       "explain": "Always the zero vector."
+      },
+      {
+       "q": "div(curl A) equals",
+       "options": [
+        "A",
+        "the zero scalar",
+        "curl A",
+        "grad A"
+       ],
+       "answer": 1,
+       "explain": "Always zero."
+      },
+      {
+       "q": "Laplace's equation is",
+       "options": [
+        "div A = 0",
+        "curl A = 0",
+        "Laplacian of V = 0",
+        "grad V = 0"
+       ],
+       "answer": 2,
+       "explain": "V is harmonic."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Laplacian",
+       "back": "$\\nabla^2\\phi=\\phi_{xx}+\\phi_{yy}+\\phi_{zz}$."
+      },
+      {
+       "front": "Two zero identities",
+       "back": "$\\nabla\\times\\nabla\\phi=\\mathbf 0$ and $\\nabla\\cdot(\\nabla\\times\\mathbf A)=0$."
+      },
+      {
+       "front": "Curl of a curl",
+       "back": "$\\nabla(\\nabla\\cdot\\mathbf A)-\\nabla^2\\mathbf A$."
+      },
+      {
+       "front": "Laplace and Poisson equations",
+       "back": "$\\nabla^2V=0$ and $\\nabla^2V=-\\rho_v/\\varepsilon$."
+      },
+      {
+       "front": "Product rule for divergence",
+       "back": "$\\nabla\\cdot(\\phi\\mathbf A)=\\phi\\nabla\\cdot\\mathbf A+\\mathbf A\\cdot\\nabla\\phi$."
+      }
+     ],
+     "theory": [
+      {
+       "q": "Define the Laplacian of a scalar function.",
+       "type": "Define",
+       "marks": 3,
+       "points": [
+        "The divergence of the gradient",
+        "nabla squared phi = phi_xx + phi_yy + phi_zz",
+        "Laplace's equation is nabla squared phi = 0"
+       ],
+       "need": 3
+      },
+      {
+       "q": "State and prove that curl(grad phi) = 0.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "The i component is phi_zy - phi_yz",
+        "Mixed partial derivatives are equal, so it is 0",
+        "The j and k components vanish in the same way",
+        "Hence curl(grad phi) = 0"
+       ],
+       "need": 4
+      },
+      {
+       "q": "State and prove that div(curl A) = 0.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "div(curl A) is a sum of six second derivatives of the components",
+        "They are mixed partial derivatives that cancel in pairs",
+        "So the divergence of a curl is zero"
+       ],
+       "need": 3
+      },
+      {
+       "q": "State the identity for the curl of a curl.",
+       "type": "Define",
+       "marks": 2,
+       "points": [
+        "curl(curl A) = grad(div A) - nabla squared A",
+        "The Laplacian of a vector acts on each component"
+       ],
+       "need": 2
+      },
+      {
+       "q": "State the product rules for div(phi A) and curl(phi A).",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "div(phi A) = phi div A + A . grad phi",
+        "curl(phi A) = phi curl A + grad phi x A"
+       ],
+       "need": 2
+      },
+      {
+       "q": "State Laplace's and Poisson's equations and where they arise in electrical engineering.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "For static fields E = -grad V because curl E = 0",
+        "Gauss's law div D = rho_v with D = epsilon E gives nabla squared V = -rho_v/epsilon (Poisson)",
+        "Where there is no charge nabla squared V = 0 (Laplace)",
+        "They determine the potential from the charge and the boundary conditions"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Say which combinations of grad, div and curl are meaningful and give two that are not.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "grad takes a scalar and gives a vector; div takes a vector and gives a scalar; curl takes a vector and gives a vector",
+        "Meaningful combinations include div(grad), curl(grad), div(curl), curl(curl) and grad(div)",
+        "Div or curl of a scalar is not meaningful, and neither is grad of a vector in this sense"
+       ],
+       "need": 3
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=laplacian+curl+of+gradient+divergence+of+curl+vector+identities+explained"
+      }
+     ]
+    }
+   ]
   }
  ],
  "glossary": {
@@ -11296,6 +14950,161 @@
    "term": "Forward substitution",
    "plain": "Solving a lower triangular system from the first row down.",
    "exam": "Solving Ly = b starting with y_1."
+  },
+  "scalar-quantity": {
+   "term": "Scalar quantity",
+   "plain": "A quantity with size only, such as a mass or a distance.",
+   "exam": "A quantity with magnitude but no direction."
+  },
+  "vector": {
+   "term": "Vector",
+   "plain": "A quantity with both size and direction, such as a velocity.",
+   "exam": "A directed quantity written in components, x i + y j + z k."
+  },
+  "unit-vector": {
+   "term": "Unit vector",
+   "plain": "An arrow of length 1 used only to show a direction.",
+   "exam": "A vector of magnitude 1; the unit vector of a is a / abs(a)."
+  },
+  "position-vector": {
+   "term": "Position vector",
+   "plain": "The arrow from the origin to a point.",
+   "exam": "OP = x i + y j + z k for the point (x, y, z)."
+  },
+  "direction-cosines": {
+   "term": "Direction cosines",
+   "plain": "The cosines of the angles a vector makes with the three axes.",
+   "exam": "The components of the unit vector; their squares add to 1 (not in the notes)."
+  },
+  "dot-product": {
+   "term": "Dot product",
+   "plain": "A number measuring how much two vectors point the same way.",
+   "exam": "a.b = a1 b1 + a2 b2 + a3 b3 = abs(a) abs(b) cos theta."
+  },
+  "cross-product": {
+   "term": "Cross product",
+   "plain": "A vector perpendicular to two vectors whose length is the area they span.",
+   "exam": "a x b, the determinant with i, j, k; magnitude abs(a) abs(b) sin theta."
+  },
+  "scalar-projection": {
+   "term": "Scalar projection",
+   "plain": "The length of the shadow of one vector along another.",
+   "exam": "comp_b a = a.b / abs(b)."
+  },
+  "scalar-triple-product": {
+   "term": "Scalar triple product",
+   "plain": "A number whose size is the volume of the box on three vectors.",
+   "exam": "a.(b x c), the determinant of the three rows."
+  },
+  "velocity": {
+   "term": "Velocity",
+   "plain": "How fast and in which direction a position is changing.",
+   "exam": "The derivative of the position vector, dr/dt."
+  },
+  "acceleration": {
+   "term": "Acceleration",
+   "plain": "How fast the velocity is changing.",
+   "exam": "The second derivative of the position vector, d2r/dt2."
+  },
+  "partial-derivative": {
+   "term": "Partial derivative",
+   "plain": "The rate of change with respect to one variable, the others held fixed.",
+   "exam": "The derivative with respect to one variable treating the others as constants."
+  },
+  "vector-integral": {
+   "term": "Vector integral",
+   "plain": "The integral of each component of a vector function.",
+   "exam": "The integral of a vector function, taken component by component; the result is a vector."
+  },
+  "del-operator": {
+   "term": "Del operator",
+   "plain": "A vector of three partial derivatives that acts on fields.",
+   "exam": "nabla = d/dx i + d/dy j + d/dz k, the vector differential operator."
+  },
+  "gradient": {
+   "term": "Gradient",
+   "plain": "The vector pointing uphill, whose length is the steepness.",
+   "exam": "grad phi = (phi_x, phi_y, phi_z), a vector function made from a scalar."
+  },
+  "scalar-field": {
+   "term": "Scalar field",
+   "plain": "A number attached to every point of space.",
+   "exam": "A scalar function of position phi(x, y, z)."
+  },
+  "vector-field": {
+   "term": "Vector field",
+   "plain": "An arrow attached to every point of space.",
+   "exam": "A vector function of position A(x, y, z)."
+  },
+  "directional-derivative": {
+   "term": "Directional derivative",
+   "plain": "How fast a field changes if you move in a chosen direction.",
+   "exam": "d phi/ds = a-hat . grad phi, with a-hat a unit vector."
+  },
+  "unit-normal": {
+   "term": "Unit normal",
+   "plain": "A length-1 arrow perpendicular to a surface.",
+   "exam": "n-hat = grad phi / abs(grad phi) for the surface phi = constant."
+  },
+  "level-surface": {
+   "term": "Level surface",
+   "plain": "A surface on which a field has the same value everywhere.",
+   "exam": "The surface phi(x, y, z) = constant; the gradient is normal to it."
+  },
+  "divergence": {
+   "term": "Divergence",
+   "plain": "How much a field is spreading out from a point.",
+   "exam": "div A = dax/dx + day/dy + daz/dz, a scalar function."
+  },
+  "solenoidal-field": {
+   "term": "Solenoidal field",
+   "plain": "A field with no sources or sinks.",
+   "exam": "A vector field with divergence zero everywhere (the slide says “solenoid vector”)."
+  },
+  "curl": {
+   "term": "Curl",
+   "plain": "How much a field swirls around a point.",
+   "exam": "curl A = del cross A, a vector function; zero for an irrotational field."
+  },
+  "irrotational-field": {
+   "term": "Irrotational field",
+   "plain": "A field with no swirl.",
+   "exam": "A vector field with curl zero everywhere."
+  },
+  "conservative-field": {
+   "term": "Conservative field",
+   "plain": "A field whose line integral does not depend on the path.",
+   "exam": "A field that is the gradient of a scalar potential, F = grad phi (not in the notes)."
+  },
+  "scalar-potential": {
+   "term": "Scalar potential",
+   "plain": "A single function from which a conservative field is found.",
+   "exam": "A scalar phi with F = grad phi (in electrostatics E = -grad V)."
+  },
+  "cylindrical-coordinates": {
+   "term": "Cylindrical coordinates",
+   "plain": "Coordinates that give distance from an axis, an angle round it, and a height.",
+   "exam": "(rho, phi, z) with x = rho cos phi, y = rho sin phi, z = z."
+  },
+  "spherical-coordinates": {
+   "term": "Spherical coordinates",
+   "plain": "Coordinates that give distance from the origin and two angles.",
+   "exam": "(r, theta, phi) with theta from the z-axis and phi the azimuth."
+  },
+  "volume-element": {
+   "term": "Volume element",
+   "plain": "A tiny piece of volume used for integrating.",
+   "exam": "dV: rho d rho d phi dz (cylindrical) or r squared sin theta dr d theta d phi (spherical)."
+  },
+  "laplacian": {
+   "term": "Laplacian",
+   "plain": "The divergence of the gradient: a measure of how a quantity differs from its surroundings.",
+   "exam": "nabla squared phi = phi_xx + phi_yy + phi_zz (not in the notes)."
+  },
+  "harmonic-function": {
+   "term": "Harmonic function",
+   "plain": "A function that satisfies Laplace's equation.",
+   "exam": "A function with nabla squared phi = 0 (not in the notes)."
   }
  },
  "past": [
@@ -11415,6 +15224,120 @@
     "Every row sums to 1, so the matrix is stochastic."
    ],
    "answerText": "1"
+  },
+  {
+   "q": "Past test Q1. Find the unit vector of $B+2C$ if $B=13\\mathbf a_x-7\\mathbf a_y+6\\mathbf a_z$ and $C=10\\mathbf a_x-4\\mathbf a_y+8\\mathbf a_z$. Give $(x,y,z)$ as decimals.",
+   "type": "vector",
+   "answer": [
+    0.778249941,
+    -0.353749973,
+    0.518833294
+   ],
+   "hint": "B + 2C = (33, -15, 22); divide by its magnitude sqrt(1798).",
+   "solution": [
+    {
+     "do": "Add.",
+     "m": "B+2C=(33,-15,22)"
+    },
+    {
+     "do": "Magnitude.",
+     "m": "\\sqrt{1798}=42.403"
+    },
+    {
+     "do": "Divide.",
+     "m": "\\hat n=(0.7782,\\ -0.3537,\\ 0.5188)"
+    }
+   ],
+   "answerText": "(0.7782, -0.3537, 0.5188)",
+   "tol": 0.002
+  },
+  {
+   "q": "Past test Q2 (a). The original reads “the component of Ay perpendicular to F if E = 3ay + 4az and F = 4ax - 10ay + 5az”; read here as the component of $E$ perpendicular to $F$ (the “Ay” looks like a slip for E). Give the perpendicular component vector $(x,y,z)$.",
+   "type": "vector",
+   "answer": [
+    0.283687943,
+    2.290780142,
+    4.354609929
+   ],
+   "hint": "E perp = E minus (E.F / abs(F) squared) F, with E.F = -10 and abs(F) squared = 141.",
+   "solution": [
+    {
+     "do": "Subtract the parallel part.",
+     "m": "E_\\perp=(0,3,4)+\\tfrac{10}{141}(4,-10,5)=(0.2837,\\ 2.2908,\\ 4.3546)"
+    }
+   ],
+   "answerText": "(0.2837, 2.2908, 4.3546)",
+   "tol": 0.002
+  },
+  {
+   "q": "Past test Q2 (b). With the same $E$ and $F$, give the magnitude of the perpendicular component.",
+   "type": "number",
+   "answer": 4.928567758,
+   "hint": "Use abs(E x F)/abs(F).",
+   "solution": [
+    {
+     "do": "Compute.",
+     "m": "\\frac{|E\\times F|}{|F|}=\\frac{\\sqrt{3425}}{\\sqrt{141}}=4.9286"
+    }
+   ],
+   "answerText": "4.9286",
+   "tol": 0.001
+  },
+  {
+   "q": "Past test Q3 (adapted: evaluated at $(1,2,3)$ so that it can be checked). Find the gradient of $U=x^2y+xyz$ at $(1,2,3)$. Give $(x,y,z)$.",
+   "type": "vector",
+   "answer": [
+    10.0,
+    4.0,
+    2.0
+   ],
+   "hint": "The general gradient is (2xy + yz) a_x + (x^2 + xz) a_y + xy a_z.",
+   "solution": [
+    {
+     "do": "General gradient.",
+     "m": "\\nabla U=(2xy+yz)\\mathbf a_x+(x^2+xz)\\mathbf a_y+xy\\,\\mathbf a_z"
+    },
+    {
+     "do": "Substitute (1, 2, 3).",
+     "m": "(10,4,2)"
+    }
+   ],
+   "answerText": "(10, 4, 2)"
+  },
+  {
+   "q": "Past test Q6. Find the angle, in degrees, between $B=13\\mathbf a_x-7\\mathbf a_y+6\\mathbf a_z$ and $C=10\\mathbf a_x-4\\mathbf a_y+8\\mathbf a_z$. Give a decimal.",
+   "type": "number",
+   "answer": 15.545791457,
+   "hint": "B.C = 206, abs(B) squared = 254 and abs(C) squared = 180.",
+   "solution": [
+    {
+     "do": "Use the dot product.",
+     "m": "\\cos\\theta=\\frac{206}{\\sqrt{254}\\sqrt{180}}=0.9634\\Rightarrow\\theta=15.55^\\circ"
+    }
+   ],
+   "answerText": "15.55 degrees",
+   "tol": 0.05
+  },
+  {
+   "q": "Past test Q11 (adapted: evaluated at $(1,2,3)$). Find the gradient of $xy+yz+x^2$ at $(1,2,3)$. Give $(x,y,z)$.",
+   "type": "vector",
+   "answer": [
+    4.0,
+    4.0,
+    2.0
+   ],
+   "hint": "The general gradient is (y + 2x) a_x + (x + z) a_y + y a_z.",
+   "solution": [
+    {
+     "do": "General gradient.",
+     "m": "(y+2x)\\mathbf a_x+(x+z)\\mathbf a_y+y\\,\\mathbf a_z"
+    },
+    {
+     "do": "Substitute (1, 2, 3).",
+     "m": "(4,4,2)"
+    }
+   ],
+   "answerText": "(4, 4, 2)"
   }
  ]
 }

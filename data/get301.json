@@ -14473,6 +14473,2540 @@
      ]
     }
    ]
+  },
+  {
+   "id": "m7",
+   "title": "Vector integral calculus",
+   "source": "Dr Jack's vector calculus deck (slides 63 to 150) with corrections; the methods, orientation rule and applications not in the deck are labelled",
+   "lessons": [
+    {
+     "id": "7.1",
+     "title": "Line integrals",
+     "slides": "Dr Jack's deck, slides 65 to 77 (Examples 2.2 and 2.3, Exercises 2.1 and 2.2); independence of path and the arc-length form are added",
+     "one_line": "A line integral adds up a quantity along a curve: for a force it is the work done, and for a conservative field it depends only on the two end points.",
+     "analogy": "Pushing a trolley along a winding road, the work you do is the sum, along the road, of the push in the direction of travel times each small step. That sum is a line integral. If the force is the pull of gravity, only the height you gain matters, not the winding of the road, and that is what a conservative field means.",
+     "recall": [
+      "What is the dot product of (4, 4t, 3t^2) with (32t^4, 4t^4, -4t^5)?",
+      "What is the derivative of 3u with respect to u?"
+     ],
+     "exam": [
+      "For a curve $C$ the ordinary integral along the $x$-axis is replaced by an integral along the curve: $\\int_C f\\,ds=\\int_A^Bf(x,y,z)\\,ds$ (slide 65). In practice you write the curve in terms of a parameter, put everything in terms of it, and integrate between the parameter values of the end points.",
+      "Scalar field $V$ (slides 66 to 69): $\\displaystyle\\int_CV\\,d\\mathbf r$ with $d\\mathbf r=dx\\,\\mathbf i+dy\\,\\mathbf j+dz\\,\\mathbf k$. The result is a vector: integrate $V\\,dx$, $V\\,dy$ and $V\\,dz$ separately. Method: (1) put $x,y,z$ in terms of the parameter in $V$; (2) form $d\\mathbf r$ by differentiating; (3) find the parameter values at the end points (the slide does this by solving $3u=3$, $2u^2=2$, $u^3=1$ to get $u=1$); (4) integrate.",
+      "Example 2.2: $V=xy^2z$, $x=3u$, $y=2u^2$, $z=u^3$ gives $V=12u^8$ and $d\\mathbf r=3\\,du\\,\\mathbf i+4u\\,du\\,\\mathbf j+3u^2du\\,\\mathbf k$, so $\\int_C V\\,d\\mathbf r=4\\mathbf i+\\tfrac{24}{5}\\mathbf j+\\tfrac{36}{11}\\mathbf k$. Exercise 2.1 has answer $\\tfrac{384}{5}\\mathbf i+144\\mathbf j+\\tfrac{768}{11}\\mathbf k$ (recomputed here and correct).",
+      "Vector field $\\mathbf F$ (slides 71 to 76): $\\mathbf F\\cdot d\\mathbf r=F_xdx+F_ydy+F_zdz$ and $\\displaystyle\\int_C\\mathbf F\\cdot d\\mathbf r=\\int_CF_xdx+\\int_CF_ydy+\\int_CF_zdz$. The result is a number: the work done by the force $\\mathbf F$ along $C$. Example 2.3: the integral is $\\tfrac{128}{5}+\\tfrac{8}{3}-\\tfrac32=\\tfrac{803}{30}=26\\tfrac{23}{30}$. Exercise 2.2 has answer $7\\tfrac{61}{168}=\\tfrac{1237}{168}$ (recomputed and correct).",
+      "Arc length and scalar integrals with respect to arc length (not in the deck): $ds=\\left|\\dfrac{d\\mathbf r}{dt}\\right|dt$, so the length of $C$ is $\\int_C ds$ and $\\int_Cf\\,ds=\\int f\\,\\left|\\dfrac{d\\mathbf r}{dt}\\right|dt$. Not in your notes.",
+      "Reversing direction: $\\displaystyle\\int_{-C}\\mathbf F\\cdot d\\mathbf r=-\\int_C\\mathbf F\\cdot d\\mathbf r$. For a closed curve the integral is written $\\oint_C\\mathbf F\\cdot d\\mathbf r$ and is called the circulation. Not in your notes.",
+      "Independence of path: if $\\mathbf F=\\nabla\\phi$ (equivalently $\\nabla\\times\\mathbf F=\\mathbf 0$ in a region with no holes; lesson 6.8) then $\\displaystyle\\int_A^B\\mathbf F\\cdot d\\mathbf r=\\phi(B)-\\phi(A)$ for every path, and $\\oint\\mathbf F\\cdot d\\mathbf r=0$ for every closed path. This is why gravity and electrostatic fields do no net work round a closed loop. Not in your notes."
+     ],
+     "terms": [
+      "line-integral",
+      "parametrisation",
+      "work-done",
+      "conservative-field"
+     ],
+     "examples": [
+      {
+       "title": "Your slide 67: Example 2.2, scalar field",
+       "problem": "$V=xy^2z$ on $x=3u$, $y=2u^2$, $z=u^3$ from $A(0,0,0)$ to $B(3,2,1)$. Find $\\int_C V\\,d\\mathbf r$.",
+       "steps": [
+        {
+         "do": "Put V in terms of u.",
+         "m": "V=(3u)(2u^2)^2(u^3)=12u^8"
+        },
+        {
+         "do": "Differentiate the curve.",
+         "m": "d\\mathbf r=3\\,du\\,\\mathbf i+4u\\,du\\,\\mathbf j+3u^2du\\,\\mathbf k"
+        },
+        {
+         "do": "Find the end values of u.",
+         "why": "At A, 3u = 0 gives u = 0. At B, 3u = 3 gives u = 1, and the other two coordinates agree (2u^2 = 2, u^3 = 1).",
+         "m": "u:0\\to1"
+        },
+        {
+         "do": "Integrate each component.",
+         "m": "\\int_0^1 36u^8du\\,\\mathbf i+\\int_0^148u^9du\\,\\mathbf j+\\int_0^136u^{10}du\\,\\mathbf k=4\\mathbf i+\\tfrac{24}{5}\\mathbf j+\\tfrac{36}{11}\\mathbf k"
+        }
+       ],
+       "answer": "$4\\mathbf i+\\tfrac{24}{5}\\mathbf j+\\tfrac{36}{11}\\mathbf k$."
+      },
+      {
+       "title": "Your slide 73: Example 2.3, work done by a force",
+       "problem": "$\\mathbf F=x^2y\\,\\mathbf i+xz\\,\\mathbf j-2yz\\,\\mathbf k$ along $x=4t$, $y=2t^2$, $z=t^3$ from $(0,0,0)$ to $(4,2,1)$. Find $\\int_C\\mathbf F\\cdot d\\mathbf r$.",
+       "steps": [
+        {
+         "do": "Put F in terms of t.",
+         "m": "\\mathbf F=32t^4\\mathbf i+4t^4\\mathbf j-4t^5\\mathbf k"
+        },
+        {
+         "do": "Differentiate the curve.",
+         "m": "d\\mathbf r=4\\,dt\\,\\mathbf i+4t\\,dt\\,\\mathbf j+3t^2dt\\,\\mathbf k"
+        },
+        {
+         "do": "Dot product.",
+         "m": "\\mathbf F\\cdot d\\mathbf r=(128t^4+16t^5-12t^7)\\,dt"
+        },
+        {
+         "do": "Limits: t = 0 at A and t = 1 at B. Integrate.",
+         "m": "\\left[\\tfrac{128}{5}t^5+\\tfrac{8}{3}t^6-\\tfrac32t^8\\right]_0^1=\\tfrac{128}{5}+\\tfrac83-\\tfrac32=\\tfrac{803}{30}"
+        }
+       ],
+       "answer": "$\\tfrac{803}{30}=26\\tfrac{23}{30}$."
+      },
+      {
+       "title": "Independence of path",
+       "problem": "$\\mathbf F=(2xy+z^2)\\mathbf i+x^2\\mathbf j+2xz\\,\\mathbf k$. Show $\\mathbf F$ is conservative, and find $\\int\\mathbf F\\cdot d\\mathbf r$ from $(0,0,0)$ to $(1,2,3)$ by two different paths.",
+       "steps": [
+        {
+         "do": "Curl is zero.",
+         "m": "\\nabla\\times\\mathbf F=(0-0,\\ 2z-2z,\\ 2x-2x)=\\mathbf 0"
+        },
+        {
+         "do": "Scalar potential.",
+         "m": "\\phi=x^2y+xz^2\\ \\text{(check }\\nabla\\phi=\\mathbf F)"
+        },
+        {
+         "do": "Straight path (t, 2t, 3t), t from 0 to 1.",
+         "m": "\\int_0^1\\left(\\ldots\\right)dt=11"
+        },
+        {
+         "do": "Path along the axes: x from 0 to 1, then y from 0 to 2, then z from 0 to 3.",
+         "m": "0+\\int_0^21\\,dy+\\int_0^32z\\,dz=0+2+9=11"
+        },
+        {
+         "do": "Check with the potential.",
+         "m": "\\phi(1,2,3)-\\phi(0,0,0)=11-0=11"
+        }
+       ],
+       "answer": "Both paths give 11, as the potential predicts."
+      }
+     ],
+     "practice": [
+      {
+       "q": "Example 2.2. $V=xy^2z$ on the curve $x=3u$, $y=2u^2$, $z=u^3$ from $A(0,0,0)$ to $B(3,2,1)$. Find $\\int_C V\\,d\\mathbf r$. Give $(x,y,z)$ as decimals.",
+       "type": "vector",
+       "answer": [
+        4.0,
+        4.8,
+        3.272727273
+       ],
+       "hint": "On the curve V = 12 u^8 and dr = (3, 4u, 3u^2) du, with u from 0 to 1.",
+       "solution": [
+        {
+         "do": "Substitute and integrate.",
+         "m": "\\int_0^1(12u^8)(3\\,du,\\ 4u\\,du,\\ 3u^2du)=\\left(4,\\ \\tfrac{24}{5},\\ \\tfrac{36}{11}\\right)"
+        }
+       ],
+       "answerText": "(4, 24/5, 36/11)",
+       "tol": 0.01
+      },
+      {
+       "q": "Exercise 2.1. $V=x^2yz^2$ on $x=4u$, $y=3u^3$, $z=2u^2$ from $(0,0,0)$ to $(4,3,2)$. Find $\\int_C V\\,d\\mathbf r$. Give $(x,y,z)$ as decimals.",
+       "type": "vector",
+       "answer": [
+        76.8,
+        144.0,
+        69.818181818
+       ],
+       "hint": "On the curve V = 192 u^9 and dr = (4, 9u^2, 4u) du, with u from 0 to 1.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "\\left(\\tfrac{768}{10},\\ \\tfrac{1728}{12},\\ \\tfrac{768}{11}\\right)=\\left(\\tfrac{384}{5},\\ 144,\\ \\tfrac{768}{11}\\right)"
+        }
+       ],
+       "answerText": "(384/5, 144, 768/11)",
+       "tol": 0.01
+      },
+      {
+       "q": "Example 2.3. $\\mathbf F=x^2y\\,\\mathbf i+xz\\,\\mathbf j-2yz\\,\\mathbf k$ along $x=4t$, $y=2t^2$, $z=t^3$ from $(0,0,0)$ to $(4,2,1)$. Find $\\int_C\\mathbf F\\cdot d\\mathbf r$. Give a decimal.",
+       "type": "number",
+       "answer": 26.766666667,
+       "hint": "F.dr = (128t^4 + 16t^5 - 12t^7) dt, with t from 0 to 1.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "\\tfrac{128}{5}+\\tfrac{16}{6}-\\tfrac{12}{8}=\\tfrac{803}{30}=26\\tfrac{23}{30}"
+        }
+       ],
+       "answerText": "803/30 = 26.7667",
+       "tol": 0.01
+      },
+      {
+       "q": "Exercise 2.2. $\\mathbf F=xy^2\\mathbf i-yz\\,\\mathbf j+3x^2z\\,\\mathbf k$ along $x=t$, $y=2t^2$, $z=3t^3$ from $(0,0,0)$ to $(1,2,3)$. Find $\\int_C\\mathbf F\\cdot d\\mathbf r$. Give a decimal.",
+       "type": "number",
+       "answer": 7.363095238,
+       "hint": "Substitute, form F.dr = Fx dx + Fy dy + Fz dz, then integrate t from 0 to 1.",
+       "solution": [
+        {
+         "do": "Substitute x = t, y = 2t^2, z = 3t^3, form F.dr and integrate (the slide prints only the answer).",
+         "m": "\\int_0^1(\\text{polynomial in }t)\\,dt=\\tfrac{1237}{168}=7\\tfrac{61}{168}"
+        }
+       ],
+       "answerText": "1237/168 = 7.3631",
+       "tol": 0.01
+      },
+      {
+       "q": "Work done by $\\mathbf F=y\\,\\mathbf i+x\\,\\mathbf j$ along $x=t$, $y=t^2$, $z=0$ from $t=0$ to $t=1$. Give a number.",
+       "type": "number",
+       "answer": 1.0,
+       "hint": "F.dr = y dx + x dy = t^2 dt + t(2t dt).",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "\\int_0^13t^2dt=1"
+        }
+       ],
+       "answerText": "1"
+      },
+      {
+       "q": "The field $\\mathbf F=(2xy+z^2)\\mathbf i+x^2\\mathbf j+2xz\\,\\mathbf k$ has scalar potential $\\phi=x^2y+xz^2$. Find $\\int\\mathbf F\\cdot d\\mathbf r$ from $(0,0,0)$ to $(1,2,3)$ along any path. Give a number.",
+       "type": "number",
+       "answer": 11.0,
+       "hint": "For a conservative field the integral is phi(end) - phi(start).",
+       "solution": [
+        {
+         "do": "Use the potential.",
+         "m": "\\phi(1,2,3)-\\phi(0,0,0)=(2+9)-0=11"
+        }
+       ],
+       "answerText": "11"
+      },
+      {
+       "q": "Find the length of the helix $\\mathbf r=(\\cos t,\\ \\sin t,\\ t)$ for $0\\le t\\le2\\pi$. Give a decimal.",
+       "type": "number",
+       "answer": 8.885765876,
+       "hint": "Length = integral of abs(dr/dt) dt, and abs(dr/dt) = sqrt(2).",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "\\int_0^{2\\pi}\\sqrt{\\sin^2t+\\cos^2t+1}\\,dt=2\\sqrt2\\,\\pi=8.886"
+        }
+       ],
+       "answerText": "8.886",
+       "tol": 0.02
+      },
+      {
+       "q": "Find $\\int_C(x^2+y^2)\\,ds$ around the circle $x=2\\cos t$, $y=2\\sin t$, $0\\le t\\le2\\pi$. Give a decimal.",
+       "type": "number",
+       "answer": 50.265482457,
+       "hint": "On the circle x^2 + y^2 = 4 and ds = 2 dt.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "\\int_0^{2\\pi}4\\cdot2\\,dt=16\\pi=50.27"
+        }
+       ],
+       "answerText": "50.27",
+       "tol": 0.1
+      }
+     ],
+     "quiz": [
+      {
+       "q": "The line integral of a scalar field V along a curve, with dr, is",
+       "options": [
+        "a scalar",
+        "a vector",
+        "a matrix",
+        "always zero"
+       ],
+       "answer": 1,
+       "explain": "Each component of dr is multiplied by V and integrated."
+      },
+      {
+       "q": "The line integral of F . dr along a curve is",
+       "options": [
+        "a vector",
+        "a number (the work done)",
+        "the curl of F",
+        "the divergence of F"
+       ],
+       "answer": 1,
+       "explain": "F . dr is a scalar."
+      },
+      {
+       "q": "For a conservative field F = grad phi, the integral from A to B is",
+       "options": [
+        "phi(A) + phi(B)",
+        "phi(B) - phi(A)",
+        "zero for every pair of points",
+        "dependent on the path"
+       ],
+       "answer": 1,
+       "explain": "It depends only on the end points."
+      },
+      {
+       "q": "The integral of a conservative field around a closed curve is",
+       "options": [
+        "zero",
+        "the area enclosed",
+        "twice the area",
+        "infinite"
+       ],
+       "answer": 0,
+       "explain": "phi(end) - phi(start) = 0 when the end is the start."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Line integral of a scalar field",
+       "back": "$\\int_CV\\,d\\mathbf r$, a vector: integrate $V\\,dx$, $V\\,dy$, $V\\,dz$."
+      },
+      {
+       "front": "Line integral of a vector field",
+       "back": "$\\int_C\\mathbf F\\cdot d\\mathbf r=\\int F_xdx+F_ydy+F_zdz$, a number (work)."
+      },
+      {
+       "front": "Method",
+       "back": "Substitute the parametrisation, form dr, find the end values of the parameter, integrate."
+      },
+      {
+       "front": "Conservative field",
+       "back": "$\\int_A^B\\mathbf F\\cdot d\\mathbf r=\\phi(B)-\\phi(A)$ and $\\oint=0$ (not in your notes)."
+      },
+      {
+       "front": "Arc length element",
+       "back": "$ds=|d\\mathbf r/dt|\\,dt$ (not in your notes)."
+      }
+     ],
+     "theory": [
+      {
+       "q": "Explain how a line integral of a scalar field, the integral of V dr, is evaluated.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Put x, y, z in terms of a parameter to write V as a function of it",
+        "Differentiate to get dr = dx i + dy j + dz k",
+        "Find the parameter values at the two end points",
+        "Integrate each component, which gives a vector"
+       ],
+       "need": 4
+      },
+      {
+       "q": "State the line integral of a vector field and say what it represents.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Integral of F.dr = integral of Fx dx + Fy dy + Fz dz",
+        "The result is a number",
+        "It is the work done by F along the curve"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Evaluate the integral of V dr for V = x y squared z along x = 3u, y = 2u squared, z = u cubed from (0,0,0) to (3,2,1).",
+       "type": "Explain",
+       "marks": 5,
+       "points": [
+        "V = 12 u^8",
+        "dr = 3 du i + 4u du j + 3 u squared du k",
+        "u runs from 0 to 1",
+        "i component 4 and j component 24/5",
+        "k component 36/11"
+       ],
+       "need": 5
+      },
+      {
+       "q": "Evaluate the work done by F = x squared y i + xz j - 2yz k along x = 4t, y = 2t squared, z = t cubed from (0,0,0) to (4,2,1).",
+       "type": "Explain",
+       "marks": 5,
+       "points": [
+        "F = 32 t^4 i + 4 t^4 j - 4 t^5 k",
+        "dr = 4 dt i + 4t dt j + 3 t squared dt k",
+        "F.dr = (128 t^4 + 16 t^5 - 12 t^7) dt",
+        "Integrate from t = 0 to 1",
+        "The result is 803/30"
+       ],
+       "need": 5
+      },
+      {
+       "q": "State the condition under which a line integral is independent of the path, and what it equals.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "F must be conservative: F = grad phi, which means curl F = 0 in a region without holes",
+        "The integral from A to B is phi(B) - phi(A)",
+        "The integral around a closed path is zero"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Define arc length and the integral with respect to arc length.",
+       "type": "Define",
+       "marks": 3,
+       "points": [
+        "ds = abs(dr/dt) dt",
+        "The length of the curve is the integral of ds",
+        "The integral of f ds is the integral of f abs(dr/dt) dt"
+       ],
+       "need": 3
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=line+integral+vector+field+work+done+explained"
+      }
+     ]
+    },
+    {
+     "id": "7.2",
+     "title": "Double and triple integrals",
+     "slides": "Dr Jack's deck, slides 78 to 81 (Exercises 2.3 to 2.6, which give the questions only); the method is not in the deck",
+     "one_line": "A double integral adds up a function over an area and a triple integral over a volume, by doing one single integral at a time from the inside out.",
+     "analogy": "To add up the rainfall over a field you can add it row by row, then add the rows. A double integral does exactly that: the inner integral adds along one row, the outer integral adds up the rows. The only skill is writing down where each row starts and stops.",
+     "recall": [
+      "What is the integral of 4y - y cubed from 0 to 2?",
+      "How do you find where y = x squared meets y = x?"
+     ],
+     "exam": [
+      "Double integral: $\\displaystyle\\iint_Rf(x,y)\\,dA=\\int_a^b\\int_{g_1(x)}^{g_2(x)}f\\,dy\\,dx$. The inner limits may depend on the outer variable. The outer limits are constants. The area of $R$ is $\\iint_R1\\,dA$. Not in your notes.",
+      "Method: (1) sketch the region and find where the boundary curves meet; (2) choose an order, $dy\\,dx$ or $dx\\,dy$; (3) write the limits: the outer variable runs between constants, and for each value of it the inner variable runs from the lower to the upper boundary; (4) integrate the inner integral first, treating the outer variable as a constant, then the outer integral. Not in your notes.",
+      "Either order gives the same answer, but one may be much easier. The slide's Exercise 2.3 ($f=4-y^2$, region bounded by $x=0$, $y=x$, $y=2$) asks for both: $\\int_0^2\\int_0^y(4-y^2)\\,dx\\,dy=4$ and $\\int_0^2\\int_x^2(4-y^2)\\,dy\\,dx=4$.",
+      "Area between curves (Exercise 2.4): the curves $y=5-x^2$ and $y=x+3$ meet at $x=-2$ and $x=1$, and the area is $\\int_{-2}^{1}\\left[(5-x^2)-(x+3)\\right]dx=\\tfrac92$, which the slide writes as $4\\tfrac12$.",
+      "Triple integral: $\\displaystyle\\iiint_Vf\\,dV=\\iiint f\\,dz\\,dy\\,dx$, with the innermost limits for $z$ depending on $x$ and $y$, the middle limits for $y$ depending on $x$, and constant outer limits for $x$. Constant limits for all three give a box and the integral separates. Not in your notes.",
+      "Exercise 2.5 asks only for the integral in order $dz\\,dy\\,dx$ for the solid between $z=2$ and $z=16-x^2-y^2$. The surfaces meet at $x^2+y^2=14$, so $\\displaystyle\\int_{-\\sqrt{14}}^{\\sqrt{14}}\\int_{-\\sqrt{14-x^2}}^{\\sqrt{14-x^2}}\\int_{2}^{16-x^2-y^2}f\\,dz\\,dy\\,dx$. Exercise 2.6 (solid bounded by $z=0$, $z=x$, $y^2=4-2x$) gives $\\displaystyle\\int_0^2\\int_{-\\sqrt{4-2x}}^{\\sqrt{4-2x}}\\int_0^{x}f\\,dz\\,dy\\,dx$. The deck prints no answers for these two; the volumes are $98\\pi$ and $\\tfrac{64}{15}$ (with $f=1$). Not in your notes.",
+      "Round regions: change to polar coordinates ($dA=r\\,dr\\,d\\theta$) or, for solids, cylindrical or spherical ones (lesson 6.9), as the deck does for Exercise 2.5. Not in your notes."
+     ],
+     "terms": [
+      "double-integral",
+      "triple-integral",
+      "region-of-integration"
+     ],
+     "examples": [
+      {
+       "title": "Your slide 78: Exercise 2.3, in both orders",
+       "problem": "$f=4-y^2$ over the region bounded by $x=0$, $y=x$ and $y=2$. Find $\\iint_Rf\\,dA$ in both orders.",
+       "steps": [
+        {
+         "do": "Sketch: a triangle with corners (0,0), (0,2) and (2,2).",
+         "why": "The line y = x runs from the origin to (2, 2); the line y = 2 is the top; x = 0 is the left side."
+        },
+        {
+         "do": "Order dx dy: for each y from 0 to 2, x runs from 0 to y.",
+         "m": "\\int_0^2\\int_0^y(4-y^2)\\,dx\\,dy=\\int_0^2y(4-y^2)dy=\\left[2y^2-\\tfrac{y^4}{4}\\right]_0^2=8-4=4"
+        },
+        {
+         "do": "Order dy dx: for each x from 0 to 2, y runs from x to 2.",
+         "m": "\\int_0^2\\int_x^2(4-y^2)\\,dy\\,dx=\\int_0^2\\left(\\tfrac{16}{3}-4x+\\tfrac{x^3}{3}\\right)dx=\\tfrac{32}{3}-8+\\tfrac43=4"
+        },
+        {
+         "do": "The two orders agree.",
+         "why": "This is a good check on the limits."
+        }
+       ],
+       "answer": "$4$ in both orders."
+      },
+      {
+       "title": "Your slide 79: Exercise 2.4, area between curves",
+       "problem": "Find the area bounded by $y=5-x^2$ and $y=x+3$.",
+       "steps": [
+        {
+         "do": "Find where the curves meet.",
+         "m": "5-x^2=x+3\\Rightarrow x^2+x-2=0\\Rightarrow x=-2,\\ 1"
+        },
+        {
+         "do": "The parabola is above the line between them (test x = 0: 5 against 3).",
+         "m": "\\text{Area}=\\int_{-2}^{1}\\int_{x+3}^{5-x^2}dy\\,dx=\\int_{-2}^1(2-x-x^2)dx"
+        },
+        {
+         "do": "Integrate.",
+         "m": "\\left[2x-\\tfrac{x^2}{2}-\\tfrac{x^3}{3}\\right]_{-2}^{1}=\\tfrac{7}{6}-\\left(-\\tfrac{10}{3}\\right)=\\tfrac92"
+        }
+       ],
+       "answer": "$\\tfrac92=4\\tfrac12$."
+      },
+      {
+       "title": "Your slides 80 and 81: Exercises 2.5 and 2.6, setting up limits",
+       "problem": "Write the volume of each solid as an integral in order $dz\\,dy\\,dx$, and evaluate it.",
+       "steps": [
+        {
+         "do": "Exercise 2.5: the surfaces meet where 16 - x^2 - y^2 = 2.",
+         "m": "x^2+y^2=14"
+        },
+        {
+         "do": "Limits: x over the widest extent, then y over the circle, then z from the plane to the paraboloid.",
+         "m": "V=\\int_{-\\sqrt{14}}^{\\sqrt{14}}\\int_{-\\sqrt{14-x^2}}^{\\sqrt{14-x^2}}\\int_2^{16-x^2-y^2}dz\\,dy\\,dx"
+        },
+        {
+         "do": "Evaluate using cylindrical coordinates.",
+         "m": "V=\\int_0^{2\\pi}\\int_0^{\\sqrt{14}}(14-\\rho^2)\\rho\\,d\\rho\\,d\\phi=98\\pi"
+        },
+        {
+         "do": "Exercise 2.6: z runs from 0 to x, so x must be at least 0; the curve y^2 = 4 - 2x gives x at most 2.",
+         "m": "V=\\int_0^2\\int_{-\\sqrt{4-2x}}^{\\sqrt{4-2x}}\\int_0^xdz\\,dy\\,dx=\\int_0^22x\\sqrt{4-2x}\\,dx=\\tfrac{64}{15}"
+        }
+       ],
+       "answer": "$98\\pi$ and $\\tfrac{64}{15}$."
+      }
+     ],
+     "practice": [
+      {
+       "q": "Exercise 2.3. $f=4-y^2$ over the region bounded by $x=0$, $y=x$ and $y=2$. Find $\\iint_Rf\\,dA$. Give a number.",
+       "type": "number",
+       "answer": 4.0,
+       "hint": "Take y from 0 to 2 and, for each y, x from 0 to y.",
+       "solution": [
+        {
+         "do": "Integrate x first, then y.",
+         "m": "\\int_0^2\\int_0^y(4-y^2)dx\\,dy=\\int_0^2(4y-y^3)dy=8-4=4"
+        }
+       ],
+       "answerText": "4"
+      },
+      {
+       "q": "Exercise 2.4. Find the area between $y=5-x^2$ and $y=x+3$. Give a decimal.",
+       "type": "number",
+       "answer": 4.5,
+       "hint": "The curves meet where 5 - x^2 = x + 3, so x = -2 and x = 1.",
+       "solution": [
+        {
+         "do": "Upper minus lower.",
+         "m": "\\int_{-2}^{1}\\left[(5-x^2)-(x+3)\\right]dx=\\int_{-2}^1(2-x-x^2)dx=\\tfrac92"
+        }
+       ],
+       "answerText": "9/2 = 4.5",
+       "tol": 0.01
+      },
+      {
+       "q": "Evaluate $\\displaystyle\\int_0^1\\int_0^xxy\\,dy\\,dx$. Give a decimal.",
+       "type": "number",
+       "answer": 0.125,
+       "hint": "Integrate with respect to y first, holding x fixed.",
+       "solution": [
+        {
+         "do": "Inner integral.",
+         "m": "\\int_0^xxy\\,dy=\\tfrac{x^3}{2}"
+        },
+        {
+         "do": "Outer integral.",
+         "m": "\\int_0^1\\tfrac{x^3}{2}dx=\\tfrac18"
+        }
+       ],
+       "answerText": "1/8 = 0.125",
+       "tol": 0.001
+      },
+      {
+       "q": "Find the area enclosed by $y=x$ and $y=x^2$. Give a decimal.",
+       "type": "number",
+       "answer": 0.166666667,
+       "hint": "They meet at x = 0 and x = 1, and y = x is the upper curve.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "\\int_0^1(x-x^2)dx=\\tfrac12-\\tfrac13=\\tfrac16"
+        }
+       ],
+       "answerText": "1/6 = 0.1667",
+       "tol": 0.001
+      },
+      {
+       "q": "Evaluate $\\displaystyle\\int_0^3\\int_0^2\\int_0^1xyz\\,dx\\,dy\\,dz$. Give a decimal.",
+       "type": "number",
+       "answer": 4.5,
+       "hint": "The limits are constants, so the integral separates into three.",
+       "solution": [
+        {
+         "do": "Separate.",
+         "m": "\\left(\\int_0^1xdx\\right)\\left(\\int_0^2ydy\\right)\\left(\\int_0^3zdz\\right)=\\tfrac12\\cdot2\\cdot\\tfrac92=\\tfrac92"
+        }
+       ],
+       "answerText": "9/2 = 4.5",
+       "tol": 0.01
+      },
+      {
+       "q": "Exercise 2.5. The solid lies between $z=2$ and $z=16-x^2-y^2$. Find its volume. Give a decimal.",
+       "type": "number",
+       "answer": 307.876080052,
+       "hint": "The surfaces meet where x^2 + y^2 = 14. Use cylindrical coordinates: volume = integral of (14 - rho^2) rho.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "\\int_0^{2\\pi}\\int_0^{\\sqrt{14}}(14-\\rho^2)\\rho\\,d\\rho\\,d\\phi=2\\pi\\left[7\\rho^2-\\tfrac{\\rho^4}{4}\\right]_0^{\\sqrt{14}}=2\\pi(98-49)=98\\pi"
+        }
+       ],
+       "answerText": "98 pi = 307.9",
+       "tol": 0.5
+      },
+      {
+       "q": "Exercise 2.6. The solid is bounded by $z=0$, $z=x$ and $y^2=4-2x$. Find its volume. Give a decimal.",
+       "type": "number",
+       "answer": 4.266666667,
+       "hint": "x runs from 0 to 2, y from -sqrt(4-2x) to sqrt(4-2x), z from 0 to x.",
+       "solution": [
+        {
+         "do": "Integrate z, then y.",
+         "m": "\\int_0^2\\int_{-\\sqrt{4-2x}}^{\\sqrt{4-2x}}x\\,dy\\,dx=\\int_0^22x\\sqrt{4-2x}\\,dx=\\tfrac{64}{15}"
+        }
+       ],
+       "answerText": "64/15 = 4.267",
+       "tol": 0.01
+      },
+      {
+       "q": "Evaluate $\\displaystyle\\int_0^1\\int_0^{1-x}\\int_0^{1-x-y}1\\,dz\\,dy\\,dx$, the volume of the tetrahedron $x+y+z\\le1$ in the first octant. Give a decimal.",
+       "type": "number",
+       "answer": 0.166666667,
+       "hint": "Integrate z, then y, then x.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "\\int_0^1\\int_0^{1-x}(1-x-y)dy\\,dx=\\int_0^1\\tfrac{(1-x)^2}{2}dx=\\tfrac16"
+        }
+       ],
+       "answerText": "1/6 = 0.1667",
+       "tol": 0.001
+      }
+     ],
+     "quiz": [
+      {
+       "q": "In a double integral the inner integral is done",
+       "options": [
+        "last",
+        "first, treating the outer variable as a constant",
+        "with both variables at once",
+        "only for the x variable"
+       ],
+       "answer": 1,
+       "explain": "Work from the inside out."
+      },
+      {
+       "q": "The area of a region R can be written",
+       "options": [
+        "the double integral of 1 over R",
+        "the double integral of x over R",
+        "the line integral of 1",
+        "the triple integral of 1"
+       ],
+       "answer": 0,
+       "explain": "Integrating 1 counts area."
+      },
+      {
+       "q": "The outer limits of a double integral are",
+       "options": [
+        "constants",
+        "functions of the inner variable",
+        "always 0 and 1",
+        "always symmetric"
+       ],
+       "answer": 0,
+       "explain": "Only the inner limits can depend on the outer variable."
+      },
+      {
+       "q": "The curves y = 5 - x^2 and y = x + 3 meet at x equal to",
+       "options": [
+        "-2 and 1",
+        "2 and -1",
+        "0 and 3",
+        "1 and 5"
+       ],
+       "answer": 0,
+       "explain": "Solve x^2 + x - 2 = 0."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Double integral",
+       "back": "$\\iint_Rf\\,dA=\\int_a^b\\int_{g_1}^{g_2}f\\,dy\\,dx$; inner first."
+      },
+      {
+       "front": "Area of a region",
+       "back": "$\\iint_R1\\,dA$."
+      },
+      {
+       "front": "Triple integral",
+       "back": "$\\iiint f\\,dz\\,dy\\,dx$ with limits nested from the inside out."
+      },
+      {
+       "front": "Exercise 2.4 answer",
+       "back": "$\\tfrac92$, not a misprint for 4 1/2."
+      },
+      {
+       "front": "Exercise 2.5 intersection",
+       "back": "$x^2+y^2=14$ (not in your notes)."
+      }
+     ],
+     "theory": [
+      {
+       "q": "Describe how to set up the limits of a double integral over a region.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Sketch the region and find where the boundary curves meet",
+        "The outer variable runs between constants",
+        "The inner variable runs from the lower to the upper boundary, which may depend on the outer variable",
+        "Integrate the inner integral first"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Explain how the area of a region is found by a double integral.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "Area = the double integral of 1 over R",
+        "For example the integral of (upper curve minus lower curve) dx"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Evaluate the double integral of 4 - y squared over the region bounded by x = 0, y = x and y = 2.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Region: y from 0 to 2 and x from 0 to y",
+        "Inner integral gives y(4 - y squared)",
+        "Outer integral [2 y squared - y^4/4] from 0 to 2",
+        "= 8 - 4 = 4"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Find the area bounded by y = 5 - x squared and y = x + 3.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "The curves meet at x = -2 and x = 1",
+        "The parabola is above the line",
+        "Area = integral from -2 to 1 of (2 - x - x squared) dx",
+        "= 9/2"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Write the integral in order dz dy dx for the volume between z = 2 and z = 16 - x squared - y squared.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "The surfaces meet where x squared + y squared = 14",
+        "x runs from minus root 14 to root 14",
+        "y runs between minus and plus the square root of 14 - x squared",
+        "z runs from 2 to 16 - x squared - y squared"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Explain how the order of integration can be changed and why one might do so.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Re-describe the same region with the other variable outermost",
+        "The answer is the same",
+        "One order may give simpler limits or an easier integrand"
+       ],
+       "need": 3
+      },
+      {
+       "q": "State when a triple integral can be separated into a product of three single integrals.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "When all the limits are constants",
+        "and the integrand is a product of functions of one variable each"
+       ],
+       "need": 2
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=double+integral+triple+integral+limits+of+integration+explained"
+      }
+     ]
+    },
+    {
+     "id": "7.3",
+     "title": "Volume integrals",
+     "slides": "Dr Jack's deck, slides 82 to 93 and 63 to 64 (Examples 2.5 and 2.6, the cylinder example, Exercise 2.7); the numbering clash and the word ``cubic'' are corrected",
+     "one_line": "A volume integral adds up a field over a solid region; for a vector field you integrate each component separately and the answer is a vector.",
+     "analogy": "To find the total mass of an unevenly packed box you cut it into tiny cubes, multiply each cube's volume by the density there, and add. A volume integral is that sum. For a vector field the same is done for each of the three components.",
+     "recall": [
+      "What is the volume of a cylinder of radius 3 and height 4?",
+      "What is the volume element dV in cylindrical coordinates?"
+     ],
+     "exam": [
+      "Scalar field (slide 82): $\\displaystyle\\iiint_VF\\,dV=\\iiint F\\,dx\\,dy\\,dz$, a scalar (for example a total mass when $F$ is a density). Vector field (slide 85): $\\displaystyle\\iiint_V\\mathbf F\\,dV$, a vector: integrate each component over the region.",
+      "Example 2.5 (slides 83 and 84): $F=2x$ over the box $0\\le x\\le1$, $0\\le y\\le3$, $0\\le z\\le2$ gives $\\int_0^2\\int_0^3\\int_0^12x\\,dx\\,dy\\,dz=6$. The slide calls the box a ``cubic'' and says the function is ``defeated'' in it; the words are cuboid and defined.",
+      "Example 2.6 (slides 86 to 89): $\\mathbf F=2z\\,\\mathbf i+y\\,\\mathbf k$ over the tetrahedron bounded by $x=0$, $y=0$, $z=0$ and $2x+y+z=2$. The plane meets the axes at $(1,0,0)$, $(0,2,0)$ and $(0,0,2)$, so $x$ runs from $0$ to $1$, $y$ from $0$ to $2(1-x)$ and $z$ from $0$ to $2(1-x)-y$. The result is $\\tfrac23\\mathbf i+\\tfrac13\\mathbf k$.",
+      "Round solids: use cylindrical coordinates (slides 63 to 64 and 90 to 92): $x=\\rho\\cos\\phi$, $y=\\rho\\sin\\phi$, $dV=\\rho\\,d\\rho\\,d\\phi\\,dz$. For $\\mathbf F=2\\mathbf i+2z\\,\\mathbf j+y\\,\\mathbf k$ over $x^2+y^2\\le9$, $0\\le z\\le4$, the result is $72\\pi\\,\\mathbf i+144\\pi\\,\\mathbf j$. The $\\mathbf k$ component is zero because $\\int_0^{2\\pi}\\sin\\phi\\,d\\phi=0$.",
+      "Numbering clash in the deck: this cylinder example is ``Example 2.1'' on slide 63 and ``Example 2.6'' on slide 90, the same label as the tetrahedron example. Treat them as two different examples. The example numbering in the deck skips and repeats in several places, but none of the answers is affected.",
+      "Exercise 2.7 (slide 93): $\\mathbf F=3\\mathbf i+z\\,\\mathbf j+2y\\,\\mathbf k$ over $x^2+y^2\\le4$, $0\\le z\\le3$ gives $18\\pi(2\\mathbf i+\\mathbf j)=36\\pi\\,\\mathbf i+18\\pi\\,\\mathbf j$ (recomputed and correct).",
+      "Symmetry shortcut: if the region is symmetric about a plane and the integrand is odd in the coordinate perpendicular to it, the integral is zero. Not in your notes."
+     ],
+     "terms": [
+      "volume-integral",
+      "volume-element"
+     ],
+     "examples": [
+      {
+       "title": "Your slide 83: Example 2.5",
+       "problem": "$F=2x$ over the box $0\\le x\\le1$, $0\\le y\\le3$, $0\\le z\\le2$. Find $\\iiint F\\,dV$.",
+       "steps": [
+        {
+         "do": "Write the triple integral.",
+         "m": "\\int_{z=0}^{2}\\int_{y=0}^{3}\\int_{x=0}^{1}2x\\,dx\\,dy\\,dz"
+        },
+        {
+         "do": "Integrate x.",
+         "m": "\\left[x^2\\right]_0^1=1"
+        },
+        {
+         "do": "Integrate y, then z.",
+         "m": "\\int_0^2\\int_0^31\\,dy\\,dz=\\int_0^23\\,dz=6"
+        }
+       ],
+       "answer": "$6$."
+      },
+      {
+       "title": "Your slide 86: Example 2.6, a tetrahedron",
+       "problem": "$\\mathbf F=2z\\,\\mathbf i+y\\,\\mathbf k$ over the region bounded by $x=0$, $y=0$, $z=0$ and $2x+y+z=2$.",
+       "steps": [
+        {
+         "do": "The plane meets the axes at (1,0,0), (0,2,0) and (0,0,2).",
+         "why": "Put two coordinates to zero each time: 2x = 2, y = 2, z = 2."
+        },
+        {
+         "do": "Limits, innermost first.",
+         "m": "0\\le z\\le2(1-x)-y,\\quad0\\le y\\le2(1-x),\\quad0\\le x\\le1"
+        },
+        {
+         "do": "The i component.",
+         "m": "\\int_0^1\\int_0^{2(1-x)}\\int_0^{2(1-x)-y}2z\\,dz\\,dy\\,dx=\\tfrac23"
+        },
+        {
+         "do": "The k component.",
+         "m": "\\int_0^1\\int_0^{2(1-x)}\\int_0^{2(1-x)-y}y\\,dz\\,dy\\,dx=\\tfrac13"
+        },
+        {
+         "do": "Check the volume.",
+         "why": "The tetrahedron has volume (1/6)(1)(2)(2) = 2/3, which is a useful size check on the answers."
+        }
+       ],
+       "answer": "$\\tfrac23\\mathbf i+\\tfrac13\\mathbf k$."
+      },
+      {
+       "title": "Your slides 90 to 92: a cylinder (cylindrical coordinates)",
+       "problem": "$\\mathbf F=2\\mathbf i+2z\\,\\mathbf j+y\\,\\mathbf k$ over $x^2+y^2\\le9$, $0\\le z\\le4$.",
+       "steps": [
+        {
+         "do": "Use cylindrical coordinates.",
+         "m": "y=\\rho\\sin\\phi,\\quad dV=\\rho\\,d\\rho\\,d\\phi\\,dz,\\quad0\\le\\rho\\le3,\\ 0\\le\\phi\\le2\\pi,\\ 0\\le z\\le4"
+        },
+        {
+         "do": "The i component: 2 times the volume.",
+         "m": "2\\int_0^4\\int_0^{2\\pi}\\int_0^3\\rho\\,d\\rho\\,d\\phi\\,dz=2(36\\pi)=72\\pi"
+        },
+        {
+         "do": "The j component.",
+         "m": "\\int_0^42z\\,dz\\cdot2\\pi\\cdot\\tfrac92=16\\cdot2\\pi\\cdot\\tfrac92=144\\pi"
+        },
+        {
+         "do": "The k component.",
+         "m": "\\int_0^3\\rho^2d\\rho\\int_0^{2\\pi}\\sin\\phi\\,d\\phi\\int_0^4dz=0"
+        }
+       ],
+       "answer": "$72\\pi\\,\\mathbf i+144\\pi\\,\\mathbf j$."
+      }
+     ],
+     "practice": [
+      {
+       "q": "Example 2.5 (the deck's ``cubic'' is a cuboid). $F=2x$ over the box $0\\le x\\le1$, $0\\le y\\le3$, $0\\le z\\le2$. Find $\\iiint F\\,dV$. Give a number.",
+       "type": "number",
+       "answer": 6.0,
+       "hint": "The limits are constants, so the integral separates.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "\\int_0^2\\int_0^3\\int_0^12x\\,dx\\,dy\\,dz=1\\cdot3\\cdot2=6"
+        }
+       ],
+       "answerText": "6"
+      },
+      {
+       "q": "Example 2.6. $\\mathbf F=2z\\,\\mathbf i+y\\,\\mathbf k$ over the tetrahedron $x,y,z\\ge0$, $2x+y+z\\le2$. Find $\\iiint\\mathbf F\\,dV$. Give $(x,y,z)$ as decimals.",
+       "type": "vector",
+       "answer": [
+        0.666666667,
+        0.0,
+        0.333333333
+       ],
+       "hint": "Limits: x from 0 to 1, y from 0 to 2(1 - x), z from 0 to 2(1 - x) - y.",
+       "solution": [
+        {
+         "do": "Integrate each component.",
+         "m": "\\iiint2z\\,dV=\\tfrac23,\\qquad\\iiint y\\,dV=\\tfrac13"
+        }
+       ],
+       "answerText": "(2/3, 0, 1/3)",
+       "tol": 0.005
+      },
+      {
+       "q": "Cylinder $x^2+y^2\\le9$, $0\\le z\\le4$. Find the $\\mathbf i$ component of $\\iiint(2\\mathbf i+2z\\,\\mathbf j+y\\,\\mathbf k)\\,dV$ as a decimal.",
+       "type": "number",
+       "answer": 226.194671058,
+       "hint": "The i component is 2 times the volume of the cylinder.",
+       "solution": [
+        {
+         "do": "Volume.",
+         "m": "V=\\pi(3)^2(4)=36\\pi\\Rightarrow2V=72\\pi=226.2"
+        }
+       ],
+       "answerText": "72 pi = 226.19",
+       "tol": 0.5
+      },
+      {
+       "q": "For the same cylinder find the $\\mathbf j$ component, $\\iiint2z\\,dV$. Give a decimal.",
+       "type": "number",
+       "answer": 452.389342117,
+       "hint": "Use dV = rho d rho d phi dz.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "2\\int_0^4z\\,dz\\int_0^{2\\pi}d\\phi\\int_0^3\\rho\\,d\\rho=2(8)(2\\pi)\\left(\\tfrac92\\right)=144\\pi=452.4"
+        }
+       ],
+       "answerText": "144 pi = 452.39",
+       "tol": 1
+      },
+      {
+       "q": "For the same cylinder find the $\\mathbf k$ component, $\\iiint y\\,dV$. Give a number.",
+       "type": "number",
+       "answer": 0.0,
+       "hint": "y = rho sin(phi) and the integral of sin(phi) over a full turn is 0.",
+       "solution": [
+        "By symmetry the positive and negative y cancel, so the k component is 0."
+       ],
+       "answerText": "0"
+      },
+      {
+       "q": "Exercise 2.7. $\\mathbf F=3\\mathbf i+z\\,\\mathbf j+2y\\,\\mathbf k$ over the cylinder $x^2+y^2\\le4$, $0\\le z\\le3$. Find the $\\mathbf i$ component. Give a decimal.",
+       "type": "number",
+       "answer": 113.097335529,
+       "hint": "The i component is 3 times the volume 12 pi.",
+       "solution": [
+        {
+         "do": "Compute.",
+         "m": "3\\cdot\\pi(2)^2(3)=36\\pi=113.1"
+        }
+       ],
+       "answerText": "36 pi = 113.10",
+       "tol": 0.2
+      },
+      {
+       "q": "For the same Exercise 2.7 find the $\\mathbf j$ component, $\\iiint z\\,dV$. Give a decimal.",
+       "type": "number",
+       "answer": 56.548667765,
+       "hint": "z integrates to 9/2 over 0 to 3, and the circle has area 4 pi.",
+       "solution": [
+        {
+         "do": "Compute.",
+         "m": "\\tfrac92\\cdot4\\pi=18\\pi=56.55"
+        }
+       ],
+       "answerText": "18 pi = 56.55",
+       "tol": 0.2
+      },
+      {
+       "q": "A solid has density $2z$ in the box $0\\le x\\le1$, $0\\le y\\le3$, $0\\le z\\le2$. Find its mass $\\iiint2z\\,dV$. Give a number.",
+       "type": "number",
+       "answer": 12.0,
+       "hint": "The limits are constants.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "\\left(\\int_0^1dx\\right)\\left(\\int_0^3dy\\right)\\left(\\int_0^22z\\,dz\\right)=1\\cdot3\\cdot4=12"
+        }
+       ],
+       "answerText": "12"
+      }
+     ],
+     "quiz": [
+      {
+       "q": "The volume integral of a vector field is",
+       "options": [
+        "a scalar",
+        "a vector",
+        "a matrix",
+        "always zero"
+       ],
+       "answer": 1,
+       "explain": "Integrate each component."
+      },
+      {
+       "q": "In cylindrical coordinates dV equals",
+       "options": [
+        "d rho d phi dz",
+        "rho d rho d phi dz",
+        "rho squared d rho d phi dz",
+        "sin(phi) d rho d phi dz"
+       ],
+       "answer": 1,
+       "explain": "The extra factor rho comes from the geometry."
+      },
+      {
+       "q": "The plane 2x + y + z = 2 meets the x-axis at",
+       "options": [
+        "x = 2",
+        "x = 1",
+        "x = 0",
+        "x = 1/2"
+       ],
+       "answer": 1,
+       "explain": "Put y = z = 0."
+      },
+      {
+       "q": "The integral of y over a cylinder centred on the z-axis is",
+       "options": [
+        "the volume",
+        "zero",
+        "infinite",
+        "the radius"
+       ],
+       "answer": 1,
+       "explain": "Positive and negative y cancel by symmetry."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Volume integral",
+       "back": "$\\iiint F\\,dV$: scalar field gives a scalar, vector field a vector."
+      },
+      {
+       "front": "Cylindrical volume element",
+       "back": "$dV=\\rho\\,d\\rho\\,d\\phi\\,dz$."
+      },
+      {
+       "front": "Example 2.6 answer",
+       "back": "$\\tfrac23\\mathbf i+\\tfrac13\\mathbf k$."
+      },
+      {
+       "front": "Cylinder example answer",
+       "back": "$72\\pi\\,\\mathbf i+144\\pi\\,\\mathbf j$."
+      },
+      {
+       "front": "Exercise 2.7 answer",
+       "back": "$18\\pi(2\\mathbf i+\\mathbf j)$."
+      }
+     ],
+     "theory": [
+      {
+       "q": "Define the volume integral of a scalar field and of a vector field.",
+       "type": "Define",
+       "marks": 3,
+       "points": [
+        "Scalar field: the triple integral of F dV, a scalar",
+        "Vector field: the triple integral of each component, giving a vector",
+        "dV = dx dy dz in Cartesian coordinates"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Evaluate the volume integral of F = 2x over the box 0 <= x <= 1, 0 <= y <= 3, 0 <= z <= 2.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "The limits are constants",
+        "Integral of 2x from 0 to 1 is 1",
+        "Multiply by 3 and 2 to get 6"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Find the limits for the tetrahedron bounded by x = 0, y = 0, z = 0 and 2x + y + z = 2.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "The plane meets the axes at (1,0,0), (0,2,0) and (0,0,2)",
+        "x runs from 0 to 1",
+        "y runs from 0 to 2(1 - x)",
+        "z runs from 0 to 2(1 - x) - y"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Evaluate the volume integral of F = 2z i + y k over that tetrahedron.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "The i component is the integral of 2z, which is 2/3",
+        "The j component is 0",
+        "The k component is the integral of y, which is 1/3",
+        "The result is (2/3) i + (1/3) k"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Explain why cylindrical coordinates are used for a cylinder and state the volume element.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "The limits of a cylinder are constants in cylindrical coordinates",
+        "x = rho cos phi, y = rho sin phi",
+        "dV = rho d rho d phi dz"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Evaluate the volume integral of F = 2i + 2z j + y k over the cylinder x squared + y squared <= 9, 0 <= z <= 4.",
+       "type": "Explain",
+       "marks": 5,
+       "points": [
+        "The i component is 2 times the volume 36 pi, which is 72 pi",
+        "The j component is the integral of 2z, which is 144 pi",
+        "The k component is zero because the integral of sin phi over a full turn is 0",
+        "The result is 72 pi i + 144 pi j"
+       ],
+       "need": 4
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=volume+integral+triple+integral+cylindrical+coordinates+explained"
+      }
+     ]
+    },
+    {
+     "id": "7.4",
+     "title": "Surface integrals",
+     "slides": "Dr Jack's deck, slides 94 to 109 (Examples 2.7 and 2.8, Exercises 2.8 and 2.9); the orientation rule and the projection method are added",
+     "one_line": "A surface integral adds up a field over a curved surface; for a vector field it measures how much of the field flows through the surface.",
+     "analogy": "Hold a net in a river. The flux is the amount of water passing through the net each second. It depends on how fast the water moves, the area of the net, and how squarely the net faces the flow. If you tilt the net edge-on, nothing passes through.",
+     "recall": [
+      "What is the unit normal to the surface x squared + y squared = 4?",
+      "What is dS on the wall of a cylinder in cylindrical coordinates?"
+     ],
+     "exam": [
+      "Scalar field (slide 94): $\\displaystyle\\int_SV\\,d\\mathbf S=\\int_SV\\,\\hat{\\mathbf n}\\,dS$, a vector. Vector field (slide 102): $\\displaystyle\\int_S\\mathbf F\\cdot d\\mathbf S=\\int_S\\mathbf F\\cdot\\hat{\\mathbf n}\\,dS$, a number called the flux of $\\mathbf F$ through $S$. For a surface $\\phi(x,y,z)=c$ the unit normal is $\\hat{\\mathbf n}=\\dfrac{\\nabla\\phi}{|\\nabla\\phi|}$ (lesson 6.6; the slides write $S$ for the function and for the surface, which is confusing, so the function is called $\\phi$ here).",
+      "Orientation rule (not stated in the deck): a surface has two sides and the answer changes sign if the normal is reversed, so you must choose. For a closed surface the normal points outward. For an open surface the normal and the direction of its boundary go together by the right-hand rule: with your right thumb along $\\hat{\\mathbf n}$ the fingers curl in the direction in which the boundary is traversed, so the boundary runs counter-clockwise as seen from the tip of the normal (this is the rule used for Stokes' theorem). Not in your notes.",
+      "Method: (1) find $\\hat{\\mathbf n}$ from the gradient; (2) put the integrand in terms of the coordinates of the surface; (3) write $dS$ and the limits. For a cylinder wall of radius $a$: $x=a\\cos\\phi$, $y=a\\sin\\phi$, $dS=a\\,d\\phi\\,dz$. For a sphere of radius $a$: $dS=a^2\\sin\\theta\\,d\\theta\\,d\\phi$. For a flat face, $dS$ is the area element of the plane ($dx\\,dy$, $dy\\,dz$ or $dx\\,dz$) and $\\hat{\\mathbf n}$ is $\\pm$ a unit vector.",
+      "Example 2.7 (slides 95 to 100): $V=xyz$ on $x^2+y^2=4$, $0\\le z\\le3$, first octant: $\\nabla(x^2+y^2)=2x\\mathbf i+2y\\mathbf j$ has length $4$, so $\\hat{\\mathbf n}=\\tfrac12(x\\mathbf i+y\\mathbf j)$, $\\rho=2$, $dS=2\\,d\\phi\\,dz$ with $0\\le\\phi\\le\\tfrac\\pi2$, and the result is $12(\\mathbf i+\\mathbf j)$. Exercise 2.8 ($V=xyz^2$ on $x^2+y^2=9$, $0\\le z\\le2$): $24(\\mathbf i+\\mathbf j)$, recomputed and correct.",
+      "Example 2.8 (slides 103 to 108): $\\mathbf F=y\\mathbf i+2\\mathbf j+\\mathbf k$ over the part of $x^2+y^2+z^2=9$ in the first octant. $\\hat{\\mathbf n}=\\tfrac13(x\\mathbf i+y\\mathbf j+z\\mathbf k)$, so $\\mathbf F\\cdot\\hat{\\mathbf n}=\\tfrac13(xy+2y+z)$, and with $dS=9\\sin\\theta\\,d\\theta\\,d\\phi$ the flux is $9\\left(1+\\tfrac{3\\pi}{4}\\right)$. Exercise 2.9 ($\\mathbf F=x\\mathbf i+2z\\mathbf j+y\\mathbf k$ on the sphere of radius 2 in the first octant) has answer $8\\left(\\tfrac\\pi6+1\\right)$. The slide says ``a surface of the region'' but the answer matches the spherical part only, as in Example 2.8; the three flat faces are not included.",
+      "Projection method for a surface given by a function (not in the deck): if the surface is $\\phi(x,y,z)=c$ and its shadow in the $xy$-plane is $R$, then $\\displaystyle\\int_S\\mathbf F\\cdot\\hat{\\mathbf n}\\,dS=\\iint_R\\frac{\\mathbf F\\cdot\\nabla\\phi}{\\left|\\partial\\phi/\\partial z\\right|}\\,dx\\,dy$. For $\\mathbf F=(x,y,z)$ on the plane $x+y+z=1$ this gives $\\iint1\\,dx\\,dy=\\tfrac12$ over the triangle. Not in your notes."
+     ],
+     "terms": [
+      "surface-integral",
+      "flux",
+      "surface-orientation",
+      "unit-normal"
+     ],
+     "examples": [
+      {
+       "title": "Your slide 95: Example 2.7, a scalar field on a cylinder wall",
+       "problem": "$V=xyz$ on $x^2+y^2=4$, $0\\le z\\le3$, first octant. Find $\\int_SV\\,d\\mathbf S$.",
+       "steps": [
+        {
+         "do": "Gradient and unit normal.",
+         "m": "\\nabla(x^2+y^2)=2x\\mathbf i+2y\\mathbf j,\\quad|\\nabla|=4\\ \\Rightarrow\\ \\hat{\\mathbf n}=\\tfrac12(x\\mathbf i+y\\mathbf j)"
+        },
+        {
+         "do": "Cylinder coordinates with rho = 2.",
+         "m": "x=2\\cos\\phi,\\ y=2\\sin\\phi,\\ dS=2\\,d\\phi\\,dz,\\ 0\\le\\phi\\le\\tfrac\\pi2,\\ 0\\le z\\le3"
+        },
+        {
+         "do": "The integrand V n.",
+         "m": "V\\hat{\\mathbf n}=4z\\cos\\phi\\sin\\phi\\,(\\cos\\phi\\,\\mathbf i+\\sin\\phi\\,\\mathbf j)"
+        },
+        {
+         "do": "Integrate the i component.",
+         "m": "\\int_0^3\\int_0^{\\pi/2}4z\\cos^2\\phi\\sin\\phi\\,(2)\\,d\\phi\\,dz=8\\cdot\\tfrac92\\cdot\\tfrac13=12"
+        },
+        {
+         "do": "The j component is the same by symmetry.",
+         "m": "\\int_0^3\\int_0^{\\pi/2}4z\\cos\\phi\\sin^2\\phi\\,(2)\\,d\\phi\\,dz=12"
+        }
+       ],
+       "answer": "$12(\\mathbf i+\\mathbf j)$."
+      },
+      {
+       "title": "Your slide 103: Example 2.8, flux through part of a sphere",
+       "problem": "$\\mathbf F=y\\,\\mathbf i+2\\mathbf j+\\mathbf k$ over the part of $x^2+y^2+z^2=9$ in the first octant. Find $\\int_S\\mathbf F\\cdot d\\mathbf S$.",
+       "steps": [
+        {
+         "do": "Unit normal.",
+         "m": "\\nabla(x^2+y^2+z^2)=2(x,y,z),\\ |\\nabla|=6\\Rightarrow\\hat{\\mathbf n}=\\tfrac13(x\\mathbf i+y\\mathbf j+z\\mathbf k)"
+        },
+        {
+         "do": "The integrand.",
+         "m": "\\mathbf F\\cdot\\hat{\\mathbf n}=\\tfrac13(xy+2y+z)"
+        },
+        {
+         "do": "Spherical coordinates, r = 3.",
+         "m": "x=3\\sin\\theta\\cos\\phi,\\ y=3\\sin\\theta\\sin\\phi,\\ z=3\\cos\\theta,\\ dS=9\\sin\\theta\\,d\\theta\\,d\\phi,\\ 0\\le\\theta,\\phi\\le\\tfrac\\pi2"
+        },
+        {
+         "do": "Integrate.",
+         "m": "3\\int_0^{\\pi/2}\\int_0^{\\pi/2}\\left[3\\sin^3\\theta\\cos\\phi\\sin\\phi+2\\sin^2\\theta\\sin\\phi+\\sin\\theta\\cos\\theta\\right]d\\phi\\,d\\theta=9\\left(1+\\tfrac{3\\pi}{4}\\right)"
+        }
+       ],
+       "answer": "$9\\left(1+\\tfrac{3\\pi}{4}\\right)=30.21$."
+      },
+      {
+       "title": "Flux out of a closed surface",
+       "problem": "Find the flux of $\\mathbf F=x\\,\\mathbf i+y\\,\\mathbf j+z\\,\\mathbf k$ out of the whole sphere of radius 2, and through the curved side of the cylinder $\\rho=2$, $0\\le z\\le3$.",
+       "steps": [
+        {
+         "do": "On the sphere the outward normal is the unit radial vector.",
+         "m": "\\mathbf F\\cdot\\hat{\\mathbf n}=r=2"
+        },
+        {
+         "do": "Total area of the sphere is 4 pi r squared.",
+         "m": "\\text{Flux}=2\\cdot16\\pi=32\\pi"
+        },
+        {
+         "do": "On the cylinder wall F . n = rho = 2.",
+         "m": "\\text{Area}=2\\pi(2)(3)=12\\pi\\Rightarrow\\text{Flux}=24\\pi"
+        },
+        {
+         "do": "Check with the divergence theorem (lesson 7.6).",
+         "why": "div F = 3, and the sphere has volume 32 pi / 3, so 3 times that is 32 pi."
+        }
+       ],
+       "answer": "$32\\pi$ and $24\\pi$."
+      }
+     ],
+     "practice": [
+      {
+       "q": "Example 2.7. $V=xyz$ on the surface $x^2+y^2=4$, $0\\le z\\le3$, first octant. Find $\\int_SV\\,d\\mathbf S=\\int_SV\\,\\hat{\\mathbf n}\\,dS$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        12.0,
+        12.0,
+        0.0
+       ],
+       "hint": "n = (x i + y j)/2, rho = 2 and dS = 2 d phi dz, with phi from 0 to pi/2.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "\\int_0^3\\int_0^{\\pi/2}8z\\cos\\phi\\sin\\phi\\,(\\cos\\phi,\\sin\\phi,0)\\,2\\,d\\phi\\,dz=12(\\mathbf i+\\mathbf j)"
+        }
+       ],
+       "answerText": "12(i + j)"
+      },
+      {
+       "q": "Exercise 2.8. $V=xyz^2$ on $x^2+y^2=9$, $0\\le z\\le2$, first octant. Find $\\int_SV\\,d\\mathbf S$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        24.0,
+        24.0,
+        0.0
+       ],
+       "hint": "The surface is a cylinder wall with rho = 3, dS = 3 d phi dz and n = (cos phi, sin phi, 0).",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "27\\left(\\tfrac13\\right)\\left(\\tfrac83\\right)=24\\ \\text{for each of the }\\mathbf i\\text{ and }\\mathbf j\\text{ components}"
+        }
+       ],
+       "answerText": "24(i + j)"
+      },
+      {
+       "q": "Example 2.8. $\\mathbf F=y\\,\\mathbf i+2\\mathbf j+\\mathbf k$ over the part of the sphere $x^2+y^2+z^2=9$ in the first octant. Find $\\int_S\\mathbf F\\cdot d\\mathbf S$. Give a decimal.",
+       "type": "number",
+       "answer": 30.205750412,
+       "hint": "n = (x i + y j + z k)/3 and dS = 9 sin(theta) d theta d phi.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "9\\left(1+\\tfrac{3\\pi}{4}\\right)=9+\\tfrac{27\\pi}{4}=30.21"
+        }
+       ],
+       "answerText": "9(1 + 3 pi/4) = 30.21",
+       "tol": 0.05
+      },
+      {
+       "q": "Exercise 2.9 (taking $S$ to be the spherical part only, as in Example 2.8). $\\mathbf F=x\\,\\mathbf i+2z\\,\\mathbf j+y\\,\\mathbf k$ over the part of $x^2+y^2+z^2=4$ in the first octant. Find $\\int_S\\mathbf F\\cdot d\\mathbf S$. Give a decimal.",
+       "type": "number",
+       "answer": 12.188790205,
+       "hint": "n = (x i + y j + z k)/2 and dS = 4 sin(theta) d theta d phi.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "8\\left(\\tfrac\\pi6+1\\right)=\\tfrac{4\\pi}{3}+8=12.19"
+        }
+       ],
+       "answerText": "8(pi/6 + 1) = 12.19",
+       "tol": 0.05
+      },
+      {
+       "q": "Find the flux of $\\mathbf F=x\\,\\mathbf i+y\\,\\mathbf j+z\\,\\mathbf k$ out of the whole sphere of radius 2. Give a decimal.",
+       "type": "number",
+       "answer": 100.530964915,
+       "hint": "On the sphere F.n = r = 2 and the area is 16 pi.",
+       "solution": [
+        {
+         "do": "Multiply.",
+         "m": "2\\times4\\pi(2)^2=32\\pi=100.5"
+        }
+       ],
+       "answerText": "32 pi = 100.53",
+       "tol": 0.1
+      },
+      {
+       "q": "Find the flux of $\\mathbf F=x\\,\\mathbf i+y\\,\\mathbf j+z\\,\\mathbf k$ through the curved side of the cylinder $\\rho=2$, $0\\le z\\le3$, outward. Give a decimal.",
+       "type": "number",
+       "answer": 75.398223686,
+       "hint": "On the wall F.n = rho = 2 and the area is 2 pi (2)(3).",
+       "solution": [
+        {
+         "do": "Multiply.",
+         "m": "2\\times12\\pi=24\\pi=75.40"
+        }
+       ],
+       "answerText": "24 pi = 75.40",
+       "tol": 0.1
+      },
+      {
+       "q": "Not in your notes. Find the flux of $\\mathbf F=x\\,\\mathbf i+y\\,\\mathbf j+z\\,\\mathbf k$ through the part of the plane $x+y+z=1$ in the first octant, with the normal pointing away from the origin. Give a number.",
+       "type": "number",
+       "answer": 0.5,
+       "hint": "Use psi = x + y + z, grad psi = (1,1,1) and flux = double integral of F.grad(psi)/abs(d psi/dz) over the shadow in the xy-plane.",
+       "solution": [
+        {
+         "do": "On the plane F.grad(psi) = x + y + z = 1.",
+         "m": "\\iint_{\\text{triangle}}1\\,dx\\,dy=\\tfrac12"
+        }
+       ],
+       "answerText": "1/2",
+       "tol": 0.001
+      },
+      {
+       "q": "A closed surface is given. Which way should the normal point for a surface integral over it: outward or inward? Answer outward or inward.",
+       "type": "text",
+       "answer": "outward",
+       "hint": "Think of the convention for flux out of a region.",
+       "solution": [
+        "By convention a closed surface has its normal pointing outward, so a positive flux means net flow out."
+       ],
+       "answerText": "outward"
+      }
+     ],
+     "quiz": [
+      {
+       "q": "The surface integral of F . dS over a surface is called",
+       "options": [
+        "the circulation",
+        "the flux",
+        "the divergence",
+        "the gradient"
+       ],
+       "answer": 1,
+       "explain": "It measures the flow through the surface."
+      },
+      {
+       "q": "The unit normal to the surface phi = constant is",
+       "options": [
+        "grad phi",
+        "grad phi / abs(grad phi)",
+        "curl phi",
+        "phi / abs(phi)"
+       ],
+       "answer": 1,
+       "explain": "Divide the gradient by its length."
+      },
+      {
+       "q": "For a closed surface the normal is taken to point",
+       "options": [
+        "inward",
+        "outward",
+        "along the z-axis",
+        "either way, it does not matter"
+       ],
+       "answer": 1,
+       "explain": "Outward is the convention."
+      },
+      {
+       "q": "On a sphere of radius a the surface element is",
+       "options": [
+        "a d theta d phi",
+        "a squared sin(theta) d theta d phi",
+        "a sin(theta) d theta d phi",
+        "a squared d theta d phi"
+       ],
+       "answer": 1,
+       "explain": "The factor sin(theta) shrinks the area near the poles."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Surface integral of a scalar field",
+       "back": "$\\int_SV\\hat{\\mathbf n}\\,dS$, a vector."
+      },
+      {
+       "front": "Flux",
+       "back": "$\\int_S\\mathbf F\\cdot\\hat{\\mathbf n}\\,dS$, a number."
+      },
+      {
+       "front": "Cylinder wall and sphere elements",
+       "back": "$dS=a\\,d\\phi\\,dz$ and $dS=a^2\\sin\\theta\\,d\\theta\\,d\\phi$."
+      },
+      {
+       "front": "Orientation of a closed surface",
+       "back": "Outward normal (not stated in the deck)."
+      },
+      {
+       "front": "Example 2.8 answer",
+       "back": "$9(1+3\\pi/4)$."
+      }
+     ],
+     "theory": [
+      {
+       "q": "Define the surface integral of a scalar field and of a vector field.",
+       "type": "Define",
+       "marks": 3,
+       "points": [
+        "Scalar field: the integral of V n dS, a vector",
+        "Vector field: the integral of F.n dS, a number called the flux",
+        "n is the unit normal to the surface"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Explain how the unit normal to a surface is found.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Write the surface as phi(x, y, z) = constant",
+        "Take the gradient",
+        "Divide by its magnitude: n = grad phi / abs(grad phi)"
+       ],
+       "need": 3
+      },
+      {
+       "q": "State the orientation rule for surface integrals.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "For a closed surface the normal points outward",
+        "For an open surface the normal is chosen and the boundary direction follows by the right-hand rule",
+        "Reversing the normal changes the sign of the flux"
+       ],
+       "need": 3
+      },
+      {
+       "q": "State the surface element on a cylinder wall and on a sphere.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "Cylinder wall of radius a: dS = a d phi dz",
+        "Sphere of radius a: dS = a squared sin theta d theta d phi"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Evaluate the integral of V = xyz over the part of x squared + y squared = 4 with 0 <= z <= 3 in the first octant.",
+       "type": "Explain",
+       "marks": 5,
+       "points": [
+        "n = (x i + y j)/2 with rho = 2 and dS = 2 d phi dz",
+        "V n has components 4z cos phi sin phi times (cos phi, sin phi)",
+        "i component = 8 times 9/2 times 1/3 = 12",
+        "j component is the same",
+        "Result 12(i + j)"
+       ],
+       "need": 5
+      },
+      {
+       "q": "Evaluate the flux of F = y i + 2j + k through the part of x squared + y squared + z squared = 9 in the first octant.",
+       "type": "Explain",
+       "marks": 5,
+       "points": [
+        "n = (x i + y j + z k)/3",
+        "F.n = (xy + 2y + z)/3",
+        "dS = 9 sin theta d theta d phi with theta and phi from 0 to pi/2",
+        "Integrate the three terms",
+        "Result 9(1 + 3 pi/4)"
+       ],
+       "need": 5
+      },
+      {
+       "q": "Find the flux of F = x i + y j + z k out of the sphere of radius 2.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "F.n = r = 2 on the sphere",
+        "The area is 4 pi times 4 = 16 pi",
+        "Flux = 32 pi"
+       ],
+       "need": 3
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=surface+integral+flux+of+a+vector+field+explained"
+      }
+     ]
+    },
+    {
+     "id": "7.5",
+     "title": "Green's theorem",
+     "slides": "Dr Jack's deck, slides 110 to 118 (Example 2.9); the area formula and orientation are added",
+     "one_line": "Green's theorem says the circulation of a field round a closed curve in a plane equals the total of its local swirl over the area inside.",
+     "analogy": "Imagine a lake dotted with tiny whirlpools. Add up all the whirlpools inside the lake, and you get the same total as walking round the shore and adding up how much the current helps or hinders you. One sum is over the area, the other is along the boundary, and Green's theorem says they are equal.",
+     "recall": [
+      "What is the area of a circle of radius 2?",
+      "What is the polar form of dx dy?"
+     ],
+     "exam": [
+      "Green's theorem (slide 110): if $C$ is a closed curve in the $xy$-plane, traversed counter-clockwise, enclosing a region $S$, and $P(x,y)$ and $Q(x,y)$ are smooth, then $\\displaystyle\\iint_S\\left(\\frac{\\partial Q}{\\partial x}-\\frac{\\partial P}{\\partial y}\\right)dx\\,dy=\\oint_C(P\\,dx+Q\\,dy)$.",
+      "It is Stokes' theorem (lesson 7.7) for a flat surface in the $xy$-plane, since $\\mathbf F=P\\mathbf i+Q\\mathbf j$ has $(\\nabla\\times\\mathbf F)\\cdot\\mathbf k=\\dfrac{\\partial Q}{\\partial x}-\\dfrac{\\partial P}{\\partial y}$. Not in your notes.",
+      "The curve must be closed and traversed counter-clockwise, so that the region lies on the left; clockwise reverses the sign. The functions must have continuous first partial derivatives in the region. Not in your notes.",
+      "Example 2.9 (slides 111 to 118): $P=x^2+y^2$, $Q=x+2y$ on the quarter-disc bounded by $y=0$, $x=0$ and $x^2+y^2=4$ ($x,y\\ge0$). The word ``prove'' here means verify both sides by calculation.",
+      "Line integral side: $C_1$ ($y=0$, $0\\le x\\le2$): $\\int_0^2x^2dx=\\tfrac83$. $C_2$ (the arc, $x=2\\cos\\theta$, $y=2\\sin\\theta$): $\\pi-4$. $C_3$ ($x=0$, $y$ from $2$ to $0$): $\\int_2^02y\\,dy=-4$. Total: $\\tfrac83+\\pi-4-4=\\pi-\\tfrac{16}{3}$.",
+      "Area integral side: $\\dfrac{\\partial Q}{\\partial x}-\\dfrac{\\partial P}{\\partial y}=1-2y$, and in polar coordinates $\\displaystyle\\int_0^{\\pi/2}\\int_0^2(1-2r\\sin\\theta)\\,r\\,dr\\,d\\theta=\\pi-\\tfrac{16}{3}$. The two sides agree.",
+      "Area by Green's theorem: choosing $P=-\\tfrac y2$, $Q=\\tfrac x2$ gives $\\dfrac{\\partial Q}{\\partial x}-\\dfrac{\\partial P}{\\partial y}=1$, so $A=\\tfrac12\\oint(x\\,dy-y\\,dx)$. For a circle of radius $a$ this gives $\\pi a^2$. Not in your notes."
+     ],
+     "terms": [
+      "greens-theorem",
+      "circulation",
+      "closed-curve"
+     ],
+     "examples": [
+      {
+       "title": "Your slide 111: Example 2.9, line side",
+       "problem": "Verify Green's theorem for $\\oint[(x^2+y^2)dx+(x+2y)dy]$ round the quarter-disc of radius 2 in the first quadrant.",
+       "steps": [
+        {
+         "do": "Identify P and Q.",
+         "m": "P=x^2+y^2,\\quad Q=x+2y"
+        },
+        {
+         "do": "C1: y = 0, dy = 0, x from 0 to 2.",
+         "m": "\\int_0^2x^2dx=\\tfrac83"
+        },
+        {
+         "do": "C2: the arc, x = 2 cos t, y = 2 sin t, t from 0 to pi/2.",
+         "m": "\\int_0^{\\pi/2}(-8\\sin t+4\\cos^2t+8\\sin t\\cos t)dt=-8+\\pi+4=\\pi-4"
+        },
+        {
+         "do": "C3: x = 0, dx = 0, y from 2 down to 0.",
+         "m": "\\int_2^02y\\,dy=-4"
+        },
+        {
+         "do": "Add.",
+         "m": "\\tfrac83+(\\pi-4)-4=\\pi-\\tfrac{16}{3}"
+        }
+       ],
+       "answer": "$\\pi-\\tfrac{16}{3}$."
+      },
+      {
+       "title": "Your slide 116: the area side",
+       "problem": "Evaluate $\\iint_S\\left(\\dfrac{\\partial Q}{\\partial x}-\\dfrac{\\partial P}{\\partial y}\\right)dx\\,dy$ for the same region.",
+       "steps": [
+        {
+         "do": "Partial derivatives.",
+         "m": "\\frac{\\partial Q}{\\partial x}=1,\\quad\\frac{\\partial P}{\\partial y}=2y"
+        },
+        {
+         "do": "Polar coordinates.",
+         "m": "\\int_0^{\\pi/2}\\int_0^2(1-2r\\sin\\theta)\\,r\\,dr\\,d\\theta=\\int_0^{\\pi/2}\\left[2-\\tfrac{16}{3}\\sin\\theta\\right]d\\theta=\\pi-\\tfrac{16}{3}"
+        },
+        {
+         "do": "Compare.",
+         "why": "The two sides are equal, so Green's theorem is verified for this region."
+        }
+       ],
+       "answer": "$\\pi-\\tfrac{16}{3}$, equal to the line integral."
+      },
+      {
+       "title": "Area from a line integral",
+       "problem": "Use Green's theorem to find the area of an ellipse $x=a\\cos t$, $y=b\\sin t$.",
+       "steps": [
+        {
+         "do": "Choose P and Q so that dQ/dx - dP/dy = 1.",
+         "m": "P=-\\tfrac y2,\\ Q=\\tfrac x2\\ \\Rightarrow\\ A=\\tfrac12\\oint(x\\,dy-y\\,dx)"
+        },
+        {
+         "do": "Substitute.",
+         "m": "x\\,dy-y\\,dx=(ab\\cos^2t+ab\\sin^2t)\\,dt=ab\\,dt"
+        },
+        {
+         "do": "Integrate.",
+         "m": "A=\\tfrac12\\int_0^{2\\pi}ab\\,dt=\\pi ab"
+        }
+       ],
+       "answer": "$\\pi ab$."
+      }
+     ],
+     "practice": [
+      {
+       "q": "Example 2.9, the line integral. $P=x^2+y^2$, $Q=x+2y$ round the quarter-disc $x\\ge0$, $y\\ge0$, $x^2+y^2\\le4$, counter-clockwise. Find $\\oint(P\\,dx+Q\\,dy)$. Give a decimal.",
+       "type": "number",
+       "answer": -2.19174068,
+       "hint": "Add the three pieces: C1 along the x-axis, C2 the arc, C3 down the y-axis.",
+       "solution": [
+        {
+         "do": "Add.",
+         "m": "\\tfrac83+(\\pi-4)+(-4)=\\pi-\\tfrac{16}{3}=-2.192"
+        }
+       ],
+       "answerText": "pi - 16/3 = -2.1917",
+       "tol": 0.01
+      },
+      {
+       "q": "For the same curve find the piece $C_1$ ($y=0$, $x$ from 0 to 2). Give a decimal.",
+       "type": "number",
+       "answer": 2.666666667,
+       "hint": "On C1, dy = 0 and P = x^2.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "\\int_0^2x^2dx=\\tfrac83"
+        }
+       ],
+       "answerText": "8/3 = 2.6667",
+       "tol": 0.005
+      },
+      {
+       "q": "For the same curve find the piece $C_2$, the arc from $(2,0)$ to $(0,2)$. Give a decimal.",
+       "type": "number",
+       "answer": -0.858407346,
+       "hint": "Put x = 2 cos t, y = 2 sin t, with t from 0 to pi/2.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "\\int_0^{\\pi/2}(-8\\sin t+4\\cos^2t+8\\sin t\\cos t)\\,dt=-8+\\pi+4=\\pi-4"
+        }
+       ],
+       "answerText": "pi - 4 = -0.8584",
+       "tol": 0.005
+      },
+      {
+       "q": "For the same region find $\\iint_R\\left(\\dfrac{\\partial Q}{\\partial x}-\\dfrac{\\partial P}{\\partial y}\\right)dA$. Give a decimal.",
+       "type": "number",
+       "answer": -2.19174068,
+       "hint": "The integrand is 1 - 2y. Use polar coordinates.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "\\int_0^{\\pi/2}\\int_0^2(1-2r\\sin\\theta)\\,r\\,dr\\,d\\theta=\\pi-\\tfrac{16}{3}"
+        }
+       ],
+       "answerText": "pi - 16/3 = -2.1917",
+       "tol": 0.01
+      },
+      {
+       "q": "Use Green's theorem to find $\\oint(-y\\,dx+x\\,dy)$ round the circle of radius 2. Give a decimal.",
+       "type": "number",
+       "answer": 25.132741229,
+       "hint": "The integrand dQ/dx - dP/dy = 2, so the integral is twice the area.",
+       "solution": [
+        {
+         "do": "Apply.",
+         "m": "2\\times\\pi(2)^2=8\\pi=25.13"
+        }
+       ],
+       "answerText": "8 pi = 25.13",
+       "tol": 0.05
+      },
+      {
+       "q": "Use $A=\\tfrac12\\oint(x\\,dy-y\\,dx)$ to find the area of the ellipse $x=3\\cos t$, $y=2\\sin t$. Give a decimal.",
+       "type": "number",
+       "answer": 18.849555922,
+       "hint": "Substitute and integrate from 0 to 2 pi.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "\\tfrac12\\int_0^{2\\pi}(6\\cos^2t+6\\sin^2t)\\,dt=6\\pi=18.85"
+        }
+       ],
+       "answerText": "6 pi = 18.85",
+       "tol": 0.05
+      },
+      {
+       "q": "Verify Green's theorem for $P=xy$, $Q=x^2+y$ round the triangle $(0,0)$, $(1,0)$, $(1,1)$. Give the common value as a decimal.",
+       "type": "number",
+       "answer": 0.333333333,
+       "hint": "dQ/dx - dP/dy = 2x - x = x, integrated over 0 <= y <= x, 0 <= x <= 1.",
+       "solution": [
+        {
+         "do": "The area integral.",
+         "m": "\\int_0^1\\int_0^xx\\,dy\\,dx=\\tfrac13"
+        },
+        {
+         "do": "The line integral.",
+         "m": "0+\\tfrac32-\\tfrac76=\\tfrac13"
+        }
+       ],
+       "answerText": "1/3 = 0.3333",
+       "tol": 0.002
+      },
+      {
+       "q": "In Green's theorem should the closed curve be traversed clockwise or counter-clockwise? Answer clockwise or counter-clockwise.",
+       "type": "text",
+       "answer": "counter-clockwise",
+       "hint": "Think of the area staying on your left.",
+       "solution": [
+        "The curve is traversed counter-clockwise, so the enclosed region is on the left."
+       ],
+       "answerText": "counter-clockwise",
+       "alt": [
+        "counterclockwise",
+        "anticlockwise",
+        "anti-clockwise",
+        "ccw"
+       ]
+      }
+     ],
+     "quiz": [
+      {
+       "q": "Green's theorem relates",
+       "options": [
+        "a line integral round a closed curve and a double integral over the region",
+        "a surface integral and a volume integral",
+        "a line integral and a surface integral in space",
+        "two line integrals"
+       ],
+       "answer": 0,
+       "explain": "It is the two-dimensional case."
+      },
+      {
+       "q": "In Green's theorem the closed curve is traversed",
+       "options": [
+        "clockwise",
+        "counter-clockwise",
+        "in either direction",
+        "along the x-axis only"
+       ],
+       "answer": 1,
+       "explain": "The region lies on the left."
+      },
+      {
+       "q": "The integrand of the area integral is",
+       "options": [
+        "dP/dx - dQ/dy",
+        "dQ/dx - dP/dy",
+        "P + Q",
+        "dP/dy + dQ/dx"
+       ],
+       "answer": 1,
+       "explain": "It is the curl component normal to the plane."
+      },
+      {
+       "q": "The area of a circle of radius a from half the integral of (x dy - y dx) is",
+       "options": [
+        "pi a",
+        "pi a squared",
+        "2 pi a",
+        "a squared"
+       ],
+       "answer": 1,
+       "explain": "The integral gives 2 pi a squared, and half of it is pi a squared."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Green's theorem",
+       "back": "$\\iint_S\\left(\\frac{\\partial Q}{\\partial x}-\\frac{\\partial P}{\\partial y}\\right)dA=\\oint_C(P\\,dx+Q\\,dy)$."
+      },
+      {
+       "front": "Orientation",
+       "back": "The curve is counter-clockwise (region on the left)."
+      },
+      {
+       "front": "Example 2.9 value",
+       "back": "Both sides equal $\\pi-\\tfrac{16}{3}$."
+      },
+      {
+       "front": "Area by Green's theorem",
+       "back": "$A=\\tfrac12\\oint(x\\,dy-y\\,dx)$ (not in your notes)."
+      },
+      {
+       "front": "Special case of",
+       "back": "Stokes' theorem for a flat surface in the xy-plane."
+      }
+     ],
+     "theory": [
+      {
+       "q": "State Green's theorem.",
+       "type": "Define",
+       "marks": 4,
+       "points": [
+        "For a closed curve C in the xy-plane traversed counter-clockwise",
+        "Enclosing a region S",
+        "The integral of P dx + Q dy round C",
+        "Equals the double integral over S of (dQ/dx - dP/dy) dx dy"
+       ],
+       "need": 4
+      },
+      {
+       "q": "State the conditions under which Green's theorem applies.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "The curve is closed and traversed counter-clockwise",
+        "P and Q have continuous first partial derivatives in the region"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Verify Green's theorem for P = x squared + y squared and Q = x + 2y on the quarter-disc of radius 2 in the first quadrant: the line integral.",
+       "type": "Explain",
+       "marks": 5,
+       "points": [
+        "C1 along the x-axis gives 8/3",
+        "C2 along the arc gives pi - 4",
+        "C3 down the y-axis gives -4",
+        "Add the three pieces",
+        "The total is pi - 16/3"
+       ],
+       "need": 5
+      },
+      {
+       "q": "Verify the area side for the same region.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "dQ/dx - dP/dy = 1 - 2y",
+        "Use polar coordinates with r from 0 to 2 and theta from 0 to pi/2",
+        "The integral of (1 - 2 r sin theta) r gives pi - 16/3",
+        "This equals the line integral"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Show how Green's theorem gives the area of a region as a line integral.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Choose P = -y/2 and Q = x/2 so that dQ/dx - dP/dy = 1",
+        "Then the area is half the integral of (x dy - y dx)",
+        "For a circle of radius a this gives pi a squared"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Explain the relation between Green's theorem and Stokes' theorem.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "For F = P i + Q j the k component of curl F is dQ/dx - dP/dy",
+        "So Green's theorem is Stokes' theorem for a flat surface in the xy-plane"
+       ],
+       "need": 2
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=greens+theorem+explained+verification+example"
+      }
+     ]
+    },
+    {
+     "id": "7.6",
+     "title": "The divergence (Gauss) theorem",
+     "slides": "Dr Jack's deck, slides 119 to 131 (Example 2.10); applications and checks are added",
+     "one_line": "The divergence theorem says that the total flux out of a closed surface equals the total divergence inside it, so a surface calculation can be replaced by a volume one.",
+     "analogy": "Count the water pouring out of a bath through its whole surface and you get the same total as adding up how fast every tap and drain inside it is creating or removing water. The theorem says the net outflow through the boundary equals the sum of all the sources inside.",
+     "recall": [
+      "What is the divergence of x i + 2j + z squared k?",
+      "What is the volume element in cylindrical coordinates?"
+     ],
+     "exam": [
+      "Divergence theorem (slide 119): for a closed surface $S$ enclosing a volume $V$ in a smooth vector field $\\mathbf F$, $\\displaystyle\\iiint_V\\nabla\\cdot\\mathbf F\\,dV=\\oiint_S\\mathbf F\\cdot d\\mathbf S=\\oint_S\\mathbf F\\cdot\\hat{\\mathbf n}\\,dS$, with the normal pointing outward (the slide leaves out ``outward'').",
+      "Meaning: the divergence is the source strength per unit volume (lesson 6.7), so adding it over the whole region gives the total outflow through the boundary. Not in your notes.",
+      "Example 2.10 (slides 120 to 131): $\\mathbf F=x\\mathbf i+2\\mathbf j+z^2\\mathbf k$ in the region bounded by $z=0$, $z=4$, $x=0$, $y=0$ and $x^2+y^2=4$ (first octant). The word ``prove'' means verify that both sides agree.",
+      "Volume side: $\\nabla\\cdot\\mathbf F=1+2z$, and in cylindrical coordinates $\\displaystyle\\int_0^4\\int_0^{\\pi/2}\\int_0^2(1+2z)\\,\\rho\\,d\\rho\\,d\\phi\\,dz=20\\pi$.",
+      "Surface side: five faces. $S_1$ ($z=0$, $\\hat{\\mathbf n}=-\\mathbf k$): $\\mathbf F\\cdot\\hat{\\mathbf n}=-z^2=0$, flux $0$. $S_2$ ($z=4$, $\\hat{\\mathbf n}=\\mathbf k$): $\\mathbf F\\cdot\\hat{\\mathbf n}=16$ over a quarter-disc of area $\\pi$, flux $16\\pi$. $S_3$ ($y=0$, $\\hat{\\mathbf n}=-\\mathbf j$): $-2$ over a $2\\times4$ rectangle, flux $-16$. $S_4$ ($x=0$, $\\hat{\\mathbf n}=-\\mathbf i$): $-x=0$, flux $0$. $S_5$ ($x^2+y^2=4$, $\\hat{\\mathbf n}=\\tfrac12(x\\mathbf i+y\\mathbf j)$, $dS=2\\,d\\phi\\,dz$): flux $16+4\\pi$.",
+      "Total: $0+16\\pi-16+0+16+4\\pi=20\\pi$, equal to the volume side. Notice that the pieces $-16$ and $+16$ cancel, which is why the theorem is easier to use than the five-face calculation.",
+      "Checks and uses (not in the deck): the position field $\\mathbf r$ has $\\nabla\\cdot\\mathbf r=3$, so its flux out of any closed surface is $3\\times$ the enclosed volume (for a sphere of radius $a$, $4\\pi a^3$); a solenoidal field ($\\nabla\\cdot\\mathbf F=0$) has zero flux out of every closed surface. In electromagnetics, applying the theorem to $\\nabla\\cdot\\mathbf D=\\rho_v$ gives Gauss's law: the flux of $\\mathbf D$ out of a closed surface equals the enclosed charge. Not in your notes."
+     ],
+     "terms": [
+      "divergence-theorem",
+      "flux",
+      "closed-surface"
+     ],
+     "examples": [
+      {
+       "title": "Your slide 123: Example 2.10, the volume side",
+       "problem": "$\\mathbf F=x\\,\\mathbf i+2\\mathbf j+z^2\\mathbf k$ over $0\\le z\\le4$, $x^2+y^2\\le4$, $x,y\\ge0$. Find $\\iiint\\nabla\\cdot\\mathbf F\\,dV$.",
+       "steps": [
+        {
+         "do": "Divergence.",
+         "m": "\\nabla\\cdot\\mathbf F=\\frac{\\partial x}{\\partial x}+\\frac{\\partial2}{\\partial y}+\\frac{\\partial z^2}{\\partial z}=1+2z"
+        },
+        {
+         "do": "Cylindrical limits.",
+         "m": "0\\le\\rho\\le2,\\ 0\\le\\phi\\le\\tfrac\\pi2,\\ 0\\le z\\le4,\\ dV=\\rho\\,d\\rho\\,d\\phi\\,dz"
+        },
+        {
+         "do": "Integrate z first.",
+         "m": "\\int_0^4(1+2z)dz=\\left[z+z^2\\right]_0^4=20"
+        },
+        {
+         "do": "Then phi and rho.",
+         "m": "20\\cdot\\tfrac\\pi2\\cdot\\left[\\tfrac{\\rho^2}{2}\\right]_0^2=20\\cdot\\tfrac\\pi2\\cdot2=20\\pi"
+        }
+       ],
+       "answer": "$20\\pi$."
+      },
+      {
+       "title": "Your slides 125 to 131: the surface side",
+       "problem": "Find $\\oint\\mathbf F\\cdot d\\mathbf S$ over the five faces and compare.",
+       "steps": [
+        {
+         "do": "S1 (z = 0, n = -k) and S4 (x = 0, n = -i).",
+         "m": "\\mathbf F\\cdot\\hat{\\mathbf n}=-z^2=0\\ \\text{and}\\ -x=0\\Rightarrow0\\ \\text{each}"
+        },
+        {
+         "do": "S2 (z = 4, n = k).",
+         "m": "\\mathbf F\\cdot\\hat{\\mathbf n}=16,\\ \\text{area }\\pi\\Rightarrow16\\pi"
+        },
+        {
+         "do": "S3 (y = 0, n = -j).",
+         "m": "\\mathbf F\\cdot\\hat{\\mathbf n}=-2,\\ \\text{area }8\\Rightarrow-16"
+        },
+        {
+         "do": "S5, the curved face.",
+         "m": "\\hat{\\mathbf n}=\\tfrac12(x\\mathbf i+y\\mathbf j),\\ \\mathbf F\\cdot\\hat{\\mathbf n}=2\\cos^2\\phi+2\\sin\\phi,\\ dS=2\\,d\\phi\\,dz\\Rightarrow16+4\\pi"
+        },
+        {
+         "do": "Add.",
+         "m": "0+16\\pi-16+0+16+4\\pi=20\\pi"
+        },
+        {
+         "do": "Compare.",
+         "why": "The two sides are both 20 pi, so the theorem is verified."
+        }
+       ],
+       "answer": "$20\\pi$, equal to the volume side."
+      },
+      {
+       "title": "A quick use of the theorem",
+       "problem": "Find the flux of $\\mathbf F=x^2\\mathbf i+y^2\\mathbf j+z^2\\mathbf k$ out of the unit cube, and of $\\mathbf r=x\\mathbf i+y\\mathbf j+z\\mathbf k$ out of a sphere of radius $a$.",
+       "steps": [
+        {
+         "do": "Cube: divergence.",
+         "m": "\\nabla\\cdot\\mathbf F=2x+2y+2z"
+        },
+        {
+         "do": "Integrate over the cube.",
+         "m": "\\int_0^1\\int_0^1\\int_0^12(x+y+z)\\,dx\\,dy\\,dz=2\\left(\\tfrac12+\\tfrac12+\\tfrac12\\right)=3"
+        },
+        {
+         "do": "Check with the six faces.",
+         "why": "On each of the faces x = 1, y = 1 and z = 1 the flux is 1; on the other three faces F.n = 0. The total is 3."
+        },
+        {
+         "do": "Sphere: divergence of r.",
+         "m": "\\nabla\\cdot\\mathbf r=3\\Rightarrow\\text{flux}=3\\cdot\\tfrac43\\pi a^3=4\\pi a^3"
+        }
+       ],
+       "answer": "$3$ and $4\\pi a^3$."
+      }
+     ],
+     "practice": [
+      {
+       "q": "Example 2.10, the volume side. $\\mathbf F=x\\,\\mathbf i+2\\mathbf j+z^2\\mathbf k$ over the region $0\\le z\\le4$, $x^2+y^2\\le4$, first octant. Find $\\iiint\\nabla\\cdot\\mathbf F\\,dV$. Give a decimal.",
+       "type": "number",
+       "answer": 62.831853072,
+       "hint": "div F = 1 + 2z. Use cylindrical coordinates with dV = rho d rho d phi dz.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "\\int_0^4(1+2z)dz\\int_0^{\\pi/2}d\\phi\\int_0^2\\rho\\,d\\rho=20\\cdot\\tfrac\\pi2\\cdot2=20\\pi"
+        }
+       ],
+       "answerText": "20 pi = 62.83",
+       "tol": 0.1
+      },
+      {
+       "q": "For the same $\\mathbf F$ find the flux through the top face $S_2$ ($z=4$, $\\hat{\\mathbf n}=\\mathbf k$). Give a decimal.",
+       "type": "number",
+       "answer": 50.265482457,
+       "hint": "On S2, F.n = z^2 = 16 and the area is the quarter-disc, pi.",
+       "solution": [
+        {
+         "do": "Multiply.",
+         "m": "16\\times\\pi=16\\pi=50.27"
+        }
+       ],
+       "answerText": "16 pi = 50.27",
+       "tol": 0.1
+      },
+      {
+       "q": "For the same $\\mathbf F$ find the flux through the face $S_3$ ($y=0$, $\\hat{\\mathbf n}=-\\mathbf j$). Give a number.",
+       "type": "number",
+       "answer": -16.0,
+       "hint": "F.n = -2 and the face is 2 by 4.",
+       "solution": [
+        {
+         "do": "Multiply.",
+         "m": "-2\\times8=-16"
+        }
+       ],
+       "answerText": "-16"
+      },
+      {
+       "q": "For the same $\\mathbf F$ find the flux through the curved face $S_5$ ($x^2+y^2=4$). Give a decimal.",
+       "type": "number",
+       "answer": 28.566370614,
+       "hint": "n = (x i + y j)/2, F.n = 2 cos^2(phi) + 2 sin(phi), and dS = 2 d phi dz.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "\\int_0^4\\int_0^{\\pi/2}(2\\cos^2\\phi+2\\sin\\phi)(2)\\,d\\phi\\,dz=16+4\\pi=28.57"
+        }
+       ],
+       "answerText": "16 + 4 pi = 28.57",
+       "tol": 0.1
+      },
+      {
+       "q": "Add the fluxes: $S_1=0$, $S_2=16\\pi$, $S_3=-16$, $S_4=0$ and $S_5=16+4\\pi$. What is the total flux out of the closed surface? Give a decimal.",
+       "type": "number",
+       "answer": 62.831853072,
+       "hint": "The total should equal the volume integral.",
+       "solution": [
+        {
+         "do": "Add.",
+         "m": "0+16\\pi-16+0+16+4\\pi=20\\pi"
+        }
+       ],
+       "answerText": "20 pi = 62.83",
+       "tol": 0.1
+      },
+      {
+       "q": "Use the divergence theorem to find the flux of $\\mathbf F=x^2\\mathbf i+y^2\\mathbf j+z^2\\mathbf k$ out of the unit cube $0\\le x,y,z\\le1$. Give a number.",
+       "type": "number",
+       "answer": 3.0,
+       "hint": "div F = 2(x + y + z).",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "\\iiint2(x+y+z)\\,dV=2\\left(\\tfrac12+\\tfrac12+\\tfrac12\\right)=3"
+        }
+       ],
+       "answerText": "3"
+      },
+      {
+       "q": "Use the divergence theorem to find the flux of $\\mathbf F=x\\,\\mathbf i+y\\,\\mathbf j+z\\,\\mathbf k$ out of the cylinder $x^2+y^2\\le4$, $0\\le z\\le3$, including both ends. Give a decimal.",
+       "type": "number",
+       "answer": 113.097335529,
+       "hint": "div F = 3 and the volume is pi (4)(3).",
+       "solution": [
+        {
+         "do": "Multiply.",
+         "m": "3\\times12\\pi=36\\pi=113.1"
+        }
+       ],
+       "answerText": "36 pi = 113.10",
+       "tol": 0.2
+      },
+      {
+       "q": "The field $\\mathbf F=yz\\,\\mathbf i+xz\\,\\mathbf j+xy\\,\\mathbf k$ is solenoidal. What is its flux out of any closed surface? Give a number.",
+       "type": "number",
+       "answer": 0.0,
+       "hint": "Use the divergence theorem.",
+       "solution": [
+        "div F = 0, so the volume integral and the flux are both 0."
+       ],
+       "answerText": "0"
+      }
+     ],
+     "quiz": [
+      {
+       "q": "The divergence theorem equates",
+       "options": [
+        "a volume integral of div F and the flux through the closed boundary",
+        "a line integral and a surface integral",
+        "the curl and the divergence",
+        "a surface integral of curl F and a line integral"
+       ],
+       "answer": 0,
+       "explain": "Volume integral of the divergence equals the flux out."
+      },
+      {
+       "q": "In the divergence theorem the normal on the closed surface points",
+       "options": [
+        "inward",
+        "outward",
+        "upward",
+        "along the axis"
+       ],
+       "answer": 1,
+       "explain": "Outward."
+      },
+      {
+       "q": "The flux of a solenoidal field out of a closed surface is",
+       "options": [
+        "positive",
+        "zero",
+        "negative",
+        "the volume"
+       ],
+       "answer": 1,
+       "explain": "div F = 0."
+      },
+      {
+       "q": "For F = x i + y j + z k and a closed surface enclosing volume V, the flux is",
+       "options": [
+        "V",
+        "2V",
+        "3V",
+        "0"
+       ],
+       "answer": 2,
+       "explain": "div r = 3."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Divergence theorem",
+       "back": "$\\iiint_V\\nabla\\cdot\\mathbf F\\,dV=\\oint_S\\mathbf F\\cdot\\hat{\\mathbf n}\\,dS$, normal outward."
+      },
+      {
+       "front": "Example 2.10 value",
+       "back": "Both sides equal $20\\pi$."
+      },
+      {
+       "front": "Flux of a solenoidal field",
+       "back": "Zero through every closed surface (not in your notes)."
+      },
+      {
+       "front": "Flux of the position vector",
+       "back": "$3\\times$ the enclosed volume (not in your notes)."
+      },
+      {
+       "front": "Gauss's law from the theorem",
+       "back": "$\\oint\\mathbf D\\cdot d\\mathbf S=Q_{enc}$ (not in your notes)."
+      }
+     ],
+     "theory": [
+      {
+       "q": "State the divergence theorem.",
+       "type": "Define",
+       "marks": 3,
+       "points": [
+        "The volume integral of div F over V",
+        "Equals the flux of F out of the closed surface S bounding V",
+        "The normal on S points outward"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Explain what the divergence theorem means physically.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "The divergence is the source strength per unit volume",
+        "So the total of the sources inside equals the net flow out through the boundary"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Evaluate the volume side of the divergence theorem for F = x i + 2j + z squared k over the first-octant quarter cylinder of radius 2 and height 4.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "div F = 1 + 2z",
+        "Use cylindrical coordinates with dV = rho d rho d phi dz",
+        "The integral of (1 + 2z) from 0 to 4 is 20",
+        "Multiply by the area pi and the result is 20 pi"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Evaluate the flux of the same field through the five faces of the region and state the total.",
+       "type": "Explain",
+       "marks": 5,
+       "points": [
+        "S1 and S4 give 0",
+        "S2 gives 16 pi",
+        "S3 gives -16",
+        "S5 gives 16 + 4 pi",
+        "The total is 20 pi, the same as the volume integral"
+       ],
+       "need": 5
+      },
+      {
+       "q": "Use the divergence theorem to show that the flux of the position vector out of a sphere of radius a is 4 pi a cubed.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "div r = 3",
+        "Flux = 3 times the volume of the sphere",
+        "= 3 times (4/3) pi a cubed = 4 pi a cubed"
+       ],
+       "need": 3
+      },
+      {
+       "q": "State the value of the flux of a solenoidal field out of a closed surface and why.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "It is zero",
+        "Because the divergence is zero everywhere, so the volume integral is zero"
+       ],
+       "need": 2
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=divergence+theorem+gauss+theorem+explained+verification+example"
+      }
+     ]
+    },
+    {
+     "id": "7.7",
+     "title": "Stokes' theorem",
+     "slides": "Dr Jack's deck, slides 132 to 150 (Example 2.12; the deck has no Example 2.11, the numbering jumps from 2.10); the flat-surface check and the orientation rule are added",
+     "one_line": "Stokes' theorem says the circulation of a field round the edge of a surface equals the total swirl of the field passing through the surface.",
+     "analogy": "Take a net with a rim. The total of all the little whirlpools caught in the net equals the push you get from the current by walking once round the rim. It does not matter whether the net is flat or bulges like a bag, as long as it has the same rim.",
+     "recall": [
+      "What is the curl of z i + x y j + x z k?",
+      "Which way round does the boundary go for a normal pointing upwards?"
+     ],
+     "exam": [
+      "Stokes' theorem (slide 132): if $\\mathbf F$ is a smooth vector field on an open surface $S$ whose boundary is the closed curve $C$, then $\\displaystyle\\iint_S(\\nabla\\times\\mathbf F)\\cdot d\\mathbf S=\\oint_C\\mathbf F\\cdot d\\mathbf r$.",
+      "Orientation (not stated in the deck, and essential): the normal $\\hat{\\mathbf n}$ of $S$ and the direction of $C$ go together by the right-hand rule. With the thumb along $\\hat{\\mathbf n}$ the fingers curl in the direction of $C$, so $C$ is traversed counter-clockwise as seen from the tip of $\\hat{\\mathbf n}$. Reversing either one changes the sign of its side. Not in your notes.",
+      "The surface $S$ is open (it has an edge), unlike the closed surface of the divergence theorem. Green's theorem (lesson 7.5) is the special case of a flat surface in the $xy$-plane. Not in your notes.",
+      "Example 2.12 (slides 133 to 150): $\\mathbf F=z\\mathbf i+xy\\mathbf j+xz\\mathbf k$. The surface $S$ is made of $S_1$, the curved wall of the cylinder $x^2+y^2=9$ for $0\\le z\\le4$, $y\\ge0$; $S_2$, the half-disc at $z=4$; and $S_3$, the plane $y=0$ (a $6\\times4$ rectangle). Its boundary $C$ lies in $z=0$: $C_1$ is the semicircle of radius 3 and $C_2$ is the straight line from $(-3,0,0)$ to $(3,0,0)$.",
+      "Surface side: $\\nabla\\times\\mathbf F=(1-z)\\mathbf j+y\\,\\mathbf k$. $S_1$ ($\\hat{\\mathbf n}=\\tfrac13(x\\mathbf i+y\\mathbf j)$, $dS=3\\,d\\phi\\,dz$): $(\\nabla\\times\\mathbf F)\\cdot\\hat{\\mathbf n}=\\tfrac y3(1-z)$ gives $-24$. $S_2$ ($\\hat{\\mathbf n}=\\mathbf k$): $\\iint y\\,dA=18$. $S_3$ ($\\hat{\\mathbf n}=-\\mathbf j$): $\\iint(z-1)\\,dz\\,dx=24$. Total $-24+18+24=18$.",
+      "Line side: on $C_1$, $\\mathbf F=9\\sin\\theta\\cos\\theta\\,\\mathbf j$ and $d\\mathbf r=(-3\\sin\\theta\\,\\mathbf i+3\\cos\\theta\\,\\mathbf j)\\,d\\theta$, so $\\int_{C_1}\\mathbf F\\cdot d\\mathbf r=\\int_0^\\pi27\\sin\\theta\\cos^2\\theta\\,d\\theta=18$. On $C_2$, $\\mathbf F=\\mathbf 0$, so the integral is $0$. Total $18$, equal to the surface side.",
+      "Surface independence (not in the deck): only the boundary matters. The flat half-disc at $z=0$ with normal $\\mathbf k$ has the same boundary, and $\\iint y\\,dA=18$ over it, which gives the same answer. So the curved part and the plane together contribute exactly what the flat surface does: the choice of surface is free. For $\\mathbf F=-y\\mathbf i+x\\mathbf j$, a flat disc and a hemisphere of radius 2 both give $8\\pi$. Not in your notes."
+     ],
+     "terms": [
+      "stokes-theorem",
+      "circulation",
+      "curl"
+     ],
+     "examples": [
+      {
+       "title": "Your slide 135: Example 2.12, the curl",
+       "problem": "$\\mathbf F=z\\,\\mathbf i+xy\\,\\mathbf j+xz\\,\\mathbf k$. Find $\\nabla\\times\\mathbf F$.",
+       "steps": [
+        {
+         "do": "Expand the determinant.",
+         "m": "\\nabla\\times\\mathbf F=\\left(\\frac{\\partial(xz)}{\\partial y}-\\frac{\\partial(xy)}{\\partial z}\\right)\\mathbf i+\\left(\\frac{\\partial z}{\\partial z}-\\frac{\\partial(xz)}{\\partial x}\\right)\\mathbf j+\\left(\\frac{\\partial(xy)}{\\partial x}-\\frac{\\partial z}{\\partial y}\\right)\\mathbf k"
+        },
+        {
+         "do": "Simplify.",
+         "m": "\\nabla\\times\\mathbf F=0\\,\\mathbf i+(1-z)\\mathbf j+y\\,\\mathbf k"
+        }
+       ],
+       "answer": "$(1-z)\\mathbf j+y\\,\\mathbf k$."
+      },
+      {
+       "title": "Your slides 136 to 145: the surface side",
+       "problem": "Find $\\iint_S(\\nabla\\times\\mathbf F)\\cdot d\\mathbf S$ over $S_1$, $S_2$ and $S_3$.",
+       "steps": [
+        {
+         "do": "S1, the curved wall: n = (x i + y j)/3, rho = 3, dS = 3 d phi dz.",
+         "m": "(\\nabla\\times\\mathbf F)\\cdot\\hat{\\mathbf n}=\\tfrac y3(1-z)=\\sin\\phi\\,(1-z)\\Rightarrow3\\int_0^4(1-z)dz\\int_0^\\pi\\sin\\phi\\,d\\phi=3(-4)(2)=-24"
+        },
+        {
+         "do": "S2, the top half-disc: n = k.",
+         "m": "(\\nabla\\times\\mathbf F)\\cdot\\mathbf k=y=r\\sin\\theta\\Rightarrow\\int_0^3\\int_0^\\pi r^2\\sin\\theta\\,d\\theta\\,dr=18"
+        },
+        {
+         "do": "S3, the plane y = 0: n = -j.",
+         "m": "(\\nabla\\times\\mathbf F)\\cdot(-\\mathbf j)=z-1\\Rightarrow\\int_{-3}^3\\int_0^4(z-1)\\,dz\\,dx=24"
+        },
+        {
+         "do": "Add.",
+         "m": "-24+18+24=18"
+        }
+       ],
+       "answer": "$18$."
+      },
+      {
+       "title": "Your slides 146 to 150: the line side, and a flat surface",
+       "problem": "Find $\\oint_C\\mathbf F\\cdot d\\mathbf r$ round the boundary, and check with the flat half-disc at $z=0$.",
+       "steps": [
+        {
+         "do": "C1: x = 3 cos t, y = 3 sin t, z = 0, t from 0 to pi.",
+         "m": "\\mathbf F=(0,\\ 9\\sin t\\cos t,\\ 0),\\quad d\\mathbf r=(-3\\sin t,\\ 3\\cos t,\\ 0)dt\\Rightarrow\\int_0^\\pi27\\sin t\\cos^2t\\,dt=18"
+        },
+        {
+         "do": "C2: x = t, y = 0, z = 0.",
+         "m": "\\mathbf F=\\mathbf 0\\Rightarrow0"
+        },
+        {
+         "do": "Total.",
+         "m": "18+0=18"
+        },
+        {
+         "do": "Check with the flat half-disc in z = 0, normal k.",
+         "m": "\\iint(\\nabla\\times\\mathbf F)\\cdot\\mathbf k\\,dA=\\iint y\\,dA=\\int_0^3\\int_0^\\pi r^2\\sin\\theta\\,d\\theta\\,dr=18"
+        },
+        {
+         "do": "All three agree.",
+         "why": "Stokes' theorem depends only on the boundary: any surface with the same edge gives the same answer."
+        }
+       ],
+       "answer": "$18$ both ways, and $18$ by the flat surface."
+      }
+     ],
+     "practice": [
+      {
+       "q": "Example 2.12. $\\mathbf F=z\\,\\mathbf i+xy\\,\\mathbf j+xz\\,\\mathbf k$. Find $\\nabla\\times\\mathbf F$ at $(1,2,3)$. Give $(x,y,z)$.",
+       "type": "vector",
+       "answer": [
+        0.0,
+        -2.0,
+        2.0
+       ],
+       "hint": "curl F = (1 - z) j + y k.",
+       "solution": [
+        {
+         "do": "Substitute.",
+         "m": "\\nabla\\times\\mathbf F=(1-z)\\mathbf j+y\\,\\mathbf k\\Rightarrow(0,-2,2)"
+        }
+       ],
+       "answerText": "(0, -2, 2)"
+      },
+      {
+       "q": "For the curved wall $S_1$ ($x^2+y^2=9$, $0\\le z\\le4$, $y\\ge0$) find $\\iint(\\nabla\\times\\mathbf F)\\cdot d\\mathbf S$. Give a number.",
+       "type": "number",
+       "answer": -24.0,
+       "hint": "n = (cos phi, sin phi, 0), curl F . n = (1 - z) sin phi and dS = 3 d phi dz.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "3\\int_0^4(1-z)dz\\int_0^\\pi\\sin\\phi\\,d\\phi=3(-4)(2)=-24"
+        }
+       ],
+       "answerText": "-24"
+      },
+      {
+       "q": "For the top half-disc $S_2$ ($z=4$, $r\\le3$, $y\\ge0$, $\\hat{\\mathbf n}=\\mathbf k$) find $\\iint(\\nabla\\times\\mathbf F)\\cdot d\\mathbf S$. Give a number.",
+       "type": "number",
+       "answer": 18.0,
+       "hint": "curl F . k = y = r sin(theta).",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "\\int_0^3\\int_0^\\pi r^2\\sin\\theta\\,d\\theta\\,dr=9\\cdot2=18"
+        }
+       ],
+       "answerText": "18"
+      },
+      {
+       "q": "For the plane face $S_3$ ($y=0$, $\\hat{\\mathbf n}=-\\mathbf j$, $-3\\le x\\le3$, $0\\le z\\le4$) find $\\iint(\\nabla\\times\\mathbf F)\\cdot d\\mathbf S$. Give a number.",
+       "type": "number",
+       "answer": 24.0,
+       "hint": "curl F . (-j) = z - 1.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "6\\int_0^4(z-1)dz=6(8-4)=24"
+        }
+       ],
+       "answerText": "24"
+      },
+      {
+       "q": "Add the three surface integrals $-24$, $18$ and $24$. This should equal $\\oint\\mathbf F\\cdot d\\mathbf r$ round the boundary. Give the total.",
+       "type": "number",
+       "answer": 18.0,
+       "hint": "Add them.",
+       "solution": [
+        {
+         "do": "Add.",
+         "m": "-24+18+24=18"
+        }
+       ],
+       "answerText": "18"
+      },
+      {
+       "q": "The boundary piece $C_1$ is the semicircle $x=3\\cos\\theta$, $y=3\\sin\\theta$, $z=0$, $0\\le\\theta\\le\\pi$. Find $\\int_{C_1}\\mathbf F\\cdot d\\mathbf r$. Give a number.",
+       "type": "number",
+       "answer": 18.0,
+       "hint": "On C1, F = (0, 9 sin(theta) cos(theta), 0) and dr = (-3 sin(theta), 3 cos(theta), 0) d theta.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "\\int_0^\\pi27\\sin\\theta\\cos^2\\theta\\,d\\theta=\\left[-9\\cos^3\\theta\\right]_0^\\pi=18"
+        }
+       ],
+       "answerText": "18"
+      },
+      {
+       "q": "Use Stokes' theorem to find $\\oint\\mathbf F\\cdot d\\mathbf r$ for $\\mathbf F=-y\\,\\mathbf i+x\\,\\mathbf j$ round the circle of radius 2 in the $xy$-plane, counter-clockwise. Give a decimal.",
+       "type": "number",
+       "answer": 25.132741229,
+       "hint": "curl F = 2k, and the flat disc has area 4 pi.",
+       "solution": [
+        {
+         "do": "Apply.",
+         "m": "\\iint2\\,dA=2\\cdot4\\pi=8\\pi=25.13"
+        }
+       ],
+       "answerText": "8 pi = 25.13",
+       "tol": 0.05
+      },
+      {
+       "q": "Use the hemisphere $z\\ge0$ of radius 2 (outward normal) instead of the flat disc for the same $\\mathbf F=-y\\,\\mathbf i+x\\,\\mathbf j$. Find $\\iint(\\nabla\\times\\mathbf F)\\cdot d\\mathbf S$. Give a decimal.",
+       "type": "number",
+       "answer": 25.132741229,
+       "hint": "curl F . n = 2 cos(theta) and dS = 4 sin(theta) d theta d phi.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "\\int_0^{2\\pi}\\int_0^{\\pi/2}8\\sin\\theta\\cos\\theta\\,d\\theta\\,d\\phi=8\\cdot\\tfrac12\\cdot2\\pi=8\\pi"
+        }
+       ],
+       "answerText": "8 pi = 25.13",
+       "tol": 0.05
+      }
+     ],
+     "quiz": [
+      {
+       "q": "Stokes' theorem relates",
+       "options": [
+        "a surface integral of curl F and a line integral of F round the boundary",
+        "a volume integral and a surface integral",
+        "a line integral and a volume integral",
+        "div F and curl F"
+       ],
+       "answer": 0,
+       "explain": "It links the curl through a surface to the circulation round its edge."
+      },
+      {
+       "q": "Stokes' theorem applies to",
+       "options": [
+        "a closed surface",
+        "an open surface with a boundary curve",
+        "a line only",
+        "a volume only"
+       ],
+       "answer": 1,
+       "explain": "The surface has an edge."
+      },
+      {
+       "q": "The direction of the boundary curve is",
+       "options": [
+        "clockwise seen from the tip of the normal",
+        "counter-clockwise seen from the tip of the normal",
+        "arbitrary",
+        "along the x-axis"
+       ],
+       "answer": 1,
+       "explain": "The right-hand rule links the normal and the boundary."
+      },
+      {
+       "q": "If two surfaces have the same boundary, the surface integrals of curl F over them are",
+       "options": [
+        "different",
+        "equal (with matching orientation)",
+        "always zero",
+        "always 18"
+       ],
+       "answer": 1,
+       "explain": "Only the boundary matters."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Stokes' theorem",
+       "back": "$\\iint_S(\\nabla\\times\\mathbf F)\\cdot d\\mathbf S=\\oint_C\\mathbf F\\cdot d\\mathbf r$."
+      },
+      {
+       "front": "Orientation",
+       "back": "Right-hand rule: counter-clockwise boundary as seen from the tip of the normal (not in your notes)."
+      },
+      {
+       "front": "Example 2.12 value",
+       "back": "Both sides equal 18."
+      },
+      {
+       "front": "Surface independence",
+       "back": "Any surface with the same boundary gives the same answer (not in your notes)."
+      },
+      {
+       "front": "Stokes versus Green",
+       "back": "Green's theorem is Stokes' theorem for a flat surface in the xy-plane."
+      }
+     ],
+     "theory": [
+      {
+       "q": "State Stokes' theorem and the orientation rule.",
+       "type": "Define",
+       "marks": 4,
+       "points": [
+        "The surface integral of curl F over an open surface S equals the line integral of F round its boundary C",
+        "The boundary direction and the normal are linked by the right-hand rule",
+        "C is counter-clockwise as seen from the tip of the normal",
+        "Reversing the normal reverses the direction of C"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Describe the surface and boundary used in Example 2.12.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "S1 is the curved wall of the half-cylinder x squared + y squared = 9 for 0 <= z <= 4",
+        "S2 is the half-disc at z = 4 and S3 is the plane y = 0",
+        "The boundary is the semicircle C1 and the straight line C2 in the plane z = 0"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Find the curl of F = z i + xy j + xz k.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "Expand the determinant",
+        "curl F = (1 - z) j + y k"
+       ],
+       "need": 2
+      },
+      {
+       "q": "Evaluate the surface integral of curl F over S1, S2 and S3 in Example 2.12.",
+       "type": "Explain",
+       "marks": 5,
+       "points": [
+        "S1 gives -24",
+        "S2 gives 18",
+        "S3 gives 24",
+        "The total is -24 + 18 + 24, which is 18"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Evaluate the line integral of F round the boundary in Example 2.12 and compare.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "On C1 the integral of 27 sin t cos squared t from 0 to pi is 18",
+        "On C2, F is zero so the integral is 0",
+        "The total is 18",
+        "This equals the surface side, so the theorem is verified"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Explain why a flat surface with the same boundary gives the same answer in Example 2.12.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Stokes' theorem depends only on the boundary curve",
+        "The flat half-disc at z = 0 has the same boundary",
+        "Its integral of y over the half-disc is 18"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Use Stokes' theorem to find the circulation of F = -y i + x j round a circle of radius 2.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "curl F = 2k",
+        "The flat disc has area 4 pi",
+        "The circulation is 2 times 4 pi = 8 pi"
+       ],
+       "need": 3
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=stokes+theorem+explained+verification+example"
+      }
+     ]
+    }
+   ]
   }
  ],
  "glossary": {
@@ -15105,6 +17639,86 @@
    "term": "Harmonic function",
    "plain": "A function that satisfies Laplace's equation.",
    "exam": "A function with nabla squared phi = 0 (not in the notes)."
+  },
+  "line-integral": {
+   "term": "Line integral",
+   "plain": "Adding up a quantity along a curve.",
+   "exam": "The integral of a function or of F . dr along a curve C; for a force it is the work done."
+  },
+  "parametrisation": {
+   "term": "Parametrisation",
+   "plain": "Describing a curve or surface with one or two helper variables.",
+   "exam": "Writing x, y, z as functions of a parameter, so that an integral can be done in that parameter."
+  },
+  "work-done": {
+   "term": "Work done by a force",
+   "plain": "The push along the direction of travel, added up along the path.",
+   "exam": "W = the line integral of F . dr along the path."
+  },
+  "double-integral": {
+   "term": "Double integral",
+   "plain": "Adding up a function over an area by doing two single integrals.",
+   "exam": "The integral of f(x, y) over a region R, written with two integral signs."
+  },
+  "triple-integral": {
+   "term": "Triple integral",
+   "plain": "Adding up a function over a volume by doing three single integrals.",
+   "exam": "The integral of f(x, y, z) over a solid, with dV = dx dy dz."
+  },
+  "region-of-integration": {
+   "term": "Region of integration",
+   "plain": "The area or solid that the integral covers.",
+   "exam": "The set of points over which a double or triple integral is taken; its boundary gives the limits."
+  },
+  "volume-integral": {
+   "term": "Volume integral",
+   "plain": "A total of a field over a solid; a vector for a vector field.",
+   "exam": "The integral of F dV over a solid region V; for a vector field each component is integrated."
+  },
+  "surface-integral": {
+   "term": "Surface integral",
+   "plain": "Adding up a field over a curved surface.",
+   "exam": "The integral of V n dS (scalar field, a vector) or F . n dS (vector field, a number)."
+  },
+  "flux": {
+   "term": "Flux",
+   "plain": "How much of a field flows through a surface.",
+   "exam": "The surface integral of F . n dS."
+  },
+  "surface-orientation": {
+   "term": "Orientation of a surface",
+   "plain": "Which side of the surface the normal points to.",
+   "exam": "The choice of unit normal: outward for a closed surface; for an open surface, linked to the boundary by the right-hand rule."
+  },
+  "greens-theorem": {
+   "term": "Green's theorem",
+   "plain": "Swirl added over an area equals the circulation round its edge.",
+   "exam": "The double integral of (dQ/dx - dP/dy) over S equals the line integral of P dx + Q dy round the boundary C, counter-clockwise."
+  },
+  "circulation": {
+   "term": "Circulation",
+   "plain": "How much a field flows round a closed loop.",
+   "exam": "The line integral of F . dr round a closed curve."
+  },
+  "closed-curve": {
+   "term": "Closed curve",
+   "plain": "A loop that ends where it starts.",
+   "exam": "A curve whose end point is its starting point, such as a circle."
+  },
+  "divergence-theorem": {
+   "term": "Divergence theorem",
+   "plain": "Everything created inside a region flows out through its surface.",
+   "exam": "The volume integral of div F over V equals the flux of F out of the closed surface S bounding V (Gauss' theorem)."
+  },
+  "closed-surface": {
+   "term": "Closed surface",
+   "plain": "A surface that completely encloses a volume, like a balloon.",
+   "exam": "A surface with no boundary curve; its normal is taken outward."
+  },
+  "stokes-theorem": {
+   "term": "Stokes' theorem",
+   "plain": "Swirl passing through a surface equals the circulation round its rim.",
+   "exam": "The surface integral of curl F over S equals the line integral of F round the boundary C of S; the orientation follows the right-hand rule."
   }
  },
  "past": [

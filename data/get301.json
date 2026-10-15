@@ -14155,7 +14155,7 @@
         },
         {
          "do": "For 1/r use the spherical form of the Laplacian (not in your notes).",
-         "m": "\\nabla^2\\!\\left(\\frac1r\\right)=\\frac1{r^2}\\frac{d}{dr}\\left(r^2\\cdot\\left(-\\frac1{r^2}\\right)\\right)=\\frac1{r^2}\\frac{d(-1)}{dr}=0"
+         "m": "\\nabla^2\\left(\\frac1r\\right)=\\frac1{r^2}\\frac{d}{dr}\\left(r^2\\cdot\\left(-\\frac1{r^2}\\right)\\right)=\\frac1{r^2}\\frac{d(-1)}{dr}=0"
         },
         {
          "do": "Check in Cartesian coordinates.",

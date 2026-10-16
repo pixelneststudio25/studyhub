@@ -3913,7 +3913,8 @@
        "status": "pending",
        "search_fallback": "https://www.youtube.com/results?search_query=fourier+series+explained+engineering+mathematics"
       }
-     ]
+     ],
+     "figure": "g301_fourier"
     },
     {
      "id": "2.2",
@@ -4238,7 +4239,8 @@
        "status": "pending",
        "search_fallback": "https://www.youtube.com/results?search_query=fourier+half+range+series+even+odd"
       }
-     ]
+     ],
+     "figure": "g301_evenodd"
     },
     {
      "id": "2.3",
@@ -4534,7 +4536,8 @@
        "status": "pending",
        "search_fallback": "https://www.youtube.com/results?search_query=gamma+function+explained+engineering+mathematics"
       }
-     ]
+     ],
+     "figure": "g301_gamma"
     },
     {
      "id": "2.4",
@@ -5116,7 +5119,8 @@
        "status": "pending",
        "search_fallback": "https://www.youtube.com/results?search_query=bessel+functions+explained+engineering+mathematics"
       }
-     ]
+     ],
+     "figure": "g301_bessel"
     }
    ]
   },
@@ -5390,7 +5394,8 @@
        "status": "pending",
        "search_fallback": "https://www.youtube.com/results?search_query=fourier+integral+explained+engineering+mathematics"
       }
-     ]
+     ],
+     "figure": "g301_pulse"
     },
     {
      "id": "3.2",
@@ -5664,7 +5669,8 @@
        "status": "pending",
        "search_fallback": "https://www.youtube.com/results?search_query=fourier+transform+explained+engineering+mathematics"
       }
-     ]
+     ],
+     "figure": "g301_ftpair"
     },
     {
      "id": "3.3",
@@ -6968,7 +6974,8 @@
        "status": "pending",
        "search_fallback": "https://www.youtube.com/results?search_query=second+order+differential+equations+constant+coefficients+auxiliary+equation"
       }
-     ]
+     ],
+     "figure": "g301_damping"
     },
     {
      "id": "4.2",
@@ -8568,7 +8575,8 @@
        "status": "pending",
        "search_fallback": "https://www.youtube.com/results?search_query=probability+density+function+cumulative+distribution+function+explained"
       }
-     ]
+     ],
+     "figure": "g301_density"
     },
     {
      "id": "5.3",
@@ -10038,7 +10046,8 @@
        "status": "pending",
        "search_fallback": "https://www.youtube.com/results?search_query=normal+distribution+z+table+explained+standard+normal"
       }
-     ]
+     ],
+     "figure": "g301_normal"
     },
     {
      "id": "5.7",

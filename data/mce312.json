@@ -1,0 +1,2588 @@
+{
+ "course": {
+  "code": "FUTM-MCE 312",
+  "title": "Signals and Systems",
+  "units": 2,
+  "lecturer": "Engr. Dr. J. A. Bala",
+  "school": "FUT Minna",
+  "planned": 24,
+  "math": true
+ },
+ "modules": [
+  {
+   "id": "m1",
+   "title": "Signals",
+   "source": "Engr. Dr J. A. Bala, L01 Introduction to Signals and Systems, and the CA test; anything not in your notes is labelled",
+   "lessons": [
+    {
+     "id": "1.1",
+     "title": "What is a signal? Continuous, discrete, deterministic and random",
+     "slides": "L01 slides 2, 3, 13 and 14 (CA test question 1); analogue and digital signals, notation and a model exam answer are added",
+     "one_line": "A signal is a quantity that changes with time (or another variable) and carries information in the way it changes.",
+     "analogy": "Think of a heart monitor in a hospital. The line on the screen is a signal: it is a record of how one quantity (the electrical activity of the heart) changes as time passes, and the doctor reads the information from the shape of the line.",
+     "recall": [
+      "What is a function, in one sentence?",
+      "On a graph of the height of a ball against time, what do the horizontal and vertical axes show?"
+     ],
+     "exam": [
+      "Plain English first: a signal is a record of how something changes, where the pattern of the changes carries a message. Exam definition (slide 3): a signal describes a time-varying physical phenomenon that is intended to convey information. Another form of the same definition: a signal is a function of one or more independent variables that contains information. Examples on the slide: a voice signal, a video signal, signals on telephone wires, the ECG (heart) and the EEG (brain).",
+      "The two kinds of variable. In $x(t)$ the time $t$ is the independent variable (you choose it, like a place on a clock) and $x$ is the dependent variable (the value you read off for that time). Time is the usual independent variable, but it need not be: a photograph is a signal of two variables (how far across and how far down), and the value is the brightness at that spot. Not in your notes.",
+      "Continuous-time signal (slide 13): defined for every instant of time, so there is a value at every point on the time axis, however closely you look. It is written with round brackets, $x(t)$. Examples: the voltage from a microphone, or the temperature of a room, thought of as changing smoothly.",
+      "Discrete-time signal (slide 13): defined only at separate instants, so between two neighbouring instants there is simply no value. It is written with square brackets, $x[n]$, where $n$ is a whole-number counter $\\dots,-2,-1,0,1,2,\\dots$. Examples: the closing price of a share each day, or the list of numbers that a computer stores for a recording. Round brackets mean continuous, square brackets mean discrete: this is the one habit that avoids many mistakes.",
+      "Analogue and digital (not on the slides, but needed for sampling in Module 3). Two separate questions can be asked: is the time axis continuous or discrete, and is the amplitude (the height) continuous or can it take only a fixed list of values? An analogue signal is continuous in both. A digital signal is discrete in both: it is sampled in time and quantised in amplitude. A signal can also be discrete in time but continuous in amplitude (the stage between sampling and quantising). Not in your notes.",
+      "Deterministic and non-deterministic signals (slide 14). A deterministic signal has no uncertainty: it can be defined exactly by a mathematical formula, such as $x(t)=5\\sin(100t)$. A non-deterministic (random) signal has uncertainty about its value at some instants, so it cannot be written as an exact equation and is modelled with probability. The slides give noise and speech as examples of random signals.",
+      "Three ways to describe a signal: a formula (for example $x(t)=2t+1$), a graph, or a list of values (for a discrete-time signal, such as $x[n]=\\{3,1,4,1,5\\}$ with the first number at $n=0$). Not in your notes.",
+      "Exam template for the first test question: (1) the definition in one sentence, (2) the key difference in one sentence (continuous-time: a value at every instant, written $x(t)$; discrete-time: values only at separate instants, written $x[n]$), (3) one example of each. Not in your notes."
+     ],
+     "terms": [
+      "signal",
+      "independent-variable",
+      "continuous-time-signal",
+      "discrete-time-signal",
+      "analogue-signal",
+      "digital-signal",
+      "deterministic-signal",
+      "random-signal"
+     ],
+     "examples": [
+      {
+       "title": "Classify the signal",
+       "problem": "Classify each as continuous-time or discrete-time: (a) $x(t)=3\\cos(2\\pi t)$, (b) $x[n]=0.5^n$ for $n\\ge0$, (c) the voltage from a microphone, (d) the rainfall in millimetres recorded once every day at 9 am.",
+       "steps": [
+        {
+         "do": "Ask the one question: is there a value at every instant, or only at separate instants?"
+        },
+        {
+         "do": "(a) Round brackets and a formula that works for every real t.",
+         "why": "You can put in t = 0.3 or t = 1.77 and get a value, so it is defined at every instant.",
+         "m": "\\text{continuous-time}"
+        },
+        {
+         "do": "(b) Square brackets and n a whole number.",
+         "why": "x[0.5] has no meaning, so the signal exists only at whole-number instants.",
+         "m": "\\text{discrete-time}"
+        },
+        {
+         "do": "(c) A microphone voltage varies smoothly and has a value at every instant: continuous-time (and analogue)."
+        },
+        {
+         "do": "(d) The rain itself falls continuously, but the record is one number per day.",
+         "why": "You classify the signal as it is recorded, not the physical process behind it.",
+         "m": "\\text{discrete-time}"
+        }
+       ],
+       "answer": "(a) continuous-time, (b) discrete-time, (c) continuous-time, (d) discrete-time."
+      },
+      {
+       "title": "Round and square brackets in practice",
+       "problem": "Find the values of $x[n]=n^2-1$ for $n=-2,-1,0,1,2,3$, and then find $x(t)=2t+1$ at $t=1.5$ and $t=-0.25$.",
+       "steps": [
+        {
+         "do": "Replace n by each whole number in turn.",
+         "m": "x[-2]=3,\\ x[-1]=0,\\ x[0]=-1,\\ x[1]=0,\\ x[2]=3,\\ x[3]=8"
+        },
+        {
+         "do": "Write the result as a list.",
+         "why": "A discrete-time signal is nothing more than a list of numbers with a position for each.",
+         "m": "x[n]=\\{3,0,-1,0,3,8\\}\\ \\text{for}\\ n=-2,\\dots,3"
+        },
+        {
+         "do": "For the continuous-time signal any real t is allowed.",
+         "m": "x(1.5)=2(1.5)+1=4,\\qquad x(-0.25)=2(-0.25)+1=0.5"
+        },
+        {
+         "do": "Check: could you ask for x[1.5] in the first signal?",
+         "why": "No. A discrete-time signal has no value between whole numbers; that is exactly what makes it discrete."
+        }
+       ],
+       "answer": "$\\{3,0,-1,0,3,8\\}$; $x(1.5)=4$ and $x(-0.25)=0.5$."
+      },
+      {
+       "title": "Deterministic or random",
+       "problem": "Classify each as deterministic or random: (a) $x(t)=5\\sin(100t)$, (b) the noise voltage from a resistor, (c) a recording of speech, (d) $x[n]=(-1)^n$.",
+       "steps": [
+        {
+         "do": "Ask: is there an exact formula that predicts every value?"
+        },
+        {
+         "do": "(a) Yes: put in any t and the value is fixed.",
+         "m": "\\text{deterministic}"
+        },
+        {
+         "do": "(b) No: only averages can be predicted, never the exact value.",
+         "m": "\\text{random}"
+        },
+        {
+         "do": "(c) Speech cannot be written as an exact equation (slide 14 lists it as random).",
+         "m": "\\text{random}"
+        },
+        {
+         "do": "(d) Yes: it alternates 1, -1, 1, -1 forever, completely predictable.",
+         "m": "\\text{deterministic}"
+        }
+       ],
+       "answer": "(a) deterministic, (b) random, (c) random, (d) deterministic."
+      },
+      {
+       "title": "CA test question 1: a model answer",
+       "problem": "Provide a formal definition of a signal and explain the key difference between a continuous-time signal and a discrete-time signal, giving one example of each.",
+       "steps": [
+        {
+         "do": "Definition.",
+         "m": "\\text{A signal is a function of one or more independent variables (usually time) that contains information.}"
+        },
+        {
+         "do": "The key difference.",
+         "why": "This is the sentence the marks are for.",
+         "m": "\\text{Continuous-time: defined at every instant, written }x(t).\\ \\text{Discrete-time: defined only at separate instants, written }x[n]."
+        },
+        {
+         "do": "One example of each.",
+         "m": "\\text{Continuous-time: the voltage from a microphone.}\\ \\text{Discrete-time: the closing price of a share each day.}"
+        }
+       ],
+       "answer": "Definition, key difference and one example of each, as above."
+      }
+     ],
+     "practice": [
+      {
+       "q": "A discrete-time signal is $x[n]=n^2-1$. Find $x[3]$.",
+       "type": "number",
+       "answer": 8.0,
+       "hint": "Replace n by 3.",
+       "solution": [
+        {
+         "do": "Substitute.",
+         "m": "x[3]=3^2-1=8"
+        }
+       ],
+       "answerText": "8"
+      },
+      {
+       "q": "A continuous-time signal is $x(t)=2t+1$. Find $x(1.5)$.",
+       "type": "number",
+       "answer": 4.0,
+       "hint": "Replace t by 1.5.",
+       "solution": [
+        {
+         "do": "Substitute.",
+         "m": "x(1.5)=2(1.5)+1=4"
+        }
+       ],
+       "answerText": "4"
+      },
+      {
+       "q": "A discrete-time signal is $x[n]=2^n$. Find $x[-1]$.",
+       "type": "number",
+       "answer": 0.5,
+       "hint": "A negative power means one over the positive power.",
+       "solution": [
+        {
+         "do": "Substitute.",
+         "m": "x[-1]=2^{-1}=\\tfrac12=0.5"
+        }
+       ],
+       "answerText": "0.5",
+       "tol": 0.0005
+      },
+      {
+       "q": "A discrete-time signal has the values $x[0],x[1],x[2],x[3],x[4]=3,1,4,1,5$. Find $x[2]$.",
+       "type": "number",
+       "answer": 4.0,
+       "hint": "Count from n = 0: the first value is x[0].",
+       "solution": [
+        {
+         "do": "Read off the list.",
+         "m": "x[0]=3,\\ x[1]=1,\\ x[2]=4"
+        }
+       ],
+       "answerText": "4"
+      },
+      {
+       "q": "For $x[n]=n+1$, add up the four values $x[0]+x[1]+x[2]+x[3]$.",
+       "type": "number",
+       "answer": 10.0,
+       "hint": "The values are 1, 2, 3 and 4.",
+       "solution": [
+        {
+         "do": "Add.",
+         "m": "1+2+3+4=10"
+        }
+       ],
+       "answerText": "10"
+      },
+      {
+       "q": "A signal is defined only at the whole-number times n = 0, 1, 2, and so on. Is it continuous-time or discrete-time? Answer continuous or discrete.",
+       "type": "text",
+       "answer": "discrete",
+       "hint": "Is there a value between n = 1 and n = 2?",
+       "solution": [
+        "A signal defined only at separate instants is a discrete-time signal."
+       ],
+       "answerText": "discrete",
+       "alt": [
+        "discrete-time",
+        "discrete time"
+       ]
+      },
+      {
+       "q": "The voltage from a resistor that is dominated by thermal noise: is it deterministic or random? Answer deterministic or random.",
+       "type": "text",
+       "answer": "random",
+       "hint": "Can you write down a formula that gives its exact value at any future instant?",
+       "solution": [
+        "Noise cannot be written as an exact formula; it is described with probability, so it is random (non-deterministic)."
+       ],
+       "answerText": "random",
+       "alt": [
+        "non-deterministic",
+        "nondeterministic",
+        "non deterministic"
+       ]
+      },
+      {
+       "q": "Is $x(t)=5\\sin(100t)$ deterministic or random? Answer deterministic or random.",
+       "type": "text",
+       "answer": "deterministic",
+       "hint": "Is there a formula that gives the exact value at every instant?",
+       "solution": [
+        "The formula gives the exact value at every instant with no uncertainty, so it is deterministic."
+       ],
+       "answerText": "deterministic"
+      }
+     ],
+     "quiz": [
+      {
+       "q": "A discrete-time signal is",
+       "options": [
+        "defined at every instant of time",
+        "defined only at separate instants, usually written x[n]",
+        "always random",
+        "always a sine wave"
+       ],
+       "answer": 1,
+       "explain": "Discrete-time means separate instants; square brackets x[n]."
+      },
+      {
+       "q": "Which of these is deterministic?",
+       "options": [
+        "the noise in a radio",
+        "x(t) = 5 sin(100t)",
+        "a recording of speech",
+        "the static between stations"
+       ],
+       "answer": 1,
+       "explain": "It is the only one with an exact formula."
+      },
+      {
+       "q": "In x(t) the symbol t is the",
+       "options": [
+        "independent variable",
+        "dependent variable",
+        "amplitude",
+        "output"
+       ],
+       "answer": 0,
+       "explain": "t is what you choose; x is what you read off."
+      },
+      {
+       "q": "A digital signal is",
+       "options": [
+        "continuous in time and in amplitude",
+        "discrete in time and in amplitude",
+        "continuous in time only",
+        "random"
+       ],
+       "answer": 1,
+       "explain": "Digital means sampled in time and quantised in amplitude."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Signal",
+       "back": "A function of one or more independent variables that contains information (a time-varying physical phenomenon that conveys information)."
+      },
+      {
+       "front": "Continuous-time and discrete-time",
+       "back": "Continuous-time x(t): a value at every instant. Discrete-time x[n]: values only at separate instants."
+      },
+      {
+       "front": "Deterministic and random",
+       "back": "Deterministic: an exact formula, no uncertainty. Random: modelled with probability, no exact equation."
+      },
+      {
+       "front": "Analogue and digital",
+       "back": "Analogue: continuous in time and amplitude. Digital: discrete in both (not in your notes)."
+      },
+      {
+       "front": "Which brackets?",
+       "back": "Round brackets x(t) for continuous-time; square brackets x[n] for discrete-time."
+      }
+     ],
+     "theory": [
+      {
+       "q": "Provide a formal definition of a signal and explain the key difference between a continuous-time and a discrete-time signal, giving one example of each (CA test question 1).",
+       "type": "Explain",
+       "marks": 5,
+       "points": [
+        "A signal is a function of one or more independent variables that contains information",
+        "A continuous-time signal is defined at every instant and is written x(t)",
+        "A discrete-time signal is defined only at separate instants and is written x[n]",
+        "Example of continuous-time: the voltage from a microphone",
+        "Example of discrete-time: the closing price of a share each day"
+       ],
+       "need": 5
+      },
+      {
+       "q": "Define deterministic and non-deterministic signals and give an example of each.",
+       "type": "Define",
+       "marks": 4,
+       "points": [
+        "A deterministic signal has no uncertainty and is given exactly by a formula",
+        "Example of deterministic: 5 sin(100t)",
+        "A non-deterministic signal is random and is modelled with probability",
+        "Example of random: noise or speech"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Explain the difference between an analogue signal and a digital signal.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "An analogue signal is continuous in time and in amplitude",
+        "A digital signal is discrete in time and in amplitude",
+        "A digital signal is obtained by sampling and then quantising an analogue signal"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Explain what the notations x(t) and x[n] mean, and say what t and n are.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "x(t) is a continuous-time signal and t is any real number",
+        "x[n] is a discrete-time signal and n is a whole number",
+        "The brackets show which kind of signal it is"
+       ],
+       "need": 3
+      },
+      {
+       "q": "List the three ways of describing a signal and give an example of each.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "A formula, for example x(t) = 2t + 1",
+        "A graph of the value against time",
+        "A list of values for a discrete-time signal, for example 3, 1, 4, 1, 5"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Give three examples of signals from engineering and state the information each carries.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "The voice signal from a microphone carries the sound being spoken",
+        "An ECG signal carries the electrical activity of the heart",
+        "A telephone line signal carries the conversation or data being sent"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Explain why a computer cannot store a continuous-time analogue signal directly.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "A continuous-time signal has a value at infinitely many instants",
+        "A computer has finite memory and stores a finite list of numbers",
+        "So the signal must first be sampled in time and quantised in amplitude"
+       ],
+       "need": 3
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=what+is+a+signal+continuous+time+discrete+time+deterministic+random+signals+and+systems"
+      }
+     ]
+    },
+    {
+     "id": "1.2",
+     "title": "The seven basic signals",
+     "slides": "L01 slides 4 to 11 (CA test question 4); the sifting property, the links between the signals and the corrected triangle are added",
+     "one_line": "Seven standard shapes (step, impulse, ramp, parabola, sinusoid, rectangle and triangle) are the building blocks from which almost every signal is made.",
+     "analogy": "Think of the basic signals as the letters of an alphabet. A switch being flipped on is the step; a hammer blow is the impulse; a car steadily speeding up is the ramp; a smooth hum is the sinusoid. Longer words, meaning complicated signals, are spelled out of these letters.",
+     "recall": [
+      "What is the graph of y = x? What is its slope?",
+      "What is the area of a rectangle of width 4 and height 3?"
+     ],
+     "exam": [
+      "Why we study them: real signals are complicated, but they can be built by adding, shifting and scaling a few simple ones. Slide 4 calls these the elementary or basic signals. The slides give seven: step, impulse, ramp, parabolic, sinusoidal, rectangular, triangular. CA test question 4 asks you to list six; learn all seven and name the six the question wants from your list.",
+      "Unit step $u(t)$ (slide 5). Plain English: a switch that is off before $t=0$ and on from $t=0$ onwards. $u(t)=0$ for $t<0$ and $u(t)=1$ for $t\\ge0$. The slide gives $u(0)=1$ (some books leave $u(0)$ undefined or take $\\tfrac12$; use the slide). Correction: slide 5 says the area under the unit step is unity. That is wrong: the step has height 1 for ever, so the area under it is infinite. It is the unit impulse whose area is 1.",
+      "Unit impulse $\\delta(t)$ (slide 6), also called the Dirac delta. Plain English: an instantaneous hammer blow: infinitely tall, infinitely thin, with a total area of exactly 1. Properties: $\\delta(t)=0$ for $t\\ne0$ and $\\int_{-\\infty}^{\\infty}\\delta(t)\\,dt=1$. It is not an ordinary function; it is a model of something that happens at one instant and has unit strength. The slide figure draws the discrete version $\\delta[n]$, whose value at $n=0$ is simply 1.",
+      "The sifting property: $\\int_{-\\infty}^{\\infty}x(t)\\,\\delta(t-t_0)\\,dt=x(t_0)$. The impulse acts like a needle that picks out the value of $x$ at the single point $t_0$ and ignores every other point. This is the most-used property of $\\delta$ in the later modules. Not in your notes.",
+      "Unit ramp $r(t)$ (slide 7): $r(t)=0$ for $t<0$ and $r(t)=t$ for $t\\ge0$. It rises with slope 1 starting from zero, like a car whose distance grows steadily. Unit parabolic $p(t)$ (slide 8): $p(t)=0$ for $t<0$ and $p(t)=\\dfrac{t^2}{2}$ for $t\\ge0$; it curves upwards because it grows like the square of time.",
+      "The chain that links four of them: $\\delta(t)\\to u(t)\\to r(t)\\to p(t)$, where each is the integral of the one before it, and going backwards each is the derivative of the next. In symbols $u(t)=\\int_{-\\infty}^{t}\\delta(\\tau)\\,d\\tau$, $r(t)=\\int_{-\\infty}^{t}u(\\tau)\\,d\\tau=t\\,u(t)$ and $p(t)=\\int_{-\\infty}^{t}r(\\tau)\\,d\\tau=\\tfrac{t^2}{2}u(t)$. Not in your notes.",
+      "Sinusoid (slide 9): $x(t)=A\\sin(\\omega t+\\phi)$, where $A$ is the amplitude (the maximum value), $\\omega$ is the angular frequency in radians per second, $\\phi$ is the phase angle in radians (where in its cycle the wave is at $t=0$) and $t$ is time. It repeats every $T_0=\\dfrac{2\\pi}{\\omega}$ seconds, and the frequency is $f=\\dfrac1{T_0}$ hertz, so $\\omega=2\\pi f$. Not in your notes.",
+      "Rectangular pulse (slide 10), amplitude $A$ and width $T$, centred at $t=0$: $x(t)=A$ for $|t|\\le\\tfrac T2$ and $0$ for $|t|>\\tfrac T2$. It can be built from two steps: $x(t)=A\\left[u\\left(t+\\tfrac T2\\right)-u\\left(t-\\tfrac T2\\right)\\right]$ (switch on early, switch off late). Not in your notes.",
+      "Triangular pulse (slide 11), peak $A$ and width $T$, centred at $t=0$: $x(t)=A\\left(1-\\dfrac{2|t|}{T}\\right)$ for $|t|\\le\\tfrac T2$ and $0$ otherwise. It rises from 0 to $A$ at $t=0$ and falls back to 0. Correction: the figure on slide 11 labels the base from $-T$ to $T$, which does not match the formula (whose base runs from $-T/2$ to $T/2$). The version with base from $-T$ to $T$ is $A\\left(1-\\dfrac{|t|}{T}\\right)$ for $|t|\\le T$. Both are correct triangles; check which one a question means from the numbers given. Not in your notes."
+     ],
+     "terms": [
+      "unit-step",
+      "unit-impulse",
+      "sifting-property",
+      "ramp-signal",
+      "parabolic-signal",
+      "sinusoidal-signal",
+      "amplitude",
+      "angular-frequency",
+      "phase-angle",
+      "rectangular-pulse",
+      "triangular-pulse"
+     ],
+     "examples": [
+      {
+       "title": "All seven at one instant",
+       "problem": "Take $A=2$, $T=4$ and $\\omega=\\pi$ where needed. Find the value at $t=1$ of $u(t)$, $r(t)$, $p(t)$, $2\\sin(\\omega t)$, a rectangular pulse of amplitude 2 and width 4, and a triangular pulse of amplitude 2 and width 4.",
+       "steps": [
+        {
+         "do": "Step, ramp, parabola: t = 1 is positive, so use the second line of each.",
+         "m": "u(1)=1,\\quad r(1)=1,\\quad p(1)=\\tfrac{1^2}{2}=0.5"
+        },
+        {
+         "do": "Sinusoid.",
+         "why": "sin(pi) = 0: the wave is crossing zero at t = 1.",
+         "m": "2\\sin(\\pi\\cdot1)=0"
+        },
+        {
+         "do": "Rectangle: is |1| at most T/2 = 2? Yes.",
+         "m": "x(1)=2"
+        },
+        {
+         "do": "Triangle.",
+         "m": "x(1)=2\\left(1-\\frac{2\\cdot1}{4}\\right)=1"
+        },
+        {
+         "do": "The impulse is zero at t = 1.",
+         "why": "The impulse is zero everywhere except at t = 0."
+        }
+       ],
+       "answer": "u = 1, r = 1, p = 0.5, sinusoid = 0, rectangle = 2, triangle = 1 and the impulse is 0."
+      },
+      {
+       "title": "Building signals from steps and ramps",
+       "problem": "Describe $x(t)=u(t)-u(t-3)$ and $y(t)=r(t)-2r(t-1)+r(t-2)$.",
+       "steps": [
+        {
+         "do": "For x(t): before t = 0 both steps are 0, so x = 0.",
+         "m": "t<0:\\ 0-0=0"
+        },
+        {
+         "do": "Between 0 and 3 only the first step is on.",
+         "m": "0\\le t<3:\\ 1-0=1"
+        },
+        {
+         "do": "After t = 3 both are on and they cancel.",
+         "m": "t\\ge3:\\ 1-1=0"
+        },
+        {
+         "do": "So x(t) is a rectangle of height 1 from t = 0 to t = 3, switched on by one step and off by the other.",
+         "why": "A pulse is a step minus a delayed step."
+        },
+        {
+         "do": "For y(t) check the three stretches.",
+         "m": "0\\le t<1:\\ y=t;\\qquad1\\le t<2:\\ y=t-2(t-1)=2-t;\\qquad t\\ge2:\\ y=t-2(t-1)+(t-2)=0"
+        },
+        {
+         "do": "So y(t) is a triangle: it rises from 0 at t = 0 to 1 at t = 1 and falls back to 0 at t = 2.",
+         "why": "A ramp, minus a double ramp started later, plus a ramp started later still: the slopes +1, -1 and 0 add up to a triangle."
+        }
+       ],
+       "answer": "x is a rectangle from 0 to 3 of height 1; y is a triangle of peak 1 at t = 1 with base from 0 to 2."
+      },
+      {
+       "title": "The sifting property",
+       "problem": "Evaluate $\\displaystyle\\int_{-\\infty}^{\\infty}\\cos t\\,\\delta(t-\\pi)\\,dt$ and $\\displaystyle\\int_{-\\infty}^{\\infty}(3t+2)\\,\\delta(t+1)\\,dt$.",
+       "steps": [
+        {
+         "do": "The impulse is at t = pi in the first integral. Replace t by pi in the other factor.",
+         "m": "\\cos\\pi=-1"
+        },
+        {
+         "do": "In the second integral the impulse is at t = -1, because delta(t + 1) is delta(t - (-1)).",
+         "m": "3(-1)+2=-1"
+        },
+        {
+         "do": "Check: each integral is just the value of the smooth factor at the spike.",
+         "why": "Everywhere else the impulse is zero, so only the spike contributes, and its area is 1."
+        }
+       ],
+       "answer": "-1 and -1."
+      },
+      {
+       "title": "Reading a sinusoid",
+       "problem": "For $x(t)=4\\sin\\left(10\\pi t+\\tfrac\\pi3\\right)$ find the amplitude, angular frequency, frequency, period, phase and $x(0)$.",
+       "steps": [
+        {
+         "do": "Compare with A sin(omega t + phi).",
+         "m": "A=4,\\quad\\omega=10\\pi\\ \\text{rad/s},\\quad\\phi=\\tfrac\\pi3"
+        },
+        {
+         "do": "Frequency from omega = 2 pi f.",
+         "m": "f=\\frac{10\\pi}{2\\pi}=5\\ \\text{Hz}"
+        },
+        {
+         "do": "Period is one over the frequency.",
+         "m": "T_0=\\frac1f=0.2\\ \\text{s}"
+        },
+        {
+         "do": "Value at t = 0.",
+         "m": "x(0)=4\\sin\\tfrac\\pi3=4\\cdot\\tfrac{\\sqrt3}{2}=2\\sqrt3=3.464"
+        }
+       ],
+       "answer": "$A=4$, $\\omega=10\\pi$ rad/s, $f=5$ Hz, $T_0=0.2$ s, $\\phi=\\pi/3$, $x(0)=3.464$."
+      }
+     ],
+     "practice": [
+      {
+       "q": "The unit ramp is $r(t)=t$ for $t\\ge0$ and $0$ for $t<0$. Find $r(3)$.",
+       "type": "number",
+       "answer": 3.0,
+       "hint": "t is positive, so use the second line.",
+       "solution": [
+        {
+         "do": "Substitute.",
+         "m": "r(3)=3"
+        }
+       ],
+       "answerText": "3"
+      },
+      {
+       "q": "The unit parabolic signal is $p(t)=t^2/2$ for $t\\ge0$ and $0$ for $t<0$. Find $p(4)$.",
+       "type": "number",
+       "answer": 8.0,
+       "hint": "Square 4 and halve it.",
+       "solution": [
+        {
+         "do": "Substitute.",
+         "m": "p(4)=\\frac{4^2}{2}=8"
+        }
+       ],
+       "answerText": "8"
+      },
+      {
+       "q": "Using $u(0)=1$ as on the slide, find $u(1)+u(-1)+u(0)$.",
+       "type": "number",
+       "answer": 2.0,
+       "hint": "u(1) = 1, u(-1) = 0 and u(0) = 1.",
+       "solution": [
+        {
+         "do": "Add.",
+         "m": "1+0+1=2"
+        }
+       ],
+       "answerText": "2"
+      },
+      {
+       "q": "Use the sifting property to find $\\displaystyle\\int_{-\\infty}^{\\infty}(t^2+1)\\,\\delta(t-2)\\,dt$.",
+       "type": "number",
+       "answer": 5.0,
+       "hint": "The impulse picks out the value of the other factor at t = 2.",
+       "solution": [
+        {
+         "do": "Evaluate the factor at t = 2.",
+         "m": "2^2+1=5"
+        }
+       ],
+       "answerText": "5"
+      },
+      {
+       "q": "A sinusoid is $x(t)=5\\sin\\left(2\\pi t+\\tfrac{\\pi}{6}\\right)$. Find $x(0)$.",
+       "type": "number",
+       "answer": 2.5,
+       "hint": "sin(pi/6) = 0.5.",
+       "solution": [
+        {
+         "do": "Substitute t = 0.",
+         "m": "5\\sin\\tfrac\\pi6=5(0.5)=2.5"
+        }
+       ],
+       "answerText": "2.5",
+       "tol": 0.0005
+      },
+      {
+       "q": "Find the fundamental period, in seconds, of $x(t)=\\sin(4\\pi t)$.",
+       "type": "number",
+       "answer": 0.5,
+       "hint": "The period is 2 pi divided by the angular frequency.",
+       "solution": [
+        {
+         "do": "Use T0 = 2 pi / omega.",
+         "m": "T_0=\\frac{2\\pi}{4\\pi}=0.5"
+        }
+       ],
+       "answerText": "0.5",
+       "tol": 0.0005
+      },
+      {
+       "q": "A rectangular pulse of amplitude $A=3$ and width $T=4$ is centred at $t=0$ and equals $A$ when $|t|\\le T/2$. Find $x(2)$.",
+       "type": "number",
+       "answer": 3.0,
+       "hint": "Is 2 less than or equal to T/2 = 2?",
+       "solution": [
+        {
+         "do": "Compare.",
+         "m": "|2|\\le2\\Rightarrow x(2)=3"
+        }
+       ],
+       "answerText": "3"
+      },
+      {
+       "q": "A triangular pulse is $x(t)=A\\left(1-\\dfrac{2|t|}{T}\\right)$ for $|t|\\le T/2$. With $A=6$ and $T=4$ find $x(1)$.",
+       "type": "number",
+       "answer": 3.0,
+       "hint": "2|t|/T = 2/4 = 0.5.",
+       "solution": [
+        {
+         "do": "Substitute.",
+         "m": "6(1-0.5)=3"
+        }
+       ],
+       "answerText": "3"
+      }
+     ],
+     "quiz": [
+      {
+       "q": "The unit impulse delta(t) has",
+       "options": [
+        "height 1 and width 1",
+        "zero value except at t = 0, and total area 1",
+        "constant value 1 for all t",
+        "a value of 1 for t at least 0"
+       ],
+       "answer": 1,
+       "explain": "Infinitely thin and tall with unit area."
+      },
+      {
+       "q": "The unit ramp r(t) equals",
+       "options": [
+        "t for t at least 0, and 0 otherwise",
+        "1 for t at least 0",
+        "t squared over 2",
+        "sin t"
+       ],
+       "answer": 0,
+       "explain": "Slope 1 starting from zero."
+      },
+      {
+       "q": "Each of delta, step, ramp and parabola is",
+       "options": [
+        "the integral of the one before it in that order",
+        "the derivative of the one before it",
+        "unrelated",
+        "periodic"
+       ],
+       "answer": 0,
+       "explain": "delta, integrate to u, integrate to r, integrate to p."
+      },
+      {
+       "q": "The period of A sin(omega t + phi) is",
+       "options": [
+        "omega / 2 pi",
+        "2 pi / omega",
+        "omega",
+        "A / omega"
+       ],
+       "answer": 1,
+       "explain": "One cycle is 2 pi radians, and omega radians pass each second."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Unit step",
+       "back": "u(t) = 0 for t < 0 and 1 for t at least 0 (a switch turned on at t = 0)."
+      },
+      {
+       "front": "Unit impulse",
+       "back": "Zero except at t = 0, with total area 1; sifting: the integral of x(t) delta(t - t0) is x(t0)."
+      },
+      {
+       "front": "Ramp and parabola",
+       "back": "r(t) = t u(t) and p(t) = (t squared over 2) u(t); each is the integral of the one before."
+      },
+      {
+       "front": "Sinusoid",
+       "back": "A sin(omega t + phi); T0 = 2 pi / omega, f = 1 / T0, omega = 2 pi f."
+      },
+      {
+       "front": "Rectangle and triangle",
+       "back": "Rectangle: A for |t| at most T/2. Triangle: A(1 - 2|t|/T) for |t| at most T/2."
+      }
+     ],
+     "theory": [
+      {
+       "q": "List the seven basic signals and describe the defining characteristic of each (CA test question 4 asks for six).",
+       "type": "Explain",
+       "marks": 7,
+       "points": [
+        "Unit step: 0 before t = 0 and 1 from t = 0 onwards",
+        "Unit impulse: zero except at t = 0 with total area 1",
+        "Ramp: r(t) = t from t = 0, rising with slope 1",
+        "Parabolic: p(t) = t squared over 2 from t = 0",
+        "Sinusoidal: A sin(omega t + phi), a smooth periodic wave",
+        "Rectangular: constant amplitude A for a width T and zero elsewhere",
+        "Triangular: rises linearly to a peak A and falls linearly back to zero"
+       ],
+       "need": 6
+      },
+      {
+       "q": "Define the unit step function and give its formula.",
+       "type": "Define",
+       "marks": 3,
+       "points": [
+        "It is a switch that is off before t = 0 and on from t = 0",
+        "u(t) = 0 for t less than 0",
+        "u(t) = 1 for t at least 0"
+       ],
+       "need": 3
+      },
+      {
+       "q": "State the properties of the unit impulse and the sifting property.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "It is zero for every t not equal to 0",
+        "Its total area is 1",
+        "It is not an ordinary function but a model of an instantaneous event",
+        "The integral of x(t) delta(t - t0) equals x(t0)"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Show how the step, ramp and parabolic signals are related to each other and to the impulse.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "The step is the integral of the impulse",
+        "The ramp is the integral of the step",
+        "The parabolic signal is the integral of the ramp",
+        "Each is the derivative of the next one in the chain"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Write the sinusoidal signal and name each symbol.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "x(t) = A sin(omega t + phi)",
+        "A is the amplitude, the maximum value",
+        "omega is the angular frequency in radians per second",
+        "phi is the phase angle in radians",
+        "The period is 2 pi over omega"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Write the rectangular and triangular pulses of width T and amplitude A, and point out the base width of each.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Rectangle: A for the magnitude of t at most T over 2 and 0 otherwise",
+        "Triangle: A times (1 - 2 times the magnitude of t over T) for the magnitude of t at most T over 2",
+        "Both pulses have base width T and are centred at t = 0",
+        "The figure on slide 11 shows base 2T, which does not match the formula"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Show how a rectangular pulse of height 1 from t = 0 to t = 3 is made from unit step signals.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "The pulse is u(t) minus u(t - 3)",
+        "Before t = 0 both are zero",
+        "After t = 3 both equal 1 and cancel"
+       ],
+       "need": 3
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=basic+signals+unit+step+impulse+ramp+parabolic+sinusoidal+rectangular+triangular+signals+and+systems"
+      }
+     ]
+    },
+    {
+     "id": "1.3",
+     "title": "Even, odd and periodic signals",
+     "slides": "L01 slides 15 and 16 (CA test question 2); the decomposition formulas, symmetry rules and period calculations are added",
+     "one_line": "An even signal is a mirror image of itself, an odd signal is a mirror image turned upside down, and a periodic signal repeats itself forever.",
+     "analogy": "Fold a picture down the vertical axis: if the two halves match exactly, the signal is even (a butterfly). If you must also flip one half upside down to match, it is odd (the letter S laid on its side, or a seesaw). A periodic signal is wallpaper: the same pattern repeated again and again.",
+     "recall": [
+      "What is (-3) squared, and what is (-3) cubed?",
+      "What are the values of sin(-a) and cos(-a) in terms of sin a and cos a?"
+     ],
+     "exam": [
+      "Even signal (slide 15): $x(t)=x(-t)$. Plain English: the value at $-t$ equals the value at $t$, so the graph is a mirror image about the vertical axis. Example from the slide: $x(t)=t^2$, because $(-t)^2=t^2$. Also even: $\\cos t$ and constants.",
+      "Odd signal (slide 15): $x(t)=-x(-t)$, which is the same as $x(-t)=-x(t)$. Plain English: the value at $-t$ is the negative of the value at $t$; the graph looks the same when rotated half a turn about the origin. Example from the slide: $x(t)=\\sin t$, because $\\sin(-t)=-\\sin t$. Also odd: $t$, $t^3$. An odd signal must pass through zero at $t=0$. Not in your notes.",
+      "How to test a signal: (1) write down $x(-t)$ by replacing every $t$ by $-t$; (2) if it equals $x(t)$, the signal is even; (3) if it equals $-x(t)$, it is odd; (4) if it equals neither, the signal is neither, and then it is the sum of an even part and an odd part (next bullet). To justify, always show the line $x(-t)=\\dots$ that you worked out. Not in your notes.",
+      "Slide 15 states that every signal is the sum of an even part and an odd part, $f(t)=f_e(t)+f_o(t)$, but gives no formulas. They are $f_e(t)=\\tfrac12\\left[f(t)+f(-t)\\right]$ and $f_o(t)=\\tfrac12\\left[f(t)-f(-t)\\right]$. Check by adding them: you get back $f(t)$. For $f(t)=t^2+\\sin t$ the even part is $t^2$ and the odd part is $\\sin t$. For $e^{t}$ they are $\\cosh t$ and $\\sinh t$. Not in your notes.",
+      "Symmetry rules (useful in the Fourier lessons): even $\\times$ even $=$ even, odd $\\times$ odd $=$ even, even $\\times$ odd $=$ odd. Over symmetric limits an odd signal integrates to zero, $\\int_{-a}^{a}x_o\\,dt=0$, and an even one gives twice the half-range, $\\int_{-a}^{a}x_e\\,dt=2\\int_0^{a}x_e\\,dt$. Not in your notes.",
+      "Periodic signal (slide 16): $x(t)=x(t+T)$ for every $t$, or $x[n]=x[n+N]$ for a discrete signal. The smallest positive $T$ that works is the fundamental period, and $f=\\dfrac1T$ is the fundamental frequency in hertz. An aperiodic signal does not repeat at regular intervals; the slide lists noise and speech as examples.",
+      "Finding a period (not in the slides): for $\\sin(\\omega t)$ or $\\cos(\\omega t)$ the period is $T=\\dfrac{2\\pi}{\\omega}$, so $\\sin(5t)$ has $T=\\dfrac{2\\pi}{5}=1.257$ s. For a sum of two periodic signals with periods $T_1$ and $T_2$: if $T_1/T_2$ is a ratio of whole numbers the sum is periodic, and its period is the smallest time that is a whole number of both. For $\\cos(2\\pi t)+\\sin(3\\pi t)$ the periods are 1 and $\\tfrac23$, the ratio is $\\tfrac32$, and the period is 2. If the ratio is irrational (such as $\\cos t+\\cos\\sqrt2\\,t$) the sum never repeats. Not in your notes.",
+      "Discrete-time periodicity (not in the slides): $\\cos(\\omega_0 n)$ is periodic only if $\\dfrac{\\omega_0}{2\\pi}$ is a ratio of whole numbers. For $\\cos\\left(\\dfrac{\\pi n}{4}\\right)$ we get $\\dfrac18$, so the period is $N=8$ samples. Not in your notes."
+     ],
+     "terms": [
+      "even-signal",
+      "odd-signal",
+      "even-odd-decomposition",
+      "periodic-signal",
+      "aperiodic-signal",
+      "fundamental-period"
+     ],
+     "examples": [
+      {
+       "title": "CA test question 2",
+       "problem": "A signal is defined by $x(t)=t^2+\\sin t$. Determine whether it is even, odd, or a combination of both, justifying your answer by checking the necessary conditions.",
+       "steps": [
+        {
+         "do": "Work out x(-t): replace every t by -t.",
+         "m": "x(-t)=(-t)^2+\\sin(-t)=t^2-\\sin t"
+        },
+        {
+         "do": "Test the even condition x(-t) = x(t).",
+         "why": "The squared term is unchanged but the sine changes sign, so the two sides differ whenever sin t is not zero.",
+         "m": "t^2-\\sin t\\ne t^2+\\sin t\\Rightarrow\\text{not even}"
+        },
+        {
+         "do": "Test the odd condition x(-t) = -x(t).",
+         "m": "-x(t)=-t^2-\\sin t\\ne t^2-\\sin t\\Rightarrow\\text{not odd}"
+        },
+        {
+         "do": "Find the two parts.",
+         "m": "x_e=\\tfrac12\\left[x(t)+x(-t)\\right]=t^2,\\qquad x_o=\\tfrac12\\left[x(t)-x(-t)\\right]=\\sin t"
+        },
+        {
+         "do": "Conclude.",
+         "why": "Neither condition holds, but the signal is the sum of an even part and an odd part, so it is a combination of both."
+        }
+       ],
+       "answer": "Neither even nor odd: it is a combination of the even part t squared and the odd part sin t."
+      },
+      {
+       "title": "Even and odd parts of two signals",
+       "problem": "Find the even and odd parts of $x(t)=1+t+t^2+t^3$ and of $e^{t}$.",
+       "steps": [
+        {
+         "do": "For the polynomial, even powers are even and odd powers are odd, so sort the terms.",
+         "m": "x_e=1+t^2,\\qquad x_o=t+t^3"
+        },
+        {
+         "do": "Check with the formula at t = 1: x(1) = 4 and x(-1) = 0.",
+         "m": "\\tfrac12(4+0)=2=1+1^2,\\qquad\\tfrac12(4-0)=2=1+1^3"
+        },
+        {
+         "do": "For e to the t, use the formula.",
+         "m": "e_e=\\tfrac12\\left(e^t+e^{-t}\\right)=\\cosh t,\\qquad e_o=\\tfrac12\\left(e^t-e^{-t}\\right)=\\sinh t"
+        },
+        {
+         "do": "At t = 1 these are 1.543 and 1.175, and they add to e = 2.718.",
+         "why": "The even and odd parts always add back to the original signal."
+        }
+       ],
+       "answer": "$1+t^2$ and $t+t^3$; $\\cosh t$ and $\\sinh t$."
+      },
+      {
+       "title": "Finding periods",
+       "problem": "Find the fundamental period of $\\sin(5t)$, of $\\cos(2\\pi t)+\\sin(3\\pi t)$, and of the discrete signal $\\cos\\left(\\tfrac{\\pi n}{4}\\right)$. Is $\\cos t+\\cos(\\sqrt2\\,t)$ periodic?",
+       "steps": [
+        {
+         "do": "For sin(5t) use T = 2 pi over omega.",
+         "m": "T=\\frac{2\\pi}{5}=1.257\\ \\text{s}"
+        },
+        {
+         "do": "For the sum: the periods of the parts.",
+         "m": "T_1=1,\\quad T_2=\\tfrac23,\\quad T_1/T_2=\\tfrac32"
+        },
+        {
+         "do": "The ratio is a ratio of whole numbers, so the sum is periodic. The smallest time that fits whole cycles of both is 2.",
+         "why": "In 2 seconds the first part does 2 cycles and the second does 3 cycles, and they both finish together.",
+         "m": "T=2\\ \\text{s}"
+        },
+        {
+         "do": "Discrete: omega0 = pi/4, so omega0 over 2 pi is 1/8.",
+         "m": "N=8\\ \\text{samples}"
+        },
+        {
+         "do": "For cos t + cos(root 2 times t) the periods are 2 pi and 2 pi over root 2.",
+         "why": "Their ratio is root 2, which is irrational, so the two parts never finish a cycle together: the sum is not periodic."
+        }
+       ],
+       "answer": "1.257 s; 2 s; 8 samples; not periodic."
+      },
+      {
+       "title": "Using symmetry to integrate",
+       "problem": "Evaluate $\\displaystyle\\int_{-2}^{2}(t^3+t^2)\\,dt$.",
+       "steps": [
+        {
+         "do": "Split into an odd term and an even term.",
+         "m": "t^3\\ \\text{is odd},\\qquad t^2\\ \\text{is even}"
+        },
+        {
+         "do": "The odd term cancels over symmetric limits.",
+         "why": "The area to the right of zero is exactly cancelled by the negative area to the left.",
+         "m": "\\int_{-2}^{2}t^3\\,dt=0"
+        },
+        {
+         "do": "The even term is twice the half range.",
+         "m": "\\int_{-2}^{2}t^2\\,dt=2\\int_0^2t^2\\,dt=2\\cdot\\tfrac83=\\tfrac{16}3"
+        }
+       ],
+       "answer": "$\\tfrac{16}{3}=5.333$."
+      }
+     ],
+     "practice": [
+      {
+       "q": "Is x(t) = t cubed even, odd or neither? Answer even, odd or neither.",
+       "type": "text",
+       "answer": "odd",
+       "hint": "Replace t by -t and compare with -x(t).",
+       "solution": [
+        {
+         "do": "Test.",
+         "m": "x(-t)=(-t)^3=-t^3=-x(t)\\Rightarrow\\text{odd}"
+        }
+       ],
+       "answerText": "odd"
+      },
+      {
+       "q": "Is x(t) = cos(3t) even, odd or neither? Answer even, odd or neither.",
+       "type": "text",
+       "answer": "even",
+       "hint": "cos is symmetric: cos(-a) = cos(a).",
+       "solution": [
+        {
+         "do": "Test.",
+         "m": "x(-t)=\\cos(-3t)=\\cos3t=x(t)\\Rightarrow\\text{even}"
+        }
+       ],
+       "answerText": "even"
+      },
+      {
+       "q": "Past test Q2. Is x(t) = t squared + sin t even, odd or neither? Answer even, odd or neither.",
+       "type": "text",
+       "answer": "neither",
+       "hint": "Compute x(-t) and compare it with both x(t) and -x(t).",
+       "solution": [
+        {
+         "do": "Find x(-t).",
+         "m": "x(-t)=t^2-\\sin t"
+        },
+        {
+         "do": "It is not equal to x(t), because the sine changes sign.",
+         "m": "x(-t)\\ne x(t)"
+        },
+        {
+         "do": "It is not equal to -x(t), because the t squared does not change sign.",
+         "m": "x(-t)\\ne-x(t)"
+        }
+       ],
+       "answerText": "neither (a combination of an even part t squared and an odd part sin t)",
+       "alt": [
+        "combination",
+        "neither even nor odd",
+        "both"
+       ]
+      },
+      {
+       "q": "For $x(t)=t^3+t^2+t$ find the value of the even part $x_e(t)=\\tfrac12[x(t)+x(-t)]$ at $t=2$.",
+       "type": "number",
+       "answer": 4.0,
+       "hint": "x(2) = 14 and x(-2) = -6.",
+       "solution": [
+        {
+         "do": "Substitute.",
+         "m": "x_e(2)=\\tfrac12(14+(-6))=4"
+        }
+       ],
+       "answerText": "4"
+      },
+      {
+       "q": "For the same $x(t)=t^3+t^2+t$ find the odd part $x_o(t)=\\tfrac12[x(t)-x(-t)]$ at $t=2$.",
+       "type": "number",
+       "answer": 10.0,
+       "hint": "x(2) = 14 and x(-2) = -6, so x(2) - x(-2) = 20.",
+       "solution": [
+        {
+         "do": "Substitute.",
+         "m": "x_o(2)=\\tfrac12(14-(-6))=10"
+        }
+       ],
+       "answerText": "10"
+      },
+      {
+       "q": "Find the fundamental period, in seconds, of $x(t)=3\\cos(4\\pi t)$.",
+       "type": "number",
+       "answer": 0.5,
+       "hint": "T = 2 pi over omega, and omega = 4 pi.",
+       "solution": [
+        {
+         "do": "Use the formula.",
+         "m": "T=\\frac{2\\pi}{4\\pi}=0.5"
+        }
+       ],
+       "answerText": "0.5",
+       "tol": 0.0005
+      },
+      {
+       "q": "Find the fundamental period, in seconds, of $x(t)=\\cos(2\\pi t)+\\sin(3\\pi t)$.",
+       "type": "number",
+       "answer": 2.0,
+       "hint": "The two parts have periods 1 and 2/3. Find the smallest time that is a whole number of both.",
+       "solution": [
+        {
+         "do": "Periods of the parts.",
+         "m": "T_1=\\frac{2\\pi}{2\\pi}=1,\\quad T_2=\\frac{2\\pi}{3\\pi}=\\tfrac23"
+        },
+        {
+         "do": "Ratio T1 / T2 = 3/2, which is rational, so the sum is periodic.",
+         "m": "2=2\\cdot T_1=3\\cdot T_2"
+        },
+        {
+         "do": "The smallest common multiple is 2.",
+         "m": "T=2"
+        }
+       ],
+       "answerText": "2",
+       "tol": 0.002
+      },
+      {
+       "q": "Evaluate $\\displaystyle\\int_{-1}^{1}(t^2+t)\\,dt$, using the symmetry of the limits. Give a decimal.",
+       "type": "number",
+       "answer": 0.666666667,
+       "hint": "The odd term integrates to zero over symmetric limits; the even term gives twice the integral from 0 to 1.",
+       "solution": [
+        {
+         "do": "Split by symmetry.",
+         "m": "\\int_{-1}^{1}t\\,dt=0,\\qquad\\int_{-1}^{1}t^2\\,dt=2\\int_0^1t^2\\,dt=\\tfrac23"
+        }
+       ],
+       "answerText": "0.6667",
+       "tol": 0.001
+      }
+     ],
+     "quiz": [
+      {
+       "q": "A signal is even if",
+       "options": [
+        "x(-t) = x(t)",
+        "x(-t) = -x(t)",
+        "x(t + T) = x(t)",
+        "x(0) = 0"
+       ],
+       "answer": 0,
+       "explain": "Even means a mirror image about the vertical axis."
+      },
+      {
+       "q": "The signal x(t) = t squared + sin t is",
+       "options": [
+        "even",
+        "odd",
+        "neither, but the sum of an even part and an odd part",
+        "periodic"
+       ],
+       "answer": 2,
+       "explain": "x(-t) = t squared - sin t matches neither x(t) nor -x(t)."
+      },
+      {
+       "q": "The even part of f(t) is",
+       "options": [
+        "f(t) + f(-t)",
+        "half of f(t) + f(-t)",
+        "half of f(t) - f(-t)",
+        "f(-t)"
+       ],
+       "answer": 1,
+       "explain": "Half the sum with the reflected signal."
+      },
+      {
+       "q": "The fundamental period of sin(omega t) is",
+       "options": [
+        "omega / 2 pi",
+        "2 pi / omega",
+        "omega",
+        "1 / omega"
+       ],
+       "answer": 1,
+       "explain": "2 pi radians make one cycle."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Even and odd tests",
+       "back": "Even: x(-t) = x(t). Odd: x(-t) = -x(t). Replace t by -t first and compare."
+      },
+      {
+       "front": "Even and odd parts",
+       "back": "x_e = half of x(t) + x(-t); x_o = half of x(t) - x(-t); x = x_e + x_o (formulas not in your notes)."
+      },
+      {
+       "front": "Symmetry rules",
+       "back": "Even times even = even; odd times odd = even; even times odd = odd. An odd signal integrates to zero over symmetric limits (not in your notes)."
+      },
+      {
+       "front": "Periodic signal",
+       "back": "x(t) = x(t + T); the smallest such T is the fundamental period; f = 1/T."
+      },
+      {
+       "front": "Period of a sum",
+       "back": "Periodic if the ratio of the two periods is a ratio of whole numbers; the period is the smallest common multiple (not in your notes)."
+      }
+     ],
+     "theory": [
+      {
+       "q": "A signal is defined by x(t) = t squared + sin(t). Determine whether it is even, odd or a combination of both, and justify by checking the necessary conditions (CA test question 2).",
+       "type": "Explain",
+       "marks": 5,
+       "points": [
+        "The condition for even is x(-t) = x(t) and for odd is x(-t) = -x(t)",
+        "x(-t) = t squared - sin(t)",
+        "This is not equal to x(t), so the signal is not even",
+        "This is not equal to -x(t), so the signal is not odd",
+        "It is a combination of the even part t squared and the odd part sin(t)"
+       ],
+       "need": 5
+      },
+      {
+       "q": "Define an even signal and an odd signal and give one example of each.",
+       "type": "Define",
+       "marks": 4,
+       "points": [
+        "An even signal satisfies x(t) = x(-t) and is a mirror image about the vertical axis",
+        "An odd signal satisfies x(t) = -x(-t)",
+        "Example of even: t squared",
+        "Example of odd: sin(t)"
+       ],
+       "need": 4
+      },
+      {
+       "q": "State how any signal can be written as the sum of an even part and an odd part, and give the formulas.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Any signal equals the sum of an even part and an odd part",
+        "The even part is half of x(t) + x(-t)",
+        "The odd part is half of x(t) - x(-t)"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Define a periodic signal, the fundamental period and the fundamental frequency.",
+       "type": "Define",
+       "marks": 3,
+       "points": [
+        "A periodic signal satisfies x(t) = x(t + T) for all t",
+        "The fundamental period is the smallest positive T for which this holds",
+        "The fundamental frequency is f = 1/T"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Find the fundamental period of cos(2 pi t) + sin(3 pi t) and explain the method.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "The first part has period 1 and the second has period 2/3",
+        "The ratio of the periods is 3/2, a ratio of whole numbers, so the sum is periodic",
+        "The sum repeats at the smallest time containing whole cycles of both",
+        "The fundamental period is 2 seconds"
+       ],
+       "need": 4
+      },
+      {
+       "q": "State the symmetry rules for the product of even and odd signals and for integrals over symmetric limits.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Even times even is even and odd times odd is even",
+        "Even times odd is odd",
+        "The integral of an odd signal over symmetric limits is zero",
+        "The integral of an even signal over symmetric limits is twice the integral over half the range"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Explain why the sum of two periodic signals is not always periodic, with an example.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "The sum repeats only if both parts finish whole cycles at the same instant",
+        "This needs the ratio of their periods to be a ratio of whole numbers",
+        "Example: cos(t) + cos(root 2 times t) has an irrational ratio and never repeats"
+       ],
+       "need": 3
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=even+and+odd+signals+periodic+signals+explained+signals+and+systems"
+      }
+     ]
+    },
+    {
+     "id": "1.4",
+     "title": "Energy, power, real and complex signals",
+     "slides": "L01 slides 17 and 18; the power formula, the standard results and the correction to slide 18 are added",
+     "one_line": "The energy of a signal is the total of its squared size over all time, the power is the energy per second, and signals are sorted by which of these is finite.",
+     "analogy": "Think of a lamp. The energy is the total electricity it uses over its whole life, and the power is how fast it uses it at any moment on average. A lamp that is switched on for one hour then thrown away has finite energy but, averaged over all time, zero power. A lamp left on forever has infinite energy but a steady power of so many watts.",
+     "recall": [
+      "What is the area under the graph of y = 4 between x = 0 and x = 3?",
+      "What is the square root of 3 squared plus 4 squared?"
+     ],
+     "exam": [
+      "Plain English: the energy of a signal is the total of its squared size added up over all time (the area under the graph of $|x(t)|^2$). We square it so that every contribution is positive, and because the physical power in a resistor is proportional to the voltage squared. The power is the energy per second, averaged over a very long time.",
+      "Energy signal (slide 17): $E=\\int_{-\\infty}^{\\infty}|x(t)|^2\\,dt$, and $x(t)$ is an energy signal if $0<E<\\infty$; then its average power is $P=0$. Typical energy signals are pulses and signals that die away.",
+      "Power signal (slide 17): $x(t)$ is a power signal if its average power is finite and non-zero, $0<P<\\infty$, and then its energy is infinite, $E=\\infty$. The slide does not give the formula for $P$: it is $P=\\lim_{T\\to\\infty}\\dfrac1{2T}\\int_{-T}^{T}|x(t)|^2\\,dt$, and for a periodic signal it is just the average over one period, $P=\\dfrac1{T_0}\\int_{T_0}|x(t)|^2\\,dt$. Typical power signals are constants and sinusoids. Not in your notes.",
+      "A signal cannot be both an energy signal and a power signal (slide 17, except the zero signal). Some signals are neither: the ramp $r(t)=t\\,u(t)$ and $e^{t}$ grow without limit, so both $E$ and $P$ are infinite. Not in your notes.",
+      "Discrete-time signals: $E=\\sum_{n=-\\infty}^{\\infty}|x[n]|^2$ and $P=\\lim_{N\\to\\infty}\\dfrac1{2N+1}\\sum_{n=-N}^{N}|x[n]|^2$. Not in your notes.",
+      "Standard results worth memorising (not in the slides): a rectangular pulse of amplitude $A$ and width $T$ has $E=A^2T$; $e^{-at}u(t)$ with $a>0$ has $E=\\dfrac1{2a}$; a triangle of peak $A$ and width $T$ has $E=\\dfrac{A^2T}{3}$; a sinusoid $A\\sin(\\omega t+\\phi)$ has $P=\\dfrac{A^2}{2}$; a constant $A$ has $P=A^2$; the unit step has $P=\\tfrac12$. Not in your notes.",
+      "Real and imaginary signals (slide 18): a signal is real if its value is a real number at every time, $x(t)\\in\\mathbb R$ (examples $5t$, $\\sin 2\\pi t$, $x[n]=3n$). A complex signal is $x(t)=x_r(t)+j\\,x_i(t)$, where $x_r$ is the real part, $x_i$ the imaginary part and $j=\\sqrt{-1}$. If $x_r(t)=0$ the signal is purely imaginary. Correction: the slide gives $x(t)=3+j4$ as the example of a purely imaginary signal, but its real part is 3, so it is a complex signal; an example of a purely imaginary signal is $j4t$. Not in your notes.",
+      "Why the slide writes $|x|^2$: for a complex signal the squared size is $|x|^2=x_r^2+x_i^2$, which is real and positive, so the same energy and power formulas work for real and complex signals. Euler's formula $e^{j\\theta}=\\cos\\theta+j\\sin\\theta$ gives the complex exponential, whose size is always 1; complex exponentials are the building blocks of the Fourier transform in Module 4. Not in your notes."
+     ],
+     "terms": [
+      "signal-energy",
+      "signal-power",
+      "energy-signal",
+      "power-signal",
+      "complex-signal",
+      "euler-formula"
+     ],
+     "examples": [
+      {
+       "title": "Energy of two pulses",
+       "problem": "Find the energy of a rectangular pulse with $A=2$, $T=3$, and of a triangular pulse with peak $A=3$ and base from $-1$ to $1$.",
+       "steps": [
+        {
+         "do": "Rectangle: the signal is 2 on the interval from -1.5 to 1.5, so the squared signal is 4 there.",
+         "m": "E=\\int_{-1.5}^{1.5}4\\,dt=4\\times3=12"
+        },
+        {
+         "do": "Check against the standard result A squared times T.",
+         "m": "A^2T=4\\times3=12"
+        },
+        {
+         "do": "Triangle: on 0 to 1 the signal is 3(1 - t), and the pulse is symmetric, so double the half.",
+         "m": "E=2\\int_0^1 9(1-t)^2\\,dt=18\\left[-\\frac{(1-t)^3}{3}\\right]_0^1=18\\cdot\\tfrac13=6"
+        },
+        {
+         "do": "Check against A squared T over 3.",
+         "m": "\\frac{9\\cdot2}{3}=6"
+        }
+       ],
+       "answer": "12 and 6."
+      },
+      {
+       "title": "A decaying exponential",
+       "problem": "Show that $x(t)=e^{-at}u(t)$ with $a>0$ is an energy signal and find its energy.",
+       "steps": [
+        {
+         "do": "Write the squared size. The unit step switches the signal on at t = 0.",
+         "m": "|x|^2=e^{-2at}\\quad(t\\ge0)"
+        },
+        {
+         "do": "Integrate from 0 to infinity.",
+         "why": "Because a is positive the exponential dies away, so the area is finite.",
+         "m": "E=\\int_0^\\infty e^{-2at}dt=\\left[\\frac{e^{-2at}}{-2a}\\right]_0^\\infty=\\frac1{2a}"
+        },
+        {
+         "do": "The energy is finite and positive, so it is an energy signal, and its average power is zero.",
+         "why": "A finite total spread over infinite time gives zero per second."
+        }
+       ],
+       "answer": "$E=\\dfrac1{2a}$; energy signal. For $a=2$, $E=0.25$."
+      },
+      {
+       "title": "Power of a sinusoid, a constant and a step",
+       "problem": "Find the average power of $x(t)=4\\sin(10t)$, of the constant 3, and of the unit step.",
+       "steps": [
+        {
+         "do": "Sinusoid: average the square over one period T0 = 2 pi / 10.",
+         "m": "P=\\frac1{T_0}\\int_0^{T_0}16\\sin^2(10t)\\,dt=16\\cdot\\tfrac12=8"
+        },
+        {
+         "do": "Quick rule: A squared over 2.",
+         "m": "\\frac{4^2}{2}=8"
+        },
+        {
+         "do": "Constant: the square is 9 at every time, so the average is 9.",
+         "m": "P=9"
+        },
+        {
+         "do": "Unit step: it is on for the positive half of the window, off for the negative half.",
+         "m": "P=\\lim_{T\\to\\infty}\\frac1{2T}\\int_0^T1\\,dt=\\tfrac12"
+        },
+        {
+         "do": "All three have infinite energy, because a constant amount of power lasts for ever.",
+         "why": "So they are power signals, not energy signals."
+        }
+       ],
+       "answer": "8, 9 and 1/2, all power signals."
+      },
+      {
+       "title": "A discrete-time energy signal",
+       "problem": "Is $x[n]=\\left(\\tfrac12\\right)^n$ for $n\\ge0$ (and 0 for $n<0$) an energy signal?",
+       "steps": [
+        {
+         "do": "Square each value and add them.",
+         "m": "E=\\sum_{n=0}^\\infty\\left(\\tfrac14\\right)^n"
+        },
+        {
+         "do": "This is a geometric series with ratio 1/4, whose sum is 1 over (1 minus the ratio).",
+         "m": "E=\\frac{1}{1-\\tfrac14}=\\tfrac43"
+        },
+        {
+         "do": "The energy is finite, so it is an energy signal."
+        }
+       ],
+       "answer": "$E=\\tfrac43$; an energy signal."
+      }
+     ],
+     "practice": [
+      {
+       "q": "Find the energy of a rectangular pulse of amplitude $A=2$ and width $T=3$, $E=\\int|x(t)|^2dt$.",
+       "type": "number",
+       "answer": 12.0,
+       "hint": "The pulse is 2 for 3 seconds, so the square is 4 for 3 seconds.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "E=\\int_{-1.5}^{1.5}2^2\\,dt=4\\times3=12"
+        }
+       ],
+       "answerText": "12"
+      },
+      {
+       "q": "Find the energy of $x(t)=e^{-2t}u(t)$. Give a decimal.",
+       "type": "number",
+       "answer": 0.25,
+       "hint": "The square is e to the power -4t, and the signal exists only for t at least 0.",
+       "solution": [
+        {
+         "do": "Integrate.",
+         "m": "E=\\int_0^\\infty e^{-4t}dt=\\left[\\frac{e^{-4t}}{-4}\\right]_0^\\infty=\\frac14"
+        }
+       ],
+       "answerText": "0.25",
+       "tol": 0.0005
+      },
+      {
+       "q": "Find the average power of $x(t)=4\\sin(10t)$.",
+       "type": "number",
+       "answer": 8.0,
+       "hint": "For a sinusoid of amplitude A the power is A squared over 2.",
+       "solution": [
+        {
+         "do": "Use the standard result.",
+         "m": "P=\\frac{A^2}{2}=\\frac{16}{2}=8"
+        },
+        "Check by integrating one period: the average of sin squared is one half."
+       ],
+       "answerText": "8"
+      },
+      {
+       "q": "Find the average power of the unit step $u(t)$. Give a decimal.",
+       "type": "number",
+       "answer": 0.5,
+       "hint": "The signal is 1 for the positive half of the symmetric window and 0 for the negative half.",
+       "solution": [
+        {
+         "do": "Use the definition.",
+         "m": "P=\\lim_{T\\to\\infty}\\frac1{2T}\\int_0^{T}1\\,dt=\\lim\\frac{T}{2T}=\\tfrac12"
+        }
+       ],
+       "answerText": "0.5",
+       "tol": 0.0005
+      },
+      {
+       "q": "Find the magnitude $|x|$ of the complex number $x=3+j4$.",
+       "type": "number",
+       "answer": 5.0,
+       "hint": "|x| is the square root of the real part squared plus the imaginary part squared.",
+       "solution": [
+        {
+         "do": "Compute.",
+         "m": "|3+j4|=\\sqrt{9+16}=5"
+        }
+       ],
+       "answerText": "5"
+      },
+      {
+       "q": "A discrete-time signal has $x[0]=1$, $x[1]=2$, $x[2]=3$ and is zero elsewhere. Find its energy $E=\\sum|x[n]|^2$.",
+       "type": "number",
+       "answer": 14.0,
+       "hint": "Square each value and add.",
+       "solution": [
+        {
+         "do": "Add.",
+         "m": "1+4+9=14"
+        }
+       ],
+       "answerText": "14"
+      },
+      {
+       "q": "Find the energy of a triangular pulse of amplitude $A=3$ and width $T=2$ (peak 3 at $t=0$, base from $-1$ to $1$). The energy of a triangle is $A^2T/3$.",
+       "type": "number",
+       "answer": 6.0,
+       "hint": "Use the stated formula, or integrate 9(1 - |t|) squared from -1 to 1.",
+       "solution": [
+        {
+         "do": "Substitute.",
+         "m": "E=\\frac{A^2T}{3}=\\frac{9\\cdot2}{3}=6"
+        }
+       ],
+       "answerText": "6"
+      },
+      {
+       "q": "Is the unit ramp r(t) = t u(t) an energy signal, a power signal or neither? Answer energy, power or neither.",
+       "type": "text",
+       "answer": "neither",
+       "hint": "Does its energy stay finite? Does its average power stay finite?",
+       "solution": [
+        "The energy is infinite because the signal grows without limit. The average power also grows without limit, so it is neither."
+       ],
+       "answerText": "neither",
+       "alt": [
+        "neither energy nor power"
+       ]
+      }
+     ],
+     "quiz": [
+      {
+       "q": "An energy signal has",
+       "options": [
+        "finite energy and zero average power",
+        "infinite energy and finite power",
+        "finite energy and finite non-zero power",
+        "zero energy and zero power"
+       ],
+       "answer": 0,
+       "explain": "Finite total, spread over all time, gives zero average power."
+      },
+      {
+       "q": "The average power of A sin(omega t + phi) is",
+       "options": [
+        "A",
+        "A squared",
+        "A squared over 2",
+        "A over 2"
+       ],
+       "answer": 2,
+       "explain": "The average of sine squared is one half."
+      },
+      {
+       "q": "The magnitude of the complex number 3 + j4 is",
+       "options": [
+        "7",
+        "5",
+        "25",
+        "3.5"
+       ],
+       "answer": 1,
+       "explain": "The square root of 9 + 16."
+      },
+      {
+       "q": "Which of these is a power signal?",
+       "options": [
+        "a rectangular pulse",
+        "e^(-t) u(t)",
+        "the constant 5",
+        "the unit impulse"
+       ],
+       "answer": 2,
+       "explain": "A constant has infinite energy and finite power 25."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Energy signal",
+       "back": "E = integral of |x(t)| squared; 0 < E < infinity, and the average power is 0."
+      },
+      {
+       "front": "Power signal",
+       "back": "0 < P < infinity and E = infinity; P = limit of the average over a long window (formula not in your notes)."
+      },
+      {
+       "front": "Cannot be both",
+       "back": "A signal is never both an energy and a power signal (except zero); some signals, such as the ramp, are neither."
+      },
+      {
+       "front": "Real and complex",
+       "back": "x = x_r + j x_i; purely imaginary means x_r = 0; 3 + j4 is complex, not purely imaginary."
+      },
+      {
+       "front": "Standard results",
+       "back": "Rectangle A squared T; e^(-at) u(t): 1/(2a); sinusoid A squared over 2 (not in your notes)."
+      }
+     ],
+     "theory": [
+      {
+       "q": "Define an energy signal and a power signal with their formulas.",
+       "type": "Define",
+       "marks": 5,
+       "points": [
+        "The energy is the integral of the squared magnitude over all time",
+        "An energy signal has finite energy and zero average power",
+        "The power is the limit of one over 2T times the integral of the squared magnitude from -T to T",
+        "A power signal has finite non-zero power and infinite energy",
+        "A signal cannot be both an energy and a power signal"
+       ],
+       "need": 5
+      },
+      {
+       "q": "Find the energy of x(t) = e to the power -at times u(t) for a greater than 0 and classify the signal.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "The squared magnitude is e to the power -2at for t at least 0",
+        "The integral from 0 to infinity is 1/(2a)",
+        "The energy is finite, so it is an energy signal",
+        "The average power is zero"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Find the average power of x(t) = A sin(omega t) and classify the signal.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Average the squared signal over one period",
+        "The average of sin squared is one half",
+        "The power is A squared over 2",
+        "The energy is infinite, so it is a power signal"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Give an example of a signal that is neither an energy signal nor a power signal and explain why.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "The ramp r(t) = t u(t) is an example",
+        "Its energy is infinite because it grows without limit",
+        "Its average power is also infinite, so it is neither"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Define a real signal, a complex signal and a purely imaginary signal, and say what is wrong with taking 3 + j4 as a purely imaginary signal.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "A real signal has a real value at every time",
+        "A complex signal is x = x_r + j x_i",
+        "A purely imaginary signal has a real part equal to zero",
+        "3 + j4 has real part 3, so it is complex but not purely imaginary"
+       ],
+       "need": 4
+      },
+      {
+       "q": "State the energy and power of a discrete-time signal and find the energy of the signal 1, 2, 3 (values at n = 0, 1, 2).",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "The energy is the sum of the squared magnitudes of the samples",
+        "The power is the limit of the average of the squared magnitudes",
+        "The energy is 1 + 4 + 9 = 14"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Why do the energy and power formulas use the squared magnitude of the signal?",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Squaring makes every contribution positive",
+        "The power in a resistor is proportional to the voltage squared",
+        "For a complex signal the squared magnitude is the real part squared plus the imaginary part squared"
+       ],
+       "need": 3
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=energy+and+power+signals+explained+signals+and+systems"
+      }
+     ]
+    },
+    {
+     "id": "1.5",
+     "title": "Amplitude operations: scaling, addition, subtraction and multiplication",
+     "slides": "L01 slides 20 to 24; the interval method, gating and building signals from steps are added",
+     "one_line": "Amplitude operations change the height of a signal at each instant, by scaling it or by combining two signals value by value.",
+     "analogy": "Picture two songs recorded on separate tracks in a studio. Turning one track's volume up or down is amplitude scaling. Playing both tracks together adds them; playing one against the other with the second inverted subtracts them. Nothing changes about when things happen, only about how loud they are at each moment.",
+     "recall": [
+      "What is 2 times 3, 3 minus 5, and 0 times 7?",
+      "What is the value of the rectangular pulse that equals 2 for |t| < 3 at t = 4?"
+     ],
+     "exam": [
+      "Two families of operations (slide 20). Amplitude operations change the vertical direction of the graph: amplitude scaling, addition, subtraction and multiplication. Time operations change the horizontal direction: time scaling, time shifting and time reversal (lesson 1.6). Every operation on a signal belongs to one of the two families.",
+      "Amplitude scaling (slide 21): $C\\,x(t)$ multiplies the value at every instant by the constant $C$. If $C>1$ the signal gets taller; if $0<C<1$ it gets shorter; if $C$ is negative it is flipped upside down as well (so $-x(t)$ is $x(t)$ turned upside down). The slide shows a pulse of height 2 becoming 4 under $2x(t)$ and 1 under $0.5x(t)$. The time axis is not touched.",
+      "Addition (slide 22): $z(t)=x_1(t)+x_2(t)$ means: at each instant, add the two values. Subtraction (slide 23): $z(t)=x_1(t)-x_2(t)$, subtract the values. Multiplication (slide 24): $z(t)=x_1(t)\\,x_2(t)$, multiply the values.",
+      "The reliable method for all three, the interval method (not in the slides): (1) list every instant where either signal changes its description (the breakpoints); (2) these cut the time axis into intervals; (3) in each interval write the value of each signal; (4) combine the two values with the operation asked for; (5) write the answer as a list, interval by interval. Not in your notes.",
+      "The slide example: $x_1=1$ for $|t|<3$ and $x_2=2$ for $|t|<10$. The sum is $3$ for $|t|<3$, $2$ for $3<|t|<10$ and $0$ beyond. The difference $x_1-x_2$ is $-1$ for $|t|<3$ and $-2$ for $3<|t|<10$. The product is $2$ for $|t|<3$ and $0$ everywhere else, because multiplying by zero gives zero. Not in your notes.",
+      "Multiplication is the operation that switches a signal on and off. Multiplying by a pulse that is 1 in some interval and 0 elsewhere keeps the signal inside the interval and removes the rest (called gating); multiplying by $u(t)$ removes everything before $t=0$. Multiplying by a sinusoid is how radio puts a message on a carrier wave (modulation). Not in your notes.",
+      "Building signals from steps: a pulse of height $h$ from $t=a$ to $t=b$ is $h\\left[u(t-a)-u(t-b)\\right]$; a staircase is a sum of such pulses. For example $\\left[u(t)-u(t-1)\\right]+2\\left[u(t-1)-u(t-2)\\right]+3\\left[u(t-2)-u(t-3)\\right]$ steps up through the heights 1, 2 and 3 on successive seconds. Not in your notes.",
+      "Linear combination: $C_1x_1(t)+C_2x_2(t)$ is scaling and adding at once. It is used for the superposition test of lesson 2.1. Not in your notes."
+     ],
+     "terms": [
+      "amplitude-scaling",
+      "signal-addition",
+      "signal-multiplication",
+      "breakpoints"
+     ],
+     "examples": [
+      {
+       "title": "The slide example: add, subtract, multiply",
+       "problem": "$x_1(t)=1$ for $|t|<3$ (and 0 elsewhere) and $x_2(t)=2$ for $|t|<10$ (and 0 elsewhere). Find $x_1+x_2$, $x_1-x_2$ and $x_1x_2$.",
+       "steps": [
+        {
+         "do": "List the breakpoints: t = -10, -3, 3, 10. They cut the axis into regions.",
+         "why": "The description of either signal changes only at these four instants."
+        },
+        {
+         "do": "Write both values in each region.",
+         "m": "|t|<3:\\ (1,2);\\quad3<|t|<10:\\ (0,2);\\quad|t|>10:\\ (0,0)"
+        },
+        {
+         "do": "Sum, region by region.",
+         "m": "3,\\quad2,\\quad0"
+        },
+        {
+         "do": "Difference x1 minus x2, region by region.",
+         "m": "1-2=-1,\\quad0-2=-2,\\quad0"
+        },
+        {
+         "do": "Product, region by region.",
+         "m": "1\\times2=2,\\quad0\\times2=0,\\quad0"
+        }
+       ],
+       "answer": "Sum: 3, 2, 0. Difference: -1, -2, 0. Product: 2, 0, 0 in the three regions."
+      },
+      {
+       "title": "Scaling a pulse",
+       "problem": "A pulse $x(t)$ has height 2 for $|t|<2$. Sketch in words $2x(t)$, $0.5x(t)$ and $-x(t)$.",
+       "steps": [
+        {
+         "do": "Multiply the height by the constant; the width does not change.",
+         "why": "Scaling touches only the vertical direction."
+        },
+        {
+         "do": "2x(t) has height 4.",
+         "m": "2\\times2=4"
+        },
+        {
+         "do": "0.5x(t) has height 1.",
+         "m": "0.5\\times2=1"
+        },
+        {
+         "do": "-x(t) has height -2: the pulse points downwards.",
+         "m": "-1\\times2=-2"
+        }
+       ],
+       "answer": "Heights 4, 1 and -2 over the same interval |t| < 2."
+      },
+      {
+       "title": "Building a staircase from steps",
+       "problem": "Describe $x(t)=\\left[u(t)-u(t-1)\\right]+2\\left[u(t-1)-u(t-2)\\right]+3\\left[u(t-2)-u(t-3)\\right]$.",
+       "steps": [
+        {
+         "do": "Each bracket is a pulse of height 1 lasting one second, because a step minus a step delayed by 1 is on for exactly one second.",
+         "m": "u(t-a)-u(t-a-1)=1\\ \\text{for}\\ a\\le t<a+1"
+        },
+        {
+         "do": "Multiply each pulse by its constant.",
+         "m": "1\\ (0\\le t<1),\\quad2\\ (1\\le t<2),\\quad3\\ (2\\le t<3)"
+        },
+        {
+         "do": "Outside 0 to 3 every bracket is zero.",
+         "m": "x(t)=0\\ \\text{for}\\ t<0\\ \\text{and}\\ t\\ge3"
+        }
+       ],
+       "answer": "A staircase: 1, 2, 3 over successive seconds, 0 elsewhere."
+      },
+      {
+       "title": "Operations on formulas",
+       "problem": "For $x_1(t)=t$ and $x_2(t)=t^2$ find the sum, difference and product at $t=3$.",
+       "steps": [
+        {
+         "do": "When the signals are formulas, simply compute each value and combine.",
+         "m": "x_1(3)=3,\\quad x_2(3)=9"
+        },
+        {
+         "do": "Sum, difference and product.",
+         "m": "3+9=12,\\quad3-9=-6,\\quad3\\times9=27"
+        }
+       ],
+       "answer": "12, -6 and 27."
+      }
+     ],
+     "practice": [
+      {
+       "q": "Let $x_1(t)=1$ for $|t|<3$ and $0$ elsewhere, and $x_2(t)=2$ for $|t|<10$ and $0$ elsewhere. Find $z(t)=x_1(t)+x_2(t)$ at $t=5$.",
+       "type": "number",
+       "answer": 2.0,
+       "hint": "At t = 5, is x1 on? Is x2 on?",
+       "solution": [
+        {
+         "do": "Add the values at t = 5.",
+         "m": "x_1(5)=0,\\quad x_2(5)=2\\Rightarrow z=2"
+        }
+       ],
+       "answerText": "2"
+      },
+      {
+       "q": "For the same x1 and x2, find z(t) = x1(t) + x2(t) at t = 0.",
+       "type": "number",
+       "answer": 3.0,
+       "hint": "Both signals are on at t = 0.",
+       "solution": [
+        {
+         "do": "Add.",
+         "m": "1+2=3"
+        }
+       ],
+       "answerText": "3"
+      },
+      {
+       "q": "For the same x1 and x2, find z(t) = x1(t) - x2(t) at t = 2.",
+       "type": "number",
+       "answer": -1.0,
+       "hint": "Both are on at t = 2: 1 minus 2.",
+       "solution": [
+        {
+         "do": "Subtract.",
+         "m": "1-2=-1"
+        }
+       ],
+       "answerText": "-1"
+      },
+      {
+       "q": "For the same x1 and x2, find z(t) = x1(t) - x2(t) at t = 5.",
+       "type": "number",
+       "answer": -2.0,
+       "hint": "Only x2 is on at t = 5.",
+       "solution": [
+        {
+         "do": "Subtract.",
+         "m": "0-2=-2"
+        }
+       ],
+       "answerText": "-2"
+      },
+      {
+       "q": "For the same x1 and x2, find z(t) = x1(t) x2(t) at t = 1.",
+       "type": "number",
+       "answer": 2.0,
+       "hint": "Multiply the values at t = 1.",
+       "solution": [
+        {
+         "do": "Multiply.",
+         "m": "1\\times2=2"
+        }
+       ],
+       "answerText": "2"
+      },
+      {
+       "q": "For the same x1 and x2, find z(t) = x1(t) x2(t) at t = 5.",
+       "type": "number",
+       "answer": 0.0,
+       "hint": "Anything times zero is zero, and x1 is off at t = 5.",
+       "solution": [
+        {
+         "do": "Multiply.",
+         "m": "0\\times2=0"
+        }
+       ],
+       "answerText": "0"
+      },
+      {
+       "q": "For the same x1 and x2, find 3 x1(t) - x2(t) at t = 0.",
+       "type": "number",
+       "answer": 1.0,
+       "hint": "Scale first, then subtract: 3 times 1, minus 2.",
+       "solution": [
+        {
+         "do": "Compute.",
+         "m": "3(1)-2=1"
+        }
+       ],
+       "answerText": "1"
+      },
+      {
+       "q": "For $x_1(t)=t$ and $x_2(t)=t^2$ find the sum $x_1(t)+x_2(t)$ at $t=3$.",
+       "type": "number",
+       "answer": 12.0,
+       "hint": "3 + 9.",
+       "solution": [
+        {
+         "do": "Add.",
+         "m": "3+3^2=12"
+        }
+       ],
+       "answerText": "12"
+      }
+     ],
+     "quiz": [
+      {
+       "q": "The signal 2x(t) is",
+       "options": [
+        "x(t) shifted 2 units to the left",
+        "x(t) with every value doubled",
+        "x(t) played at double speed",
+        "x(t) turned back to front"
+       ],
+       "answer": 1,
+       "explain": "Amplitude scaling by 2 doubles the heights; times are unchanged."
+      },
+      {
+       "q": "Adding two signals means",
+       "options": [
+        "adding their times",
+        "adding their values at each instant",
+        "joining them end to end",
+        "multiplying their values"
+       ],
+       "answer": 1,
+       "explain": "Add the amplitudes at each instant."
+      },
+      {
+       "q": "If x1 is zero in some region, then x1(t) x2(t) in that region is",
+       "options": [
+        "x2(t)",
+        "0",
+        "x1(t) + x2(t)",
+        "undefined"
+       ],
+       "answer": 1,
+       "explain": "Anything multiplied by zero is zero."
+      },
+      {
+       "q": "A pulse of height h from t = a to t = b can be written",
+       "options": [
+        "h(u(t - a) - u(t - b))",
+        "h(u(t - a) + u(t - b))",
+        "h u(t - a) u(t + b)",
+        "h(a - b)"
+       ],
+       "answer": 0,
+       "explain": "Switch on at a and off at b."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Amplitude and time operations",
+       "back": "Amplitude operations change the height (scale, add, subtract, multiply). Time operations change where (shift, scale, reverse)."
+      },
+      {
+       "front": "Amplitude scaling",
+       "back": "C x(t): every value is multiplied by C; negative C also flips the signal."
+      },
+      {
+       "front": "Addition, subtraction, multiplication",
+       "back": "Done value by value at each instant (slides 22 to 24)."
+      },
+      {
+       "front": "Interval method",
+       "back": "List the breakpoints, cut the axis into regions, write each value in each region, combine, list the answer (not in your notes)."
+      },
+      {
+       "front": "Pulse from steps",
+       "back": "A pulse of height h from a to b is h(u(t - a) - u(t - b)) (not in your notes)."
+      }
+     ],
+     "theory": [
+      {
+       "q": "List the amplitude operations on a signal and explain what each does.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "Amplitude scaling multiplies every value by a constant",
+        "Addition adds the amplitudes of two signals at each instant",
+        "Subtraction subtracts the amplitudes at each instant",
+        "Multiplication multiplies the amplitudes at each instant"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Explain the effect of amplitude scaling C x(t) for C greater than 1, between 0 and 1, and negative.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "C greater than 1 makes the signal taller",
+        "C between 0 and 1 makes it shorter",
+        "A negative C also turns the signal upside down",
+        "The time axis is unchanged in every case"
+       ],
+       "need": 4
+      },
+      {
+       "q": "For x1 equal to 1 for the magnitude of t less than 3 and x2 equal to 2 for the magnitude of t less than 10, find x1 + x2, x1 - x2 and x1 times x2.",
+       "type": "Explain",
+       "marks": 5,
+       "points": [
+        "Cut the time axis at -10, -3, 3 and 10",
+        "The sum is 3 for the magnitude of t below 3 and 2 between 3 and 10",
+        "The difference is -1 below 3 and -2 between 3 and 10",
+        "The product is 2 below 3 and 0 elsewhere",
+        "All three are zero beyond 10"
+       ],
+       "need": 5
+      },
+      {
+       "q": "Describe the interval method for combining two piecewise signals.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "List the breakpoints where either signal changes",
+        "These cut the time axis into regions",
+        "Write the value of each signal in each region",
+        "Combine the values with the required operation in each region"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Explain how a pulse of height h from t = a to t = b is built from unit step signals and how a staircase is built.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "A pulse is h times u(t - a) minus u(t - b)",
+        "Before a both steps are zero and after b they cancel",
+        "A staircase is a sum of such pulses with different heights"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Explain how multiplication can switch a signal on and off.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Multiplying by a pulse that is 1 in an interval and 0 elsewhere keeps only that interval",
+        "Multiplying by the unit step removes everything before t = 0",
+        "Anything multiplied by zero is zero"
+       ],
+       "need": 3
+      },
+      {
+       "q": "State the difference between amplitude operations and time operations.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "Amplitude operations change the height of the graph",
+        "Time operations change the time axis: shifting, scaling and reversing",
+        "Each operation belongs to exactly one of the two groups"
+       ],
+       "need": 3
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=amplitude+operations+on+signals+addition+subtraction+multiplication+scaling+signals+and+systems"
+      }
+     ]
+    },
+    {
+     "id": "1.6",
+     "title": "Time operations: shifting, scaling and reversal",
+     "slides": "L01 slides 25 to 27 (CA test question 3); combined operations such as x(2t - 4) and the method for them are added",
+     "one_line": "Time operations slide a signal along the time axis, squeeze or stretch it, or flip it back to front, without changing its heights.",
+     "analogy": "Think of a video. Pressing play two seconds late is a time shift. Playing it at double speed squeezes it into half the time: time scaling. Playing it backwards is time reversal. The picture at each moment does not change; only when each moment happens does.",
+     "recall": [
+      "If y = 2t - 4, what is t when y = 0, and when y = 4?",
+      "What is the mirror image of the point (3, 5) in the vertical axis?"
+     ],
+     "exam": [
+      "Time operations (slides 20 and 25 to 27) change the horizontal direction of the graph: shifting, scaling and reversal. The heights stay exactly as they were; only the times at which they happen change. The most general form is $y(t)=x(at-b)$.",
+      "Time shifting (slide 25): $x(t-t_0)$ is $x(t)$ moved to the right by $t_0$ when $t_0>0$ (a delay, the slide's 'positive shift'), and $x(t+t_0)$ moves it to the left by $t_0$ (an advance, the slide's 'negative shift'). Why: the event that happened at $t=0$ in $x(t)$ happens in $x(t-t_0)$ when $t-t_0=0$, that is at $t=t_0$, later. Common mistake: expecting a minus sign to shift left.",
+      "Time scaling (slide 26): $x(at)$ with $a>0$. If $a>1$ the signal is compressed, squeezed towards $t=0$ to $\\tfrac1a$ of its width (it runs faster); if $0<a<1$ it is expanded, stretched to $\\tfrac1a$ times its width. Example from the slide: a pulse from $-2$ to $2$ becomes a pulse from $-1$ to $1$ under $x(2t)$, and one from $-4$ to $4$ under $x(t/2)$. The heights do not change.",
+      "Time reversal (slide 27): $x(-t)$ is $x(t)$ flipped left to right about the vertical axis, as if a recording were played backwards. An even signal is unchanged by reversal, which is another way of stating $x(-t)=x(t)$.",
+      "The key-point method for any $y(t)=x(at-b)$, including negative $a$ (not in the slides, and the safest method): (1) list the key points of $x(t)$ (corners and ends of the pulse); (2) for each key point $t_k$ solve $at-b=t_k$ for $t$; these are the key points of $y$; (3) the height at each key point is unchanged; (4) join them in the same pattern, noting that a negative $a$ also reverses left and right. Not in your notes.",
+      "Worked check: for a pulse that is 1 from 0 to 4, the signal $x(2t-4)$ switches on where $2t-4=0$, so $t=2$, and off where $2t-4=4$, so $t=4$: it is a pulse from 2 to 4, half as wide and moved right. Not in your notes.",
+      "The order matters when you build the result in steps: $x(2t-4)=x\\big(2(t-2)\\big)$. Scale first by 2, then shift the scaled signal right by 2 (not 4). Shifting first by 4 and then scaling by 2 gives the same answer: $x(t-4)$ then replace $t$ by $2t$. Using the key-point method avoids the problem completely. Not in your notes.",
+      "Discrete-time (not in the slides): $x[n-k]$ moves the list $k$ places to the right, $x[-n]$ reverses the list, and $x[2n]$ keeps only every second value. Stretching, as in $x[n/2]$, has no value at odd $n$ and needs extra rules. Not in your notes."
+     ],
+     "terms": [
+      "time-shifting",
+      "time-scaling",
+      "time-reversal",
+      "key-points"
+     ],
+     "examples": [
+      {
+       "title": "CA test question 3: a triangular pulse and three operations",
+       "problem": "Sketch an arbitrary triangular pulse $x(t)$ and show the effect of (a) $x(t-2)$, (b) $x(2t)$, (c) $2x(t)$.",
+       "steps": [
+        {
+         "do": "Choose the triangle: peak 2 at t = 0 and base from -1 to 1. Its key points are (-1, 0), (0, 2) and (1, 0).",
+         "why": "Any triangle works; choosing simple numbers makes the pattern clear."
+        },
+        {
+         "do": "(a) Set t - 2 equal to each key time: t = 1, 2, 3. The peak moves from 0 to 2 and the whole triangle moves 2 to the right. Key points (1, 0), (2, 2), (3, 0).",
+         "m": "t-2=-1,0,1\\Rightarrow t=1,2,3"
+        },
+        {
+         "do": "(b) Set 2t equal to each key time: t = -0.5, 0, 0.5. The triangle is squeezed to half the width and the peak height stays 2. Key points (-0.5, 0), (0, 2), (0.5, 0).",
+         "m": "2t=-1,0,1\\Rightarrow t=-0.5,0,0.5"
+        },
+        {
+         "do": "(c) Amplitude scaling: times unchanged, heights doubled. Key points (-1, 0), (0, 4), (1, 0).",
+         "why": "The time axis is untouched, so only the peak height changes."
+        },
+        {
+         "do": "Label each separate graph x(t - 2), x(2t) and 2x(t), mark the key points on the axes, and say in a line what each operation does."
+        }
+       ],
+       "answer": "(a) moved right by 2, base 1 to 3, peak 2 at t = 2; (b) half as wide, base -0.5 to 0.5, peak 2; (c) same width, peak 4."
+      },
+      {
+       "title": "A combined operation by the key-point method",
+       "problem": "$x(t)$ is 1 for $0\\le t\\le4$ and 0 elsewhere. Describe $x(2t-4)$ and $x(1-t)$.",
+       "steps": [
+        {
+         "do": "The key points of x are t = 0 and t = 4."
+        },
+        {
+         "do": "For x(2t - 4): solve 2t - 4 = 0 and 2t - 4 = 4.",
+         "m": "t=2\\quad\\text{and}\\quad t=4"
+        },
+        {
+         "do": "So x(2t - 4) is a pulse from 2 to 4: half the width, moved right.",
+         "why": "Width = 4 divided by 2, the scaling factor."
+        },
+        {
+         "do": "For x(1 - t): solve 1 - t = 0 and 1 - t = 4.",
+         "m": "t=1\\quad\\text{and}\\quad t=-3"
+        },
+        {
+         "do": "So x(1 - t) is a pulse from -3 to 1: the same width, reversed and moved.",
+         "why": "The negative sign in front of t reverses the signal, and the pulse now ends at t = 1 where before it began at 0."
+        }
+       ],
+       "answer": "x(2t - 4) is a pulse from 2 to 4; x(1 - t) is a pulse from -3 to 1."
+      },
+      {
+       "title": "Why x(t - t0) moves right",
+       "problem": "A pulse peaks at $t=0$. Where does the peak of $y(t)=x(t-3)$ occur?",
+       "steps": [
+        {
+         "do": "The peak of x occurs when its argument is 0."
+        },
+        {
+         "do": "For y the argument is t - 3, so the peak occurs when t - 3 = 0.",
+         "m": "t-3=0\\Rightarrow t=3"
+        },
+        {
+         "do": "The peak has moved from 0 to 3: to the right, a delay of 3.",
+         "why": "A minus sign inside the bracket delays the signal; it does not move it left."
+        }
+       ],
+       "answer": "The peak moves to t = 3."
+      }
+     ],
+     "practice": [
+      {
+       "q": "A pulse x(t) equals 1 for t from 0 to 4 and 0 elsewhere. The signal y(t) = x(2t) is a pulse. At what time does it end? Give the right-hand end.",
+       "type": "number",
+       "answer": 2.0,
+       "hint": "Set the argument 2t equal to 4.",
+       "solution": [
+        {
+         "do": "Solve.",
+         "m": "2t=4\\Rightarrow t=2"
+        }
+       ],
+       "answerText": "2"
+      },
+      {
+       "q": "The same x(t). The signal y(t) = x(t - 3) is a pulse. At what time does it end?",
+       "type": "number",
+       "answer": 7.0,
+       "hint": "Set the argument t - 3 equal to 4.",
+       "solution": [
+        {
+         "do": "Solve.",
+         "m": "t-3=4\\Rightarrow t=7"
+        }
+       ],
+       "answerText": "7"
+      },
+      {
+       "q": "The same x(t). The signal y(t) = x(-t) is a pulse. At what time does it start (left-hand end)?",
+       "type": "number",
+       "answer": -4.0,
+       "hint": "The argument -t runs from 0 to 4, so t runs from 0 down to -4.",
+       "solution": [
+        {
+         "do": "Solve.",
+         "m": "-t=4\\Rightarrow t=-4"
+        }
+       ],
+       "answerText": "-4"
+      },
+      {
+       "q": "The same x(t). The signal y(t) = x(2t - 2) is a pulse. At what time does it start?",
+       "type": "number",
+       "answer": 1.0,
+       "hint": "Set the argument 2t - 2 equal to 0.",
+       "solution": [
+        {
+         "do": "Solve.",
+         "m": "2t-2=0\\Rightarrow t=1"
+        },
+        "It ends where 2t - 2 = 4, that is t = 3, so its width is 2, half the width of x."
+       ],
+       "answerText": "1"
+      },
+      {
+       "q": "The same x(t). The signal y(t) = x(t/2) is a pulse. At what time does it end?",
+       "type": "number",
+       "answer": 8.0,
+       "hint": "Set the argument t/2 equal to 4.",
+       "solution": [
+        {
+         "do": "Solve.",
+         "m": "t/2=4\\Rightarrow t=8"
+        },
+        "Dividing the argument by 2 stretches the pulse to twice its width."
+       ],
+       "answerText": "8"
+      },
+      {
+       "q": "A triangular pulse $x(t)$ has peak 2 at $t=0$ and base from $-1$ to $1$ (CA test question 3). What is the height of the peak of $2x(t)$?",
+       "type": "number",
+       "answer": 4.0,
+       "hint": "Amplitude scaling multiplies the height by 2.",
+       "solution": [
+        {
+         "do": "Multiply.",
+         "m": "2\\times2=4"
+        }
+       ],
+       "answerText": "4"
+      },
+      {
+       "q": "A discrete-time signal has $x[0]=1$, $x[1]=2$, $x[2]=3$ and is zero elsewhere. For $y[n]=x[n-1]$ find $y[2]$.",
+       "type": "number",
+       "answer": 2.0,
+       "hint": "Replace n by 2 in the argument: n - 1 = 1.",
+       "solution": [
+        {
+         "do": "Substitute.",
+         "m": "y[2]=x[2-1]=x[1]=2"
+        }
+       ],
+       "answerText": "2"
+      },
+      {
+       "q": "For the ramp $r(t)=t$ for $t\\ge0$ (0 otherwise), find $r(t+2)$ at $t=1$.",
+       "type": "number",
+       "answer": 3.0,
+       "hint": "Put t = 1 into the argument: 1 + 2 = 3.",
+       "solution": [
+        {
+         "do": "Substitute.",
+         "m": "r(1+2)=r(3)=3"
+        }
+       ],
+       "answerText": "3"
+      }
+     ],
+     "quiz": [
+      {
+       "q": "The signal x(t - 2) is x(t)",
+       "options": [
+        "moved 2 units to the left",
+        "moved 2 units to the right (delayed)",
+        "made twice as tall",
+        "made twice as wide"
+       ],
+       "answer": 1,
+       "explain": "The event at t = 0 now occurs when t - 2 = 0, that is t = 2."
+      },
+      {
+       "q": "x(2t) is x(t)",
+       "options": [
+        "stretched to twice its width",
+        "squeezed to half its width",
+        "moved 2 to the right",
+        "doubled in height"
+       ],
+       "answer": 1,
+       "explain": "A factor above 1 compresses the signal."
+      },
+      {
+       "q": "Time reversal x(-t) is",
+       "options": [
+        "a flip about the vertical axis",
+        "a flip about the horizontal axis",
+        "a shift to the left",
+        "a stretch"
+       ],
+       "answer": 0,
+       "explain": "Left and right are swapped."
+      },
+      {
+       "q": "A pulse from 0 to 4 under x(2t - 4) becomes a pulse from",
+       "options": [
+        "0 to 2",
+        "2 to 4",
+        "4 to 8",
+        "-4 to 0"
+       ],
+       "answer": 1,
+       "explain": "Solve 2t - 4 = 0 and 2t - 4 = 4."
+      }
+     ],
+     "flashcards": [
+      {
+       "front": "Time shift",
+       "back": "x(t - t0) is x(t) delayed (moved right) by t0; x(t + t0) is moved left."
+      },
+      {
+       "front": "Time scaling",
+       "back": "x(at): a above 1 compresses, a between 0 and 1 expands; heights unchanged."
+      },
+      {
+       "front": "Time reversal",
+       "back": "x(-t) flips the signal about the vertical axis."
+      },
+      {
+       "front": "Key-point method",
+       "back": "To plot x(at - b), solve at - b = (each key point) for t; heights stay the same (not in your notes)."
+      },
+      {
+       "front": "Amplitude versus time operations",
+       "back": "C x(t) changes the height only; x(at - b) changes the time axis only."
+      }
+     ],
+     "theory": [
+      {
+       "q": "Sketch an arbitrary triangular pulse x(t) and show and label the effect of x(t - 2), x(2t) and 2x(t) (CA test question 3).",
+       "type": "Explain",
+       "marks": 6,
+       "points": [
+        "Draw the triangle with its peak and base clearly labelled",
+        "x(t - 2) is the triangle moved 2 units to the right with the same shape",
+        "x(2t) is squeezed to half the width with the same peak height",
+        "2x(t) has the same width but twice the peak height",
+        "Each operation is shown on a separate graph with the key points labelled",
+        "The time-axis operations leave the heights unchanged while the amplitude operation leaves the times unchanged"
+       ],
+       "need": 6
+      },
+      {
+       "q": "Explain time shifting and say why x(t - t0) moves the signal to the right.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "x(t - t0) is x(t) delayed by t0 and x(t + t0) is advanced by t0",
+        "The event at t = 0 in x occurs in x(t - t0) when t - t0 = 0",
+        "That is at t = t0, which is later, so the signal moves right"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Explain time scaling x(at) for a greater than 1 and for a between 0 and 1.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "For a greater than 1 the signal is compressed by the factor a",
+        "For a between 0 and 1 the signal is expanded",
+        "The amplitude is unchanged in both cases"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Explain time reversal and say what happens to an even signal.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "x(-t) is x(t) flipped about the vertical axis",
+        "It is the signal played backwards",
+        "An even signal is unchanged because x(-t) = x(t)"
+       ],
+       "need": 3
+      },
+      {
+       "q": "Describe a method for sketching x(2t - 4) from x(t) and apply it to a pulse from 0 to 4.",
+       "type": "Explain",
+       "marks": 4,
+       "points": [
+        "List the key points of x(t)",
+        "Solve 2t - 4 equal to each key point to find where the key points move",
+        "The pulse from 0 to 4 becomes a pulse from 2 to 4",
+        "The heights are unchanged"
+       ],
+       "need": 4
+      },
+      {
+       "q": "Explain why the order of scaling and shifting matters when building x(2t - 4) in steps.",
+       "type": "Explain",
+       "marks": 3,
+       "points": [
+        "x(2t - 4) is x of 2 times (t - 2)",
+        "If you scale by 2 first, the shift is 2 and not 4",
+        "If you shift by 4 first and then scale by 2 you get the same result",
+        "The key-point method avoids the problem"
+       ],
+       "need": 4
+      },
+      {
+       "q": "State how a discrete-time signal is shifted and reversed.",
+       "type": "Explain",
+       "marks": 2,
+       "points": [
+        "x[n - k] moves the sequence k places to the right",
+        "x[-n] reverses the sequence"
+       ],
+       "need": 2
+      }
+     ],
+     "videos": [
+      {
+       "status": "pending",
+       "search_fallback": "https://www.youtube.com/results?search_query=time+shifting+time+scaling+time+reversal+of+signals+signals+and+systems"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "glossary": {
+  "signal": {
+   "term": "Signal",
+   "plain": "A record of how something changes, where the pattern of the changes carries a message.",
+   "exam": "A function of one or more independent variables that contains information; a time-varying physical phenomenon intended to convey information."
+  },
+  "independent-variable": {
+   "term": "Independent variable",
+   "plain": "The input you choose, such as the time on a clock.",
+   "exam": "The variable on which a function depends; for a signal x(t) it is t. The dependent variable is the value x."
+  },
+  "continuous-time-signal": {
+   "term": "Continuous-time signal",
+   "plain": "A signal that has a value at every instant, however closely you look.",
+   "exam": "A signal defined for all instants of time, written x(t) with t a real number."
+  },
+  "discrete-time-signal": {
+   "term": "Discrete-time signal",
+   "plain": "A signal that has values only at separate instants, like one number per day.",
+   "exam": "A signal defined only at discrete instants, written x[n] with n an integer."
+  },
+  "analogue-signal": {
+   "term": "Analogue signal",
+   "plain": "A signal that is smooth in time and can take any value in a range.",
+   "exam": "A signal continuous in both time and amplitude."
+  },
+  "digital-signal": {
+   "term": "Digital signal",
+   "plain": "A signal stored as a list of numbers from a fixed set of values.",
+   "exam": "A signal discrete in both time (sampled) and amplitude (quantised)."
+  },
+  "deterministic-signal": {
+   "term": "Deterministic signal",
+   "plain": "A signal you can predict exactly with a formula.",
+   "exam": "A signal with no uncertainty at any instant; defined exactly by a mathematical formula."
+  },
+  "random-signal": {
+   "term": "Random signal",
+   "plain": "A signal you cannot predict exactly, like noise.",
+   "exam": "A non-deterministic signal with uncertainty in its value; modelled in probabilistic terms and not given by an exact equation."
+  },
+  "unit-step": {
+   "term": "Unit step",
+   "plain": "A switch that is off before time zero and on afterwards.",
+   "exam": "u(t) = 0 for t < 0 and u(t) = 1 for t at least 0; its height is 1 (the area under it is infinite, not unity as slide 5 says)."
+  },
+  "unit-impulse": {
+   "term": "Unit impulse",
+   "plain": "An instant hammer blow: infinitely thin, infinitely tall, with total strength 1.",
+   "exam": "The Dirac delta delta(t): zero for t not equal to 0 and with integral 1 over the whole line."
+  },
+  "sifting-property": {
+   "term": "Sifting property",
+   "plain": "The impulse picks out the value of another function at one single point.",
+   "exam": "The integral of x(t) delta(t - t0) over all t equals x(t0) (not in the notes)."
+  },
+  "ramp-signal": {
+   "term": "Ramp signal",
+   "plain": "A signal that starts at zero and rises steadily.",
+   "exam": "r(t) = t for t at least 0 and 0 for t < 0; slope 1; the integral of the unit step."
+  },
+  "parabolic-signal": {
+   "term": "Parabolic signal",
+   "plain": "A signal that starts at zero and curves upwards as time goes on.",
+   "exam": "p(t) = t squared over 2 for t at least 0 and 0 for t < 0; the integral of the ramp."
+  },
+  "sinusoidal-signal": {
+   "term": "Sinusoidal signal",
+   "plain": "A smooth wave that repeats steadily, like the swing of a pendulum.",
+   "exam": "x(t) = A sin(omega t + phi), a periodic signal with period 2 pi / omega."
+  },
+  "amplitude": {
+   "term": "Amplitude",
+   "plain": "How tall a wave is, measured from the middle to the top.",
+   "exam": "The maximum value of a sinusoid; the factor A in A sin(omega t + phi)."
+  },
+  "angular-frequency": {
+   "term": "Angular frequency",
+   "plain": "How fast the wave's angle is turning, in radians per second.",
+   "exam": "omega in radians per second, with omega = 2 pi f and period 2 pi / omega."
+  },
+  "phase-angle": {
+   "term": "Phase angle",
+   "plain": "How far along its cycle the wave already is at time zero.",
+   "exam": "The angle phi in radians in A sin(omega t + phi); it shifts the wave along the time axis."
+  },
+  "rectangular-pulse": {
+   "term": "Rectangular pulse",
+   "plain": "A signal that is on at a fixed height for a while and off otherwise.",
+   "exam": "A signal of constant amplitude A over a width T and zero elsewhere; a difference of two unit steps."
+  },
+  "triangular-pulse": {
+   "term": "Triangular pulse",
+   "plain": "A signal that ramps up to a peak and ramps back down.",
+   "exam": "A signal rising linearly to a peak A and falling linearly to zero; centred at 0 with width T it is A(1 - 2|t|/T) for |t| at most T/2."
+  },
+  "even-signal": {
+   "term": "Even signal",
+   "plain": "A signal whose graph is a mirror image about the vertical axis.",
+   "exam": "A signal with x(t) = x(-t) for all t."
+  },
+  "odd-signal": {
+   "term": "Odd signal",
+   "plain": "A signal whose left side is the mirror image of the right side turned upside down.",
+   "exam": "A signal with x(-t) = -x(t) for all t; it passes through 0 at t = 0."
+  },
+  "even-odd-decomposition": {
+   "term": "Even and odd parts",
+   "plain": "Any signal can be split into a mirror-symmetric part and an upside-down-symmetric part that add back to it.",
+   "exam": "x = x_e + x_o with x_e = half of x(t) + x(-t) and x_o = half of x(t) - x(-t) (formulas not in the notes)."
+  },
+  "periodic-signal": {
+   "term": "Periodic signal",
+   "plain": "A signal that repeats itself again and again at regular intervals.",
+   "exam": "A signal with x(t) = x(t + T) for all t; the smallest positive T is the fundamental period."
+  },
+  "aperiodic-signal": {
+   "term": "Aperiodic signal",
+   "plain": "A signal that never repeats its pattern at regular intervals.",
+   "exam": "A signal that is not periodic, such as noise or speech (slide 16)."
+  },
+  "fundamental-period": {
+   "term": "Fundamental period",
+   "plain": "The time for one complete repeat of a periodic signal.",
+   "exam": "The smallest positive T with x(t) = x(t + T); the fundamental frequency is f = 1/T."
+  },
+  "signal-energy": {
+   "term": "Signal energy",
+   "plain": "The total of a signal's squared size added up over all time.",
+   "exam": "E = integral of the squared magnitude of x(t) from minus infinity to infinity."
+  },
+  "signal-power": {
+   "term": "Signal power",
+   "plain": "The signal's energy per second, averaged over a very long time.",
+   "exam": "P = limit as T tends to infinity of the average of the squared magnitude over a window of length 2T (formula not in the notes)."
+  },
+  "energy-signal": {
+   "term": "Energy signal",
+   "plain": "A signal with a finite total amount of energy, like a single pulse.",
+   "exam": "A signal with 0 < E < infinity and therefore zero average power."
+  },
+  "power-signal": {
+   "term": "Power signal",
+   "plain": "A signal that keeps going, with a steady average power but an infinite total energy.",
+   "exam": "A signal with 0 < P < infinity and therefore infinite energy."
+  },
+  "complex-signal": {
+   "term": "Complex signal",
+   "plain": "A signal whose values are complex numbers, with a real part and an imaginary part.",
+   "exam": "x(t) = x_r(t) + j x_i(t) with j the square root of -1; purely imaginary when x_r = 0."
+  },
+  "euler-formula": {
+   "term": "Euler's formula",
+   "plain": "A link between waves and complex numbers.",
+   "exam": "e to the j theta equals cos theta + j sin theta; its magnitude is 1 (not in the notes)."
+  },
+  "amplitude-scaling": {
+   "term": "Amplitude scaling",
+   "plain": "Making a signal taller or shorter by multiplying every value by the same number.",
+   "exam": "C x(t): the value at every instant is multiplied by C; the time axis is unchanged."
+  },
+  "signal-addition": {
+   "term": "Signal addition",
+   "plain": "Adding two signals value by value at each instant, like mixing two audio tracks.",
+   "exam": "z(t) = x1(t) + x2(t): the amplitudes are added at each instant."
+  },
+  "signal-multiplication": {
+   "term": "Signal multiplication",
+   "plain": "Multiplying two signals value by value at each instant.",
+   "exam": "z(t) = x1(t) x2(t); multiplying by a pulse switches a signal on and off (gating)."
+  },
+  "breakpoints": {
+   "term": "Breakpoints",
+   "plain": "The instants where a signal's description changes, such as where a pulse starts or stops.",
+   "exam": "The times at which a piecewise signal changes its formula; they cut the time axis into intervals (not in the notes)."
+  },
+  "time-shifting": {
+   "term": "Time shifting",
+   "plain": "Sliding a signal along the time axis, earlier or later, without changing its shape.",
+   "exam": "x(t - t0): a delay by t0 (to the right) for t0 > 0; x(t + t0) is an advance (to the left)."
+  },
+  "time-scaling": {
+   "term": "Time scaling",
+   "plain": "Squeezing or stretching a signal along the time axis, like changing the playback speed.",
+   "exam": "x(at) with a > 0: compression for a > 1 and expansion for a < 1; amplitudes unchanged."
+  },
+  "time-reversal": {
+   "term": "Time reversal",
+   "plain": "Playing a signal backwards.",
+   "exam": "x(-t): the signal flipped about the vertical axis."
+  },
+  "key-points": {
+   "term": "Key points",
+   "plain": "The corners and end points of a signal's graph, which are enough to redraw it.",
+   "exam": "The points of a piecewise-linear or pulse signal at which the description changes; transform them to plot x(at - b) (not in the notes)."
+  }
+ },
+ "past": [
+  {
+   "q": "Past test Q2 (CA 2025/2026). A signal is defined by x(t) = t squared + sin(t). Is it even, odd, or a combination of both? Answer even, odd or neither.",
+   "type": "text",
+   "answer": "neither",
+   "hint": "Compute x(-t) and compare it with x(t) and with -x(t).",
+   "solution": [
+    {
+     "do": "Find x(-t).",
+     "m": "x(-t)=t^2-\\sin t"
+    },
+    {
+     "do": "It is not equal to x(t), so the signal is not even; it is not equal to -x(t), so it is not odd.",
+     "m": "x_e=t^2,\\qquad x_o=\\sin t"
+    }
+   ],
+   "answerText": "neither (a combination of the even part t squared and the odd part sin t)",
+   "alt": [
+    "combination",
+    "neither even nor odd",
+    "both"
+   ]
+  }
+ ]
+}
